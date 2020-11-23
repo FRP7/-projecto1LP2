@@ -1,2 +1,2 @@
-# -projecto1LP2
+# Projeto 1 de LP2
 Primeiro projeto de LP2
