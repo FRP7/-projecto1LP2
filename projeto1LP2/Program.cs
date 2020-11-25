@@ -12,10 +12,14 @@ namespace projeto1LP2
             //Console.WriteLine("Hello World!");
             FileReader teste = new FileReader();
             teste.ReadFile();
-            foreach (KeyValuePair<string, Types> item in Facade.planetList) {
+            /*foreach (KeyValuePair<int, Types> item in Facade.planetList) {
                 Console.WriteLine(item);
             }
-            Console.WriteLine(Facade.planetList["Teste"].Teste);
+            Console.WriteLine(Facade.planetList[0].Teste);*/
+
+            for(int i = 0; i < Facade.planetList.Count; i++) {
+                Console.WriteLine(Facade.planetList[i].Teste);
+            }
         }
     }
 }

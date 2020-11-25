@@ -21,7 +21,7 @@ namespace projeto1LP2
             }*/
             Facade facade = new Facade();
             Facade.planetList.Add(
-                "Teste",
+                0,
                 new Types(
                     teste: "Hello World"
                     )

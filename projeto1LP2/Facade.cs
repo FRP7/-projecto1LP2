@@ -10,10 +10,10 @@ namespace projeto1LP2
     /// </summary>
     class Facade
     {
-        public static Dictionary<string, Types> planetList;
+        public static Dictionary<int, Types> planetList;
 
         public Facade() {
-            planetList = new Dictionary<string, Types>();
+            planetList = new Dictionary<int, Types>();
         }
     }
 }
