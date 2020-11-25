@@ -20,17 +20,12 @@ namespace projeto1LP2
             /*using(StreamReader sr = File.OpenText(fileName)) {
             }*/
             Facade facade = new Facade();
-            facade.planetList.Add(
+            Facade.planetList.Add(
                 "Teste",
                 new Types(
                     teste: "Hello World"
                     )
                 );
-
-            /*foreach (KeyValuePair<string, Types> item in facade.planetList) {
-                Console.WriteLine(item);
-            }
-            Console.WriteLine(facade.planetList["Teste"].Teste);*/
         }
     }
 }
