@@ -8,7 +8,7 @@ namespace projeto1LP2
     class Program
     {
         static void Main(string[] args) {
-            Console.WriteLine("Hello World!");
+            //Console.WriteLine("Hello World!");
             FileReader teste = new FileReader();
             teste.ReadFile();
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace projeto1LP2
 {
@@ -9,5 +10,10 @@ namespace projeto1LP2
     /// </summary>
     class Facade
     {
+        public Dictionary<string, Types> planetList;
+
+        public Facade() {
+            planetList = new Dictionary<string, Types>();
+        }
     }
 }

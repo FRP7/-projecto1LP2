@@ -4,7 +4,9 @@ namespace projeto1LP2
 {
     struct Types
     {
-        // Planet Name
+        // Teste
+        public string Teste { get; set; }
+        /*// Planet Name
         public string Pl_Name { get; set; }
         // Host Name
         public string HostName { get; set; }
@@ -183,6 +185,10 @@ namespace projeto1LP2
         // Planetary Parameter Reference Publication Date
         public string P1_PubDate { get; set; }
         // Release Date
-        public string ReleaseDate { get; set; }
+        public string ReleaseDate { get; set; }*/
+
+        public Types(string teste) {
+            Teste = teste;
+        }
     }
 }
