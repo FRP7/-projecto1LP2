@@ -1,0 +1,91 @@
+pl_name (string) Planet Name
+hostname (string)  Host Name
+default_flag (int) Default Parameter Set
+sy_snum (int) Number of Stars
+sy_pnum (int) Number of Planets
+discoverymethod (string) Discovery Method
+disc_year (int) Discovery Year
+disc_facility (string)  Discovery Facility
+soltype (string) Solution Type
+pl_controv_flag (int) Controversial Flag
+pl_refname (string) Planetary Parameter Reference
+pl_orbper (float) Orbital Period [days]
+pl_orbpererr1 (float) Orbital Period Upper Unc. [days]
+pl_obpererr2 (float) Orbital Period Lower Unc. [days]
+pl_obperlim (int)  Orbital Period Limit Flag
+pl_orbsmax (float)  Orbit Semi-Major Axis [au])
+pl_orbsmaxerr1 (float) Orbit Semi-Major Axis Upper Unc. [au]
+pl_orbsmaxerr2 (float) Orbit Semi-Major Axis Lower Unc. [au]
+pl_orbsmaxlim (int) Orbit Semi-Major Axis Limit Flag
+pl_rade (float)  Planet Radius [Earth Radius]
+pl_radeerr1 (float) Planet Radius Upper Unc. [Earth Radius]
+pl_radeerr2 (float) Planet Radius Lower Unc. [Earth Radius]
+pl_radelim (int) Planet Radius Limit Flag
+pl_radj (float) Planet Radius [Jupiter Radius]
+pl_radjerr1 (float) Planet Radius Upper Unc. [Jupiter Radius]
+pl_radjerr2 (float) Planet Radius Lower Unc. [Jupiter Radius]
+pl_radjlim (int) Planet Radius Limit Flag
+pl_bmasse (float)  Planet Mass or Mass*sin(i) [Earth Mass]
+pl_bmasseerr1 (float) Planet Mass or Mass*sin(i) [Earth Mass] Upper Unc.
+pl_bmasseerr2 (float) Planet Mass or Mass*sin(i) [Earth Mass] Lower Unc.
+pl_bmasselim (int) Planet Mass or Mass*sin(i) [Earth Mass] Limit Flag
+pl_bmassj (float) Planet Mass or Mass*sin(i) [Jupiter Mass]
+pl_bmassjerr1 (float) Planet Mass or Mass*sin(i) [Jupiter Mass] Upper Unc.
+pl_bmassjerr2 (float) Planet Mass or Mass*sin(i) [Jupiter Mass] Lower Unc.
+pl_bmassjlim (int) Planet Mass or Mass*sin(i) [Jupiter Mass] Limit Flag
+pl_bmassprov (string)  Planet Mass or Mass*sin(i) Provenance
+pl_orbeccen (float) Eccentricity
+pl_orbeccenerr1 (float) Eccentricity Upper Unc.
+pl_orcebeccenerr2 (float) Eccentricity Lower Unc.
+pl_orbeccenlim (int) Eccentricity Limit Flag
+pl_insol (float) Insolation Flux [Earth Flux]
+pl_insolerr1 (float) Insolation Flux Upper Unc. [Earth Flux]
+pl_insolerr2 (float)  Insolation Flux Lower Unc. [Earth Flux]
+p1_insollim (int) Insolation Flux Limit Flag
+pl_eqt (int) Equilibrium Temperature [K]
+pl_eqterr1 (int)  Equilibrium Temperature Upper Unc. [K]
+pl_eqterr2 (int) Equilibrium Temperature Lower Unc. [K]
+pl_eqtlim (int) Equilibrium Temperature Limit Flag
+ttv_flag (int) Data show Transit Timing Variations
+st_refname (string) Stellar Parameter Reference
+st_teff (float) Stellar Effective Temperature [K]
+st_teffer1 (float) Stellar Effective Temperature Upper Unc. [K]
+st_teffer2 (float) Stellar Effective Temperature Lower Unc. [K]
+st_tefflim (int) Stellar Effective Temperature Limit Flag
+st_rad (float) Stellar Radius [Solar Radius]
+st_raderr1 (float) Stellar Radius Upper Unc. [Solar Radius]
+st_raderr2 (float)  Stellar Radius Lower Unc. [Solar Radius]
+st_radlim (int) Stellar Radius Limit Flag
+st_mass (float) Stellar Mass [Solar mass]
+st_masserr1 (float) Stellar Mass Upper Unc. [Solar mass]
+st_masserr2 (float) Stellar Mass Lower Unc. [Solar mass]
+st_masslim (int) Stellar Mass Limit Flag
+st_met (float) Stellar Metallicity [dex]
+st_meterr1 (float) Stellar Metallicity Upper Unc. [dex]
+st_meterr2 (float) Stellar Metallicity Lower Unc. [dex]
+st_metflim (int) Stellar Metallicity Limit Flag
+st_metratio (string) Stellar Metallicity Ratio
+st_logg (float) Stellar Surface Gravity [log10(cm/s**2)]
+st_loggerr1 (float) Stellar Surface Gravity Upper Unc. [log10(cm/s**2)]
+st_loggerr2 (float) Stellar Surface Gravity Lower Unc. [log10(cm/s**2)]
+st_logglim (int) Stellar Surface Gravity Limit Flag
+sy_refname (string) System Parameter Reference
+rastr (string) RA [sexagesimal]
+ra (float)  RA [decimal]
+decstr (string) Dec [sexagesimal]
+dec (float) Dec [decimal]
+sy_dist (float) Distance [pc]
+sy_disterr1 (float) Distance [pc] Upper Unc
+sy_disterr2 (float) Distance [pc] Lower Unc
+sy_vmag (float) V (Johnson) Magnitude
+sy_vmagerr1 (float) V (Johnson) Magnitude Upper Unc
+sy_vmagerr2 (float) V (Johnson) Magnitude Lower Unc
+sy_kmag (float) Ks (2MASS) Magnitude
+sy_kmagerr1 (float)  Ks (2MASS) Magnitude Upper Unc
+sy_kmagerr2 (float) Ks (2MASS) Magnitude Lower Unc
+sy_gaiamag (float) Gaia Magnitude
+sy_gaiamagerr1 (float) Gaia Magnitude Upper Unc
+sy_gaiamagerr2 (float) Gaia Magnitude Lower Unc
+rowupdate (string) Date of Last Update
+p1_pubdate (string) Planetary Parameter Reference Publication Date
+releasedate (string)  Release Date
