@@ -34,6 +34,10 @@ namespace projeto1LP2
         private bool ValidatyCheck() {
             string content = "";
             string[] lines;
+            string planetName = "";
+            string starName = "";
+            int indexPlanet = 0;
+            int indexStar = 0;
             try {
                 using(StreamReader sr = File.OpenText(fileName)) {
                     /*// Passar à frente as primeiras linhas
@@ -57,15 +61,40 @@ namespace projeto1LP2
                     for (int i = 0; i < 48; i++) {
                         content = sr.ReadLine();
                     }
-                    // Dividir a linha e colocar na array
+                    // Dividir a linha e colocar cada coluna na array
                     lines = new string[content.Length];
                     lines = content.Split(',');
-                    foreach(string item in lines) {
-                        Console.WriteLine(item);
+                    // 
+
+                    for(int i = 0; i < lines.Length; i++) {
+                        if(lines[i].Contains("pl_name")) {
+                            indexPlanet = i;
+                        }
+                        planetName = lines[indexPlanet];
+                        if (lines[i].Contains("hostname")) {
+                            indexStar = i;
+                        }
+                        starName = lines[indexStar];
                     }
+
+                    Facade.planetList.Add(
+                        0,
+                        new Types(
+                            pl_name: planetName,
+                            hostname: starName
+                            )
+                        );
+
+                    // teste, delete later
+                    //Console.WriteLine(planetName);
+                    //Console.WriteLine(starName);
+                    /*foreach(string item in lines) {
+                        Console.WriteLine(item);
+                    }*/
                 }
                 // debug pa testes, delete later
-                //Console.WriteLine(Facade.planetList[0].Pl_Name);
+                Console.WriteLine(Facade.planetList[0].Pl_Name);
+                Console.WriteLine(Facade.planetList[0].HostName);
 
                 return true;
             } catch(Exception message) {
