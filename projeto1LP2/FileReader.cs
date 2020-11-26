@@ -19,13 +19,13 @@ namespace projeto1LP2
             sr.Close();*/
             /*using(StreamReader sr = File.OpenText(fileName)) {
             }*/
-            Facade facade = new Facade();
+            /*Facade facade = new Facade();
             Facade.planetList.Add(
                 0,
                 new Types(
                     teste: "Hello World"
                     )
-                );
+                );*/
         }
     }
 }
