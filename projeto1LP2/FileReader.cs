@@ -12,6 +12,7 @@ namespace projeto1LP2
     {
         private const string fileName = "planetList.csv";
         Facade facade = new Facade();
+        private int lineCount = 0;
         //private string teste;
 
         public void ReadFile() {
@@ -39,7 +40,8 @@ namespace projeto1LP2
             int indexPlanet = 0;
             int indexStar = 0;
             try {
-                using(StreamReader sr = File.OpenText(fileName)) {
+                using (StreamReader sr = File.OpenText(fileName)) {
+                    lineCount = File.ReadLines(fileName).Count();
                     /*// Passar à frente as primeiras linhas
                     for(int i = 0; i < 47; i++) {
                         line = sr.ReadLine();
@@ -66,24 +68,48 @@ namespace projeto1LP2
                     lines = content.Split(',');
                     // 
 
-                    for(int i = 0; i < lines.Length; i++) {
-                        if(lines[i].Contains("pl_name")) {
+                    // Identificar o index das colunas desejadas
+                    for (int i = 0; i < lines.Length; i++) {
+                        if (lines[i].Contains("pl_name")) {
                             indexPlanet = i;
                         }
-                        planetName = lines[indexPlanet];
+                        //planetName = lines[indexPlanet];
                         if (lines[i].Contains("hostname")) {
                             indexStar = i;
                         }
-                        starName = lines[indexStar];
+                        //starName = lines[indexStar];
                     }
 
+                    // Verificar os campos abaixo
+                    for (int i = 0; i < lineCount - 48; i++) {
+                        content = sr.ReadLine();
+                        //lines = content.Split(',');
+                        if (content != null) {
+                            lines = content.Split(',');
+                        }
+                        planetName = lines[indexPlanet];
+                        starName = lines[indexStar];
+                        /*Console.WriteLine($"Iteração {i}. " +
+                            $"Planeta: {lines[indexPlanet]}. " +
+                            $"Estrela: {lines[indexStar]}");*/
+                        //Console.WriteLine($"Iteração {i}. Campo: {lines[indexPlanet]}");
+                        // Colocar os valores no dicionário
+                        Facade.planetList.Add(
+                           i, new Types(
+                           pl_name: planetName,
+                           hostname: starName
+                           )
+                       );
+                    }
+
+                    /*// Colocar os valores no dicionário
                     Facade.planetList.Add(
                         0,
                         new Types(
                             pl_name: planetName,
                             hostname: starName
                             )
-                        );
+                        );*/
 
                     // teste, delete later
                     //Console.WriteLine(planetName);
@@ -93,11 +119,13 @@ namespace projeto1LP2
                     }*/
                 }
                 // debug pa testes, delete later
+                Console.WriteLine(Facade.planetList.Count);
                 Console.WriteLine(Facade.planetList[0].Pl_Name);
                 Console.WriteLine(Facade.planetList[0].HostName);
 
                 return true;
-            } catch(Exception message) {
+            }
+            catch (Exception message) {
                 Console.WriteLine("Ocorreu o seguinte problema: " +
                     message.Message);
                 return false;
