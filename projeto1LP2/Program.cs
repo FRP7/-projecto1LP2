@@ -17,9 +17,9 @@ namespace projeto1LP2
             }
             Console.WriteLine(Facade.planetList[0].Teste);*/
 
-            for(int i = 0; i < Facade.planetList.Count; i++) {
+            /*for(int i = 0; i < Facade.planetList.Count; i++) {
                 Console.WriteLine(Facade.planetList[i].Teste);
-            }
+            }*/
         }
     }
 }
