@@ -47,6 +47,7 @@ namespace projeto1LP2
             int planetTemp = 0;
             double starTemp = 0;
             double starRade = 0;
+            double starMass = 0;
 
             int indexPlanet = 0;
             int indexStar = 0;
@@ -58,6 +59,7 @@ namespace projeto1LP2
             int indexPlEqt = 0;
             int indexStTeff = 0;
             int indexStRad = 0;
+            int indexStMass = 0;
             try {
                 using (StreamReader sr = File.OpenText(fileName)) {
                     lineCount = File.ReadLines(fileName).Count();
@@ -120,6 +122,9 @@ namespace projeto1LP2
                         if (lines[i].Contains("st_rad")) {
                             indexStRad = i;
                         }
+                        if (lines[i].Contains("st_mass")) {
+                            indexStMass = i;
+                        }
                         //starName = lines[indexStar];
                     }
 
@@ -163,6 +168,10 @@ namespace projeto1LP2
                         } else {
                             starRade = 0;
                         }
+                        if (double.TryParse(lines[indexStMass], NumberStyles.Any, CultureInfo.InvariantCulture, out starMass)) {
+                        } else {
+                            starMass = 0;
+                        }
                         /*Console.WriteLine($"Iteração {i}. " +
                             $"Planeta: {lines[indexPlanet]}. " +
                             $"Estrela: {lines[indexStar]}");*/
@@ -179,7 +188,8 @@ namespace projeto1LP2
                            p1_Masse: planetMasse,
                            pl_Eqt: planetTemp,
                            st_Teff: starTemp,
-                           st_Rad: starRade
+                           st_Rad: starRade,
+                           st_Mass: starMass
                            )
                        );
                     }
@@ -212,6 +222,7 @@ namespace projeto1LP2
                 Console.WriteLine(Facade.planetList[0].Pl_Eqt);
                 Console.WriteLine(Facade.planetList[0].St_Teff);
                 Console.WriteLine(Facade.planetList[0].St_Rad);
+                Console.WriteLine(Facade.planetList[0].St_Mass);
 
                 return true;
             }

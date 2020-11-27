@@ -24,9 +24,9 @@ namespace projeto1LP2
         public double St_Teff { get; set; }
         // Raio da estrela (em comparação com o Sol).
         public double St_Rad { get; set; }
-        /*
         // Massa da estrela (em comparação com o Sol).
-        public float St_Mass { get; set; }*/
+        public double St_Mass { get; set; }
+
         /* Idade da estrela (em Giga-anos, ou seja, por milhar de 
          * milhão de anos).*/
         /*public float St_Age { get; set; } //não tem
@@ -63,7 +63,7 @@ namespace projeto1LP2
 
         public Types(string pl_Name, string hostName, string discoveryMethod,
             int disc_Year, double p1_Orbper, double p1_Rade, double p1_Masse,
-            int pl_Eqt, double st_Teff, double st_Rad) {
+            int pl_Eqt, double st_Teff, double st_Rad, double st_Mass) {
             Pl_Name = pl_Name;
             HostName = hostName;
             DiscoveryMethod = discoveryMethod;
@@ -74,6 +74,7 @@ namespace projeto1LP2
             Pl_Eqt = pl_Eqt;
             St_Teff = st_Teff;
             St_Rad = st_Rad;
+            St_Mass = st_Mass;
         }
     }
 }
