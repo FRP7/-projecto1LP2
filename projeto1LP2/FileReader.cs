@@ -11,32 +11,27 @@ namespace projeto1LP2
     /// </summary>
     class FileReader
     {
+        // Nome do ficheiro.
         private const string fileName = "planetList.csv";
+        // Inicializar a coleção.
         Facade facade = new Facade();
+        // Contar as linhas.
         private int lineCount = 0;
-        //private string teste;
 
+        // Método de leitura do ficheiro.
         public void ReadFile() {
-            /*StreamReader sr = File.OpenText(fileName);
-            teste = sr.ReadToEnd();
-            Console.WriteLine(teste);
-            sr.Close();*/
-            /*using(StreamReader sr = File.OpenText(fileName)) {
-            }*/
-            /*Facade facade = new Facade();
-            Facade.planetList.Add(
-                0,
-                new Types(
-                    teste: "Hello World"
-                    )
-                );*/
-            ValidatyCheck();
+            // Método de leitura de planetas e seus respetivos campos.
+            GetPlanets();
         }
 
-        private bool ValidatyCheck() {
+        // Método de leitura de planetas e seus respetivos campos.
+        private void GetPlanets() {
+            // Conteúdo do ficheiro.
             string content = "";
+            // Linhas do ficheiro.
             string[] lines;
 
+            // Variáveis dos campos de interesse.
             string planetName = "";
             string starName = "";
             string discoveryMethodName = "";
@@ -53,6 +48,7 @@ namespace projeto1LP2
             double starRotp = 0;
             double starDistance = 0;
 
+            // Variáveis de iteração.
             int indexPlanet = 0;
             int indexStar = 0;
             int indexDiscoveryMethod = 0;
@@ -69,41 +65,25 @@ namespace projeto1LP2
             int indexStRotp = 0;
             int indexStDist = 0;
 
+            // Tentar ler ficheiro.
             try {
                 using (StreamReader sr = File.OpenText(fileName)) {
                     lineCount = File.ReadLines(fileName).Count();
-                    /*// Passar à frente as primeiras linhas
-                    for(int i = 0; i < 47; i++) {
-                        line = sr.ReadLine();
-                    }
-                    line = "";
-                    // Ler em linha horizontal as colunas e filtrar
-                    line = sr.ReadLine();
-                    if(line.Contains("pl_name") == true &&
-                        line.Contains("hostname") == true) {
-                        /*Facade.planetList.Add(
-                        0,
-                        new Types(
-                            pl_name: "pl_name",
-                            hostname: "hostname"
-                        )
-                        );*/
-                    //}
+
                     // Passar à frente as primeiras linhas
                     for (int i = 0; i < 48; i++) {
                         content = sr.ReadLine();
                     }
-                    // Dividir a linha e colocar cada coluna na array
+                    // Dividir a linha e colocar cada campo na array
                     lines = new string[content.Length];
                     lines = content.Split(',');
                     // 
 
-                    // Identificar o index das colunas desejadas
+                    // Identificar o index dos campos desejados
                     for (int i = 0; i < lines.Length; i++) {
                         if (lines[i].Contains("pl_name")) {
                             indexPlanet = i;
                         }
-                        //planetName = lines[indexPlanet];
                         if (lines[i].Contains("hostname")) {
                             indexStar = i;
                         }
@@ -146,16 +126,18 @@ namespace projeto1LP2
                         if (lines[i].Contains("sy_dist")) {
                             indexStDist = i;
                         }
-                        //starName = lines[indexStar];
                     }
 
-                    // Verificar os campos abaixo
+                    // Verificar os valores dos campos.
                     for (int i = 0; i < lineCount - 48; i++) {
+                        // Ler o ficheiro.
                         content = sr.ReadLine();
-                        //lines = content.Split(',');
+                        // Separar os campos.
                         if (content != null) {
                             lines = content.Split(',');
                         }
+                        /* Ler os campos de interesse e colocar nas respetivas
+                         * variáveis.*/
                         planetName = lines[indexPlanet];
                         starName = lines[indexStar];
                         discoveryMethodName = lines[indexDiscoveryMethod];
@@ -163,7 +145,6 @@ namespace projeto1LP2
                         } else {
                             discoveryYear = 0;
                         }
-                        //orbitalPeriod = Convert.ToSingle(lines[indexOrbitalPeriod]);
                         if (double.TryParse(lines[indexOrbitalPeriod], NumberStyles.Any ,CultureInfo.InvariantCulture ,out orbitalPeriod)) {
                         }
                         else {
@@ -209,11 +190,8 @@ namespace projeto1LP2
                         } else {
                             starDistance = 0;
                         }
-                        /*Console.WriteLine($"Iteração {i}. " +
-                            $"Planeta: {lines[indexPlanet]}. " +
-                            $"Estrela: {lines[indexStar]}");*/
-                        //Console.WriteLine($"Iteração {i}. Campo: {lines[indexPlanet]}");
-                        // Colocar os valores no dicionário
+
+                        // Colocar os valores no dicionário dos planetas.
                         Facade.planetList.Add(
                            i, new Types(
                            pl_Name: planetName,
@@ -234,22 +212,6 @@ namespace projeto1LP2
                            )
                        );
                     }
-
-                    /*// Colocar os valores no dicionário
-                    Facade.planetList.Add(
-                        0,
-                        new Types(
-                            pl_name: planetName,
-                            hostname: starName
-                            )
-                        );*/
-
-                    // teste, delete later
-                    //Console.WriteLine(planetName);
-                    //Console.WriteLine(starName);
-                    /*foreach(string item in lines) {
-                        Console.WriteLine(item);
-                    }*/
                 }
                 // debug pa testes, delete later
                 Console.WriteLine(Facade.planetList.Count);
@@ -264,7 +226,7 @@ namespace projeto1LP2
                 Console.WriteLine(Facade.planetList[0].St_Teff);
                 Console.WriteLine(Facade.planetList[0].St_Rad);
                 Console.WriteLine(Facade.planetList[0].St_Mass);
-                //Console.WriteLine(Facade.planetList[0].St_Age);
+
                 if(Facade.planetList[0].St_Age == 0) {
                     Console.WriteLine("Informação não disponível");
                 }
@@ -275,13 +237,11 @@ namespace projeto1LP2
                     Console.WriteLine("Informação não disponível");
                 }
                 Console.WriteLine(Facade.planetList[0].Sy_Dist);
-
-                return true;
             }
+            // Caso não consiga ler o ficheiro.
             catch (Exception message) {
                 Console.WriteLine("Ocorreu o seguinte problema: " +
                     message.Message);
-                return false;
             }
         }
     }
