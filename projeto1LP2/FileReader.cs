@@ -2,6 +2,7 @@
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
+using System.Globalization;
 
 namespace projeto1LP2
 {
@@ -39,10 +40,12 @@ namespace projeto1LP2
             string starName = "";
             string discoveryMethodName = "";
             int discoveryYear = 0;
+            double orbitalPeriod = 0;
             int indexPlanet = 0;
             int indexStar = 0;
             int indexDiscoveryMethod = 0;
             int indexDiscoveryYear = 0;
+            int indexOrbitalPeriod = 0;
             try {
                 using (StreamReader sr = File.OpenText(fileName)) {
                     lineCount = File.ReadLines(fileName).Count();
@@ -87,6 +90,9 @@ namespace projeto1LP2
                         if (lines[i].Contains("disc_year")) {
                             indexDiscoveryYear = i;
                         }
+                        if (lines[i].Contains("pl_orbper")) {
+                            indexOrbitalPeriod = i;
+                        }
                         //starName = lines[indexStar];
                     }
 
@@ -101,6 +107,12 @@ namespace projeto1LP2
                         starName = lines[indexStar];
                         discoveryMethodName = lines[indexDiscoveryMethod];
                         discoveryYear = Convert.ToInt32(lines[indexDiscoveryYear]);
+                        //orbitalPeriod = Convert.ToSingle(lines[indexOrbitalPeriod]);
+                        if(double.TryParse(lines[indexOrbitalPeriod], NumberStyles.Any ,CultureInfo.InvariantCulture ,out orbitalPeriod)) {
+                        }
+                        else {
+                            orbitalPeriod = 0;
+                        }
                         /*Console.WriteLine($"Iteração {i}. " +
                             $"Planeta: {lines[indexPlanet]}. " +
                             $"Estrela: {lines[indexStar]}");*/
@@ -108,10 +120,11 @@ namespace projeto1LP2
                         // Colocar os valores no dicionário
                         Facade.planetList.Add(
                            i, new Types(
-                           pl_name: planetName,
+                           pl_Name: planetName,
                            hostName: starName,
                            discoveryMethod: discoveryMethodName,
-                           disc_year: discoveryYear
+                           disc_Year: discoveryYear,
+                           p1_Orbper: orbitalPeriod
                            )
                        );
                     }
@@ -138,6 +151,7 @@ namespace projeto1LP2
                 Console.WriteLine(Facade.planetList[0].HostName);
                 Console.WriteLine(Facade.planetList[0].DiscoveryMethod);
                 Console.WriteLine(Facade.planetList[0].Disc_Year);
+                Console.WriteLine(Facade.planetList[0].P1_Orbper);
 
                 return true;
             }
