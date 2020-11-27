@@ -37,8 +37,10 @@ namespace projeto1LP2
             string[] lines;
             string planetName = "";
             string starName = "";
+            string discoveryMethodName = "";
             int indexPlanet = 0;
             int indexStar = 0;
+            int indexDiscoveryMethod = 0;
             try {
                 using (StreamReader sr = File.OpenText(fileName)) {
                     lineCount = File.ReadLines(fileName).Count();
@@ -77,6 +79,9 @@ namespace projeto1LP2
                         if (lines[i].Contains("hostname")) {
                             indexStar = i;
                         }
+                        if (lines[i].Contains("discoverymethod")) {
+                            indexDiscoveryMethod = i;
+                        }
                         //starName = lines[indexStar];
                     }
 
@@ -89,6 +94,7 @@ namespace projeto1LP2
                         }
                         planetName = lines[indexPlanet];
                         starName = lines[indexStar];
+                        discoveryMethodName = lines[indexDiscoveryMethod];
                         /*Console.WriteLine($"Iteração {i}. " +
                             $"Planeta: {lines[indexPlanet]}. " +
                             $"Estrela: {lines[indexStar]}");*/
@@ -97,7 +103,8 @@ namespace projeto1LP2
                         Facade.planetList.Add(
                            i, new Types(
                            pl_name: planetName,
-                           hostname: starName
+                           hostName: starName,
+                           discoveryMethod: discoveryMethodName
                            )
                        );
                     }
@@ -122,6 +129,7 @@ namespace projeto1LP2
                 Console.WriteLine(Facade.planetList.Count);
                 Console.WriteLine(Facade.planetList[0].Pl_Name);
                 Console.WriteLine(Facade.planetList[0].HostName);
+                Console.WriteLine(Facade.planetList[0].DiscoveryMethod);
 
                 return true;
             }

@@ -8,9 +8,9 @@ namespace projeto1LP2
         public string Pl_Name { get; set; }
         // Nome da estrela que o planeta orbita.
         public string HostName { get; set; }
-        /*// Método de descoberta.
+        // Método de descoberta.
         public string DiscoveryMethod { get; set; }
-        // Ano de descoberta.
+        /*// Ano de descoberta.
         public int Disc_Year { get; set; }
         // Período orbital (em dias).
         public float Pl_Orbper { get; set; } 
@@ -60,9 +60,10 @@ namespace projeto1LP2
             Sy_Dist = sy_dist;
         }*/
 
-        public Types(string pl_name, string hostname) {
+        public Types(string pl_name, string hostName, string discoveryMethod) {
             Pl_Name = pl_name;
-            HostName = hostname;
+            HostName = hostName;
+            DiscoveryMethod = discoveryMethod;
         }
     }
 }
