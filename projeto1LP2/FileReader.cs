@@ -251,6 +251,7 @@ namespace projeto1LP2
                             );
                     }
                 }
+                // Contar a quantidade de planetas em cada estrela
                 foreach (string item in starStack) {
                     /*Se encontrar uma chave repetida, incrementa o 
                      * valor dessa mesma chave*/
@@ -262,15 +263,6 @@ namespace projeto1LP2
                         planetCount.Add(item, 1);
                     }
                 }
-
-                // testar, delete later
-                foreach (KeyValuePair<string, int> item in planetCount) {
-                    Console.WriteLine($"Key: {item.Key}. Value: {item.Value}");
-                }
-                //string[] teste = new string[planetCount.Count];
-                //planetCount.Keys.CopyTo(teste, 0);
-                //Array.Sort(teste);
-                //Console.WriteLine("Maior numero de planetas numa estrela " + teste[teste.Length - 1]);
             }
             // Caso não consiga ler o ficheiro.
             catch (Exception message) {
