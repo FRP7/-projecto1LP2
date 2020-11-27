@@ -2,7 +2,7 @@
 
 namespace projeto1LP2
 {
-    struct Types
+    struct Planet
     {
         // Nome do planeta.
         public string Pl_Name { get; set; }
@@ -37,33 +37,12 @@ namespace projeto1LP2
          * sendo 1 Parsec ≈ 3,26 anos-luz).*/
         public double Sy_Dist { get; set; } 
 
-        /*// Construtor onde são inicializadas as variáveis.
-        public Types(string pl_name, string hostname, string discoverymethod,
-            int disc_year, float pl_orbper, float pl_rade, float pl_masse, 
-            int pl_eqt, float st_teff, float st_rad, float st_mass, 
-            float st_age, float st_vsin, float st_rotp, float sy_dist) {
 
-            Pl_Name = pl_name;
-            HostName = hostname;
-            DiscoveryMethod = discoverymethod;
-            Disc_Year = disc_year;
-            Pl_Orbper = pl_orbper;
-            Pl_Rade = pl_rade;
-            Pl_Masse = pl_masse;
-            Pl_Eqt = pl_eqt;
-            St_Teff = st_teff;
-            St_Rad = st_rad;
-            St_Mass = st_mass;
-            St_Age = st_age;
-            St_Vsin = st_vsin;
-            St_Rotp = st_rotp;
-            Sy_Dist = sy_dist;
-        }*/
-
-        public Types(string pl_Name, string hostName, string discoveryMethod,
+        public Planet(string pl_Name, string hostName, string discoveryMethod,
             int disc_Year, double p1_Orbper, double p1_Rade, double p1_Masse,
             int pl_Eqt, double st_Teff, double st_Rad, double st_Mass,
-            double st_Age, double st_Rotation, double st_Rotp, double sy_Dist) {
+            double st_Age, double st_Rotation, double st_Rotp,
+            double sy_Dist) {
             Pl_Name = pl_Name;
             HostName = hostName;
             DiscoveryMethod = discoveryMethod;

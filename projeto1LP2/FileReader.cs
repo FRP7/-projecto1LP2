@@ -48,83 +48,74 @@ namespace projeto1LP2
             double starRotp = 0;
             double starDistance = 0;
 
-            // Variáveis de iteração.
-            int indexPlanet = 0;
-            int indexStar = 0;
-            int indexDiscoveryMethod = 0;
-            int indexDiscoveryYear = 0;
-            int indexOrbitalPeriod = 0;
-            int indexP1Rade = 0;
-            int indexP1Masse = 0;
-            int indexPlEqt = 0;
-            int indexStTeff = 0;
-            int indexStRad = 0;
-            int indexStMass = 0;
-            int indexStAge = 0;
-            int indexStRotation = 0;
-            int indexStRotp = 0;
-            int indexStDist = 0;
+            // Variável array de iteração.
+            int[] index = new int[15];
+
+            // Definir o valor dos elementos para zero.
+            for(int i = 0; i < index.Length; i++) {
+                index[i] = 0;
+            }
 
             // Tentar ler ficheiro.
             try {
                 using (StreamReader sr = File.OpenText(fileName)) {
                     lineCount = File.ReadLines(fileName).Count();
 
-                    // Passar à frente as primeiras linhas
+                    // Passar à frente as primeiras linhas.
                     for (int i = 0; i < 48; i++) {
                         content = sr.ReadLine();
                     }
-                    // Dividir a linha e colocar cada campo na array
+                    // Dividir a linha e colocar cada campo na array.
                     lines = new string[content.Length];
                     lines = content.Split(',');
                     // 
 
-                    // Identificar o index dos campos desejados
+                    // Identificar o index dos campos de interesse.
                     for (int i = 0; i < lines.Length; i++) {
                         if (lines[i].Contains("pl_name")) {
-                            indexPlanet = i;
+                            index[0] = i;
                         }
                         if (lines[i].Contains("hostname")) {
-                            indexStar = i;
+                            index[1] = i;
                         }
                         if (lines[i].Contains("discoverymethod")) {
-                            indexDiscoveryMethod = i;
+                            index[2] = i;
                         }
                         if (lines[i].Contains("disc_year")) {
-                            indexDiscoveryYear = i;
+                            index[3] = i;
                         }
                         if (lines[i].Contains("pl_orbper")) {
-                            indexOrbitalPeriod = i;
+                            index[4] = i;
                         }
                         if (lines[i].Contains("pl_rade")) {
-                            indexP1Rade = i;
+                            index[5] = i;
                         }
                         if (lines[i].Contains("pl_bmasse")) {
-                            indexP1Masse = i;
+                            index[6] = i;
                         }
                         if (lines[i].Contains("pl_eqt")) {
-                            indexPlEqt = i;
+                            index[7] = i;
                         }
                         if (lines[i].Contains("st_teff")) {
-                            indexStTeff = i;
+                            index[8] = i;
                         }
                         if (lines[i].Contains("st_rad")) {
-                            indexStRad = i;
+                            index[9] = i;
                         }
                         if (lines[i].Contains("st_mass")) {
-                            indexStMass = i;
+                            index[10] = i;
                         }
                         if (lines[i].Contains("st_age")) {
-                            indexStAge = i;
+                            index[11] = i;
                         }
                         if (lines[i].Contains("st_vsin")) {
-                            indexStRotation = i;
+                            index[12] = i;
                         }
                         if (lines[i].Contains("st_rotp")) {
-                            indexStRotp = i;
+                            index[13] = i;
                         }
                         if (lines[i].Contains("sy_dist")) {
-                            indexStDist = i;
+                            index[14] = i;
                         }
                     }
 
@@ -138,62 +129,75 @@ namespace projeto1LP2
                         }
                         /* Ler os campos de interesse e colocar nas respetivas
                          * variáveis.*/
-                        planetName = lines[indexPlanet];
-                        starName = lines[indexStar];
-                        discoveryMethodName = lines[indexDiscoveryMethod];
-                        if (int.TryParse(lines[indexDiscoveryYear], NumberStyles.Any, CultureInfo.InvariantCulture, out discoveryYear)) {
+                        planetName = lines[index[0]];
+                        starName = lines[index[1]];
+                        discoveryMethodName = lines[index[2]];
+                        if (int.TryParse(lines[index[3]], NumberStyles.Any,
+                            CultureInfo.InvariantCulture, out discoveryYear)) {
                         } else {
                             discoveryYear = 0;
                         }
-                        if (double.TryParse(lines[indexOrbitalPeriod], NumberStyles.Any ,CultureInfo.InvariantCulture ,out orbitalPeriod)) {
+                        if (double.TryParse(lines[index[4]], NumberStyles.Any
+                            ,CultureInfo.InvariantCulture, 
+                            out orbitalPeriod)) {
                         }
                         else {
                             orbitalPeriod = 0;
                         }
-                        if (double.TryParse(lines[indexP1Rade], NumberStyles.Any, CultureInfo.InvariantCulture, out planetRade)) {
+                        if (double.TryParse(lines[index[5]], NumberStyles.Any,
+                            CultureInfo.InvariantCulture, out planetRade)) {
                         } else {
                             planetRade = 0;
                         }
-                        if (double.TryParse(lines[indexP1Masse], NumberStyles.Any, CultureInfo.InvariantCulture, out planetMasse)) {
+                        if (double.TryParse(lines[index[6]], NumberStyles.Any,
+                            CultureInfo.InvariantCulture, out planetMasse)) {
                         } else {
                             planetMasse = 0;
                         }
-                        if (int.TryParse(lines[indexPlEqt], NumberStyles.Any, CultureInfo.InvariantCulture, out planetTemp)) {
+                        if (int.TryParse(lines[index[7]], NumberStyles.Any,
+                            CultureInfo.InvariantCulture, out planetTemp)) {
                         } else {
                             planetTemp = 0;
                         }
-                        if (double.TryParse(lines[indexStTeff], NumberStyles.Any, CultureInfo.InvariantCulture, out starTemp)) {
+                        if (double.TryParse(lines[index[8]], NumberStyles.Any,
+                            CultureInfo.InvariantCulture, out starTemp)) {
                         } else {
                             starTemp = 0;
                         }
-                        if (double.TryParse(lines[indexStRad], NumberStyles.Any, CultureInfo.InvariantCulture, out starRade)) {
+                        if (double.TryParse(lines[index[9]], NumberStyles.Any,
+                            CultureInfo.InvariantCulture, out starRade)) {
                         } else {
                             starRade = 0;
                         }
-                        if (double.TryParse(lines[indexStMass], NumberStyles.Any, CultureInfo.InvariantCulture, out starMass)) {
+                        if (double.TryParse(lines[index[10]], NumberStyles.Any,
+                            CultureInfo.InvariantCulture, out starMass)) {
                         } else {
                             starMass = 0;
                         }
-                        if (double.TryParse(lines[indexStAge], NumberStyles.Any, CultureInfo.InvariantCulture, out starAge)) {
+                        if (double.TryParse(lines[index[11]], NumberStyles.Any,
+                            CultureInfo.InvariantCulture, out starAge)) {
                         } else {
                             starAge = 0;
                         }
-                        if (double.TryParse(lines[indexStRotation], NumberStyles.Any, CultureInfo.InvariantCulture, out starRotation)) {
+                        if (double.TryParse(lines[index[12]], NumberStyles.Any,
+                            CultureInfo.InvariantCulture, out starRotation)) {
                         } else {
                             starRotation = 0;
                         }
-                        if (double.TryParse(lines[indexStRotp], NumberStyles.Any, CultureInfo.InvariantCulture, out starRotp)) {
+                        if (double.TryParse(lines[index[13]], NumberStyles.Any,
+                            CultureInfo.InvariantCulture, out starRotp)) {
                         } else {
                             starRotp = 0;
                         }
-                        if (double.TryParse(lines[indexStDist], NumberStyles.Any, CultureInfo.InvariantCulture, out starDistance)) {
+                        if (double.TryParse(lines[index[14]], NumberStyles.Any, 
+                            CultureInfo.InvariantCulture, out starDistance)) {
                         } else {
                             starDistance = 0;
                         }
 
                         // Colocar os valores no dicionário dos planetas.
                         Facade.planetList.Add(
-                           i, new Types(
+                           i, new Planet(
                            pl_Name: planetName,
                            hostName: starName,
                            discoveryMethod: discoveryMethodName,
@@ -213,7 +217,7 @@ namespace projeto1LP2
                        );
                     }
                 }
-                // debug pa testes, delete later
+                // debug pa testes, delete later.
                 Console.WriteLine(Facade.planetList.Count);
                 Console.WriteLine(Facade.planetList[0].Pl_Name);
                 Console.WriteLine(Facade.planetList[0].HostName);
