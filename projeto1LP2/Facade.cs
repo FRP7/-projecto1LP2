@@ -10,10 +10,15 @@ namespace projeto1LP2
     /// </summary>
     class Facade
     {
+        // Dictionary de planetas.
         public static Dictionary<int, Planet> planetList;
+        // Dictionary de estrelas.
+        public static Dictionary<int, Star> starList;
 
         public Facade() {
+            // Inicializar os dictionaries.
             planetList = new Dictionary<int, Planet>();
+            starList = new Dictionary<int, Star>();
         }
     }
 }
