@@ -26,14 +26,14 @@ namespace projeto1LP2
         public double St_Rad { get; set; }
         // Massa da estrela (em comparação com o Sol).
         public double St_Mass { get; set; }
-
         /* Idade da estrela (em Giga-anos, ou seja, por milhar de 
          * milhão de anos).*/
-        /*public float St_Age { get; set; } //não tem
+        public double St_Age { get; set; } // Não tem
+
         // Velocidade de rotação da estrela (em km/s).
-        public float St_Vsin { get; set; } //não tem
+        //public float St_Vsin { get; set; } //não tem
         // Período de rotação da estrela (em dias).
-        public float St_Rotp { get; set; } //não tem.
+        //public float St_Rotp { get; set; } //não tem.
         /* Distância entre a Terra e a estrela (em Parsecs, 
          * sendo 1 Parsec ≈ 3,26 anos-luz).*/
         //public float Sy_Dist { get; set; } 
@@ -63,7 +63,8 @@ namespace projeto1LP2
 
         public Types(string pl_Name, string hostName, string discoveryMethod,
             int disc_Year, double p1_Orbper, double p1_Rade, double p1_Masse,
-            int pl_Eqt, double st_Teff, double st_Rad, double st_Mass) {
+            int pl_Eqt, double st_Teff, double st_Rad, double st_Mass,
+            double st_Age) {
             Pl_Name = pl_Name;
             HostName = hostName;
             DiscoveryMethod = discoveryMethod;
@@ -75,6 +76,7 @@ namespace projeto1LP2
             St_Teff = st_Teff;
             St_Rad = st_Rad;
             St_Mass = st_Mass;
+            St_Age = st_Age;
         }
     }
 }

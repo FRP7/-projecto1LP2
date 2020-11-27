@@ -48,6 +48,7 @@ namespace projeto1LP2
             double starTemp = 0;
             double starRade = 0;
             double starMass = 0;
+            double starAge = 0;
 
             int indexPlanet = 0;
             int indexStar = 0;
@@ -60,6 +61,8 @@ namespace projeto1LP2
             int indexStTeff = 0;
             int indexStRad = 0;
             int indexStMass = 0;
+            int indexStAge = 0;
+
             try {
                 using (StreamReader sr = File.OpenText(fileName)) {
                     lineCount = File.ReadLines(fileName).Count();
@@ -125,6 +128,9 @@ namespace projeto1LP2
                         if (lines[i].Contains("st_mass")) {
                             indexStMass = i;
                         }
+                        if (lines[i].Contains("st_age")) {
+                            indexStAge = i;
+                        }
                         //starName = lines[indexStar];
                     }
 
@@ -172,6 +178,10 @@ namespace projeto1LP2
                         } else {
                             starMass = 0;
                         }
+                        if (double.TryParse(lines[indexStAge], NumberStyles.Any, CultureInfo.InvariantCulture, out starAge)) {
+                        } else {
+                            starAge = 0;
+                        }
                         /*Console.WriteLine($"Iteração {i}. " +
                             $"Planeta: {lines[indexPlanet]}. " +
                             $"Estrela: {lines[indexStar]}");*/
@@ -189,7 +199,8 @@ namespace projeto1LP2
                            pl_Eqt: planetTemp,
                            st_Teff: starTemp,
                            st_Rad: starRade,
-                           st_Mass: starMass
+                           st_Mass: starMass,
+                           st_Age: starAge
                            )
                        );
                     }
@@ -223,6 +234,10 @@ namespace projeto1LP2
                 Console.WriteLine(Facade.planetList[0].St_Teff);
                 Console.WriteLine(Facade.planetList[0].St_Rad);
                 Console.WriteLine(Facade.planetList[0].St_Mass);
+                //Console.WriteLine(Facade.planetList[0].St_Age);
+                if(Facade.planetList[0].St_Age == 0) {
+                    Console.WriteLine("Informação não disponível");
+                }
 
                 return true;
             }
