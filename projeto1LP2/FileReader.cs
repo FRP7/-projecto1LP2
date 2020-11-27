@@ -42,12 +42,14 @@ namespace projeto1LP2
             int discoveryYear = 0;
             double orbitalPeriod = 0;
             double planetRade = 0;
+            double planetMasse = 0;
             int indexPlanet = 0;
             int indexStar = 0;
             int indexDiscoveryMethod = 0;
             int indexDiscoveryYear = 0;
             int indexOrbitalPeriod = 0;
             int indexP1Rade = 0;
+            int indexP1Masse = 0;
             try {
                 using (StreamReader sr = File.OpenText(fileName)) {
                     lineCount = File.ReadLines(fileName).Count();
@@ -98,6 +100,9 @@ namespace projeto1LP2
                         if (lines[i].Contains("pl_rade")) {
                             indexP1Rade = i;
                         }
+                        if (lines[i].Contains("pl_bmasse")) {
+                            indexP1Masse = i;
+                        }
                         //starName = lines[indexStar];
                     }
 
@@ -122,6 +127,10 @@ namespace projeto1LP2
                         } else {
                             planetRade = 0;
                         }
+                        if (double.TryParse(lines[indexP1Masse], NumberStyles.Any, CultureInfo.InvariantCulture, out planetMasse)) {
+                        } else {
+                            planetMasse = 0;
+                        }
                         /*Console.WriteLine($"Iteração {i}. " +
                             $"Planeta: {lines[indexPlanet]}. " +
                             $"Estrela: {lines[indexStar]}");*/
@@ -134,7 +143,8 @@ namespace projeto1LP2
                            discoveryMethod: discoveryMethodName,
                            disc_Year: discoveryYear,
                            p1_Orbper: orbitalPeriod,
-                           p1_Rade: planetRade
+                           p1_Rade: planetRade,
+                           p1_Masse: planetMasse
                            )
                        );
                     }
@@ -163,6 +173,7 @@ namespace projeto1LP2
                 Console.WriteLine(Facade.planetList[0].Disc_Year);
                 Console.WriteLine(Facade.planetList[0].P1_Orbper);
                 Console.WriteLine(Facade.planetList[0].P1_Rade);
+                Console.WriteLine(Facade.planetList[0].P1_Masse);
 
                 return true;
             }
