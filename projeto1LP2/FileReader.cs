@@ -51,6 +51,7 @@ namespace projeto1LP2
             double starAge = 0;
             double starRotation = 0;
             double starRotp = 0;
+            double starDistance = 0;
 
             int indexPlanet = 0;
             int indexStar = 0;
@@ -66,6 +67,7 @@ namespace projeto1LP2
             int indexStAge = 0;
             int indexStRotation = 0;
             int indexStRotp = 0;
+            int indexStDist = 0;
 
             try {
                 using (StreamReader sr = File.OpenText(fileName)) {
@@ -141,6 +143,9 @@ namespace projeto1LP2
                         if (lines[i].Contains("st_rotp")) {
                             indexStRotp = i;
                         }
+                        if (lines[i].Contains("sy_dist")) {
+                            indexStDist = i;
+                        }
                         //starName = lines[indexStar];
                     }
 
@@ -200,6 +205,10 @@ namespace projeto1LP2
                         } else {
                             starRotp = 0;
                         }
+                        if (double.TryParse(lines[indexStDist], NumberStyles.Any, CultureInfo.InvariantCulture, out starDistance)) {
+                        } else {
+                            starDistance = 0;
+                        }
                         /*Console.WriteLine($"Iteração {i}. " +
                             $"Planeta: {lines[indexPlanet]}. " +
                             $"Estrela: {lines[indexStar]}");*/
@@ -220,7 +229,8 @@ namespace projeto1LP2
                            st_Mass: starMass,
                            st_Age: starAge,
                            st_Rotation: starRotation,
-                           st_Rotp: starRotp
+                           st_Rotp: starRotp,
+                           sy_Dist: starDistance
                            )
                        );
                     }
@@ -264,6 +274,7 @@ namespace projeto1LP2
                 if (Facade.planetList[0].St_Rotp == 0) {
                     Console.WriteLine("Informação não disponível");
                 }
+                Console.WriteLine(Facade.planetList[0].Sy_Dist);
 
                 return true;
             }

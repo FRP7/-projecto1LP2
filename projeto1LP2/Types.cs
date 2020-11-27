@@ -33,10 +33,9 @@ namespace projeto1LP2
         public double St_Vsin { get; set; } //não tem
         // Período de rotação da estrela (em dias).
         public double St_Rotp { get; set; } //não tem.
-
         /* Distância entre a Terra e a estrela (em Parsecs, 
          * sendo 1 Parsec ≈ 3,26 anos-luz).*/
-        //public float Sy_Dist { get; set; } 
+        public double Sy_Dist { get; set; } 
 
         /*// Construtor onde são inicializadas as variáveis.
         public Types(string pl_name, string hostname, string discoverymethod,
@@ -64,7 +63,7 @@ namespace projeto1LP2
         public Types(string pl_Name, string hostName, string discoveryMethod,
             int disc_Year, double p1_Orbper, double p1_Rade, double p1_Masse,
             int pl_Eqt, double st_Teff, double st_Rad, double st_Mass,
-            double st_Age, double st_Rotation, double st_Rotp) {
+            double st_Age, double st_Rotation, double st_Rotp, double sy_Dist) {
             Pl_Name = pl_Name;
             HostName = hostName;
             DiscoveryMethod = discoveryMethod;
@@ -79,6 +78,7 @@ namespace projeto1LP2
             St_Age = st_Age;
             St_Vsin = st_Rotation;
             St_Rotp = st_Rotp;
+            Sy_Dist = sy_Dist;
         }
     }
 }
