@@ -36,6 +36,7 @@ namespace projeto1LP2
         private bool ValidatyCheck() {
             string content = "";
             string[] lines;
+
             string planetName = "";
             string starName = "";
             string discoveryMethodName = "";
@@ -44,6 +45,8 @@ namespace projeto1LP2
             double planetRade = 0;
             double planetMasse = 0;
             int planetTemp = 0;
+            double starTemp = 0;
+
             int indexPlanet = 0;
             int indexStar = 0;
             int indexDiscoveryMethod = 0;
@@ -52,6 +55,7 @@ namespace projeto1LP2
             int indexP1Rade = 0;
             int indexP1Masse = 0;
             int indexPlEqt = 0;
+            int indexStTeff = 0;
             try {
                 using (StreamReader sr = File.OpenText(fileName)) {
                     lineCount = File.ReadLines(fileName).Count();
@@ -108,6 +112,9 @@ namespace projeto1LP2
                         if (lines[i].Contains("pl_eqt")) {
                             indexPlEqt = i;
                         }
+                        if (lines[i].Contains("st_teff")) {
+                            indexStTeff = i;
+                        }
                         //starName = lines[indexStar];
                     }
 
@@ -143,6 +150,10 @@ namespace projeto1LP2
                         } else {
                             planetTemp = 0;
                         }
+                        if (double.TryParse(lines[indexStTeff], NumberStyles.Any, CultureInfo.InvariantCulture, out starTemp)) {
+                        } else {
+                            starTemp = 0;
+                        }
                         /*Console.WriteLine($"Iteração {i}. " +
                             $"Planeta: {lines[indexPlanet]}. " +
                             $"Estrela: {lines[indexStar]}");*/
@@ -157,7 +168,8 @@ namespace projeto1LP2
                            p1_Orbper: orbitalPeriod,
                            p1_Rade: planetRade,
                            p1_Masse: planetMasse,
-                           pl_Eqt: planetTemp
+                           pl_Eqt: planetTemp,
+                           st_Teff: starTemp
                            )
                        );
                     }
@@ -188,6 +200,7 @@ namespace projeto1LP2
                 Console.WriteLine(Facade.planetList[0].P1_Rade);
                 Console.WriteLine(Facade.planetList[0].P1_Masse);
                 Console.WriteLine(Facade.planetList[0].Pl_Eqt);
+                Console.WriteLine(Facade.planetList[0].St_Teff);
 
                 return true;
             }
