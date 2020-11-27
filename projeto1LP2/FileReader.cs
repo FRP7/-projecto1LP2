@@ -21,11 +21,11 @@ namespace projeto1LP2
         // Método de leitura do ficheiro.
         public void ReadFile() {
             // Método de leitura de planetas e seus respetivos campos.
-            GetPlanets();
+            ReadData();
         }
 
         // Método de leitura de planetas e seus respetivos campos.
-        private void GetPlanets() {
+        private void ReadData() {
             // Conteúdo do ficheiro.
             string content = "";
             // Linhas do ficheiro.
@@ -52,7 +52,7 @@ namespace projeto1LP2
             int[] index = new int[15];
 
             // Definir o valor dos elementos para zero.
-            for(int i = 0; i < index.Length; i++) {
+            for (int i = 0; i < index.Length; i++) {
                 index[i] = 0;
             }
 
@@ -138,10 +138,9 @@ namespace projeto1LP2
                             discoveryYear = 0;
                         }
                         if (double.TryParse(lines[index[4]], NumberStyles.Any
-                            ,CultureInfo.InvariantCulture, 
+                            , CultureInfo.InvariantCulture,
                             out orbitalPeriod)) {
-                        }
-                        else {
+                        } else {
                             orbitalPeriod = 0;
                         }
                         if (double.TryParse(lines[index[5]], NumberStyles.Any,
@@ -189,7 +188,7 @@ namespace projeto1LP2
                         } else {
                             starRotp = 0;
                         }
-                        if (double.TryParse(lines[index[14]], NumberStyles.Any, 
+                        if (double.TryParse(lines[index[14]], NumberStyles.Any,
                             CultureInfo.InvariantCulture, out starDistance)) {
                         } else {
                             starDistance = 0;
@@ -215,9 +214,27 @@ namespace projeto1LP2
                            sy_Dist: starDistance
                            )
                        );
+
+                        // Colocar os valores no dicionário das estrelas.
+                        Facade.starList.Add(
+                            i, new Star(
+                                hostName: starName,
+                                discoveryMethod: discoveryMethodName,
+                                disc_Year: discoveryYear,
+                                st_Teff: starTemp,
+                                st_Rad: starRade,
+                                st_Mass: starMass,
+                                st_Age: starAge,
+                                st_Vsin: starRotation,
+                                st_Rotp: starRotp,
+                                sy_Dist: starDistance
+                                )
+                            );
                     }
                 }
                 // debug pa testes, delete later.
+                // testar planetas:
+                Console.WriteLine("Planetas: ");
                 Console.WriteLine(Facade.planetList.Count);
                 Console.WriteLine(Facade.planetList[0].Pl_Name);
                 Console.WriteLine(Facade.planetList[0].HostName);
@@ -231,7 +248,7 @@ namespace projeto1LP2
                 Console.WriteLine(Facade.planetList[0].St_Rad);
                 Console.WriteLine(Facade.planetList[0].St_Mass);
 
-                if(Facade.planetList[0].St_Age == 0) {
+                if (Facade.planetList[0].St_Age == 0) {
                     Console.WriteLine("Informação não disponível");
                 }
                 if (Facade.planetList[0].St_Vsin == 0) {
@@ -241,6 +258,24 @@ namespace projeto1LP2
                     Console.WriteLine("Informação não disponível");
                 }
                 Console.WriteLine(Facade.planetList[0].Sy_Dist);
+                // testar estrela, delete later
+                Console.WriteLine("Estrelas: ");
+                Console.WriteLine(Facade.starList[0].HostName);
+                Console.WriteLine(Facade.starList[0].DiscoveryMethod);
+                Console.WriteLine(Facade.starList[0].Disc_Year);
+                Console.WriteLine(Facade.starList[0].St_Teff);
+                Console.WriteLine(Facade.starList[0].St_Rad);
+                Console.WriteLine(Facade.starList[0].St_Mass);
+                if (Facade.starList[0].St_Age == 0) {
+                    Console.WriteLine("Informação não disponível");
+                }
+                if (Facade.starList[0].St_Vsin == 0) {
+                    Console.WriteLine("Informação não disponível");
+                }
+                if (Facade.starList[0].St_Rotp == 0) {
+                    Console.WriteLine("Informação não disponível");
+                }
+                Console.WriteLine(Facade.starList[0].Sy_Dist); 
             }
             // Caso não consiga ler o ficheiro.
             catch (Exception message) {
