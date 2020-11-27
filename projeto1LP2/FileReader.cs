@@ -18,6 +18,11 @@ namespace projeto1LP2
         // Contar as linhas.
         private int lineCount = 0;
 
+        // Dictionary onde vai ser analisado o número de planetas por estrela.
+        private Dictionary<string, int> planetCount;
+
+        private Stack<string> starStack;
+
         // Método de leitura do ficheiro.
         public void ReadFile() {
             // Método de leitura de planetas e seus respetivos campos.
@@ -135,6 +140,10 @@ namespace projeto1LP2
                          * variáveis.*/
                         planetName = lines[index[0]];
                         starName = lines[index[1]];
+
+                        // Adicionar o nome da estrela à stack
+                        starStack.Push(lines[index[1]]);
+
                         discoveryMethodName = lines[index[2]];
                         if (int.TryParse(lines[index[3]], NumberStyles.Any,
                             CultureInfo.InvariantCulture, out discoveryYear)) {
@@ -242,12 +251,37 @@ namespace projeto1LP2
                             );
                     }
                 }
+                foreach (string item in starStack) {
+                    /*Se encontrar uma chave repetida, incrementa o 
+                     * valor dessa mesma chave*/
+                    if (planetCount.ContainsKey(item)) {
+                        planetCount[item]++;
+                    } else {
+                        /* Se não encontrar chave igual,
+                         * coloca como chave*/
+                        planetCount.Add(item, 1);
+                    }
+                }
+
+                // testar, delete later
+                foreach (KeyValuePair<string, int> item in planetCount) {
+                    Console.WriteLine($"Key: {item.Key}. Value: {item.Value}");
+                }
+                //string[] teste = new string[planetCount.Count];
+                //planetCount.Keys.CopyTo(teste, 0);
+                //Array.Sort(teste);
+                //Console.WriteLine("Maior numero de planetas numa estrela " + teste[teste.Length - 1]);
             }
             // Caso não consiga ler o ficheiro.
             catch (Exception message) {
                 Console.WriteLine("Ocorreu o seguinte problema: " +
                     message.Message);
             }
+        }
+
+        public FileReader() {
+            planetCount = new Dictionary<string, int>();
+            starStack = new Stack<string>();
         }
     }
 }
