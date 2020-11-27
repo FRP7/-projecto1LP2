@@ -2,7 +2,7 @@
 
 namespace projeto1LP2
 {
-    struct Planet
+    class Planet
     {
         // Nome do planeta.
         public string Pl_Name { get; set; }

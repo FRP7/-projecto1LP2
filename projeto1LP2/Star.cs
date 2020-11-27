@@ -2,7 +2,7 @@
 
 namespace projeto1LP2
 {
-    struct Star
+    class Star
     {
         // Nome da estrela.
         public string HostName { get; set; }
@@ -28,6 +28,8 @@ namespace projeto1LP2
         public double Sy_Dist { get; set; }
         // Número de planetas que orbitam 
         public double Sy_Pnum { get; set; }
+        // Número de planetas que orbitam v2
+        public int St_Planets { get; set; }
 
         public Star(string hostName, string discoveryMethod, int disc_Year, 
             double st_Teff, double st_Rad, double st_Mass, double st_Age, 

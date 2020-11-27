@@ -263,6 +263,16 @@ namespace projeto1LP2
                         planetCount.Add(item, 1);
                     }
                 }
+
+                foreach(KeyValuePair<string, int> item in planetCount) {
+                    for(int i = 0; i < Facade.starList.Count; i++) {
+                        if(Facade.starList[i].HostName == item.Key) {
+                            Facade.starList[i].St_Planets = item.Value;
+                        }
+                    }
+                }
+
+                //Facade.starList[0].St_Planets = 2;
             }
             // Caso não consiga ler o ficheiro.
             catch (Exception message) {
