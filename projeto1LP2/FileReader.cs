@@ -47,9 +47,10 @@ namespace projeto1LP2
             double starRotation = 0;
             double starRotp = 0;
             double starDistance = 0;
+            double numberOfPlanets = 0;
 
             // Variável array de iteração.
-            int[] index = new int[15];
+            int[] index = new int[16];
 
             // Definir o valor dos elementos para zero.
             for (int i = 0; i < index.Length; i++) {
@@ -116,6 +117,9 @@ namespace projeto1LP2
                         }
                         if (lines[i].Contains("sy_dist")) {
                             index[14] = i;
+                        }
+                        if (lines[i].Contains("sy_pnum")) {
+                            index[15] = i;
                         }
                     }
 
@@ -193,6 +197,11 @@ namespace projeto1LP2
                         } else {
                             starDistance = 0;
                         }
+                        if (double.TryParse(lines[index[15]], NumberStyles.Any,
+                          CultureInfo.InvariantCulture, out numberOfPlanets)) {
+                        } else {
+                            numberOfPlanets = 0;
+                        }
 
                         // Colocar os valores no dicionário dos planetas.
                         Facade.planetList.Add(
@@ -227,55 +236,12 @@ namespace projeto1LP2
                                 st_Age: starAge,
                                 st_Vsin: starRotation,
                                 st_Rotp: starRotp,
-                                sy_Dist: starDistance
+                                sy_Dist: starDistance,
+                                sy_Pnum: numberOfPlanets
                                 )
                             );
                     }
                 }
-                // debug pa testes, delete later.
-                // testar planetas:
-                Console.WriteLine("Planetas: ");
-                Console.WriteLine(Facade.planetList.Count);
-                Console.WriteLine(Facade.planetList[0].Pl_Name);
-                Console.WriteLine(Facade.planetList[0].HostName);
-                Console.WriteLine(Facade.planetList[0].DiscoveryMethod);
-                Console.WriteLine(Facade.planetList[0].Disc_Year);
-                Console.WriteLine(Facade.planetList[0].P1_Orbper);
-                Console.WriteLine(Facade.planetList[0].P1_Rade);
-                Console.WriteLine(Facade.planetList[0].P1_Masse);
-                Console.WriteLine(Facade.planetList[0].Pl_Eqt);
-                Console.WriteLine(Facade.planetList[0].St_Teff);
-                Console.WriteLine(Facade.planetList[0].St_Rad);
-                Console.WriteLine(Facade.planetList[0].St_Mass);
-
-                if (Facade.planetList[0].St_Age == 0) {
-                    Console.WriteLine("Informação não disponível");
-                }
-                if (Facade.planetList[0].St_Vsin == 0) {
-                    Console.WriteLine("Informação não disponível");
-                }
-                if (Facade.planetList[0].St_Rotp == 0) {
-                    Console.WriteLine("Informação não disponível");
-                }
-                Console.WriteLine(Facade.planetList[0].Sy_Dist);
-                // testar estrela, delete later
-                Console.WriteLine("Estrelas: ");
-                Console.WriteLine(Facade.starList[0].HostName);
-                Console.WriteLine(Facade.starList[0].DiscoveryMethod);
-                Console.WriteLine(Facade.starList[0].Disc_Year);
-                Console.WriteLine(Facade.starList[0].St_Teff);
-                Console.WriteLine(Facade.starList[0].St_Rad);
-                Console.WriteLine(Facade.starList[0].St_Mass);
-                if (Facade.starList[0].St_Age == 0) {
-                    Console.WriteLine("Informação não disponível");
-                }
-                if (Facade.starList[0].St_Vsin == 0) {
-                    Console.WriteLine("Informação não disponível");
-                }
-                if (Facade.starList[0].St_Rotp == 0) {
-                    Console.WriteLine("Informação não disponível");
-                }
-                Console.WriteLine(Facade.starList[0].Sy_Dist); 
             }
             // Caso não consiga ler o ficheiro.
             catch (Exception message) {
