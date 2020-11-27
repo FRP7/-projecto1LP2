@@ -22,9 +22,9 @@ namespace projeto1LP2
         public int Pl_Eqt { get; set; }
         // Temperatura efetiva da estrela (em Kelvins).
         public double St_Teff { get; set; }
-        /*
         // Raio da estrela (em comparação com o Sol).
-        public float St_Rad { get; set; } 
+        public double St_Rad { get; set; }
+        /*
         // Massa da estrela (em comparação com o Sol).
         public float St_Mass { get; set; }*/
         /* Idade da estrela (em Giga-anos, ou seja, por milhar de 
@@ -63,7 +63,7 @@ namespace projeto1LP2
 
         public Types(string pl_Name, string hostName, string discoveryMethod,
             int disc_Year, double p1_Orbper, double p1_Rade, double p1_Masse,
-            int pl_Eqt, double st_Teff) {
+            int pl_Eqt, double st_Teff, double st_Rad) {
             Pl_Name = pl_Name;
             HostName = hostName;
             DiscoveryMethod = discoveryMethod;
@@ -73,6 +73,7 @@ namespace projeto1LP2
             P1_Masse = p1_Masse;
             Pl_Eqt = pl_Eqt;
             St_Teff = st_Teff;
+            St_Rad = st_Rad;
         }
     }
 }
