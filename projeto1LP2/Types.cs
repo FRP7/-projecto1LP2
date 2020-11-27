@@ -10,13 +10,13 @@ namespace projeto1LP2
         public string HostName { get; set; }
         // Método de descoberta.
         public string DiscoveryMethod { get; set; }
-        // Ano de descoberta
+        // Ano de descoberta.
         public int Disc_Year { get; set; }
-        // Período orbital (em dias)
-        public double P1_Orbper { get; set; }
-        /*
         // Período orbital (em dias).
-        public float Pl_Orbper { get; set; } 
+        public double P1_Orbper { get; set; }
+        // Raio do planeta (em comparação com a Terra).
+        public double P1_Rade { get; set; }
+        /*
         // Raio do planeta (em comparação com a Terra).
         public float Pl_Rade { get; set; } 
          // Massa do planeta (em comparação com a Terra).
@@ -63,12 +63,14 @@ namespace projeto1LP2
             Sy_Dist = sy_dist;
         }*/
 
-        public Types(string pl_Name, string hostName, string discoveryMethod, int disc_Year, double p1_Orbper) {
+        public Types(string pl_Name, string hostName, string discoveryMethod,
+            int disc_Year, double p1_Orbper, double p1_Rade) {
             Pl_Name = pl_Name;
             HostName = hostName;
             DiscoveryMethod = discoveryMethod;
             Disc_Year = disc_Year;
             P1_Orbper = p1_Orbper;
+            P1_Rade = p1_Rade;
         }
     }
 }
