@@ -18,9 +18,9 @@ namespace projeto1LP2
         public double P1_Rade { get; set; }
         // Massa do planeta (em comparação com a Terra
         public double P1_Masse { get; set; }
+        // Temperatura do equilíbrio do planeta (em Kelvins).
+        public int Pl_Eqt { get; set; }
         /*
-         // Massa do planeta (em comparação com a Terra).
-        public float Pl_Masse { get; set; } 
         // Temperatura do equilíbrio do planeta (em Kelvins).
         public int Pl_Eqt { get; set; } 
         // Temperatura efetiva da estrela (em Kelvins).
@@ -64,7 +64,8 @@ namespace projeto1LP2
         }*/
 
         public Types(string pl_Name, string hostName, string discoveryMethod,
-            int disc_Year, double p1_Orbper, double p1_Rade, double p1_Masse) {
+            int disc_Year, double p1_Orbper, double p1_Rade, double p1_Masse,
+            int pl_Eqt) {
             Pl_Name = pl_Name;
             HostName = hostName;
             DiscoveryMethod = discoveryMethod;
@@ -72,6 +73,7 @@ namespace projeto1LP2
             P1_Orbper = p1_Orbper;
             P1_Rade = p1_Rade;
             P1_Masse = p1_Masse;
+            Pl_Eqt = pl_Eqt;
         }
     }
 }

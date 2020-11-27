@@ -43,6 +43,7 @@ namespace projeto1LP2
             double orbitalPeriod = 0;
             double planetRade = 0;
             double planetMasse = 0;
+            int planetTemp = 0;
             int indexPlanet = 0;
             int indexStar = 0;
             int indexDiscoveryMethod = 0;
@@ -50,6 +51,7 @@ namespace projeto1LP2
             int indexOrbitalPeriod = 0;
             int indexP1Rade = 0;
             int indexP1Masse = 0;
+            int indexPlEqt = 0;
             try {
                 using (StreamReader sr = File.OpenText(fileName)) {
                     lineCount = File.ReadLines(fileName).Count();
@@ -103,6 +105,9 @@ namespace projeto1LP2
                         if (lines[i].Contains("pl_bmasse")) {
                             indexP1Masse = i;
                         }
+                        if (lines[i].Contains("pl_eqt")) {
+                            indexPlEqt = i;
+                        }
                         //starName = lines[indexStar];
                     }
 
@@ -116,9 +121,12 @@ namespace projeto1LP2
                         planetName = lines[indexPlanet];
                         starName = lines[indexStar];
                         discoveryMethodName = lines[indexDiscoveryMethod];
-                        discoveryYear = Convert.ToInt32(lines[indexDiscoveryYear]);
+                        if (int.TryParse(lines[indexDiscoveryYear], NumberStyles.Any, CultureInfo.InvariantCulture, out discoveryYear)) {
+                        } else {
+                            discoveryYear = 0;
+                        }
                         //orbitalPeriod = Convert.ToSingle(lines[indexOrbitalPeriod]);
-                        if(double.TryParse(lines[indexOrbitalPeriod], NumberStyles.Any ,CultureInfo.InvariantCulture ,out orbitalPeriod)) {
+                        if (double.TryParse(lines[indexOrbitalPeriod], NumberStyles.Any ,CultureInfo.InvariantCulture ,out orbitalPeriod)) {
                         }
                         else {
                             orbitalPeriod = 0;
@@ -130,6 +138,10 @@ namespace projeto1LP2
                         if (double.TryParse(lines[indexP1Masse], NumberStyles.Any, CultureInfo.InvariantCulture, out planetMasse)) {
                         } else {
                             planetMasse = 0;
+                        }
+                        if (int.TryParse(lines[indexPlEqt], NumberStyles.Any, CultureInfo.InvariantCulture, out planetTemp)) {
+                        } else {
+                            planetTemp = 0;
                         }
                         /*Console.WriteLine($"Iteração {i}. " +
                             $"Planeta: {lines[indexPlanet]}. " +
@@ -144,7 +156,8 @@ namespace projeto1LP2
                            disc_Year: discoveryYear,
                            p1_Orbper: orbitalPeriod,
                            p1_Rade: planetRade,
-                           p1_Masse: planetMasse
+                           p1_Masse: planetMasse,
+                           pl_Eqt: planetTemp
                            )
                        );
                     }
@@ -174,6 +187,7 @@ namespace projeto1LP2
                 Console.WriteLine(Facade.planetList[0].P1_Orbper);
                 Console.WriteLine(Facade.planetList[0].P1_Rade);
                 Console.WriteLine(Facade.planetList[0].P1_Masse);
+                Console.WriteLine(Facade.planetList[0].Pl_Eqt);
 
                 return true;
             }
