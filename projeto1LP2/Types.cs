@@ -10,6 +10,8 @@ namespace projeto1LP2
         public string HostName { get; set; }
         // Método de descoberta.
         public string DiscoveryMethod { get; set; }
+        // Ano de descoberta
+        public int Disc_Year { get; set; }
         /*// Ano de descoberta.
         public int Disc_Year { get; set; }
         // Período orbital (em dias).
@@ -60,10 +62,11 @@ namespace projeto1LP2
             Sy_Dist = sy_dist;
         }*/
 
-        public Types(string pl_name, string hostName, string discoveryMethod) {
+        public Types(string pl_name, string hostName, string discoveryMethod, int disc_year) {
             Pl_Name = pl_name;
             HostName = hostName;
             DiscoveryMethod = discoveryMethod;
+            Disc_Year = disc_year;
         }
     }
 }

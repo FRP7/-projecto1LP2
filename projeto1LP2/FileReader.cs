@@ -38,9 +38,11 @@ namespace projeto1LP2
             string planetName = "";
             string starName = "";
             string discoveryMethodName = "";
+            int discoveryYear = 0;
             int indexPlanet = 0;
             int indexStar = 0;
             int indexDiscoveryMethod = 0;
+            int indexDiscoveryYear = 0;
             try {
                 using (StreamReader sr = File.OpenText(fileName)) {
                     lineCount = File.ReadLines(fileName).Count();
@@ -82,6 +84,9 @@ namespace projeto1LP2
                         if (lines[i].Contains("discoverymethod")) {
                             indexDiscoveryMethod = i;
                         }
+                        if (lines[i].Contains("disc_year")) {
+                            indexDiscoveryYear = i;
+                        }
                         //starName = lines[indexStar];
                     }
 
@@ -95,6 +100,7 @@ namespace projeto1LP2
                         planetName = lines[indexPlanet];
                         starName = lines[indexStar];
                         discoveryMethodName = lines[indexDiscoveryMethod];
+                        discoveryYear = Convert.ToInt32(lines[indexDiscoveryYear]);
                         /*Console.WriteLine($"Iteração {i}. " +
                             $"Planeta: {lines[indexPlanet]}. " +
                             $"Estrela: {lines[indexStar]}");*/
@@ -104,7 +110,8 @@ namespace projeto1LP2
                            i, new Types(
                            pl_name: planetName,
                            hostName: starName,
-                           discoveryMethod: discoveryMethodName
+                           discoveryMethod: discoveryMethodName,
+                           disc_year: discoveryYear
                            )
                        );
                     }
@@ -130,6 +137,7 @@ namespace projeto1LP2
                 Console.WriteLine(Facade.planetList[0].Pl_Name);
                 Console.WriteLine(Facade.planetList[0].HostName);
                 Console.WriteLine(Facade.planetList[0].DiscoveryMethod);
+                Console.WriteLine(Facade.planetList[0].Disc_Year);
 
                 return true;
             }
