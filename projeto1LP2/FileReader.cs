@@ -50,6 +50,7 @@ namespace projeto1LP2
             double starMass = 0;
             double starAge = 0;
             double starRotation = 0;
+            double starRotp = 0;
 
             int indexPlanet = 0;
             int indexStar = 0;
@@ -64,6 +65,7 @@ namespace projeto1LP2
             int indexStMass = 0;
             int indexStAge = 0;
             int indexStRotation = 0;
+            int indexStRotp = 0;
 
             try {
                 using (StreamReader sr = File.OpenText(fileName)) {
@@ -136,6 +138,9 @@ namespace projeto1LP2
                         if (lines[i].Contains("st_vsin")) {
                             indexStRotation = i;
                         }
+                        if (lines[i].Contains("st_rotp")) {
+                            indexStRotp = i;
+                        }
                         //starName = lines[indexStar];
                     }
 
@@ -191,6 +196,10 @@ namespace projeto1LP2
                         } else {
                             starRotation = 0;
                         }
+                        if (double.TryParse(lines[indexStRotp], NumberStyles.Any, CultureInfo.InvariantCulture, out starRotp)) {
+                        } else {
+                            starRotp = 0;
+                        }
                         /*Console.WriteLine($"Iteração {i}. " +
                             $"Planeta: {lines[indexPlanet]}. " +
                             $"Estrela: {lines[indexStar]}");*/
@@ -210,7 +219,8 @@ namespace projeto1LP2
                            st_Rad: starRade,
                            st_Mass: starMass,
                            st_Age: starAge,
-                           st_rotation: starRotation
+                           st_Rotation: starRotation,
+                           st_Rotp: starRotp
                            )
                        );
                     }
@@ -249,6 +259,9 @@ namespace projeto1LP2
                     Console.WriteLine("Informação não disponível");
                 }
                 if (Facade.planetList[0].St_Vsin == 0) {
+                    Console.WriteLine("Informação não disponível");
+                }
+                if (Facade.planetList[0].St_Rotp == 0) {
                     Console.WriteLine("Informação não disponível");
                 }
 
