@@ -39,7 +39,7 @@ namespace projeto1LP2
             Console.WriteLine(Facade.planetList[0].Sy_Dist);
             // testar estrela, delete later
             Console.WriteLine("Estrelas: ");
-            Console.WriteLine(Facade.starList[0].HostName);
+            /*Console.WriteLine(Facade.starList[0].HostName);
             Console.WriteLine(Facade.starList[0].DiscoveryMethod);
             Console.WriteLine(Facade.starList[0].Disc_Year);
             Console.WriteLine(Facade.starList[0].St_Teff);
@@ -55,7 +55,8 @@ namespace projeto1LP2
                 Console.WriteLine("Informação não disponível");
             }
             Console.WriteLine(Facade.starList[0].Sy_Dist);
-            Console.WriteLine(Facade.starList[0].Sy_Pnum);
+            Console.WriteLine(Facade.starList[0].Sy_Pnum);*/
+            Console.WriteLine(Facade.starList[0].Item1.HostName);
         }
     }
 }

@@ -13,12 +13,16 @@ namespace projeto1LP2
         // Dictionary de planetas.
         public static Dictionary<int, Planet> planetList;
         // Dictionary de estrelas.
-        public static Dictionary<int, Star> starList;
+        //public static Dictionary<int, Star> starList;
+        public static Dictionary<int, Tuple<Star, int>> starList;
+
+        public static Dictionary<int, Tuple<Star, int>> teste;
 
         public Facade() {
             // Inicializar os dictionaries.
             planetList = new Dictionary<int, Planet>();
-            starList = new Dictionary<int, Star>();
+            // starList = new Dictionary<int, Star>();
+            starList = new Dictionary<int, Tuple<Star, int>>();
         }
     }
 }

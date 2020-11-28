@@ -225,7 +225,7 @@ namespace projeto1LP2
                        );
 
                         // Colocar os valores no dicionário das estrelas.
-                        Facade.starList.Add(
+                        /*Facade.starList.Add(
                             i, new Star(
                                 hostName: starName,
                                 discoveryMethod: discoveryMethodName,
@@ -239,6 +239,21 @@ namespace projeto1LP2
                                 sy_Dist: starDistance,
                                 sy_Pnum: numberOfPlanets
                                 )
+                            );*/
+                        Facade.starList.Add(
+                            i, new Tuple<Star, int>(
+                                new Star(
+                                hostName: starName,
+                                discoveryMethod: discoveryMethodName,
+                                disc_Year: discoveryYear,
+                                st_Teff: starTemp,
+                                st_Rad: starRade,
+                                st_Mass: starMass,
+                                st_Age: starAge,
+                                st_Vsin: starRotation,
+                                st_Rotp: starRotp,
+                                sy_Dist: starDistance,
+                                sy_Pnum: numberOfPlanets), 0)
                             );
                     }
                 }
