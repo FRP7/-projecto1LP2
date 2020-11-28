@@ -12,11 +12,11 @@ namespace projeto1LP2
     class FileReader
     {
         // Nome do ficheiro.
-        private string fileName = "planetList.csv";
-        // Inicializar a coleção.
-        Facade facade = new Facade();
+        private string fileName;
+        // Aceder à coleção.
+        Facade facade;
         // Contar as linhas.
-        private int lineCount = 0;
+        private int lineCount;
 
         // Método de leitura do ficheiro.
         public void ReadFile() {
@@ -396,7 +396,7 @@ namespace projeto1LP2
                     }
 
                     // Contar o número de planetas da estrela.
-                    foreach (KeyValuePair<int, Planet> item in 
+                    foreach (KeyValuePair<int, Planet> item in
                         Facade.planetList) {
                         if (item.Value.HostName == starName) {
                             planetCount++;
@@ -425,7 +425,7 @@ namespace projeto1LP2
 
                 // Retirar as estrelas repetidas da coleção.
                 foreach (KeyValuePair<int, Star> item in Facade.starList) {
-                    foreach (KeyValuePair<int, Star> compare in 
+                    foreach (KeyValuePair<int, Star> compare in
                         Facade.starList) {
                         if (item.Value.HostName == compare.Value.HostName) {
                             isRepeated++;
@@ -437,6 +437,16 @@ namespace projeto1LP2
                     isRepeated = 0;
                 }
             }
+        }
+
+        // Inicializar as variáveis.
+        public FileReader(string file) {
+            // Nome do ficheiro.
+            fileName = file;
+            // Inicializar a coleção.
+            facade = new Facade();
+            // Contar as linhas.
+            lineCount = 0;
         }
     }
 }
