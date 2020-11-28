@@ -32,40 +32,6 @@ namespace projeto1LP2
 
         // Método de leitura de planetas e seus respetivos campos.
         private void ReadData() {
-            // Conteúdo do ficheiro.
-            string content = "";
-            // Linhas do ficheiro.
-            string[] lines;
-
-            // Contar o número de estrelas repetidas na sua coleção.
-            int isRepeated = 0;
-
-            // Variáveis dos campos de interesse.
-            string planetName = "";
-            string starName = "";
-            string discoveryMethodName = "";
-            int discoveryYear = 0;
-            double orbitalPeriod = 0;
-            double planetRade = 0;
-            double planetMasse = 0;
-            int planetTemp = 0;
-            double starTemp = 0;
-            double starRade = 0;
-            double starMass = 0;
-            double starAge = 0;
-            double starRotation = 0;
-            double starRotp = 0;
-            double starDistance = 0;
-            double numberOfPlanets = 0;
-
-            // Variável array de iteração.
-            int[] index = new int[15];
-
-            // Definir o valor dos elementos para zero.
-            for (int i = 0; i < index.Length; i++) {
-                index[i] = 0;
-            }
-
             // Tentar ler ficheiro.
             try {
                 GetPlanets();
