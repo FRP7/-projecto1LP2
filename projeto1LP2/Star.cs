@@ -28,10 +28,13 @@ namespace projeto1LP2
         public double Sy_Dist { get; set; }
         // Número de planetas que orbitam 
         public double Sy_Pnum { get; set; }
+        // Número de planetas que orbitam v2
+        public int St_PlCount { get; set; }
 
         public Star(string hostName, string discoveryMethod, int disc_Year, 
             double st_Teff, double st_Rad, double st_Mass, double st_Age, 
-            double st_Vsin, double st_Rotp, double sy_Dist, double sy_Pnum) {
+            double st_Vsin, double st_Rotp, double sy_Dist, double sy_Pnum,
+            int st_PlCount) {
             HostName = hostName;
             DiscoveryMethod = discoveryMethod;
             Disc_Year = disc_Year;
@@ -43,6 +46,7 @@ namespace projeto1LP2
             St_Rotp = st_Rotp;
             Sy_Dist = sy_Dist;
             Sy_Pnum = sy_Pnum;
+            St_PlCount = st_PlCount;
         }
     }
 }

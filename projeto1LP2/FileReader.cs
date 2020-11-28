@@ -18,6 +18,12 @@ namespace projeto1LP2
         // Contar as linhas.
         private int lineCount = 0;
 
+        // Dictionary onde vai ser analisado o número de planetas por estrela.
+        private Dictionary<string, int> planetCount;
+
+        // Stack de estelas
+        private Stack<string> starStack;
+
         // Método de leitura do ficheiro.
         public void ReadFile() {
             // Método de leitura de planetas e seus respetivos campos.
@@ -135,6 +141,10 @@ namespace projeto1LP2
                          * variáveis.*/
                         planetName = lines[index[0]];
                         starName = lines[index[1]];
+
+                        // Adicionar a estrela à stack
+                        starStack.Push(lines[index[1]]);
+
                         discoveryMethodName = lines[index[2]];
                         if (int.TryParse(lines[index[3]], NumberStyles.Any,
                             CultureInfo.InvariantCulture, out discoveryYear)) {
@@ -224,7 +234,136 @@ namespace projeto1LP2
                            )
                        );
 
-                        // Colocar os valores no dicionário das estrelas.
+                    }
+                }
+                // Começa aqui as estrelas
+                using (StreamReader sr = File.OpenText(fileName)) {
+                    lineCount = File.ReadLines(fileName).Count();
+
+                    // Passar à frente as primeiras linhas.
+                    for (int i = 0; i < 48; i++) {
+                        content = sr.ReadLine();
+                    }
+                    // Dividir a linha e colocar cada campo na array.
+                    lines = new string[content.Length];
+                    lines = content.Split(',');
+                    // 
+
+                    // Identificar o index dos campos de interesse.
+                    for (int i = 0; i < lines.Length; i++) {
+                        if (lines[i].Contains("pl_name")) {
+                            index[0] = i;
+                        }
+                        if (lines[i].Contains("hostname")) {
+                            index[1] = i;
+                        }
+                        if (lines[i].Contains("discoverymethod")) {
+                            index[2] = i;
+                        }
+                        if (lines[i].Contains("disc_year")) {
+                            index[3] = i;
+                        }
+                        if (lines[i].Contains("pl_orbper")) {
+                            index[4] = i;
+                        }
+                        if (lines[i].Contains("pl_rade")) {
+                            index[5] = i;
+                        }
+                        if (lines[i].Contains("pl_bmasse")) {
+                            index[6] = i;
+                        }
+                        if (lines[i].Contains("pl_eqt")) {
+                            index[7] = i;
+                        }
+                        if (lines[i].Contains("st_teff")) {
+                            index[8] = i;
+                        }
+                        if (lines[i].Contains("st_rad")) {
+                            index[9] = i;
+                        }
+                        if (lines[i].Contains("st_mass")) {
+                            index[10] = i;
+                        }
+                        if (lines[i].Contains("st_age")) {
+                            index[11] = i;
+                        }
+                        if (lines[i].Contains("st_vsin")) {
+                            index[12] = i;
+                        }
+                        if (lines[i].Contains("st_rotp")) {
+                            index[13] = i;
+                        }
+                        if (lines[i].Contains("sy_dist")) {
+                            index[14] = i;
+                        }
+                        if (lines[i].Contains("sy_pnum")) {
+                            index[15] = i;
+                        }
+                    }
+
+                    // Verificar os valores dos campos.
+                    for (int i = 0; i < lineCount - 48; i++) {
+                        // Ler o ficheiro.
+                        content = sr.ReadLine();
+                        // Separar os campos.
+                        if (content != null) {
+                            lines = content.Split(',');
+                        }
+                        /* Ler os campos de interesse e colocar nas respetivas
+                         * variáveis.*/
+
+                        starName = lines[index[1]];
+
+                        discoveryMethodName = lines[index[2]];
+                        if (int.TryParse(lines[index[3]], NumberStyles.Any,
+                            CultureInfo.InvariantCulture, out discoveryYear)) {
+                        } else {
+                            discoveryYear = 0;
+                        }
+
+                        if (double.TryParse(lines[index[8]], NumberStyles.Any,
+                            CultureInfo.InvariantCulture, out starTemp)) {
+                        } else {
+                            starTemp = 0;
+                        }
+                        if (double.TryParse(lines[index[9]], NumberStyles.Any,
+                            CultureInfo.InvariantCulture, out starRade)) {
+                        } else {
+                            starRade = 0;
+                        }
+                        if (double.TryParse(lines[index[10]], NumberStyles.Any,
+                            CultureInfo.InvariantCulture, out starMass)) {
+                        } else {
+                            starMass = 0;
+                        }
+                        if (double.TryParse(lines[index[11]], NumberStyles.Any,
+                            CultureInfo.InvariantCulture, out starAge)) {
+                        } else {
+                            starAge = 0;
+                        }
+                        if (double.TryParse(lines[index[12]], NumberStyles.Any,
+                            CultureInfo.InvariantCulture, out starRotation)) {
+                        } else {
+                            starRotation = 0;
+                        }
+                        if (double.TryParse(lines[index[13]], NumberStyles.Any,
+                            CultureInfo.InvariantCulture, out starRotp)) {
+                        } else {
+                            starRotp = 0;
+                        }
+                        if (double.TryParse(lines[index[14]], NumberStyles.Any,
+                            CultureInfo.InvariantCulture, out starDistance)) {
+                        } else {
+                            starDistance = 0;
+                        }
+                        if (double.TryParse(lines[index[15]], NumberStyles.Any,
+                          CultureInfo.InvariantCulture, out numberOfPlanets)) {
+                        } else {
+                            numberOfPlanets = 0;
+                        }
+
+                        /* Tentar modificar pa que seja feito só depois 
+                         * dos planetas resolverem todos */
                         Facade.starList.Add(
                             i, new Star(
                                 hostName: starName,
@@ -237,17 +376,24 @@ namespace projeto1LP2
                                 st_Vsin: starRotation,
                                 st_Rotp: starRotp,
                                 sy_Dist: starDistance,
-                                sy_Pnum: numberOfPlanets
+                                sy_Pnum: numberOfPlanets,
+                                st_PlCount: 0
                                 )
                             );
                     }
                 }
+
             }
             // Caso não consiga ler o ficheiro.
             catch (Exception message) {
                 Console.WriteLine("Ocorreu o seguinte problema: " +
                     message.Message);
             }
+        }
+
+        public FileReader() {
+            planetCount = new Dictionary<string, int>();
+            starStack = new Stack<string>();
         }
     }
 }
