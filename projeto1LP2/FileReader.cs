@@ -240,6 +240,8 @@ namespace projeto1LP2
                 using (StreamReader sr = File.OpenText(fileName)) {
                     lineCount = File.ReadLines(fileName).Count();
 
+                    int planetCount = 0;
+
                     // Passar à frente as primeiras linhas.
                     for (int i = 0; i < 48; i++) {
                         content = sr.ReadLine();
@@ -362,6 +364,14 @@ namespace projeto1LP2
                             numberOfPlanets = 0;
                         }
 
+                        // Contar o número de planetas da estrela
+                        foreach(KeyValuePair<int, Planet> item in Facade.planetList) {
+                            if(item.Value.HostName == starName) {
+                                planetCount++;
+                            }
+                        }
+                        //
+
                         /* Tentar modificar pa que seja feito só depois 
                          * dos planetas resolverem todos */
                         Facade.starList.Add(
@@ -377,9 +387,10 @@ namespace projeto1LP2
                                 st_Rotp: starRotp,
                                 sy_Dist: starDistance,
                                 sy_Pnum: numberOfPlanets,
-                                st_PlCount: 0
+                                st_PlCount: planetCount
                                 )
                             );
+                        planetCount = 0;
                     }
                 }
 

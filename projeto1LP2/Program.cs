@@ -13,7 +13,7 @@ namespace projeto1LP2
             teste.ReadFile();
             // debug pa testes, delete later.
             // testar planetas:
-            Console.WriteLine("Planetas: ");
+            /*Console.WriteLine("Planetas: ");
             Console.WriteLine(Facade.planetList.Count);
             Console.WriteLine(Facade.planetList[0].Pl_Name);
             Console.WriteLine(Facade.planetList[0].HostName);
@@ -56,6 +56,12 @@ namespace projeto1LP2
             }
             Console.WriteLine(Facade.starList[0].Sy_Dist);
             Console.WriteLine(Facade.starList[0].Sy_Pnum);
+            Console.WriteLine(Facade.starList[0].St_PlCount);*/
+
+            for (int i = 0; i < 200; i++) {
+                Console.WriteLine($"Nome da estrela {Facade.starList[i].HostName}." +
+                    $" Quantidade de planetas: {Facade.starList[i].St_PlCount}");
+            }
         }
     }
 }
