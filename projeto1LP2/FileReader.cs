@@ -50,8 +50,6 @@ namespace projeto1LP2
             // Linhas do ficheiro.
             string[] lines;
 
-            // Contar o número de estrelas repetidas na sua coleção.
-            int isRepeated = 0;
 
             // Variáveis dos campos de interesse.
             string planetName = "";
@@ -69,7 +67,6 @@ namespace projeto1LP2
             double starRotation = 0;
             double starRotp = 0;
             double starDistance = 0;
-            double numberOfPlanets = 0;
 
             // Variável array de iteração.
             int[] index = new int[15];
@@ -79,7 +76,7 @@ namespace projeto1LP2
                 index[i] = 0;
             }
 
-            // Tentar ler ficheiro.
+            // Ler ficheiro.
             using (StreamReader sr = File.OpenText(fileName)) {
                 lineCount = File.ReadLines(fileName).Count();
 
@@ -149,13 +146,14 @@ namespace projeto1LP2
                     if (content != null) {
                         lines = content.Split(',');
                     }
+
+                    // Adicionar a estrela à stack.
+                    starStack.Push(lines[index[1]]);
+
                     /* Ler os campos de interesse e colocar nas respetivas
                      * variáveis.*/
                     planetName = lines[index[0]];
                     starName = lines[index[1]];
-
-                    // Adicionar a estrela à stack
-                    starStack.Push(lines[index[1]]);
 
                     discoveryMethodName = lines[index[2]];
                     if (int.TryParse(lines[index[3]], NumberStyles.Any,
@@ -243,8 +241,9 @@ namespace projeto1LP2
 
                 }
             }
-               
-            }
+
+        }
+
 
         private void GetStars() {
             // Conteúdo do ficheiro.
@@ -252,18 +251,16 @@ namespace projeto1LP2
             // Linhas do ficheiro.
             string[] lines;
 
+            // Contar o número de planetas.
+            int planetCount = 0;
+
             // Contar o número de estrelas repetidas na sua coleção.
             int isRepeated = 0;
 
             // Variáveis dos campos de interesse.
-            string planetName = "";
             string starName = "";
             string discoveryMethodName = "";
             int discoveryYear = 0;
-            double orbitalPeriod = 0;
-            double planetRade = 0;
-            double planetMasse = 0;
-            int planetTemp = 0;
             double starTemp = 0;
             double starRade = 0;
             double starMass = 0;
@@ -271,7 +268,6 @@ namespace projeto1LP2
             double starRotation = 0;
             double starRotp = 0;
             double starDistance = 0;
-            double numberOfPlanets = 0;
 
             // Variável array de iteração.
             int[] index = new int[15];
@@ -280,11 +276,9 @@ namespace projeto1LP2
             for (int i = 0; i < index.Length; i++) {
                 index[i] = 0;
             }
-            // Começa aqui as estrelas.
+            // Ler ficheiro.
             using (StreamReader sr = File.OpenText(fileName)) {
                 lineCount = File.ReadLines(fileName).Count();
-
-                int planetCount = 0;
 
                 // Passar à frente as primeiras linhas.
                 for (int i = 0; i < 48; i++) {
@@ -352,9 +346,9 @@ namespace projeto1LP2
                     if (content != null) {
                         lines = content.Split(',');
                     }
+
                     /* Ler os campos de interesse e colocar nas respetivas
                      * variáveis.*/
-
                     starName = lines[index[1]];
 
                     discoveryMethodName = lines[index[2]];
@@ -424,6 +418,7 @@ namespace projeto1LP2
                             st_PlCount: planetCount
                             )
                         );
+                    // Colocar o contador de planetas a zero.
                     planetCount = 0;
                 }
                 // Retirar as estrelas repetidas da coleção.
@@ -438,7 +433,7 @@ namespace projeto1LP2
                     }
                     isRepeated = 0;
                 }
-                }
+            }
         }
 
         // Inicializar as coleções.
