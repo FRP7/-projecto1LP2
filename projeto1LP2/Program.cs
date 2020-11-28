@@ -58,9 +58,13 @@ namespace projeto1LP2
             Console.WriteLine(Facade.starList[0].Sy_Pnum);
             Console.WriteLine(Facade.starList[0].St_PlCount);*/
 
-            for (int i = 0; i < 200; i++) {
-                Console.WriteLine($"Nome da estrela {Facade.starList[i].HostName}." +
+            /*for (int i = 0; i < 200; i++) {
+                Console.WriteLine($"Nome da estrela: {Facade.starList[i].HostName}." +
                     $" Quantidade de planetas: {Facade.starList[i].St_PlCount}");
+            }*/
+            foreach (KeyValuePair<int, Star> item in Facade.starList) {
+                Console.WriteLine($"ID: {item.Key}.  Estrela: {item.Value.HostName}." +
+                 $" Planetas: {item.Value.St_PlCount}");
             }
         }
     }

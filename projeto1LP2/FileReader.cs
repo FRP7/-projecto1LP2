@@ -393,7 +393,34 @@ namespace projeto1LP2
                         planetCount = 0;
                     }
                 }
+                Dictionary<int, Star> comparer = Facade.starList;
 
+                /*for(int i = 0; i < Facade.starList.Count; i++) {
+                    for(int n = 0; n < comparer.Count; n++) {
+                        if(Facade.starList[i].HostName == comparer[n + i].HostName) {
+                            Facade.starList.Remove(i);
+                        }
+                    }
+                }*/
+                /*foreach (KeyValuePair<int, Star> item in Facade.starList) {
+                    if(item.Value.HostName == Facade.starList[0].HostName) {
+                        Console.WriteLine(item.Value.HostName);
+                        Facade.starList.Remove(item.Key);
+                    }
+                }*/
+                int isRepeated = 0;
+                foreach (KeyValuePair<int, Star> item in Facade.starList) {
+                    foreach (KeyValuePair<int, Star> compare in Facade.starList) {
+                        if(item.Value.HostName == compare.Value.HostName) {
+                            isRepeated++;
+                        }
+                        if(isRepeated > 1) {
+                            //Console.WriteLine("Removido: " + item.Value.HostName);
+                            Facade.starList.Remove(item.Key);
+                        }
+                    }
+                    isRepeated = 0;
+                }
             }
             // Caso não consiga ler o ficheiro.
             catch (Exception message) {
