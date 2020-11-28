@@ -18,23 +18,29 @@ namespace projeto1LP2
         // Contar as linhas.
         private int lineCount = 0;
 
-        // Dictionary onde vai ser analisado o número de planetas por estrela.
-        private Dictionary<string, int> planetCount;
-
-        // Stack de estelas
-        private Stack<string> starStack;
-
         // Método de leitura do ficheiro.
         public void ReadFile() {
-            // Método de leitura de planetas e seus respetivos campos.
-            ReadData();
+            // Método que verifica se o ficheiro pode ser lido.
+            if (CanItRead() == true) {
+                // Método de leitura de planetas e seus respetivos campos.
+                ReadData();
+            } else {
+                Console.WriteLine("O ficheiro não pode ser lido");
+            }
+        }
+
+        // Método que verifica se o ficheiro pode ser lido.
+        private bool CanItRead() {
+            return true;
         }
 
         // Método de leitura de planetas e seus respetivos campos.
         private void ReadData() {
             // Tentar ler ficheiro.
             try {
+                // Método de leitura de planetas.
                 GetPlanets();
+                // Método de leitura de estrelas.
                 GetStars();
             }
             // Caso não consiga ler o ficheiro.
@@ -44,12 +50,12 @@ namespace projeto1LP2
             }
         }
 
+        // Método de leitura de planetas.
         private void GetPlanets() {
             // Conteúdo do ficheiro.
             string content = "";
             // Linhas do ficheiro.
             string[] lines;
-
 
             // Variáveis dos campos de interesse.
             string planetName = "";
@@ -147,9 +153,6 @@ namespace projeto1LP2
                         lines = content.Split(',');
                     }
 
-                    // Adicionar a estrela à stack.
-                    starStack.Push(lines[index[1]]);
-
                     /* Ler os campos de interesse e colocar nas respetivas
                      * variáveis.*/
                     planetName = lines[index[0]];
@@ -244,7 +247,7 @@ namespace projeto1LP2
 
         }
 
-
+        // Método de leitura de estrelas.
         private void GetStars() {
             // Conteúdo do ficheiro.
             string content = "";
@@ -350,14 +353,12 @@ namespace projeto1LP2
                     /* Ler os campos de interesse e colocar nas respetivas
                      * variáveis.*/
                     starName = lines[index[1]];
-
                     discoveryMethodName = lines[index[2]];
                     if (int.TryParse(lines[index[3]], NumberStyles.Any,
                         CultureInfo.InvariantCulture, out discoveryYear)) {
                     } else {
                         discoveryYear = 0;
                     }
-
                     if (double.TryParse(lines[index[8]], NumberStyles.Any,
                         CultureInfo.InvariantCulture, out starTemp)) {
                     } else {
@@ -395,12 +396,12 @@ namespace projeto1LP2
                     }
 
                     // Contar o número de planetas da estrela.
-                    foreach (KeyValuePair<int, Planet> item in Facade.planetList) {
+                    foreach (KeyValuePair<int, Planet> item in 
+                        Facade.planetList) {
                         if (item.Value.HostName == starName) {
                             planetCount++;
                         }
                     }
-
 
                     // Colocar os valores no dicionário das estrelas.
                     Facade.starList.Add(
@@ -421,9 +422,11 @@ namespace projeto1LP2
                     // Colocar o contador de planetas a zero.
                     planetCount = 0;
                 }
+
                 // Retirar as estrelas repetidas da coleção.
                 foreach (KeyValuePair<int, Star> item in Facade.starList) {
-                    foreach (KeyValuePair<int, Star> compare in Facade.starList) {
+                    foreach (KeyValuePair<int, Star> compare in 
+                        Facade.starList) {
                         if (item.Value.HostName == compare.Value.HostName) {
                             isRepeated++;
                         }
@@ -434,12 +437,6 @@ namespace projeto1LP2
                     isRepeated = 0;
                 }
             }
-        }
-
-        // Inicializar as coleções.
-        public FileReader() {
-            planetCount = new Dictionary<string, int>();
-            starStack = new Stack<string>();
         }
     }
 }
