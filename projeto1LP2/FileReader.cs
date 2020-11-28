@@ -37,6 +37,9 @@ namespace projeto1LP2
             // Linhas do ficheiro.
             string[] lines;
 
+            // Contar o número de estrelas repetidas na sua coleção.
+            int isRepeated = 0;
+
             // Variáveis dos campos de interesse.
             string planetName = "";
             string starName = "";
@@ -236,7 +239,7 @@ namespace projeto1LP2
 
                     }
                 }
-                // Começa aqui as estrelas
+                // Começa aqui as estrelas.
                 using (StreamReader sr = File.OpenText(fileName)) {
                     lineCount = File.ReadLines(fileName).Count();
 
@@ -364,16 +367,15 @@ namespace projeto1LP2
                             numberOfPlanets = 0;
                         }
 
-                        // Contar o número de planetas da estrela
+                        // Contar o número de planetas da estrela.
                         foreach(KeyValuePair<int, Planet> item in Facade.planetList) {
                             if(item.Value.HostName == starName) {
                                 planetCount++;
                             }
                         }
-                        //
+                        
 
-                        /* Tentar modificar pa que seja feito só depois 
-                         * dos planetas resolverem todos */
+                        // Colocar os valores no dicionário das estrelas.
                         Facade.starList.Add(
                             i, new Star(
                                 hostName: starName,
@@ -393,35 +395,21 @@ namespace projeto1LP2
                         planetCount = 0;
                     }
                 }
-                Dictionary<int, Star> comparer = Facade.starList;
 
-                /*for(int i = 0; i < Facade.starList.Count; i++) {
-                    for(int n = 0; n < comparer.Count; n++) {
-                        if(Facade.starList[i].HostName == comparer[n + i].HostName) {
-                            Facade.starList.Remove(i);
-                        }
-                    }
-                }*/
-                /*foreach (KeyValuePair<int, Star> item in Facade.starList) {
-                    if(item.Value.HostName == Facade.starList[0].HostName) {
-                        Console.WriteLine(item.Value.HostName);
-                        Facade.starList.Remove(item.Key);
-                    }
-                }*/
-                int isRepeated = 0;
+                // Retirar as estrelas repetidas da coleção.
                 foreach (KeyValuePair<int, Star> item in Facade.starList) {
                     foreach (KeyValuePair<int, Star> compare in Facade.starList) {
                         if(item.Value.HostName == compare.Value.HostName) {
                             isRepeated++;
                         }
                         if(isRepeated > 1) {
-                            //Console.WriteLine("Removido: " + item.Value.HostName);
                             Facade.starList.Remove(item.Key);
                         }
                     }
                     isRepeated = 0;
                 }
             }
+
             // Caso não consiga ler o ficheiro.
             catch (Exception message) {
                 Console.WriteLine("Ocorreu o seguinte problema: " +
@@ -429,6 +417,7 @@ namespace projeto1LP2
             }
         }
 
+        // Inicializar as coleções.
         public FileReader() {
             planetCount = new Dictionary<string, int>();
             starStack = new Stack<string>();
