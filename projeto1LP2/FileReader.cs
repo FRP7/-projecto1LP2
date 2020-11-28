@@ -59,7 +59,7 @@ namespace projeto1LP2
             double numberOfPlanets = 0;
 
             // Variável array de iteração.
-            int[] index = new int[16];
+            int[] index = new int[15];
 
             // Definir o valor dos elementos para zero.
             for (int i = 0; i < index.Length; i++) {
@@ -126,9 +126,6 @@ namespace projeto1LP2
                         }
                         if (lines[i].Contains("sy_dist")) {
                             index[14] = i;
-                        }
-                        if (lines[i].Contains("sy_pnum")) {
-                            index[15] = i;
                         }
                     }
 
@@ -209,11 +206,6 @@ namespace projeto1LP2
                             CultureInfo.InvariantCulture, out starDistance)) {
                         } else {
                             starDistance = 0;
-                        }
-                        if (double.TryParse(lines[index[15]], NumberStyles.Any,
-                          CultureInfo.InvariantCulture, out numberOfPlanets)) {
-                        } else {
-                            numberOfPlanets = 0;
                         }
 
                         // Colocar os valores no dicionário dos planetas.
@@ -301,9 +293,6 @@ namespace projeto1LP2
                         if (lines[i].Contains("sy_dist")) {
                             index[14] = i;
                         }
-                        if (lines[i].Contains("sy_pnum")) {
-                            index[15] = i;
-                        }
                     }
 
                     // Verificar os valores dos campos.
@@ -361,11 +350,6 @@ namespace projeto1LP2
                         } else {
                             starDistance = 0;
                         }
-                        if (double.TryParse(lines[index[15]], NumberStyles.Any,
-                          CultureInfo.InvariantCulture, out numberOfPlanets)) {
-                        } else {
-                            numberOfPlanets = 0;
-                        }
 
                         // Contar o número de planetas da estrela.
                         foreach(KeyValuePair<int, Planet> item in Facade.planetList) {
@@ -388,7 +372,6 @@ namespace projeto1LP2
                                 st_Vsin: starRotation,
                                 st_Rotp: starRotp,
                                 sy_Dist: starDistance,
-                                sy_Pnum: numberOfPlanets,
                                 st_PlCount: planetCount
                                 )
                             );
