@@ -37,7 +37,7 @@ namespace projeto1LP2
          * sendo 1 Parsec ≈ 3,26 anos-luz).*/
         public double Sy_Dist { get; set; } 
 
-
+        // Inicializar as propriedades.
         public Planet(string pl_Name, string hostName, string discoveryMethod,
             int disc_Year, double pl_Orbper, double pl_Rade, double pl_Masse,
             int pl_Eqt, double st_Teff, double st_Rad, double st_Mass,

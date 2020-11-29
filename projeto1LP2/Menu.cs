@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace projeto1LP2
 {
@@ -8,5 +9,19 @@ namespace projeto1LP2
     /// </summary>
     class Menu
     {
+        public void MainMenu() {
+            Facade facade = new Facade();
+            facade.ReadFile();
+            // Mostrar planetas (id e nome, só para testar)
+            /*foreach (KeyValuePair<int, Planet> item in Facade.planetList) {
+                Console.WriteLine($"ID: {item.Key} | Planeta: {item.Value.Pl_Name}");
+            }*/
+
+            // Mostrar estrelas (id, nome e nº de planetasm só para testar)
+            /*foreach (KeyValuePair<int, Star> item in Facade.starList) {
+                Console.WriteLine($"ID: {item.Key} | Estrela: {item.Value.HostName}" +
+                 $" | Planetas: {item.Value.St_PlCount}");
+            }*/
+        }
     }
 }

@@ -29,6 +29,7 @@ namespace projeto1LP2
         // Número de planetas lidos que orbitam 
         public int St_PlCount { get; set; }
 
+        // Inicializar as propriedades.
         public Star(string hostName, string discoveryMethod, int disc_Year, 
             double st_Teff, double st_Rad, double st_Mass, double st_Age, 
             double st_Vsin, double st_Rotp, double sy_Dist, int st_PlCount) {
