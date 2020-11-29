@@ -206,14 +206,24 @@ namespace projeto1LP2
                     /* Ler os campos de interesse e colocar nas respetivas
                      * variáveis.*/
                     planetName = lines[index[0]];
+
                     starName = lines[index[1]];
 
                     discoveryMethodName = lines[index[2]];
-                    if (int.TryParse(lines[index[3]], NumberStyles.Any,
-                        CultureInfo.InvariantCulture, out discoveryYear)) {
-                    } else {
-                        discoveryYear = 0;
+
+                    try {
+                        if (String.IsNullOrEmpty(lines[index[3]])) {
+                            discoveryYear = 0;
+                        } else if (int.TryParse(lines[index[3]], NumberStyles.Any
+                              , CultureInfo.InvariantCulture,
+                              out discoveryYear)) {
+                        }
                     }
+                    catch (Exception message) {
+                        Console.WriteLine("Ocorreu o seguinte problema: " +
+                            message.Message);
+                    }
+
                     try {
                         if (String.IsNullOrEmpty(lines[index[4]])) {
                             orbitalPeriod = 0;
@@ -227,55 +237,135 @@ namespace projeto1LP2
                         Console.WriteLine("Ocorreu o seguinte problema: " +
                             message.Message);
                     }
-                    if (double.TryParse(lines[index[5]], NumberStyles.Any,
-                        CultureInfo.InvariantCulture, out planetRade)) {
-                    } else {
-                        planetRade = 0;
+
+                    try {
+                        if (String.IsNullOrEmpty(lines[index[5]])) {
+                            planetRade = 0;
+                        } else if (double.TryParse(lines[index[5]], NumberStyles.Any
+                              , CultureInfo.InvariantCulture,
+                              out planetRade)) {
+                        }
                     }
-                    if (double.TryParse(lines[index[6]], NumberStyles.Any,
-                        CultureInfo.InvariantCulture, out planetMasse)) {
-                    } else {
-                        planetMasse = 0;
+                    catch (Exception message) {
+                        Console.WriteLine("Ocorreu o seguinte problema: " +
+                            message.Message);
                     }
-                    if (int.TryParse(lines[index[7]], NumberStyles.Any,
-                        CultureInfo.InvariantCulture, out planetTemp)) {
-                    } else {
-                        planetTemp = 0;
+
+                    try {
+                        if (String.IsNullOrEmpty(lines[index[6]])) {
+                            planetMasse = 0;
+                        } else if (double.TryParse(lines[index[6]], NumberStyles.Any
+                              , CultureInfo.InvariantCulture,
+                              out planetMasse)) {
+                        }
                     }
-                    if (double.TryParse(lines[index[8]], NumberStyles.Any,
-                        CultureInfo.InvariantCulture, out starTemp)) {
-                    } else {
-                        starTemp = 0;
+                    catch (Exception message) {
+                        Console.WriteLine("Ocorreu o seguinte problema: " +
+                            message.Message);
                     }
-                    if (double.TryParse(lines[index[9]], NumberStyles.Any,
-                        CultureInfo.InvariantCulture, out starRade)) {
-                    } else {
-                        starRade = 0;
+
+                    try {
+                        if (String.IsNullOrEmpty(lines[index[7]])) {
+                            planetTemp = 0;
+                        } else if (int.TryParse(lines[index[7]], NumberStyles.Any
+                              , CultureInfo.InvariantCulture,
+                              out planetTemp)) {
+                        }
                     }
-                    if (double.TryParse(lines[index[10]], NumberStyles.Any,
-                        CultureInfo.InvariantCulture, out starMass)) {
-                    } else {
-                        starMass = 0;
+                    catch (Exception message) {
+                        Console.WriteLine("Ocorreu o seguinte problema: " +
+                            message.Message);
                     }
-                    if (double.TryParse(lines[index[11]], NumberStyles.Any,
-                        CultureInfo.InvariantCulture, out starAge)) {
-                    } else {
-                        starAge = 0;
+
+                    try {
+                        if (String.IsNullOrEmpty(lines[index[8]])) {
+                            starTemp = 0;
+                        } else if (double.TryParse(lines[index[8]], NumberStyles.Any
+                              , CultureInfo.InvariantCulture,
+                              out starTemp)) {
+                        }
                     }
-                    if (double.TryParse(lines[index[12]], NumberStyles.Any,
-                        CultureInfo.InvariantCulture, out starRotation)) {
-                    } else {
-                        starRotation = 0;
+                    catch (Exception message) {
+                        Console.WriteLine("Ocorreu o seguinte problema: " +
+                            message.Message);
                     }
-                    if (double.TryParse(lines[index[13]], NumberStyles.Any,
-                        CultureInfo.InvariantCulture, out starRotp)) {
-                    } else {
-                        starRotp = 0;
+
+                    try {
+                        if (String.IsNullOrEmpty(lines[index[9]])) {
+                            starRade = 0;
+                        } else if (double.TryParse(lines[index[9]], NumberStyles.Any
+                              , CultureInfo.InvariantCulture,
+                              out starRade)) {
+                        }
                     }
-                    if (double.TryParse(lines[index[14]], NumberStyles.Any,
-                        CultureInfo.InvariantCulture, out starDistance)) {
-                    } else {
-                        starDistance = 0;
+                    catch (Exception message) {
+                        Console.WriteLine("Ocorreu o seguinte problema: " +
+                            message.Message);
+                    }
+
+                    try {
+                        if (String.IsNullOrEmpty(lines[index[10]])) {
+                            starMass = 0;
+                        } else if (double.TryParse(lines[index[10]], NumberStyles.Any
+                              , CultureInfo.InvariantCulture,
+                              out starMass)) {
+                        }
+                    }
+                    catch (Exception message) {
+                        Console.WriteLine("Ocorreu o seguinte problema: " +
+                            message.Message);
+                    }
+
+                    try {
+                        if (String.IsNullOrEmpty(lines[index[11]])) {
+                            starAge = 0;
+                        } else if (double.TryParse(lines[index[11]], NumberStyles.Any
+                              , CultureInfo.InvariantCulture,
+                              out starAge)) {
+                        }
+                    }
+                    catch (Exception message) {
+                        Console.WriteLine("Ocorreu o seguinte problema: " +
+                            message.Message);
+                    }
+
+                    try {
+                        if (String.IsNullOrEmpty(lines[index[12]])) {
+                            starRotation = 0;
+                        } else if (double.TryParse(lines[index[12]], NumberStyles.Any
+                              , CultureInfo.InvariantCulture,
+                              out starRotation)) {
+                        }
+                    }
+                    catch (Exception message) {
+                        Console.WriteLine("Ocorreu o seguinte problema: " +
+                            message.Message);
+                    }
+
+                    try {
+                        if (String.IsNullOrEmpty(lines[index[13]])) {
+                            starRotp = 0;
+                        } else if (double.TryParse(lines[index[13]], NumberStyles.Any
+                              , CultureInfo.InvariantCulture,
+                              out starRotp)) {
+                        }
+                    }
+                    catch (Exception message) {
+                        Console.WriteLine("Ocorreu o seguinte problema: " +
+                            message.Message);
+                    }
+
+                    try {
+                        if (String.IsNullOrEmpty(lines[index[14]])) {
+                            starDistance = 0;
+                        } else if (double.TryParse(lines[index[14]], NumberStyles.Any
+                              , CultureInfo.InvariantCulture,
+                              out starDistance)) {
+                        }
+                    }
+                    catch (Exception message) {
+                        Console.WriteLine("Ocorreu o seguinte problema: " +
+                            message.Message);
                     }
 
                     // Colocar os valores no dicionário dos planetas.
