@@ -13,11 +13,11 @@ namespace projeto1LP2
         // Ano de descoberta.
         public int Disc_Year { get; set; }
         // Período orbital (em dias).
-        public double P1_Orbper { get; set; }
+        public double Pl_Orbper { get; set; }
         // Raio do planeta (em comparação com a Terra).
-        public double P1_Rade { get; set; }
+        public double Pl_Rade { get; set; }
         // Massa do planeta (em comparação com a Terra
-        public double P1_Masse { get; set; }
+        public double Pl_Masse { get; set; }
         // Temperatura do equilíbrio do planeta (em Kelvins).
         public int Pl_Eqt { get; set; }
         // Temperatura efetiva da estrela (em Kelvins).
@@ -39,7 +39,7 @@ namespace projeto1LP2
 
 
         public Planet(string pl_Name, string hostName, string discoveryMethod,
-            int disc_Year, double p1_Orbper, double p1_Rade, double p1_Masse,
+            int disc_Year, double pl_Orbper, double pl_Rade, double pl_Masse,
             int pl_Eqt, double st_Teff, double st_Rad, double st_Mass,
             double st_Age, double st_Rotation, double st_Rotp,
             double sy_Dist) {
@@ -47,9 +47,9 @@ namespace projeto1LP2
             HostName = hostName;
             DiscoveryMethod = discoveryMethod;
             Disc_Year = disc_Year;
-            P1_Orbper = p1_Orbper;
-            P1_Rade = p1_Rade;
-            P1_Masse = p1_Masse;
+            Pl_Orbper = pl_Orbper;
+            Pl_Rade = pl_Rade;
+            Pl_Masse = pl_Masse;
             Pl_Eqt = pl_Eqt;
             St_Teff = st_Teff;
             St_Rad = st_Rad;
