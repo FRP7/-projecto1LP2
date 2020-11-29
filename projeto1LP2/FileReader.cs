@@ -214,11 +214,18 @@ namespace projeto1LP2
                     } else {
                         discoveryYear = 0;
                     }
-                    if (double.TryParse(lines[index[4]], NumberStyles.Any
-                        , CultureInfo.InvariantCulture,
-                        out orbitalPeriod)) {
-                    } else {
-                        orbitalPeriod = 0;
+                    try {
+                        if (String.IsNullOrEmpty(lines[index[4]])) {
+                            orbitalPeriod = 0;
+                        }
+                        else if (double.TryParse(lines[index[4]], NumberStyles.Any
+                            , CultureInfo.InvariantCulture,
+                            out orbitalPeriod)) {
+                        }
+                    }
+                    catch (Exception message) {
+                        Console.WriteLine("Ocorreu o seguinte problema: " +
+                            message.Message);
                     }
                     if (double.TryParse(lines[index[5]], NumberStyles.Any,
                         CultureInfo.InvariantCulture, out planetRade)) {
