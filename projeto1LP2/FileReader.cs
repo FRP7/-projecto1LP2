@@ -31,7 +31,57 @@ namespace projeto1LP2
 
         // Método que verifica se o ficheiro pode ser lido.
         private bool CanItRead() {
-            return true;
+            // Indicar se existe a coluna do planeta.
+            bool planetName = false;
+            // Indicar se existe a coluna da estrela.
+            bool starName = false;
+            // Indicar se existem ambas as colunas.
+            bool itExists = false;
+
+            // Tentar ler o ficheiro
+            try {
+                // Conteúdo do ficheiro.
+                string content = "";
+                // Linhas do ficheiro.
+                string[] lines;
+
+                // Ler ficheiro.
+                using (StreamReader sr = File.OpenText(fileName)) {
+                    lineCount = File.ReadLines(fileName).Count();
+
+                    // Passar à frente as primeiras linhas.
+                    for (int i = 0; i < 48; i++) {
+                        content = sr.ReadLine();
+                    }
+                    // Dividir a linha e colocar cada campo na array.
+                    lines = new string[content.Length];
+                    lines = content.Split(',');
+                    // 
+
+                    // Verificar se os campos obrigatórios existem.
+                    for (int i = 0; i < lines.Length; i++) {
+                        if (lines[i].Contains("pl_name")) {
+                            planetName = true;
+                        }
+                        if (lines[i].Contains("hostname")) {
+                            starName = true;
+                        }
+                    }
+
+                    if(planetName == true && starName == true) {
+                        itExists = true;
+                    }
+
+                }
+                return itExists;
+            }
+            // Caso não consiga ler o ficheiro.
+            catch (Exception message) {
+                Console.WriteLine("Ocorreu o seguinte problema: " +
+                    message.Message);
+                itExists = false;
+                return itExists;
+            }
         }
 
         // Método de leitura de planetas e seus respetivos campos.
