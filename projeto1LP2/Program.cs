@@ -18,7 +18,7 @@ namespace projeto1LP2
             }*/
             foreach (KeyValuePair<int, Planet> item in Facade.planetList) {
                 Console.WriteLine($"ID: {item.Key}.  Planeta: {item.Value.Pl_Name}." +
-                 $" Planetas: {item.Value.P1_Orbper}");
+                 $" Planetas: {item.Value.Pl_Orbper}");
             }
         }
     }
