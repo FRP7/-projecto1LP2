@@ -215,126 +215,165 @@ namespace projeto1LP2
                     discoveryMethodName = lines[index[2]];
 
                     try {
-                        int.TryParse(lines[index[3]], NumberStyles.Any,
-                            CultureInfo.InvariantCulture, out
-                            intSupport);
-                        discoveryYear = intSupport;
-                        if (discoveryYear == 0) {
+                        if (int.TryParse(lines[index[3]], NumberStyles.Any,
+                           CultureInfo.InvariantCulture, out
+                           intSupport) == true) {
+                        } else {
+                            throw new Exception();
+                        }
+
+                        if(intSupport == 0) {
                             discoveryYear = null;
+                        } else {
+                            discoveryYear = intSupport;
                         }
                     }
-                    catch (Exception message) {
-                        Console.WriteLine("Ocorreu o seguinte problema: " +
-                            message.Message);
+                    catch (Exception) {
+                        Console.WriteLine("Valor inválido na coluna DiscoveryYear");
                     }
 
                     try {
-                        double.TryParse(lines[index[4]], NumberStyles.Any,
-                            CultureInfo.InvariantCulture, out
-                            doubleSupport);
-                        orbitalPeriod = doubleSupport;
-                        if (orbitalPeriod == 0) {
+                        if (double.TryParse(lines[index[4]], NumberStyles.Any,
+                        CultureInfo.InvariantCulture, out
+                        doubleSupport) == true) {
+                        } else {
+                            throw new Exception();
+                        }
+
+                        if (doubleSupport == 0) {
                             orbitalPeriod = null;
+                        } else {
+                            orbitalPeriod = doubleSupport;
                         }
                     }
-                    catch (Exception message) {
-                        Console.WriteLine("Ocorreu o seguinte problema: " +
-                            message.Message);
+                    catch (Exception) {
+                        Console.WriteLine("Valor inválido na coluna pl_orbper");
                     }
 
                     try {
-                        double.TryParse(lines[index[5]], NumberStyles.Any,
-                            CultureInfo.InvariantCulture, out
-                            doubleSupport);
-                        planetRade = doubleSupport;
-                        if (planetRade == 0) {
+                        if (double.TryParse(lines[index[5]], NumberStyles.Any,
+                       CultureInfo.InvariantCulture, out
+                       doubleSupport) == true) {
+                        } else {
+                            throw new Exception();
+                        }
+
+                        if (doubleSupport == 0) {
                             planetRade = null;
+                        } else {
+                            planetRade = doubleSupport;
                         }
                     }
-                    catch (Exception message) {
-                        Console.WriteLine("Ocorreu o seguinte problema: " +
-                            message.Message);
+                    catch (Exception) {
+                        Console.WriteLine("Valor inválido na coluna pl_rade");
                     }
 
                     try {
-                        double.TryParse(lines[index[6]], NumberStyles.Any,
-                            CultureInfo.InvariantCulture, out
-                            doubleSupport);
-                        planetMasse = doubleSupport;
-                        if (planetMasse == 0) {
+                        if (double.TryParse(lines[index[6]], NumberStyles.Any,
+                       CultureInfo.InvariantCulture, out
+                       doubleSupport) == true) {
+                        } else {
+                            throw new Exception();
+                        }
+
+                        if (doubleSupport == 0) {
                             planetMasse = null;
+                        } else {
+                            planetMasse = doubleSupport;
                         }
                     }
-                    catch (Exception message) {
-                        Console.WriteLine("Ocorreu o seguinte problema: " +
-                            message.Message);
+                    catch (Exception) {
+                        Console.WriteLine("Valor inválido na coluna pl_bmasse");
                     }
 
                     try {
-                        int.TryParse(lines[index[7]], NumberStyles.Any,
-                            CultureInfo.InvariantCulture, out
-                            intSupport);
-                        planetTemp = intSupport;
+                        if (int.TryParse(lines[index[7]], NumberStyles.Any,
+                       CultureInfo.InvariantCulture, out
+                       intSupport) == true) {
+                        } else {
+                            throw new Exception();
+                        }
+
                         if (planetTemp == 0) {
                             planetTemp = null;
+                        } else {
+                            planetTemp = intSupport;
                         }
                     }
-                    catch (Exception message) {
-                        Console.WriteLine("Ocorreu o seguinte problema: " +
-                            message.Message);
+                    catch (Exception) {
+                        Console.WriteLine("Valor inválido na coluna pl_eqt");
                     }
 
                     try {
-                        double.TryParse(lines[index[8]], NumberStyles.Any,
-                            CultureInfo.InvariantCulture, out
-                            doubleSupport);
-                        starTemp = doubleSupport;
-                        if (starTemp == 0) {
+                        if (double.TryParse(lines[index[8]], NumberStyles.Any,
+                       CultureInfo.InvariantCulture, out
+                       doubleSupport) == true) {
+                        } else {
+                            throw new Exception();
+                        }
+
+                        if (doubleSupport == 0) {
                             starTemp = null;
+                        } else {
+                            starTemp = doubleSupport;
                         }
                     }
-                    catch (Exception message) {
-                        Console.WriteLine("Ocorreu o seguinte problema: " +
-                            message.Message);
+                    catch (Exception) {
+                        Console.WriteLine("Valor inválido na coluna st_teff");
                     }
 
                     try {
-                        double.TryParse(lines[index[9]], NumberStyles.Any,
-                            CultureInfo.InvariantCulture, out doubleSupport);
-                        starRade = doubleSupport;
-                        if (starRade == 0) {
+                        if (double.TryParse(lines[index[9]], NumberStyles.Any,
+                       CultureInfo.InvariantCulture, out
+                       doubleSupport) == true) {
+                        } else {
+                            throw new Exception();
+                        }
+
+                        if (doubleSupport == 0) {
                             starRade = null;
+                        } else {
+                            starRade = doubleSupport;
                         }
                     }
-                    catch (Exception message) {
-                        Console.WriteLine("Ocorreu o seguinte problema: " +
-                            message.Message);
+                    catch (Exception) {
+                        Console.WriteLine("Valor inválido na coluna st_rad");
                     }
 
                     try {
-                        double.TryParse(lines[index[10]], NumberStyles.Any,
-                            CultureInfo.InvariantCulture, out doubleSupport);
-                        starMass = doubleSupport;
-                        if (starMass == 0) {
+                        if (double.TryParse(lines[index[10]], NumberStyles.Any,
+                       CultureInfo.InvariantCulture, out
+                       doubleSupport) == true) {
+                        } else {
+                            throw new Exception();
+                        }
+
+                        if (doubleSupport == 0) {
                             starMass = null;
+                        } else {
+                            starMass = doubleSupport;
                         }
                     }
-                    catch (Exception message) {
-                        Console.WriteLine("Ocorreu o seguinte problema: " +
-                            message.Message);
+                    catch (Exception) {
+                        Console.WriteLine("Valor inválido na coluna st_mass");
                     }
 
                     try {
-                        double.TryParse(lines[index[11]], NumberStyles.Any,
-                            CultureInfo.InvariantCulture, out doubleSupport);
-                        starAge = doubleSupport;
-                        if (starAge == 0) {
+                        if (double.TryParse(lines[index[11]], NumberStyles.Any,
+                       CultureInfo.InvariantCulture, out
+                       doubleSupport) == true) {
+                        } else {
+                            throw new Exception();
+                        }
+
+                        if (doubleSupport == 0) {
                             starAge = null;
+                        } else {
+                            starAge = doubleSupport;
                         }
                     }
-                    catch (Exception message) {
-                        Console.WriteLine("Ocorreu o seguinte problema: " +
-                            message.Message);
+                    catch (Exception) {
+                        Console.WriteLine("Valor inválido na coluna st_age");
                     }
 
                     try {
@@ -345,23 +384,40 @@ namespace projeto1LP2
                         if (starRotation == 0) {
                             starRotation = null;
                         }
+
+                        if (double.TryParse(lines[index[12]], NumberStyles.Any,
+                       CultureInfo.InvariantCulture, out
+                       doubleSupport) == true) {
+                        } else {
+                            throw new Exception();
+                        }
+
+                        if (doubleSupport == 0) {
+                            starRotation = null;
+                        } else {
+                            starRotation = doubleSupport;
+                        }
                     }
-                    catch (Exception message) {
-                        Console.WriteLine("Ocorreu o seguinte problema: " +
-                            message.Message);
+                    catch (Exception) {
+                        Console.WriteLine("Valor inválido na coluna st_vsin");
                     }
 
                     try {
-                        double.TryParse(lines[index[13]], NumberStyles.Any,
-                            CultureInfo.InvariantCulture, out doubleSupport);
-                        starRotp = doubleSupport;
-                        if (starRotp == 0) {
+                        if (double.TryParse(lines[index[13]], NumberStyles.Any,
+                       CultureInfo.InvariantCulture, out
+                       doubleSupport) == true) {
+                        } else {
+                            throw new Exception();
+                        }
+
+                        if (doubleSupport == 0) {
                             starRotp = null;
+                        } else {
+                            starRotp = doubleSupport;
                         }
                     }
-                    catch (Exception message) {
-                        Console.WriteLine("Ocorreu o seguinte problema: " +
-                            message.Message);
+                    catch (Exception) {
+                        Console.WriteLine("Valor inválido na coluna st_rotp.");
                     }
 
                     try {
@@ -372,10 +428,22 @@ namespace projeto1LP2
                         if (starDistance == 0) {
                             starDistance = null;
                         }
+
+                        if (double.TryParse(lines[index[14]], NumberStyles.Any,
+                       CultureInfo.InvariantCulture, out
+                       doubleSupport) == true) {
+                        } else {
+                            throw new Exception();
+                        }
+
+                        if (doubleSupport == 0) {
+                            starDistance = null;
+                        } else {
+                            starDistance = doubleSupport;
+                        }
                     }
-                    catch (Exception message) {
-                        Console.WriteLine("Ocorreu o seguinte problema: " +
-                            message.Message);
+                    catch (Exception) {
+                        Console.WriteLine("Valor inválido na coluna sy_dist.");
                     }
 
                     // Colocar os valores no dicionário dos planetas.
