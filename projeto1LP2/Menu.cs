@@ -34,6 +34,7 @@ namespace projeto1LP2
                         {
                             Console.WriteLine(string.Format($"ID: {item.Key,-5} | Planeta: {item.Value.Pl_Name,-30}"));
                         }
+                        MainMenu();
                         break;
                     case ConsoleKey.D2:
                         Console.Write("\nYou have chosen Stars, standby for results");
@@ -50,6 +51,7 @@ namespace projeto1LP2
                             Console.WriteLine(string.Format($"ID: {item.Key,-5} | Estrela: {item.Value.HostName,-30}" +
                              $" | Planetas: {item.Value.St_PlCount,-2}"));
                         }
+                        MainMenu();
                         break;
                     case ConsoleKey.Escape:
                         Console.Write("\n_Goodbye");
