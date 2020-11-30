@@ -256,13 +256,26 @@ namespace projeto1LP2
 
                     try {
                         planetRadeSupport = 0;
-                        if (String.IsNullOrEmpty(lines[index[5]])) {
-                            planetRade = null;
+                        /*if (String.IsNullOrEmpty(lines[index[5]])) {
+                            planetRade = 0;
+                            //Console.WriteLine("É null");
                         } else if (double.TryParse(lines[index[5]], NumberStyles.Any
                               , CultureInfo.InvariantCulture,
                               out planetRadeSupport)) {
-                            planetRade = planetRadeSupport;
+                            //planetRade = planetRadeSupport;
+                            //Console.WriteLine("Tem valor");
+                        }*/
+                        if (double.TryParse(lines[index[5]], NumberStyles.Any
+                              , CultureInfo.InvariantCulture,
+                              out planetRadeSupport)) {
+                            //planetRade = planetRadeSupport;
+                            //Console.WriteLine("Tem valor");
                         }
+                       planetRade = planetRadeSupport;
+                        if(planetRade == 0) {
+                            planetRade = null;
+                        }
+                        //Console.WriteLine(planetRade);
                     }
                     catch (Exception message) {
                         Console.WriteLine("Ocorreu o seguinte problema: " +
