@@ -111,18 +111,30 @@ namespace projeto1LP2
             string planetName = "";
             string starName = "";
             string discoveryMethodName = "";
-            int discoveryYear = 0;
-            double orbitalPeriod = 0;
-            double planetRade = 0;
-            double planetMasse = 0;
-            int planetTemp = 0;
-            double starTemp = 0;
-            double starRade = 0;
-            double starMass = 0;
-            double starAge = 0;
-            double starRotation = 0;
-            double starRotp = 0;
-            double starDistance = 0;
+            Nullable<int> discoveryYear = 0;
+            int discoveryYearSupport = 0;
+            Nullable<double> orbitalPeriod = 0;
+            double orbitalPeriodSupport = 0;
+            Nullable<double> planetRade = 0;
+            double planetRadeSupport = 0;
+            Nullable<double> planetMasse = 0;
+            double planetMasseSupport = 0;
+            Nullable<int> planetTemp = 0;
+            int planetTempSupport = 0;
+            Nullable<double> starTemp = 0;
+            double starTempSupport = 0;
+            Nullable<double> starRade = 0;
+            double starRadeSupport = 0;
+            Nullable<double> starMass = 0;
+            double starMassSuport = 0;
+            Nullable<double> starAge = 0;
+            double starAgeSupport = 0;
+            Nullable<double> starRotation = 0;
+            double starRotationSupport = 0;
+            Nullable<double> starRotp = 0;
+            double starRotpSupport = 0;
+            Nullable<double> starDistance = 0;
+            double starDistanceSupport = 0;
 
             // Variável array de iteração.
             int[] index = new int[15];
@@ -212,11 +224,13 @@ namespace projeto1LP2
                     discoveryMethodName = lines[index[2]];
 
                     try {
+                        discoveryYearSupport = 0;
                         if (String.IsNullOrEmpty(lines[index[3]])) {
-                            discoveryYear = 0;
+                            discoveryYear = null;
                         } else if (int.TryParse(lines[index[3]], NumberStyles.Any
                               , CultureInfo.InvariantCulture,
-                              out discoveryYear)) {
+                              out discoveryYearSupport)) {
+                            discoveryYear = discoveryYearSupport;
                         }
                     }
                     catch (Exception message) {
@@ -225,12 +239,14 @@ namespace projeto1LP2
                     }
 
                     try {
+                        orbitalPeriodSupport = 0;
                         if (String.IsNullOrEmpty(lines[index[4]])) {
-                            orbitalPeriod = 0;
+                            orbitalPeriod = null;
                         }
                         else if (double.TryParse(lines[index[4]], NumberStyles.Any
                             , CultureInfo.InvariantCulture,
-                            out orbitalPeriod)) {
+                            out orbitalPeriodSupport)) {
+                            orbitalPeriod = orbitalPeriodSupport;
                         }
                     }
                     catch (Exception message) {
@@ -239,11 +255,13 @@ namespace projeto1LP2
                     }
 
                     try {
+                        planetRadeSupport = 0;
                         if (String.IsNullOrEmpty(lines[index[5]])) {
-                            planetRade = 0;
+                            planetRade = null;
                         } else if (double.TryParse(lines[index[5]], NumberStyles.Any
                               , CultureInfo.InvariantCulture,
-                              out planetRade)) {
+                              out planetRadeSupport)) {
+                            planetRade = planetRadeSupport;
                         }
                     }
                     catch (Exception message) {
@@ -252,11 +270,13 @@ namespace projeto1LP2
                     }
 
                     try {
+                        planetMasseSupport = 0;
                         if (String.IsNullOrEmpty(lines[index[6]])) {
-                            planetMasse = 0;
+                            planetMasse = null;
                         } else if (double.TryParse(lines[index[6]], NumberStyles.Any
                               , CultureInfo.InvariantCulture,
-                              out planetMasse)) {
+                              out planetMasseSupport)) {
+                            planetMasse = planetMasseSupport;
                         }
                     }
                     catch (Exception message) {
@@ -265,11 +285,13 @@ namespace projeto1LP2
                     }
 
                     try {
+                        planetTempSupport = 0;
                         if (String.IsNullOrEmpty(lines[index[7]])) {
-                            planetTemp = 0;
+                            planetTemp = null;
                         } else if (int.TryParse(lines[index[7]], NumberStyles.Any
                               , CultureInfo.InvariantCulture,
-                              out planetTemp)) {
+                              out planetTempSupport)) {
+                            planetTemp = planetTempSupport;
                         }
                     }
                     catch (Exception message) {
@@ -278,11 +300,13 @@ namespace projeto1LP2
                     }
 
                     try {
+                        starTempSupport = 0;
                         if (String.IsNullOrEmpty(lines[index[8]])) {
-                            starTemp = 0;
+                            starTemp = null;
                         } else if (double.TryParse(lines[index[8]], NumberStyles.Any
                               , CultureInfo.InvariantCulture,
-                              out starTemp)) {
+                              out starTempSupport)) {
+                            starTemp = starTempSupport;
                         }
                     }
                     catch (Exception message) {
@@ -291,11 +315,13 @@ namespace projeto1LP2
                     }
 
                     try {
+                        starRadeSupport = 0;
                         if (String.IsNullOrEmpty(lines[index[9]])) {
-                            starRade = 0;
+                            starRade = null;
                         } else if (double.TryParse(lines[index[9]], NumberStyles.Any
                               , CultureInfo.InvariantCulture,
-                              out starRade)) {
+                              out starRadeSupport)) {
+                            starRade = starRadeSupport;
                         }
                     }
                     catch (Exception message) {
@@ -304,11 +330,13 @@ namespace projeto1LP2
                     }
 
                     try {
+                        starMassSuport = 0;
                         if (String.IsNullOrEmpty(lines[index[10]])) {
-                            starMass = 0;
+                            starMass = null;
                         } else if (double.TryParse(lines[index[10]], NumberStyles.Any
                               , CultureInfo.InvariantCulture,
-                              out starMass)) {
+                              out starMassSuport)) {
+                            starMass = starMassSuport;
                         }
                     }
                     catch (Exception message) {
@@ -317,11 +345,13 @@ namespace projeto1LP2
                     }
 
                     try {
+                        starAgeSupport = 0;
                         if (String.IsNullOrEmpty(lines[index[11]])) {
-                            starAge = 0;
+                            starAge = null;
                         } else if (double.TryParse(lines[index[11]], NumberStyles.Any
                               , CultureInfo.InvariantCulture,
-                              out starAge)) {
+                              out starAgeSupport)) {
+                            starAge = starAgeSupport;
                         }
                     }
                     catch (Exception message) {
@@ -330,11 +360,13 @@ namespace projeto1LP2
                     }
 
                     try {
+                        starRotationSupport = 0;
                         if (String.IsNullOrEmpty(lines[index[12]])) {
-                            starRotation = 0;
+                            starRotation = null;
                         } else if (double.TryParse(lines[index[12]], NumberStyles.Any
                               , CultureInfo.InvariantCulture,
-                              out starRotation)) {
+                              out starRotationSupport)) {
+                            starRotation = starRotationSupport;
                         }
                     }
                     catch (Exception message) {
@@ -343,11 +375,13 @@ namespace projeto1LP2
                     }
 
                     try {
+                        starRotpSupport = 0;
                         if (String.IsNullOrEmpty(lines[index[13]])) {
-                            starRotp = 0;
+                            starRotp = null;
                         } else if (double.TryParse(lines[index[13]], NumberStyles.Any
                               , CultureInfo.InvariantCulture,
-                              out starRotp)) {
+                              out starRotpSupport)) {
+                            starRotp = starRotpSupport;
                         }
                     }
                     catch (Exception message) {
@@ -356,11 +390,13 @@ namespace projeto1LP2
                     }
 
                     try {
+                        starDistanceSupport = 0;
                         if (String.IsNullOrEmpty(lines[index[14]])) {
-                            starDistance = 0;
+                            starDistance = null;
                         } else if (double.TryParse(lines[index[14]], NumberStyles.Any
                               , CultureInfo.InvariantCulture,
-                              out starDistance)) {
+                              out starDistanceSupport)) {
+                            starDistance = starDistanceSupport;
                         }
                     }
                     catch (Exception message) {

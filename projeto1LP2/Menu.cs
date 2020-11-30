@@ -13,9 +13,9 @@ namespace projeto1LP2
             Facade facade = new Facade();
             facade.ReadFile();
             // Mostrar planetas (id e nome, só para testar)
-            /*foreach (KeyValuePair<int, Planet> item in Facade.planetList) {
-                Console.WriteLine($"ID: {item.Key} | Planeta: {item.Value.Pl_Name}");
-            }*/
+            foreach (KeyValuePair<int, Planet> item in Facade.planetList) {
+                Console.WriteLine($"ID: {item.Key} | Planeta: {item.Value.Pl_Name} | Pl_Rade: {item.Value.Pl_Rade}");
+            }
 
             // Mostrar estrelas (id, nome e nº de planetasm só para testar)
             /*foreach (KeyValuePair<int, Star> item in Facade.starList) {
