@@ -31,7 +31,7 @@ namespace projeto1LP2
 
         // Método para ler ficheiro atrávez de uma string.
         public void ReadFile(string file) {
-            FileReader newFile = new FileReader($"{file}.csv");
+            FileReader newFile = new FileReader(file);
             newFile.ReadFile();
         }
 

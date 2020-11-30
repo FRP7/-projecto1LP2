@@ -11,9 +11,11 @@ namespace projeto1LP2
     {
         public void MainMenu() {
             Facade facade = new Facade();
+            string file = "planetList.csv";
             facade.ReadFile();
             Console.WriteLine("\nWelcome to the Interstelar sorter." +
-                "\n\nWhat would you like to sort?\n\n\t1 = Planets;" +
+                $"\nYou are currently reading {file}." +
+                "\nWhat would you like to sort?\n\n\t1 = Planets;" +
                 "\n\t2 = Stars;\n\tR = Read another File;\n\tEsc = Exit.");
             bool retry; 
             do {
@@ -65,7 +67,13 @@ namespace projeto1LP2
                     case ConsoleKey.R:
                         Console.WriteLine("\nPlease write the File you want to read\n" +
                             "(exclude extension)\n");
-                        facade.ReadFile(Console.ReadLine());
+                        file = $"{Console.ReadLine()}.csv";
+                        facade.ReadFile(file);
+                        retry = true;
+                        Console.WriteLine("\nWelcome to the Interstelar sorter." +
+                            $"\nYou are currently reading {file}." +
+                            "\nWhat would you like to sort?\n\n\t1 = Planets;" +
+                            "\n\t2 = Stars;\n\tR = Read another File;\n\tEsc = Exit.");
                         break;
                     case ConsoleKey.Escape:
                         Console.Write("\n_Goodbye");
