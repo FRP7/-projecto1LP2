@@ -112,29 +112,20 @@ namespace projeto1LP2
             string starName = "";
             string discoveryMethodName = "";
             Nullable<int> discoveryYear = 0;
-            int discoveryYearSupport = 0;
             Nullable<double> orbitalPeriod = 0;
-            double orbitalPeriodSupport = 0;
             Nullable<double> planetRade = 0;
-            double planetRadeSupport = 0;
             Nullable<double> planetMasse = 0;
-            double planetMasseSupport = 0;
             Nullable<int> planetTemp = 0;
-            int planetTempSupport = 0;
             Nullable<double> starTemp = 0;
-            double starTempSupport = 0;
             Nullable<double> starRade = 0;
-            double starRadeSupport = 0;
             Nullable<double> starMass = 0;
-            double starMassSuport = 0;
             Nullable<double> starAge = 0;
-            double starAgeSupport = 0;
             Nullable<double> starRotation = 0;
-            double starRotationSupport = 0;
             Nullable<double> starRotp = 0;
-            double starRotpSupport = 0;
             Nullable<double> starDistance = 0;
-            double starDistanceSupport = 0;
+
+            int intSupport = 0;
+            double doubleSupport = 0;
 
             // Variável array de iteração.
             int[] index = new int[15];
@@ -226,8 +217,8 @@ namespace projeto1LP2
                     try {
                         int.TryParse(lines[index[3]], NumberStyles.Any,
                             CultureInfo.InvariantCulture, out
-                            discoveryYearSupport);
-                        discoveryYear = discoveryYearSupport;
+                            intSupport);
+                        discoveryYear = intSupport;
                         if (discoveryYear == 0) {
                             discoveryYear = null;
                         }
@@ -240,8 +231,8 @@ namespace projeto1LP2
                     try {
                         double.TryParse(lines[index[4]], NumberStyles.Any,
                             CultureInfo.InvariantCulture, out
-                            orbitalPeriodSupport);
-                        orbitalPeriod = orbitalPeriodSupport;
+                            doubleSupport);
+                        orbitalPeriod = doubleSupport;
                         if (orbitalPeriod == 0) {
                             orbitalPeriod = null;
                         }
@@ -254,8 +245,8 @@ namespace projeto1LP2
                     try {
                         double.TryParse(lines[index[5]], NumberStyles.Any,
                             CultureInfo.InvariantCulture, out
-                            planetRadeSupport);
-                        planetRade = planetRadeSupport;
+                            doubleSupport);
+                        planetRade = doubleSupport;
                         if (planetRade == 0) {
                             planetRade = null;
                         }
@@ -268,8 +259,8 @@ namespace projeto1LP2
                     try {
                         double.TryParse(lines[index[6]], NumberStyles.Any,
                             CultureInfo.InvariantCulture, out
-                            planetMasseSupport);
-                        planetMasse = planetMasseSupport;
+                            doubleSupport);
+                        planetMasse = doubleSupport;
                         if (planetMasse == 0) {
                             planetMasse = null;
                         }
@@ -282,8 +273,8 @@ namespace projeto1LP2
                     try {
                         int.TryParse(lines[index[7]], NumberStyles.Any,
                             CultureInfo.InvariantCulture, out
-                            planetTempSupport);
-                        planetTemp = planetTempSupport;
+                            intSupport);
+                        planetTemp = intSupport;
                         if (planetTemp == 0) {
                             planetTemp = null;
                         }
@@ -296,8 +287,8 @@ namespace projeto1LP2
                     try {
                         double.TryParse(lines[index[8]], NumberStyles.Any,
                             CultureInfo.InvariantCulture, out
-                            starTempSupport);
-                        starTemp = starTempSupport;
+                            doubleSupport);
+                        starTemp = doubleSupport;
                         if (starTemp == 0) {
                             starTemp = null;
                         }
@@ -309,8 +300,8 @@ namespace projeto1LP2
 
                     try {
                         double.TryParse(lines[index[9]], NumberStyles.Any,
-                            CultureInfo.InvariantCulture, out starRadeSupport);
-                        starRade = starRadeSupport;
+                            CultureInfo.InvariantCulture, out doubleSupport);
+                        starRade = doubleSupport;
                         if (starRade == 0) {
                             starRade = null;
                         }
@@ -322,8 +313,8 @@ namespace projeto1LP2
 
                     try {
                         double.TryParse(lines[index[10]], NumberStyles.Any,
-                            CultureInfo.InvariantCulture, out starMassSuport);
-                        starMass = starMassSuport;
+                            CultureInfo.InvariantCulture, out doubleSupport);
+                        starMass = doubleSupport;
                         if (starMass == 0) {
                             starMass = null;
                         }
@@ -335,8 +326,8 @@ namespace projeto1LP2
 
                     try {
                         double.TryParse(lines[index[11]], NumberStyles.Any,
-                            CultureInfo.InvariantCulture, out starAgeSupport);
-                        starAge = starAgeSupport;
+                            CultureInfo.InvariantCulture, out doubleSupport);
+                        starAge = doubleSupport;
                         if (starAge == 0) {
                             starAge = null;
                         }
@@ -349,8 +340,8 @@ namespace projeto1LP2
                     try {
                         double.TryParse(lines[index[12]], NumberStyles.Any,
                             CultureInfo.InvariantCulture, out
-                            starRotationSupport);
-                        starRotation = starRotationSupport;
+                            doubleSupport);
+                        starRotation = doubleSupport;
                         if (starRotation == 0) {
                             starRotation = null;
                         }
@@ -362,8 +353,8 @@ namespace projeto1LP2
 
                     try {
                         double.TryParse(lines[index[13]], NumberStyles.Any,
-                            CultureInfo.InvariantCulture, out starRotpSupport);
-                        starRotp = starRotpSupport;
+                            CultureInfo.InvariantCulture, out doubleSupport);
+                        starRotp = doubleSupport;
                         if (starRotp == 0) {
                             starRotp = null;
                         }
@@ -376,8 +367,8 @@ namespace projeto1LP2
                     try {
                         double.TryParse(lines[index[14]], NumberStyles.Any,
                             CultureInfo.InvariantCulture, out
-                            starDistanceSupport);
-                        starDistance = starDistanceSupport;
+                            doubleSupport);
+                        starDistance = doubleSupport;
                         if (starDistance == 0) {
                             starDistance = null;
                         }
@@ -430,21 +421,16 @@ namespace projeto1LP2
             string starName = "";
             string discoveryMethodName = "";
             Nullable<int> discoveryYear = 0;
-            int discoveryYearSupport = 0;
             Nullable<double> starTemp = 0;
-            double starTempSupport = 0;
             Nullable<double> starRade = 0;
-            double starRadeSupport = 0;
             Nullable<double> starMass = 0;
-            double starMassSupport = 0;
             Nullable<double> starAge = 0;
-            double starAgeSupport = 0;
             Nullable<double> starRotation = 0;
-            double starRotationSupport = 0;
             Nullable<double> starRotp = 0;
-            double starRotpSupport = 0;
             Nullable<double> starDistance = 0;
-            double starDistanceSupport = 0;
+
+            int intSupport = 0;
+            double doubleSupport = 0;
 
             // Variável array de iteração.
             int[] index = new int[15];
@@ -533,8 +519,8 @@ namespace projeto1LP2
                     try {
                         int.TryParse(lines[index[3]], NumberStyles.Any,
                             CultureInfo.InvariantCulture, out
-                            discoveryYearSupport);
-                        discoveryYear = discoveryYearSupport;
+                            intSupport);
+                        discoveryYear = intSupport;
                         if(discoveryYear == 0) {
                             discoveryYear = null;
                         }
@@ -546,8 +532,8 @@ namespace projeto1LP2
 
                     try {
                         double.TryParse(lines[index[8]], NumberStyles.Any,
-                        CultureInfo.InvariantCulture, out starTempSupport);
-                        starTemp = starTempSupport;
+                        CultureInfo.InvariantCulture, out doubleSupport);
+                        starTemp = doubleSupport;
                         if (starTemp == 0) {
                             starTemp = null;
                         }
@@ -559,8 +545,8 @@ namespace projeto1LP2
 
                     try {
                         double.TryParse(lines[index[9]], NumberStyles.Any,
-                        CultureInfo.InvariantCulture, out starRadeSupport);
-                        starRade = starRadeSupport;
+                        CultureInfo.InvariantCulture, out doubleSupport);
+                        starRade = doubleSupport;
                         if (starRade == 0) {
                             starRade = null;
                         }
@@ -572,8 +558,8 @@ namespace projeto1LP2
 
                     try {
                         double.TryParse(lines[index[10]], NumberStyles.Any,
-                        CultureInfo.InvariantCulture, out starMassSupport);
-                        starMass = starMassSupport;
+                        CultureInfo.InvariantCulture, out doubleSupport);
+                        starMass = doubleSupport;
                         if (starMass == 0) {
                             starMass = null;
                         }
@@ -585,8 +571,8 @@ namespace projeto1LP2
 
                     try {
                         double.TryParse(lines[index[11]], NumberStyles.Any,
-                        CultureInfo.InvariantCulture, out starAgeSupport);
-                        starAge = starAgeSupport;
+                        CultureInfo.InvariantCulture, out doubleSupport);
+                        starAge = doubleSupport;
                         if (starAge == 0) {
                             starAge = null;
                         }
@@ -598,8 +584,8 @@ namespace projeto1LP2
 
                     try {
                         double.TryParse(lines[index[12]], NumberStyles.Any,
-                        CultureInfo.InvariantCulture, out starRotationSupport);
-                        starRotation = starRotationSupport;
+                        CultureInfo.InvariantCulture, out doubleSupport);
+                        starRotation = doubleSupport;
                         if (starRotation == 0) {
                             starRotation = null;
                         }
@@ -611,8 +597,8 @@ namespace projeto1LP2
 
                     try {
                         double.TryParse(lines[index[13]], NumberStyles.Any,
-                        CultureInfo.InvariantCulture, out starRotpSupport);
-                        starRotp = starRotpSupport;
+                        CultureInfo.InvariantCulture, out doubleSupport);
+                        starRotp = doubleSupport;
                         if (starRotp == 0) {
                             starRotp = null;
                         }
@@ -624,8 +610,8 @@ namespace projeto1LP2
 
                     try {
                         double.TryParse(lines[index[14]], NumberStyles.Any,
-                        CultureInfo.InvariantCulture, out starDistanceSupport);
-                        starDistance = starDistanceSupport;
+                        CultureInfo.InvariantCulture, out doubleSupport);
+                        starDistance = doubleSupport;
                         if (starDistance == 0) {
                             starDistance = null;
                         }
