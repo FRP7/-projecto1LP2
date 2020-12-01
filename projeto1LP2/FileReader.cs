@@ -480,7 +480,7 @@ namespace projeto1LP2
             string[] lines;
 
             // Contar o número de planetas.
-            int planetCount = 0;
+            Nullable<int> planetCount = 0;
 
             // Contar o número de estrelas repetidas na sua coleção.
             int isRepeated = 0;
@@ -585,108 +585,165 @@ namespace projeto1LP2
                     discoveryMethodName = lines[index[2]];
 
                     try {
-                        int.TryParse(lines[index[3]], NumberStyles.Any,
-                            CultureInfo.InvariantCulture, out
-                            intSupport);
-                        discoveryYear = intSupport;
-                        if(discoveryYear == 0) {
+                        if (int.TryParse(lines[index[3]], NumberStyles.Any,
+                    CultureInfo.InvariantCulture, out
+                    intSupport) == true) {
+                        } else {
+                            throw new Exception();
+                        }
+
+                        if (intSupport == 0) {
                             discoveryYear = null;
+                        } else {
+                            discoveryYear = intSupport;
                         }
                     }
-                    catch (Exception message) {
-                        Console.WriteLine("Ocorreu o seguinte problema: " +
-                            message.Message);
+                    catch (Exception) {
+                        Console.WriteLine("Valor inválido na coluna disc_year");
                     }
 
                     try {
-                        double.TryParse(lines[index[8]], NumberStyles.Any,
-                        CultureInfo.InvariantCulture, out doubleSupport);
-                        starTemp = doubleSupport;
-                        if (starTemp == 0) {
+                        if (double.TryParse(lines[index[8]], NumberStyles.Any,
+                    CultureInfo.InvariantCulture, out
+                    doubleSupport) == true) {
+                        } else {
+                            throw new Exception();
+                        }
+
+                        if (doubleSupport == 0) {
                             starTemp = null;
+                        } else {
+                            starTemp = doubleSupport;
                         }
                     }
-                    catch (Exception message) {
-                        Console.WriteLine("Ocorreu o seguinte problema: " +
-                            message.Message);
+                    catch (Exception) {
+                        Console.WriteLine("Valor inválido na coluna st_teff");
                     }
 
                     try {
-                        double.TryParse(lines[index[9]], NumberStyles.Any,
-                        CultureInfo.InvariantCulture, out doubleSupport);
-                        starRade = doubleSupport;
-                        if (starRade == 0) {
+                        if (double.TryParse(lines[index[9]], NumberStyles.Any,
+                    CultureInfo.InvariantCulture, out
+                    doubleSupport) == true) {
+                        } else {
+                            throw new Exception();
+                        }
+
+                        if (doubleSupport == 0) {
                             starRade = null;
+                        } else {
+                            starRade = doubleSupport;
                         }
                     }
-                    catch (Exception message) {
-                        Console.WriteLine("Ocorreu o seguinte problema: " +
-                            message.Message);
+                    catch (Exception) {
+                        Console.WriteLine("Valor inválido na coluna st_rad");
                     }
 
                     try {
-                        double.TryParse(lines[index[10]], NumberStyles.Any,
-                        CultureInfo.InvariantCulture, out doubleSupport);
-                        starMass = doubleSupport;
-                        if (starMass == 0) {
+                        if (double.TryParse(lines[index[10]], NumberStyles.Any,
+                    CultureInfo.InvariantCulture, out
+                    doubleSupport) == true) {
+                        } else {
+                            throw new Exception();
+                        }
+
+                        if (doubleSupport == 0) {
                             starMass = null;
+                        } else {
+                            starMass = doubleSupport;
                         }
                     }
-                    catch (Exception message) {
-                        Console.WriteLine("Ocorreu o seguinte problema: " +
-                            message.Message);
+                    catch (Exception) {
+                        Console.WriteLine("Valor inválido na coluna st_mass");
                     }
 
                     try {
-                        double.TryParse(lines[index[11]], NumberStyles.Any,
-                        CultureInfo.InvariantCulture, out doubleSupport);
-                        starAge = doubleSupport;
-                        if (starAge == 0) {
+                        if (double.TryParse(lines[index[11]], NumberStyles.Any,
+                    CultureInfo.InvariantCulture, out
+                    doubleSupport) == true) {
+                        } else {
+                            throw new Exception();
+                        }
+
+                        if (doubleSupport == 0) {
                             starAge = null;
+                        } else {
+                            starAge = doubleSupport;
                         }
                     }
-                    catch (Exception message) {
-                        Console.WriteLine("Ocorreu o seguinte problema: " +
-                            message.Message);
+                    catch (Exception) {
+                        Console.WriteLine("Valor inválido na coluna st_age");
                     }
 
                     try {
-                        double.TryParse(lines[index[12]], NumberStyles.Any,
-                        CultureInfo.InvariantCulture, out doubleSupport);
-                        starRotation = doubleSupport;
-                        if (starRotation == 0) {
+                        if (double.TryParse(lines[index[12]], NumberStyles.Any,
+                    CultureInfo.InvariantCulture, out
+                    doubleSupport) == true) {
+                        } else {
+                            throw new Exception();
+                        }
+
+                        if (doubleSupport == 0) {
                             starRotation = null;
+                        } else {
+                            starRotation = doubleSupport;
                         }
                     }
-                    catch (Exception message) {
-                        Console.WriteLine("Ocorreu o seguinte problema: " +
-                            message.Message);
+                    catch (Exception) {
+                        Console.WriteLine("Valor inválido na coluna st_vsin");
                     }
 
                     try {
-                        double.TryParse(lines[index[13]], NumberStyles.Any,
-                        CultureInfo.InvariantCulture, out doubleSupport);
-                        starRotp = doubleSupport;
-                        if (starRotp == 0) {
+                        if (double.TryParse(lines[index[13]], NumberStyles.Any,
+                    CultureInfo.InvariantCulture, out
+                    doubleSupport) == true) {
+                        } else {
+                            throw new Exception();
+                        }
+
+                        if (doubleSupport == 0) {
                             starRotp = null;
+                        } else {
+                            starRotp = doubleSupport;
                         }
                     }
-                    catch (Exception message) {
-                        Console.WriteLine("Ocorreu o seguinte problema: " +
-                            message.Message);
+                    catch (Exception) {
+                        Console.WriteLine("Valor inválido na coluna st_rotp");
                     }
 
                     try {
-                        double.TryParse(lines[index[14]], NumberStyles.Any,
-                        CultureInfo.InvariantCulture, out doubleSupport);
-                        starDistance = doubleSupport;
-                        if (starDistance == 0) {
+                        if (double.TryParse(lines[index[14]], NumberStyles.Any,
+                    CultureInfo.InvariantCulture, out
+                    doubleSupport) == true) {
+                        } else {
+                            throw new Exception();
+                        }
+
+                        if (doubleSupport == 0) {
                             starDistance = null;
+                        } else {
+                            starDistance = doubleSupport;
                         }
                     }
-                    catch (Exception message) {
-                        Console.WriteLine("Ocorreu o seguinte problema: " +
-                            message.Message);
+                    catch (Exception) {
+                        Console.WriteLine("Valor inválido na coluna sy_dist");
+                    }
+
+                    try {
+                        if (int.TryParse(lines[index[15]], NumberStyles.Any,
+                    CultureInfo.InvariantCulture, out
+                    intSupport) == true) {
+                        } else {
+                            throw new Exception();
+                        }
+
+                        if (doubleSupport == 0) {
+                            planetCount = null;
+                        } else {
+                            planetCount = intSupport;
+                        }
+                    }
+                    catch (Exception) {
+                        Console.WriteLine("Valor inválido na coluna st_plcount");
                     }
 
                     // Contar o número de planetas da estrela.
