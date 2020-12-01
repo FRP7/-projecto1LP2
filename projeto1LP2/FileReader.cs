@@ -88,9 +88,8 @@ namespace projeto1LP2
         private void ReadData() {
             // Tentar ler ficheiro.
             try {
-                if(GetPlanets() && GetStars() == true) {
-                }
-                else {
+                if (GetPlanets() /*&& GetStars()*/ == true) {
+                } else {
                     throw new Exception();
                 }
             }
@@ -227,10 +226,13 @@ namespace projeto1LP2
                         discoveryYear = intSupport;
                     }
 
-                    if (double.TryParse(lines[index[4]], NumberStyles.Any,
+                    if (lines[index[4]].Any(x => !char.IsLetter(x)) == true) {
+                        double.TryParse(lines[index[4]], NumberStyles.Any,
                     CultureInfo.InvariantCulture, out
-                    doubleSupport) == true) {
+                    doubleSupport);
+                        Console.WriteLine("Valor válido " + lines[index[4]]);
                     } else {
+                        Console.WriteLine("Valor inválido " + lines[index[4]]);
                         return false;
                     }
 
@@ -240,46 +242,46 @@ namespace projeto1LP2
                         orbitalPeriod = doubleSupport;
                     }
 
-                    if (double.TryParse(lines[index[5]], NumberStyles.Any,
+                    /*if (double.TryParse(lines[index[5]], NumberStyles.Any,
                    CultureInfo.InvariantCulture, out
                    doubleSupport) == true) {
                     } else {
                         return false;
-                    }
+                    }*/
 
-                    if (doubleSupport == 0) {
+                    /*if (doubleSupport == 0) {
                         planetRade = null;
                     } else {
                         planetRade = doubleSupport;
-                    }
+                    }*/
 
-                    if (double.TryParse(lines[index[6]], NumberStyles.Any,
+                    /*if (double.TryParse(lines[index[6]], NumberStyles.Any,
                    CultureInfo.InvariantCulture, out
                    doubleSupport) == true) {
                     } else {
                         return false;
-                    }
+                    }*/
 
-                    if (doubleSupport == 0) {
+                    /*if (doubleSupport == 0) {
                         planetMasse = null;
                     } else {
                         planetMasse = doubleSupport;
-                    }
+                    }*/
 
-                    if (int.TryParse(lines[index[7]], NumberStyles.Any,
+                    /*if (int.TryParse(lines[index[7]], NumberStyles.Any,
                    CultureInfo.InvariantCulture, out
                    intSupport) == true) {
                     } else {
                         return false;
-                    }
+                    }*/
 
-                    if (planetTemp == 0) {
+                    /*if (planetTemp == 0) {
                         planetTemp = null;
                     } else {
                         planetTemp = intSupport;
-                    }
+                    }*/
 
-                    if (double.TryParse(lines[index[8]], NumberStyles.Any,
+                    /*if (double.TryParse(lines[index[8]], NumberStyles.Any,
                    CultureInfo.InvariantCulture, out
                    doubleSupport) == true) {
                     } else {
@@ -290,9 +292,9 @@ namespace projeto1LP2
                         starTemp = null;
                     } else {
                         starTemp = doubleSupport;
-                    }
+                    }*/
 
-                    if (double.TryParse(lines[index[9]], NumberStyles.Any,
+                    /*if (double.TryParse(lines[index[9]], NumberStyles.Any,
                    CultureInfo.InvariantCulture, out
                    doubleSupport) == true) {
                     } else {
@@ -303,9 +305,9 @@ namespace projeto1LP2
                         starRade = null;
                     } else {
                         starRade = doubleSupport;
-                    }
+                    }*/
 
-                    if (double.TryParse(lines[index[10]], NumberStyles.Any,
+                    /*if (double.TryParse(lines[index[10]], NumberStyles.Any,
                    CultureInfo.InvariantCulture, out
                    doubleSupport) == true) {
                     } else {
@@ -316,9 +318,9 @@ namespace projeto1LP2
                         starMass = null;
                     } else {
                         starMass = doubleSupport;
-                    }
+                    }*/
 
-                    if (double.TryParse(lines[index[11]], NumberStyles.Any,
+                    /*if (double.TryParse(lines[index[11]], NumberStyles.Any,
                    CultureInfo.InvariantCulture, out
                    doubleSupport) == true) {
                     } else {
@@ -329,17 +331,9 @@ namespace projeto1LP2
                         starAge = null;
                     } else {
                         starAge = doubleSupport;
-                    }
+                    }*/
 
-                    double.TryParse(lines[index[12]], NumberStyles.Any,
-                        CultureInfo.InvariantCulture, out
-                        doubleSupport);
-                    starRotation = doubleSupport;
-                    if (starRotation == 0) {
-                        starRotation = null;
-                    }
-
-                    if (double.TryParse(lines[index[12]], NumberStyles.Any,
+                    /*if (double.TryParse(lines[index[12]], NumberStyles.Any,
                    CultureInfo.InvariantCulture, out
                    doubleSupport) == true) {
                     } else {
@@ -350,9 +344,9 @@ namespace projeto1LP2
                         starRotation = null;
                     } else {
                         starRotation = doubleSupport;
-                    }
+                    }*/
 
-                    if (double.TryParse(lines[index[13]], NumberStyles.Any,
+                    /*if (double.TryParse(lines[index[13]], NumberStyles.Any,
                    CultureInfo.InvariantCulture, out
                    doubleSupport) == true) {
                     } else {
@@ -363,17 +357,9 @@ namespace projeto1LP2
                         starRotp = null;
                     } else {
                         starRotp = doubleSupport;
-                    }
+                    }*/
 
-                    double.TryParse(lines[index[14]], NumberStyles.Any,
-                        CultureInfo.InvariantCulture, out
-                        doubleSupport);
-                    starDistance = doubleSupport;
-                    if (starDistance == 0) {
-                        starDistance = null;
-                    }
-
-                    if (double.TryParse(lines[index[14]], NumberStyles.Any,
+                    /*if (double.TryParse(lines[index[14]], NumberStyles.Any,
                    CultureInfo.InvariantCulture, out
                    doubleSupport) == true) {
                     } else {
@@ -384,7 +370,7 @@ namespace projeto1LP2
                         starDistance = null;
                     } else {
                         starDistance = doubleSupport;
-                    }
+                    }*/
 
                     // Colocar os valores no dicionário dos planetas.
                     Facade.planetList.Add(
@@ -524,122 +510,122 @@ namespace projeto1LP2
 
                     discoveryMethodName = lines[index[2]];
 
-                        if (int.TryParse(lines[index[3]], NumberStyles.Any,
-                    CultureInfo.InvariantCulture, out
-                    intSupport) == true) {
-                        } else {
-                            return false;
-                        }
+                    if (int.TryParse(lines[index[3]], NumberStyles.Any,
+                CultureInfo.InvariantCulture, out
+                intSupport) == true) {
+                    } else {
+                        return false;
+                    }
 
-                        if (intSupport == 0) {
-                            discoveryYear = null;
-                        } else {
-                            discoveryYear = intSupport;
-                        }
+                    if (intSupport == 0) {
+                        discoveryYear = null;
+                    } else {
+                        discoveryYear = intSupport;
+                    }
 
-                        if (double.TryParse(lines[index[8]], NumberStyles.Any,
-                    CultureInfo.InvariantCulture, out
-                    doubleSupport) == true) {
-                        } else {
-                            return false;
-                        }
+                    if (double.TryParse(lines[index[8]], NumberStyles.Any,
+                CultureInfo.InvariantCulture, out
+                doubleSupport) == true) {
+                    } else {
+                        return false;
+                    }
 
-                        if (doubleSupport == 0) {
-                            starTemp = null;
-                        } else {
-                            starTemp = doubleSupport;
-                        }
- 
-                        if (double.TryParse(lines[index[9]], NumberStyles.Any,
-                    CultureInfo.InvariantCulture, out
-                    doubleSupport) == true) {
-                        } else {
-                            return false;
-                        }
+                    if (doubleSupport == 0) {
+                        starTemp = null;
+                    } else {
+                        starTemp = doubleSupport;
+                    }
 
-                        if (doubleSupport == 0) {
-                            starRade = null;
-                        } else {
-                            starRade = doubleSupport;
-                        }
+                    if (double.TryParse(lines[index[9]], NumberStyles.Any,
+                CultureInfo.InvariantCulture, out
+                doubleSupport) == true) {
+                    } else {
+                        return false;
+                    }
 
-                        if (double.TryParse(lines[index[10]], NumberStyles.Any,
-                    CultureInfo.InvariantCulture, out
-                    doubleSupport) == true) {
-                        } else {
-                            return false;
-                        }
+                    if (doubleSupport == 0) {
+                        starRade = null;
+                    } else {
+                        starRade = doubleSupport;
+                    }
 
-                        if (doubleSupport == 0) {
-                            starMass = null;
-                        } else {
-                            starMass = doubleSupport;
-                        }
+                    if (double.TryParse(lines[index[10]], NumberStyles.Any,
+                CultureInfo.InvariantCulture, out
+                doubleSupport) == true) {
+                    } else {
+                        return false;
+                    }
 
-                        if (double.TryParse(lines[index[11]], NumberStyles.Any,
-                    CultureInfo.InvariantCulture, out
-                    doubleSupport) == true) {
-                        } else {
-                            return false;
-                        }
+                    if (doubleSupport == 0) {
+                        starMass = null;
+                    } else {
+                        starMass = doubleSupport;
+                    }
 
-                        if (doubleSupport == 0) {
-                            starAge = null;
-                        } else {
-                            starAge = doubleSupport;
-                        }
+                    if (double.TryParse(lines[index[11]], NumberStyles.Any,
+                CultureInfo.InvariantCulture, out
+                doubleSupport) == true) {
+                    } else {
+                        return false;
+                    }
 
-                        if (double.TryParse(lines[index[12]], NumberStyles.Any,
-                    CultureInfo.InvariantCulture, out
-                    doubleSupport) == true) {
-                        } else {
-                            return false;
-                        }
+                    if (doubleSupport == 0) {
+                        starAge = null;
+                    } else {
+                        starAge = doubleSupport;
+                    }
 
-                        if (doubleSupport == 0) {
-                            starRotation = null;
-                        } else {
-                            starRotation = doubleSupport;
-                        }
+                    if (double.TryParse(lines[index[12]], NumberStyles.Any,
+                CultureInfo.InvariantCulture, out
+                doubleSupport) == true) {
+                    } else {
+                        return false;
+                    }
 
-                        if (double.TryParse(lines[index[13]], NumberStyles.Any,
-                    CultureInfo.InvariantCulture, out
-                    doubleSupport) == true) {
-                        } else {
-                            return false;
-                        }
+                    if (doubleSupport == 0) {
+                        starRotation = null;
+                    } else {
+                        starRotation = doubleSupport;
+                    }
 
-                        if (doubleSupport == 0) {
-                            starRotp = null;
-                        } else {
-                            starRotp = doubleSupport;
-                        }
+                    if (double.TryParse(lines[index[13]], NumberStyles.Any,
+                CultureInfo.InvariantCulture, out
+                doubleSupport) == true) {
+                    } else {
+                        return false;
+                    }
 
-                        if (double.TryParse(lines[index[14]], NumberStyles.Any,
-                    CultureInfo.InvariantCulture, out
-                    doubleSupport) == true) {
-                        } else {
-                            return false;
-                        }
+                    if (doubleSupport == 0) {
+                        starRotp = null;
+                    } else {
+                        starRotp = doubleSupport;
+                    }
 
-                        if (doubleSupport == 0) {
-                            starDistance = null;
-                        } else {
-                            starDistance = doubleSupport;
-                        }
+                    if (double.TryParse(lines[index[14]], NumberStyles.Any,
+                CultureInfo.InvariantCulture, out
+                doubleSupport) == true) {
+                    } else {
+                        return false;
+                    }
 
-                        if (int.TryParse(lines[index[15]], NumberStyles.Any,
-                    CultureInfo.InvariantCulture, out
-                    intSupport) == true) {
-                        } else {
-                            return false;
-                        }
+                    if (doubleSupport == 0) {
+                        starDistance = null;
+                    } else {
+                        starDistance = doubleSupport;
+                    }
 
-                        if (doubleSupport == 0) {
-                            planetCount = null;
-                        } else {
-                            planetCount = intSupport;
-                        }
+                    if (int.TryParse(lines[index[15]], NumberStyles.Any,
+                CultureInfo.InvariantCulture, out
+                intSupport) == true) {
+                    } else {
+                        return false;
+                    }
+
+                    if (doubleSupport == 0) {
+                        planetCount = null;
+                    } else {
+                        planetCount = intSupport;
+                    }
 
                     // Contar o número de planetas da estrela.
                     foreach (KeyValuePair<int, Planet> item in
