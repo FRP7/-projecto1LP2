@@ -213,10 +213,13 @@ namespace projeto1LP2
 
                     discoveryMethodName = lines[index[2]];
 
-                    if (int.TryParse(lines[index[3]], NumberStyles.Any,
-                       CultureInfo.InvariantCulture, out
-                       intSupport) == true) {
+                    if (lines[index[3]].Any(x => char.IsLetter(x)) == false) {
+                        int.TryParse(lines[index[3]], NumberStyles.Any,
+                    CultureInfo.InvariantCulture, out
+                    intSupport);
+                       //Console.WriteLine("Valor válido " + lines[index[3]]);
                     } else {
+                        //Console.WriteLine("Valor inválido " + lines[index[3]]);
                         return false;
                     }
 
@@ -226,13 +229,13 @@ namespace projeto1LP2
                         discoveryYear = intSupport;
                     }
 
-                    if (lines[index[4]].Any(x => !char.IsLetter(x)) == true) {
+                    if (lines[index[4]].Any(x => char.IsLetter(x)) == false) {
                         double.TryParse(lines[index[4]], NumberStyles.Any,
                     CultureInfo.InvariantCulture, out
                     doubleSupport);
-                        Console.WriteLine("Valor válido " + lines[index[4]]);
+                        //Console.WriteLine("Valor válido " + lines[index[4]]);
                     } else {
-                        Console.WriteLine("Valor inválido " + lines[index[4]]);
+                        //Console.WriteLine("Valor inválido " + lines[index[4]]);
                         return false;
                     }
 
@@ -242,49 +245,61 @@ namespace projeto1LP2
                         orbitalPeriod = doubleSupport;
                     }
 
-                    /*if (double.TryParse(lines[index[5]], NumberStyles.Any,
-                   CultureInfo.InvariantCulture, out
-                   doubleSupport) == true) {
+                    if (lines[index[5]].Any(x => char.IsLetter(x)) == false) {
+                        double.TryParse(lines[index[5]], NumberStyles.Any,
+                    CultureInfo.InvariantCulture, out
+                    doubleSupport);
+                        //Console.WriteLine("Valor válido " + lines[index[5]]);
                     } else {
+                        //Console.WriteLine("Valor inválido " + lines[index[5]]);
                         return false;
-                    }*/
+                    }
 
-                    /*if (doubleSupport == 0) {
+                    if (doubleSupport == 0) {
                         planetRade = null;
                     } else {
                         planetRade = doubleSupport;
-                    }*/
+                    }
 
-                    /*if (double.TryParse(lines[index[6]], NumberStyles.Any,
-                   CultureInfo.InvariantCulture, out
-                   doubleSupport) == true) {
+                    if (lines[index[6]].Any(x => char.IsLetter(x)) == false) {
+                        double.TryParse(lines[index[6]], NumberStyles.Any,
+                    CultureInfo.InvariantCulture, out
+                    doubleSupport);
+                        //Console.WriteLine("Valor válido " + lines[index[3]]);
                     } else {
+                        //Console.WriteLine("Valor inválido " + lines[index[6]]);
                         return false;
-                    }*/
+                    }
 
-                    /*if (doubleSupport == 0) {
+                    if (doubleSupport == 0) {
                         planetMasse = null;
                     } else {
                         planetMasse = doubleSupport;
-                    }*/
+                    }
 
-                    /*if (int.TryParse(lines[index[7]], NumberStyles.Any,
-                   CultureInfo.InvariantCulture, out
-                   intSupport) == true) {
+                    if (lines[index[7]].Any(x => char.IsLetter(x)) == false) {
+                        int.TryParse(lines[index[7]], NumberStyles.Any,
+                    CultureInfo.InvariantCulture, out
+                    intSupport);
+                        //Console.WriteLine("Valor válido " + lines[index[3]]);
                     } else {
+                        //Console.WriteLine("Valor inválido " + lines[index[7]]);
                         return false;
-                    }*/
+                    }
 
-                    /*if (planetTemp == 0) {
+                    if (planetTemp == 0) {
                         planetTemp = null;
                     } else {
                         planetTemp = intSupport;
-                    }*/
+                    }
 
-                    /*if (double.TryParse(lines[index[8]], NumberStyles.Any,
-                   CultureInfo.InvariantCulture, out
-                   doubleSupport) == true) {
+                    if (lines[index[8]].Any(x => char.IsLetter(x)) == false) {
+                        double.TryParse(lines[index[8]], NumberStyles.Any,
+                    CultureInfo.InvariantCulture, out
+                    doubleSupport);
+                        //Console.WriteLine("Valor válido " + lines[index[3]]);
                     } else {
+                        //Console.WriteLine("Valor inválido " + lines[index[8]]);
                         return false;
                     }
 
@@ -292,12 +307,15 @@ namespace projeto1LP2
                         starTemp = null;
                     } else {
                         starTemp = doubleSupport;
-                    }*/
+                    }
 
-                    /*if (double.TryParse(lines[index[9]], NumberStyles.Any,
-                   CultureInfo.InvariantCulture, out
-                   doubleSupport) == true) {
+                    if (lines[index[9]].Any(x => char.IsLetter(x)) == false) {
+                        double.TryParse(lines[index[9]], NumberStyles.Any,
+                    CultureInfo.InvariantCulture, out
+                    doubleSupport);
+                        //Console.WriteLine("Valor válido " + lines[index[3]]);
                     } else {
+                        //Console.WriteLine("Valor inválido " + lines[index[9]]);
                         return false;
                     }
 
@@ -305,12 +323,15 @@ namespace projeto1LP2
                         starRade = null;
                     } else {
                         starRade = doubleSupport;
-                    }*/
+                    }
 
-                    /*if (double.TryParse(lines[index[10]], NumberStyles.Any,
-                   CultureInfo.InvariantCulture, out
-                   doubleSupport) == true) {
+                    if (lines[index[10]].Any(x => char.IsLetter(x)) == false) {
+                        double.TryParse(lines[index[10]], NumberStyles.Any,
+                    CultureInfo.InvariantCulture, out
+                    doubleSupport);
+                        //Console.WriteLine("Valor válido " + lines[index[3]]);
                     } else {
+                        //Console.WriteLine("Valor inválido " + lines[index[10]]);
                         return false;
                     }
 
@@ -318,12 +339,16 @@ namespace projeto1LP2
                         starMass = null;
                     } else {
                         starMass = doubleSupport;
-                    }*/
+                    }
 
-                    /*if (double.TryParse(lines[index[11]], NumberStyles.Any,
-                   CultureInfo.InvariantCulture, out
-                   doubleSupport) == true) {
+                    // Tenho que omitir esta caso não exista a coluna
+                    /*if (lines[index[11]].Any(x => char.IsLetter(x)) == false) {
+                        double.TryParse(lines[index[11]], NumberStyles.Any,
+                    CultureInfo.InvariantCulture, out
+                    doubleSupport);
+                        //Console.WriteLine("Valor válido " + lines[index[3]]);
                     } else {
+                        Console.WriteLine("Valor inválido " + lines[index[11]]);
                         return false;
                     }
 
@@ -333,10 +358,14 @@ namespace projeto1LP2
                         starAge = doubleSupport;
                     }*/
 
-                    /*if (double.TryParse(lines[index[12]], NumberStyles.Any,
-                   CultureInfo.InvariantCulture, out
-                   doubleSupport) == true) {
+                    // Tenho que omitir esta caso não exista.
+                    /*if (lines[index[12]].Any(x => char.IsLetter(x)) == false) {
+                        double.TryParse(lines[index[12]], NumberStyles.Any,
+                    CultureInfo.InvariantCulture, out
+                    doubleSupport);
+                        //Console.WriteLine("Valor válido " + lines[index[3]]);
                     } else {
+                        Console.WriteLine("Valor inválido " + lines[index[12]]);
                         return false;
                     }
 
@@ -346,10 +375,14 @@ namespace projeto1LP2
                         starRotation = doubleSupport;
                     }*/
 
-                    /*if (double.TryParse(lines[index[13]], NumberStyles.Any,
-                   CultureInfo.InvariantCulture, out
-                   doubleSupport) == true) {
+                    // Tenho que omitir esta caso não exista
+                    /*if (lines[index[13]].Any(x => char.IsLetter(x)) == false) {
+                        double.TryParse(lines[index[13]], NumberStyles.Any,
+                    CultureInfo.InvariantCulture, out
+                    doubleSupport);
+                        //Console.WriteLine("Valor válido " + lines[index[3]]);
                     } else {
+                        Console.WriteLine("Valor inválido " + lines[index[13]]);
                         return false;
                     }
 
@@ -359,10 +392,13 @@ namespace projeto1LP2
                         starRotp = doubleSupport;
                     }*/
 
-                    /*if (double.TryParse(lines[index[14]], NumberStyles.Any,
-                   CultureInfo.InvariantCulture, out
-                   doubleSupport) == true) {
+                    if (lines[index[14]].Any(x => char.IsLetter(x)) == false) {
+                        double.TryParse(lines[index[14]], NumberStyles.Any,
+                    CultureInfo.InvariantCulture, out
+                    doubleSupport);
+                        //Console.WriteLine("Valor válido " + lines[index[3]]);
                     } else {
+                        Console.WriteLine("Valor inválido " + lines[index[14]]);
                         return false;
                     }
 
@@ -370,7 +406,7 @@ namespace projeto1LP2
                         starDistance = null;
                     } else {
                         starDistance = doubleSupport;
-                    }*/
+                    }
 
                     // Colocar os valores no dicionário dos planetas.
                     Facade.planetList.Add(
