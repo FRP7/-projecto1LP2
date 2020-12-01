@@ -14,7 +14,7 @@ namespace projeto1LP2
         // Nome do ficheiro.
         private string fileName;
         // Aceder à coleção.
-        Facade facade;
+        private Facade facade;
         // Contar as linhas.
         private int lineCount;
 
@@ -511,7 +511,7 @@ namespace projeto1LP2
             double doubleSupport = 0;
 
             // Variável array de iteração.
-            int[] index = new int[15];
+            int[] index = new int[10];
 
             // Definir o valor dos elementos para zero.
             for (int i = 0; i < index.Length; i++) {
@@ -519,7 +519,7 @@ namespace projeto1LP2
             }
 
             // Variável que indica se as colunas existem.
-            bool[] itExists = new bool[15];
+            bool[] itExists = new bool[10];
 
             // Definir o valor dos elementos para false.
             for (int i = 0; i < itExists.Length; i++) {
@@ -541,65 +541,45 @@ namespace projeto1LP2
 
                 // Identificar o index dos campos de interesse.
                 for (int i = 0; i < lines.Length; i++) {
-                    if (lines[i].Contains("pl_name")) {
+                    if (lines[i].Contains("hostname")) {
                         index[0] = i;
                         itExists[0] = true;
                     }
-                    if (lines[i].Contains("hostname")) {
+                    if (lines[i].Contains("discoverymethod")) {
                         index[1] = i;
                         itExists[1] = true;
                     }
-                    if (lines[i].Contains("discoverymethod")) {
+                    if (lines[i].Contains("disc_year")) {
                         index[2] = i;
                         itExists[2] = true;
                     }
-                    if (lines[i].Contains("disc_year")) {
+                    if (lines[i].Contains("st_teff")) {
                         index[3] = i;
                         itExists[3] = true;
                     }
-                    if (lines[i].Contains("pl_orbper")) {
+                    if (lines[i].Contains("st_rad")) {
                         index[4] = i;
                         itExists[4] = true;
                     }
-                    if (lines[i].Contains("pl_rade")) {
+                    if (lines[i].Contains("st_mass")) {
                         index[5] = i;
                         itExists[5] = true;
                     }
-                    if (lines[i].Contains("pl_bmasse")) {
+                    if (lines[i].Contains("st_age")) {
                         index[6] = i;
                         itExists[6] = true;
                     }
-                    if (lines[i].Contains("pl_eqt")) {
+                    if (lines[i].Contains("st_vsin")) {
                         index[7] = i;
                         itExists[7] = true;
                     }
-                    if (lines[i].Contains("st_teff")) {
+                    if (lines[i].Contains("st_rotp")) {
                         index[8] = i;
                         itExists[8] = true;
                     }
-                    if (lines[i].Contains("st_rad")) {
+                    if (lines[i].Contains("sy_dist")) {
                         index[9] = i;
                         itExists[9] = true;
-                    }
-                    if (lines[i].Contains("st_mass")) {
-                        index[10] = i;
-                        itExists[10] = true;
-                    }
-                    if (lines[i].Contains("st_age")) {
-                        index[11] = i;
-                        itExists[11] = true;
-                    }
-                    if (lines[i].Contains("st_vsin")) {
-                        index[12] = i;
-                        itExists[12] = true;
-                    }
-                    if (lines[i].Contains("st_rotp")) {
-                        index[13] = i;
-                        itExists[13] = true;
-                    }
-                    if (lines[i].Contains("sy_dist")) {
-                        index[14] = i;
-                        itExists[14] = true;
                     }
                 }
 
@@ -614,17 +594,17 @@ namespace projeto1LP2
 
                     /* Ler os campos de interesse e colocar nas respetivas
                      * variáveis.*/
+                    if (itExists[0] == true) {
+                        starName = lines[index[0]];
+                    }
+
                     if (itExists[1] == true) {
-                        starName = lines[index[1]];
+                        discoveryMethodName = lines[index[1]];
                     }
 
                     if (itExists[2] == true) {
-                        discoveryMethodName = lines[index[2]];
-                    }
-
-                    if (itExists[3] == true) {
-                        if (lines[index[3]].Any(x => char.IsLetter(x)) == false) {
-                            int.TryParse(lines[index[3]], NumberStyles.Any,
+                        if (lines[index[2]].Any(x => char.IsLetter(x)) == false) {
+                            int.TryParse(lines[index[2]], NumberStyles.Any,
                         CultureInfo.InvariantCulture, out
                         intSupport);
                             //Console.WriteLine("Valor válido " + lines[index[3]]);
@@ -640,9 +620,9 @@ namespace projeto1LP2
                         }
                     }
 
-                    if (itExists[8] == true) {
-                        if (lines[index[8]].Any(x => char.IsLetter(x)) == false) {
-                            double.TryParse(lines[index[8]], NumberStyles.Any,
+                    if (itExists[3] == true) {
+                        if (lines[index[3]].Any(x => char.IsLetter(x)) == false) {
+                            double.TryParse(lines[index[3]], NumberStyles.Any,
                         CultureInfo.InvariantCulture, out
                         doubleSupport);
                             //Console.WriteLine("Valor válido " + lines[index[3]]);
@@ -658,9 +638,9 @@ namespace projeto1LP2
                         }
                     }
 
-                    if (itExists[9] == true) {
-                        if (lines[index[9]].Any(x => char.IsLetter(x)) == false) {
-                            double.TryParse(lines[index[9]], NumberStyles.Any,
+                    if (itExists[4] == true) {
+                        if (lines[index[4]].Any(x => char.IsLetter(x)) == false) {
+                            double.TryParse(lines[index[4]], NumberStyles.Any,
                         CultureInfo.InvariantCulture, out
                         doubleSupport);
                             //Console.WriteLine("Valor válido " + lines[index[3]]);
@@ -676,9 +656,9 @@ namespace projeto1LP2
                         }
                     }
 
-                    if (itExists[10] == true) {
-                        if (lines[index[10]].Any(x => char.IsLetter(x)) == false) {
-                            double.TryParse(lines[index[10]], NumberStyles.Any,
+                    if (itExists[5] == true) {
+                        if (lines[index[5]].Any(x => char.IsLetter(x)) == false) {
+                            double.TryParse(lines[index[5]], NumberStyles.Any,
                         CultureInfo.InvariantCulture, out
                         doubleSupport);
                             //Console.WriteLine("Valor válido " + lines[index[3]]);
@@ -695,9 +675,9 @@ namespace projeto1LP2
                     }
 
                     // Arranjar maneira de ignorar caso não exista
-                    if (itExists[11] == true) {
-                        if (lines[index[11]].Any(x => char.IsLetter(x)) == false) {
-                            double.TryParse(lines[index[11]], NumberStyles.Any,
+                    if (itExists[6] == true) {
+                        if (lines[index[6]].Any(x => char.IsLetter(x)) == false) {
+                            double.TryParse(lines[index[6]], NumberStyles.Any,
                         CultureInfo.InvariantCulture, out
                         doubleSupport);
                             //Console.WriteLine("Valor válido " + lines[index[3]]);
@@ -714,9 +694,9 @@ namespace projeto1LP2
                     }
 
                     // Arranjar maneira de ignorar caso não exista
-                    if (itExists[12] == true) {
-                        if (lines[index[12]].Any(x => char.IsLetter(x)) == false) {
-                            double.TryParse(lines[index[12]], NumberStyles.Any,
+                    if (itExists[7] == true) {
+                        if (lines[index[7]].Any(x => char.IsLetter(x)) == false) {
+                            double.TryParse(lines[index[7]], NumberStyles.Any,
                         CultureInfo.InvariantCulture, out
                         doubleSupport);
                             //Console.WriteLine("Valor válido " + lines[index[3]]);
@@ -733,9 +713,9 @@ namespace projeto1LP2
                     }
 
                     // Arranjar maneira de ignorar caso não exista
-                    if (itExists[13] == true) {
-                        if (lines[index[13]].Any(x => char.IsLetter(x)) == false) {
-                            double.TryParse(lines[index[13]], NumberStyles.Any,
+                    if (itExists[8] == true) {
+                        if (lines[index[8]].Any(x => char.IsLetter(x)) == false) {
+                            double.TryParse(lines[index[8]], NumberStyles.Any,
                         CultureInfo.InvariantCulture, out
                         doubleSupport);
                             //Console.WriteLine("Valor válido " + lines[index[3]]);
@@ -751,9 +731,9 @@ namespace projeto1LP2
                         }
                     }
 
-                    if (itExists[14] == true) {
-                        if (lines[index[14]].Any(x => char.IsLetter(x)) == false) {
-                            double.TryParse(lines[index[14]], NumberStyles.Any,
+                    if (itExists[9] == true) {
+                        if (lines[index[9]].Any(x => char.IsLetter(x)) == false) {
+                            double.TryParse(lines[index[9]], NumberStyles.Any,
                         CultureInfo.InvariantCulture, out
                         doubleSupport);
                             //Console.WriteLine("Valor válido " + lines[index[3]]);
@@ -768,23 +748,6 @@ namespace projeto1LP2
                             starDistance = doubleSupport;
                         }
                     }
-
-                    // Não precisa de validação porque existe sempre
-                    /*if (lines[index[15]].Any(x => char.IsLetter(x)) == false) {
-                        int.TryParse(lines[index[15]], NumberStyles.Any,
-                    CultureInfo.InvariantCulture, out
-                    intSupport);
-                        //Console.WriteLine("Valor válido " + lines[index[3]]);
-                    } else {
-                        Console.WriteLine("Valor inválido " + lines[index[15]]);
-                        return false;
-                    }
-
-                    if (intSupport == 0) {
-                        planetCount = null;
-                    } else {
-                        planetCount = intSupport;
-                    }*/
 
                     // Contar o número de planetas da estrela.
                     foreach (KeyValuePair<int, Planet> item in
