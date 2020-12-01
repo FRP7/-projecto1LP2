@@ -25,8 +25,14 @@ namespace projeto1LP2
 
         // Método que chama método de ler ficheiro no FileReader.
         public void ReadFile() {
-            FileReader teste = new FileReader("planetList.csv");
-            teste.ReadFile();
+            FileReader file = new FileReader("planetList.csv");
+            file.ReadFile();
+        }
+
+        // Método para ler ficheiro atrávez de uma string.
+        public void ReadFile(string file) {
+            FileReader newFile = new FileReader(file);
+            newFile.ReadFile();
         }
 
         // Método que chama método de pesquisa exemplo de planetas.
