@@ -134,6 +134,14 @@ namespace projeto1LP2
                 index[i] = 0;
             }
 
+            // Variável que indica se a coluna existe
+            bool[] itExists = new bool[15];
+
+            // Definir o valor dos elementos para false.
+            for (int i = 0; i < itExists.Length; i++) {
+                itExists[i] = false;
+            }
+
             // Ler ficheiro.
             using (StreamReader sr = File.OpenText(fileName)) {
                 lineCount = File.ReadLines(fileName).Count();
@@ -151,48 +159,63 @@ namespace projeto1LP2
                 for (int i = 0; i < lines.Length; i++) {
                     if (lines[i].Contains("pl_name")) {
                         index[0] = i;
+                        itExists[0] = true;
                     }
                     if (lines[i].Contains("hostname")) {
                         index[1] = i;
+                        itExists[1] = true;
                     }
                     if (lines[i].Contains("discoverymethod")) {
                         index[2] = i;
+                        itExists[2] = true;
                     }
                     if (lines[i].Contains("disc_year")) {
                         index[3] = i;
+                        itExists[3] = true;
                     }
                     if (lines[i].Contains("pl_orbper")) {
                         index[4] = i;
+                        itExists[4] = true;
                     }
                     if (lines[i].Contains("pl_rade")) {
                         index[5] = i;
+                        itExists[5] = true;
                     }
                     if (lines[i].Contains("pl_bmasse")) {
                         index[6] = i;
+                        itExists[6] = true;
                     }
                     if (lines[i].Contains("pl_eqt")) {
                         index[7] = i;
+                        itExists[7] = true;
                     }
                     if (lines[i].Contains("st_teff")) {
                         index[8] = i;
+                        itExists[8] = true;
                     }
                     if (lines[i].Contains("st_rad")) {
                         index[9] = i;
+                        itExists[9] = true;
                     }
                     if (lines[i].Contains("st_mass")) {
                         index[10] = i;
+                        itExists[10] = true;
                     }
                     if (lines[i].Contains("st_age")) {
                         index[11] = i;
+                        itExists[11] = true;
                     }
                     if (lines[i].Contains("st_vsin")) {
                         index[12] = i;
+                        itExists[12] = true;
                     }
                     if (lines[i].Contains("st_rotp")) {
                         index[13] = i;
+                        itExists[13] = true;
                     }
                     if (lines[i].Contains("sy_dist")) {
                         index[14] = i;
+                        itExists[14] = true;
                     }
                 }
 
@@ -207,190 +230,215 @@ namespace projeto1LP2
 
                     /* Ler os campos de interesse e colocar nas respetivas
                      * variáveis.*/
-                    planetName = lines[index[0]];
-
-                    starName = lines[index[1]];
-
-                    discoveryMethodName = lines[index[2]];
-
-                    if (lines[index[3]].Any(x => char.IsLetter(x)) == false) {
-                        int.TryParse(lines[index[3]], NumberStyles.Any,
-                    CultureInfo.InvariantCulture, out
-                    intSupport);
-                       //Console.WriteLine("Valor válido " + lines[index[3]]);
-                    } else {
-                        //Console.WriteLine("Valor inválido " + lines[index[3]]);
-                        return false;
+                    if (itExists[0] == true) {
+                        planetName = lines[index[0]];
                     }
 
-                    if (intSupport == 0) {
-                        discoveryYear = null;
-                    } else {
-                        discoveryYear = intSupport;
+                    if (itExists[1] == true) {
+                        starName = lines[index[1]];
                     }
 
-                    if (lines[index[4]].Any(x => char.IsLetter(x)) == false) {
-                        double.TryParse(lines[index[4]], NumberStyles.Any,
-                    CultureInfo.InvariantCulture, out
-                    doubleSupport);
-                        //Console.WriteLine("Valor válido " + lines[index[4]]);
-                    } else {
-                        //Console.WriteLine("Valor inválido " + lines[index[4]]);
-                        return false;
+                    if (itExists[2] == true) {
+                        discoveryMethodName = lines[index[2]];
                     }
 
-                    if (doubleSupport == 0) {
-                        orbitalPeriod = null;
-                    } else {
-                        orbitalPeriod = doubleSupport;
+                    if (itExists[3] == true) {
+                        if (lines[index[3]].Any(x => char.IsLetter(x)) == false) {
+                            int.TryParse(lines[index[3]], NumberStyles.Any,
+                        CultureInfo.InvariantCulture, out
+                        intSupport);
+                            //Console.WriteLine("Valor válido " + lines[index[3]]);
+                        } else {
+                            //Console.WriteLine("Valor inválido " + lines[index[3]]);
+                            return false;
+                        }
+
+                        if (intSupport == 0) {
+                            discoveryYear = null;
+                        } else {
+                            discoveryYear = intSupport;
+                        }
                     }
 
-                    if (lines[index[5]].Any(x => char.IsLetter(x)) == false) {
-                        double.TryParse(lines[index[5]], NumberStyles.Any,
-                    CultureInfo.InvariantCulture, out
-                    doubleSupport);
-                        //Console.WriteLine("Valor válido " + lines[index[5]]);
-                    } else {
-                        //Console.WriteLine("Valor inválido " + lines[index[5]]);
-                        return false;
+                    if (itExists[4] == true) {
+                        if (lines[index[4]].Any(x => char.IsLetter(x)) == false) {
+                            double.TryParse(lines[index[4]], NumberStyles.Any,
+                        CultureInfo.InvariantCulture, out
+                        doubleSupport);
+                            //Console.WriteLine("Valor válido " + lines[index[4]]);
+                        } else {
+                            //Console.WriteLine("Valor inválido " + lines[index[4]]);
+                            return false;
+                        }
+
+                        if (doubleSupport == 0) {
+                            orbitalPeriod = null;
+                        } else {
+                            orbitalPeriod = doubleSupport;
+                        }
                     }
 
-                    if (doubleSupport == 0) {
-                        planetRade = null;
-                    } else {
-                        planetRade = doubleSupport;
+                    if (itExists[5] == true) {
+                        if (lines[index[5]].Any(x => char.IsLetter(x)) == false) {
+                            double.TryParse(lines[index[5]], NumberStyles.Any,
+                        CultureInfo.InvariantCulture, out
+                        doubleSupport);
+                            //Console.WriteLine("Valor válido " + lines[index[5]]);
+                        } else {
+                            //Console.WriteLine("Valor inválido " + lines[index[5]]);
+                            return false;
+                        }
+
+                        if (doubleSupport == 0) {
+                            planetRade = null;
+                        } else {
+                            planetRade = doubleSupport;
+                        }
                     }
 
-                    if (lines[index[6]].Any(x => char.IsLetter(x)) == false) {
-                        double.TryParse(lines[index[6]], NumberStyles.Any,
-                    CultureInfo.InvariantCulture, out
-                    doubleSupport);
-                        //Console.WriteLine("Valor válido " + lines[index[3]]);
-                    } else {
-                        //Console.WriteLine("Valor inválido " + lines[index[6]]);
-                        return false;
+                    if (itExists[6] == true) {
+                        if (lines[index[6]].Any(x => char.IsLetter(x)) == false) {
+                            double.TryParse(lines[index[6]], NumberStyles.Any,
+                        CultureInfo.InvariantCulture, out
+                        doubleSupport);
+                            //Console.WriteLine("Valor válido " + lines[index[3]]);
+                        } else {
+                            //Console.WriteLine("Valor inválido " + lines[index[6]]);
+                            return false;
+                        }
+
+                        if (doubleSupport == 0) {
+                            planetMasse = null;
+                        } else {
+                            planetMasse = doubleSupport;
+                        }
                     }
 
-                    if (doubleSupport == 0) {
-                        planetMasse = null;
-                    } else {
-                        planetMasse = doubleSupport;
+                    if (itExists[7] == true) {
+                        if (lines[index[7]].Any(x => char.IsLetter(x)) == false) {
+                            int.TryParse(lines[index[7]], NumberStyles.Any,
+                        CultureInfo.InvariantCulture, out
+                        intSupport);
+                            //Console.WriteLine("Valor válido " + lines[index[3]]);
+                        } else {
+                            //Console.WriteLine("Valor inválido " + lines[index[7]]);
+                            return false;
+                        }
+
+                        if (planetTemp == 0) {
+                            planetTemp = null;
+                        } else {
+                            planetTemp = intSupport;
+                        }
                     }
 
-                    if (lines[index[7]].Any(x => char.IsLetter(x)) == false) {
-                        int.TryParse(lines[index[7]], NumberStyles.Any,
-                    CultureInfo.InvariantCulture, out
-                    intSupport);
-                        //Console.WriteLine("Valor válido " + lines[index[3]]);
-                    } else {
-                        //Console.WriteLine("Valor inválido " + lines[index[7]]);
-                        return false;
+                    if (itExists[8] == true) {
+                        if (lines[index[8]].Any(x => char.IsLetter(x)) == false) {
+                            double.TryParse(lines[index[8]], NumberStyles.Any,
+                        CultureInfo.InvariantCulture, out
+                        doubleSupport);
+                            //Console.WriteLine("Valor válido " + lines[index[3]]);
+                        } else {
+                            //Console.WriteLine("Valor inválido " + lines[index[8]]);
+                            return false;
+                        }
+
+                        if (doubleSupport == 0) {
+                            starTemp = null;
+                        } else {
+                            starTemp = doubleSupport;
+                        }
                     }
 
-                    if (planetTemp == 0) {
-                        planetTemp = null;
-                    } else {
-                        planetTemp = intSupport;
+                    if (itExists[9] == true) {
+                        if (lines[index[9]].Any(x => char.IsLetter(x)) == false) {
+                            double.TryParse(lines[index[9]], NumberStyles.Any,
+                        CultureInfo.InvariantCulture, out
+                        doubleSupport);
+                            //Console.WriteLine("Valor válido " + lines[index[3]]);
+                        } else {
+                            //Console.WriteLine("Valor inválido " + lines[index[9]]);
+                            return false;
+                        }
+
+                        if (doubleSupport == 0) {
+                            starRade = null;
+                        } else {
+                            starRade = doubleSupport;
+                        }
                     }
 
-                    if (lines[index[8]].Any(x => char.IsLetter(x)) == false) {
-                        double.TryParse(lines[index[8]], NumberStyles.Any,
-                    CultureInfo.InvariantCulture, out
-                    doubleSupport);
-                        //Console.WriteLine("Valor válido " + lines[index[3]]);
-                    } else {
-                        //Console.WriteLine("Valor inválido " + lines[index[8]]);
-                        return false;
+                    if (itExists[10] == true) {
+                        if (lines[index[10]].Any(x => char.IsLetter(x)) == false) {
+                            double.TryParse(lines[index[10]], NumberStyles.Any,
+                        CultureInfo.InvariantCulture, out
+                        doubleSupport);
+                            //Console.WriteLine("Valor válido " + lines[index[3]]);
+                        } else {
+                            Console.WriteLine("Valor inválido " + lines[index[10]]);
+                            return false;
+                        }
+
+                        if (doubleSupport == 0) {
+                            starMass = null;
+                        } else {
+                            starMass = doubleSupport;
+                        }
                     }
 
-                    if (doubleSupport == 0) {
-                        starTemp = null;
-                    } else {
-                        starTemp = doubleSupport;
+                    if (itExists[11] == true) {
+                        if (lines[index[11]].Any(x => char.IsLetter(x)) == false) {
+                            double.TryParse(lines[index[11]], NumberStyles.Any,
+                        CultureInfo.InvariantCulture, out
+                        doubleSupport);
+                            //Console.WriteLine("Valor válido " + lines[index[3]]);
+                        } else {
+                            Console.WriteLine("Valor inválido " + lines[index[11]]);
+                            return false;
+                        }
+
+                        if (doubleSupport == 0) {
+                            starAge = null;
+                        } else {
+                            starAge = doubleSupport;
+                        }
                     }
 
-                    if (lines[index[9]].Any(x => char.IsLetter(x)) == false) {
-                        double.TryParse(lines[index[9]], NumberStyles.Any,
-                    CultureInfo.InvariantCulture, out
-                    doubleSupport);
-                        //Console.WriteLine("Valor válido " + lines[index[3]]);
-                    } else {
-                        //Console.WriteLine("Valor inválido " + lines[index[9]]);
-                        return false;
+                    if (itExists[12] == true) {
+                        if (lines[index[12]].Any(x => char.IsLetter(x)) == false) {
+                            double.TryParse(lines[index[12]], NumberStyles.Any,
+                        CultureInfo.InvariantCulture, out
+                        doubleSupport);
+                            //Console.WriteLine("Valor válido " + lines[index[3]]);
+                        } else {
+                            //Console.WriteLine("Valor inválido " + lines[index[12]]);
+                            return false;
+                        }
+
+                        if (doubleSupport == 0) {
+                            starRotation = null;
+                        } else {
+                            starRotation = doubleSupport;
+                        }
                     }
 
-                    if (doubleSupport == 0) {
-                        starRade = null;
-                    } else {
-                        starRade = doubleSupport;
+                    if (itExists[13] == true) {
+                        if (lines[index[13]].Any(x => char.IsLetter(x)) == false) {
+                            double.TryParse(lines[index[13]], NumberStyles.Any,
+                        CultureInfo.InvariantCulture, out
+                        doubleSupport);
+                            //Console.WriteLine("Valor válido " + lines[index[3]]);
+                        } else {
+                            //Console.WriteLine("Valor inválido " + lines[index[13]]);
+                            return false;
+                        }
+
+                        if (doubleSupport == 0) {
+                            starRotp = null;
+                        } else {
+                            starRotp = doubleSupport;
+                        }
                     }
-
-                    if (lines[index[10]].Any(x => char.IsLetter(x)) == false) {
-                        double.TryParse(lines[index[10]], NumberStyles.Any,
-                    CultureInfo.InvariantCulture, out
-                    doubleSupport);
-                        //Console.WriteLine("Valor válido " + lines[index[3]]);
-                    } else {
-                        //Console.WriteLine("Valor inválido " + lines[index[10]]);
-                        return false;
-                    }
-
-                    if (doubleSupport == 0) {
-                        starMass = null;
-                    } else {
-                        starMass = doubleSupport;
-                    }
-
-                    // Tenho que omitir esta caso não exista a coluna
-                    /*if (lines[index[11]].Any(x => char.IsLetter(x)) == false) {
-                        double.TryParse(lines[index[11]], NumberStyles.Any,
-                    CultureInfo.InvariantCulture, out
-                    doubleSupport);
-                        //Console.WriteLine("Valor válido " + lines[index[3]]);
-                    } else {
-                        Console.WriteLine("Valor inválido " + lines[index[11]]);
-                        return false;
-                    }
-
-                    if (doubleSupport == 0) {
-                        starAge = null;
-                    } else {
-                        starAge = doubleSupport;
-                    }*/
-
-                    // Tenho que omitir esta caso não exista.
-                    /*if (lines[index[12]].Any(x => char.IsLetter(x)) == false) {
-                        double.TryParse(lines[index[12]], NumberStyles.Any,
-                    CultureInfo.InvariantCulture, out
-                    doubleSupport);
-                        //Console.WriteLine("Valor válido " + lines[index[3]]);
-                    } else {
-                        Console.WriteLine("Valor inválido " + lines[index[12]]);
-                        return false;
-                    }
-
-                    if (doubleSupport == 0) {
-                        starRotation = null;
-                    } else {
-                        starRotation = doubleSupport;
-                    }*/
-
-                    // Tenho que omitir esta caso não exista
-                    /*if (lines[index[13]].Any(x => char.IsLetter(x)) == false) {
-                        double.TryParse(lines[index[13]], NumberStyles.Any,
-                    CultureInfo.InvariantCulture, out
-                    doubleSupport);
-                        //Console.WriteLine("Valor válido " + lines[index[3]]);
-                    } else {
-                        Console.WriteLine("Valor inválido " + lines[index[13]]);
-                        return false;
-                    }
-
-                    if (doubleSupport == 0) {
-                        starRotp = null;
-                    } else {
-                        starRotp = doubleSupport;
-                    }*/
 
                     if (lines[index[14]].Any(x => char.IsLetter(x)) == false) {
                         double.TryParse(lines[index[14]], NumberStyles.Any,
@@ -398,7 +446,7 @@ namespace projeto1LP2
                     doubleSupport);
                         //Console.WriteLine("Valor válido " + lines[index[3]]);
                     } else {
-                        Console.WriteLine("Valor inválido " + lines[index[14]]);
+                        //Console.WriteLine("Valor inválido " + lines[index[14]]);
                         return false;
                     }
 
@@ -469,6 +517,15 @@ namespace projeto1LP2
             for (int i = 0; i < index.Length; i++) {
                 index[i] = 0;
             }
+
+            // Variável que indica se as colunas existem.
+            bool[] itExists = new bool[15];
+
+            // Definir o valor dos elementos para false.
+            for (int i = 0; i < itExists.Length; i++) {
+                itExists[i] = false;
+            }
+
             // Ler ficheiro.
             using (StreamReader sr = File.OpenText(fileName)) {
                 lineCount = File.ReadLines(fileName).Count();
@@ -486,48 +543,63 @@ namespace projeto1LP2
                 for (int i = 0; i < lines.Length; i++) {
                     if (lines[i].Contains("pl_name")) {
                         index[0] = i;
+                        itExists[0] = true;
                     }
                     if (lines[i].Contains("hostname")) {
                         index[1] = i;
+                        itExists[1] = true;
                     }
                     if (lines[i].Contains("discoverymethod")) {
                         index[2] = i;
+                        itExists[2] = true;
                     }
                     if (lines[i].Contains("disc_year")) {
                         index[3] = i;
+                        itExists[3] = true;
                     }
                     if (lines[i].Contains("pl_orbper")) {
                         index[4] = i;
+                        itExists[4] = true;
                     }
                     if (lines[i].Contains("pl_rade")) {
                         index[5] = i;
+                        itExists[5] = true;
                     }
                     if (lines[i].Contains("pl_bmasse")) {
                         index[6] = i;
+                        itExists[6] = true;
                     }
                     if (lines[i].Contains("pl_eqt")) {
                         index[7] = i;
+                        itExists[7] = true;
                     }
                     if (lines[i].Contains("st_teff")) {
                         index[8] = i;
+                        itExists[8] = true;
                     }
                     if (lines[i].Contains("st_rad")) {
                         index[9] = i;
+                        itExists[9] = true;
                     }
                     if (lines[i].Contains("st_mass")) {
                         index[10] = i;
+                        itExists[10] = true;
                     }
                     if (lines[i].Contains("st_age")) {
                         index[11] = i;
+                        itExists[11] = true;
                     }
                     if (lines[i].Contains("st_vsin")) {
                         index[12] = i;
+                        itExists[12] = true;
                     }
                     if (lines[i].Contains("st_rotp")) {
                         index[13] = i;
+                        itExists[13] = true;
                     }
                     if (lines[i].Contains("sy_dist")) {
                         index[14] = i;
+                        itExists[14] = true;
                     }
                 }
 
@@ -542,142 +614,162 @@ namespace projeto1LP2
 
                     /* Ler os campos de interesse e colocar nas respetivas
                      * variáveis.*/
-                    starName = lines[index[1]];
-
-                    discoveryMethodName = lines[index[2]];
-
-                    if (lines[index[3]].Any(x => char.IsLetter(x)) == false) {
-                        int.TryParse(lines[index[3]], NumberStyles.Any,
-                    CultureInfo.InvariantCulture, out
-                    intSupport);
-                        //Console.WriteLine("Valor válido " + lines[index[3]]);
-                    } else {
-                        //Console.WriteLine("Valor inválido " + lines[index[1]]);
-                        return false;
+                    if (itExists[1] == true) {
+                        starName = lines[index[1]];
                     }
 
-                    if (intSupport == 0) {
-                        discoveryYear = null;
-                    } else {
-                        discoveryYear = intSupport;
+                    if (itExists[2] == true) {
+                        discoveryMethodName = lines[index[2]];
                     }
 
-                    if (lines[index[8]].Any(x => char.IsLetter(x)) == false) {
-                        double.TryParse(lines[index[8]], NumberStyles.Any,
-                    CultureInfo.InvariantCulture, out
-                    doubleSupport);
-                        //Console.WriteLine("Valor válido " + lines[index[3]]);
-                    } else {
-                        //Console.WriteLine("Valor inválido " + lines[index[8]]);
-                        return false;
+                    if (itExists[3] == true) {
+                        if (lines[index[3]].Any(x => char.IsLetter(x)) == false) {
+                            int.TryParse(lines[index[3]], NumberStyles.Any,
+                        CultureInfo.InvariantCulture, out
+                        intSupport);
+                            //Console.WriteLine("Valor válido " + lines[index[3]]);
+                        } else {
+                            //Console.WriteLine("Valor inválido " + lines[index[3]]);
+                            return false;
+                        }
+
+                        if (intSupport == 0) {
+                            discoveryYear = null;
+                        } else {
+                            discoveryYear = intSupport;
+                        }
                     }
 
-                    if (doubleSupport == 0) {
-                        starTemp = null;
-                    } else {
-                        starTemp = doubleSupport;
+                    if (itExists[8] == true) {
+                        if (lines[index[8]].Any(x => char.IsLetter(x)) == false) {
+                            double.TryParse(lines[index[8]], NumberStyles.Any,
+                        CultureInfo.InvariantCulture, out
+                        doubleSupport);
+                            //Console.WriteLine("Valor válido " + lines[index[3]]);
+                        } else {
+                            //Console.WriteLine("Valor inválido " + lines[index[8]]);
+                            return false;
+                        }
+
+                        if (doubleSupport == 0) {
+                            starTemp = null;
+                        } else {
+                            starTemp = doubleSupport;
+                        }
                     }
 
-                    if (lines[index[9]].Any(x => char.IsLetter(x)) == false) {
-                        double.TryParse(lines[index[9]], NumberStyles.Any,
-                    CultureInfo.InvariantCulture, out
-                    doubleSupport);
-                        //Console.WriteLine("Valor válido " + lines[index[3]]);
-                    } else {
-                        //Console.WriteLine("Valor inválido " + lines[index[9]]);
-                        return false;
+                    if (itExists[9] == true) {
+                        if (lines[index[9]].Any(x => char.IsLetter(x)) == false) {
+                            double.TryParse(lines[index[9]], NumberStyles.Any,
+                        CultureInfo.InvariantCulture, out
+                        doubleSupport);
+                            //Console.WriteLine("Valor válido " + lines[index[3]]);
+                        } else {
+                            //Console.WriteLine("Valor inválido " + lines[index[9]]);
+                            return false;
+                        }
+
+                        if (doubleSupport == 0) {
+                            starRade = null;
+                        } else {
+                            starRade = doubleSupport;
+                        }
                     }
 
-                    if (doubleSupport == 0) {
-                        starRade = null;
-                    } else {
-                        starRade = doubleSupport;
-                    }
+                    if (itExists[10] == true) {
+                        if (lines[index[10]].Any(x => char.IsLetter(x)) == false) {
+                            double.TryParse(lines[index[10]], NumberStyles.Any,
+                        CultureInfo.InvariantCulture, out
+                        doubleSupport);
+                            //Console.WriteLine("Valor válido " + lines[index[3]]);
+                        } else {
+                            //Console.WriteLine("Valor inválido " + lines[index[10]]);
+                            return false;
+                        }
 
-                    if (lines[index[10]].Any(x => char.IsLetter(x)) == false) {
-                        double.TryParse(lines[index[10]], NumberStyles.Any,
-                    CultureInfo.InvariantCulture, out
-                    doubleSupport);
-                        //Console.WriteLine("Valor válido " + lines[index[3]]);
-                    } else {
-                        //Console.WriteLine("Valor inválido " + lines[index[10]]);
-                        return false;
-                    }
-
-                    if (doubleSupport == 0) {
-                        starMass = null;
-                    } else {
-                        starMass = doubleSupport;
-                    }
-
-                    // Arranjar maneira de ignorar caso não exista
-                    /*if (lines[index[11]].Any(x => char.IsLetter(x)) == false) {
-                        double.TryParse(lines[index[11]], NumberStyles.Any,
-                    CultureInfo.InvariantCulture, out
-                    doubleSupport);
-                        //Console.WriteLine("Valor válido " + lines[index[3]]);
-                    } else {
-                        Console.WriteLine("Valor inválido " + lines[index[11]]);
-                        return false;
-                    }
-
-                    if (doubleSupport == 0) {
-                        starAge = null;
-                    } else {
-                        starAge = doubleSupport;
-                    }*/
-
-                    // Arranjar maneira de ignorar caso não exista
-                    /*if (lines[index[12]].Any(x => char.IsLetter(x)) == false) {
-                        double.TryParse(lines[index[12]], NumberStyles.Any,
-                    CultureInfo.InvariantCulture, out
-                    doubleSupport);
-                        //Console.WriteLine("Valor válido " + lines[index[3]]);
-                    } else {
-                        //Console.WriteLine("Valor inválido " + lines[index[12]]);
-                        return false;
-                    }
-
-                    if (doubleSupport == 0) {
-                        starRotation = null;
-                    } else {
-                        starRotation = doubleSupport;
-                    }*/
-
-                    // Arranjar maneira de ignorar caso não exista
-                    /*if (lines[index[13]].Any(x => char.IsLetter(x)) == false) {
-                        double.TryParse(lines[index[13]], NumberStyles.Any,
-                    CultureInfo.InvariantCulture, out
-                    doubleSupport);
-                        //Console.WriteLine("Valor válido " + lines[index[3]]);
-                    } else {
-                        //Console.WriteLine("Valor inválido " + lines[index[13]]);
-                        return false;
-                    }
-
-                    if (doubleSupport == 0) {
-                        starRotp = null;
-                    } else {
-                        starRotp = doubleSupport;
-                    }*/
-
-                    if (lines[index[14]].Any(x => char.IsLetter(x)) == false) {
-                        double.TryParse(lines[index[14]], NumberStyles.Any,
-                    CultureInfo.InvariantCulture, out
-                    doubleSupport);
-                        //Console.WriteLine("Valor válido " + lines[index[3]]);
-                    } else {
-                        //Console.WriteLine("Valor inválido " + lines[index[14]]);
-                        return false;
-                    }
-
-                    if (doubleSupport == 0) {
-                        starDistance = null;
-                    } else {
-                        starDistance = doubleSupport;
+                        if (doubleSupport == 0) {
+                            starMass = null;
+                        } else {
+                            starMass = doubleSupport;
+                        }
                     }
 
                     // Arranjar maneira de ignorar caso não exista
+                    if (itExists[11] == true) {
+                        if (lines[index[11]].Any(x => char.IsLetter(x)) == false) {
+                            double.TryParse(lines[index[11]], NumberStyles.Any,
+                        CultureInfo.InvariantCulture, out
+                        doubleSupport);
+                            //Console.WriteLine("Valor válido " + lines[index[3]]);
+                        } else {
+                            //Console.WriteLine("Valor inválido " + lines[index[11]]);
+                            return false;
+                        }
+
+                        if (doubleSupport == 0) {
+                            starAge = null;
+                        } else {
+                            starAge = doubleSupport;
+                        }
+                    }
+
+                    // Arranjar maneira de ignorar caso não exista
+                    if (itExists[12] == true) {
+                        if (lines[index[12]].Any(x => char.IsLetter(x)) == false) {
+                            double.TryParse(lines[index[12]], NumberStyles.Any,
+                        CultureInfo.InvariantCulture, out
+                        doubleSupport);
+                            //Console.WriteLine("Valor válido " + lines[index[3]]);
+                        } else {
+                            //Console.WriteLine("Valor inválido " + lines[index[12]]);
+                            return false;
+                        }
+
+                        if (doubleSupport == 0) {
+                            starRotation = null;
+                        } else {
+                            starRotation = doubleSupport;
+                        }
+                    }
+
+                    // Arranjar maneira de ignorar caso não exista
+                    if (itExists[13] == true) {
+                        if (lines[index[13]].Any(x => char.IsLetter(x)) == false) {
+                            double.TryParse(lines[index[13]], NumberStyles.Any,
+                        CultureInfo.InvariantCulture, out
+                        doubleSupport);
+                            //Console.WriteLine("Valor válido " + lines[index[3]]);
+                        } else {
+                            //Console.WriteLine("Valor inválido " + lines[index[13]]);
+                            return false;
+                        }
+
+                        if (doubleSupport == 0) {
+                            starRotp = null;
+                        } else {
+                            starRotp = doubleSupport;
+                        }
+                    }
+
+                    if (itExists[14] == true) {
+                        if (lines[index[14]].Any(x => char.IsLetter(x)) == false) {
+                            double.TryParse(lines[index[14]], NumberStyles.Any,
+                        CultureInfo.InvariantCulture, out
+                        doubleSupport);
+                            //Console.WriteLine("Valor válido " + lines[index[3]]);
+                        } else {
+                            //Console.WriteLine("Valor inválido " + lines[index[14]]);
+                            return false;
+                        }
+
+                        if (doubleSupport == 0) {
+                            starDistance = null;
+                        } else {
+                            starDistance = doubleSupport;
+                        }
+                    }
+
+                    // Não precisa de validação porque existe sempre
                     /*if (lines[index[15]].Any(x => char.IsLetter(x)) == false) {
                         int.TryParse(lines[index[15]], NumberStyles.Any,
                     CultureInfo.InvariantCulture, out
