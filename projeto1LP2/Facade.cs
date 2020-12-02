@@ -41,11 +41,13 @@ namespace projeto1LP2
             planetSearcher.Exemplo1();
         }
 
-        // Método que chama método de pesquisa exemplo de estrelas.
+        // Método que chama método de pesquisa de estrelas pelo nome
         public void SearchByName(string name) {
             StarSearcher starSearcher = new StarSearcher();
             starSearcher.SearchByName(name);
         }
+
+        // Método que chama método de pesquisa de estrelas pelo método de descoberta
         public void SearchByDiscoveryMethod(string name) {
             StarSearcher starSearcher = new StarSearcher();
             starSearcher.SearchByDiscoveryMethod(name);

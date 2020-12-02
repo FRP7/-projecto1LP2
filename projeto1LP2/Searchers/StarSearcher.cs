@@ -11,10 +11,11 @@ namespace projeto1LP2
     {
         // Aceder à Facade.
         private Facade facade;
+        // Estas variáveis têem obrigatoriamente de serem inicializadas aqui!
         private Dictionary<int, Star> filterByName = new Dictionary<int, Star>(Facade.starList);
         private Dictionary<int, Star> filterByDiscoveryMethod = new Dictionary<int, Star>(Facade.starList);
 
-        // Método exemplo de pesquisa de estrelas.
+        // Método de pesquisa de estrelas pelo nome.
         public void SearchByName(string name) {
             Facade.starList = filterByName; // obrigatório!!!!
 
@@ -34,6 +35,7 @@ namespace projeto1LP2
             Console.WriteLine("Dicionário filtro: " + filterByName.Count);
         }
 
+        // Método de pesquisa de estrelas pelo método de descoberta.
         public void SearchByDiscoveryMethod(string name) {
             Facade.starList = filterByDiscoveryMethod; // obrigatório!!!!
 
