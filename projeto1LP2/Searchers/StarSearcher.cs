@@ -19,8 +19,14 @@ namespace projeto1LP2
             Console.WriteLine("Filtrar pelo nome");
 
             // Filtro
-            filter = filter.Where(p => p.Value.HostName.StartsWith(name))
-                .ToDictionary(p => p.Key, p => p.Value);
+            /*filter = filter.Where(p => p.Value.HostName.StartsWith(name))
+                .ToDictionary(p => p.Key, p => p.Value);*/
+
+            // Filtro (código simplificado)
+            filter =
+                (from item in filter
+                 where item.Value.HostName.StartsWith(name)
+                 select item).ToDictionary(p => p.Key, p => p.Value);
 
             // Imprimir
             foreach (KeyValuePair<int, Star> item in filter) {
