@@ -7,14 +7,15 @@ namespace projeto1LP2
     /// <summary>
     /// Classe onde vão estar os métodos de pesquisa de estrelas.
     /// </summary>
-    class StarSearcher
+    class StarSearcher 
     {
         // Aceder à Facade.
         private Facade facade;
-        private Dictionary<int, Star> filter = Facade.starList;
+        private Dictionary<int, Star> filter = new Dictionary<int, Star>(Facade.starList);
 
         // Método exemplo de pesquisa de estrelas.
         public void SearchByName(string name) {
+            Facade.starList = filter;
 
             Console.WriteLine("Filtrar pelo nome");
 
@@ -34,6 +35,7 @@ namespace projeto1LP2
                     $"{item.Key,-5} | Star: {item.Value.HostName,-30}" +
                  $" | Planets: {item.Value.St_PlCount,-2}"));
             }
+            Console.WriteLine("Dicionário filtro: " + filter.Count);
         }
 
         // Inicializar as variáveis.
