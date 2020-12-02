@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace projeto1LP2
 {
@@ -8,8 +9,12 @@ namespace projeto1LP2
     class Program
     {
         static void Main(string[] args) {
-            Menu menu = new Menu();
-            menu.MainMenu();
+            /*Menu menu = new Menu();
+            menu.MainMenu();*/
+            // testar filtros
+            Facade facade = new Facade();
+            facade.ReadFile();
+            facade.SearchByName("t");
         }
     }
 }
