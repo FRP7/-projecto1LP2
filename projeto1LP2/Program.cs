@@ -14,6 +14,8 @@ namespace projeto1LP2
             // testar filtros
             Facade facade = new Facade();
             facade.ReadFile();
+            //facade.SearchByName("t");
+            facade.SearchByDiscoveryMethod("R");
             facade.SearchByName("t");
             //Console.WriteLine("Dicionario principal: " + Facade.starList.Count);
             Console.WriteLine("Dicionario principal: " + Facade.starList[0].HostName);

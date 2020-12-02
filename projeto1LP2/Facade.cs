@@ -46,5 +46,9 @@ namespace projeto1LP2
             StarSearcher starSearcher = new StarSearcher();
             starSearcher.SearchByName(name);
         }
+        public void SearchByDiscoveryMethod(string name) {
+            StarSearcher starSearcher = new StarSearcher();
+            starSearcher.SearchByDiscoveryMethod(name);
+        }
     }
 }

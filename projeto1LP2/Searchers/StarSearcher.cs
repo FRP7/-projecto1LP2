@@ -11,31 +11,46 @@ namespace projeto1LP2
     {
         // Aceder à Facade.
         private Facade facade;
-        private Dictionary<int, Star> filter = new Dictionary<int, Star>(Facade.starList);
+        private Dictionary<int, Star> filterByName = new Dictionary<int, Star>(Facade.starList);
+        private Dictionary<int, Star> filterByDiscoveryMethod = new Dictionary<int, Star>(Facade.starList);
 
         // Método exemplo de pesquisa de estrelas.
         public void SearchByName(string name) {
-            Facade.starList = filter;
+            Facade.starList = filterByName; // obrigatório!!!!
 
             Console.WriteLine("Filtrar pelo nome");
 
-            // Filtro
-            /*filter = filter.Where(p => p.Value.HostName.StartsWith(name))
-                .ToDictionary(p => p.Key, p => p.Value);*/
-
-            // Filtro (código simplificado)
-            filter =
-                (from item in filter
+            filterByName =
+                (from item in filterByName
                  where item.Value.HostName.StartsWith(name)
                  select item).ToDictionary(p => p.Key, p => p.Value);
 
             // Imprimir
-            foreach (KeyValuePair<int, Star> item in filter) {
+            foreach (KeyValuePair<int, Star> item in filterByName) {
                 Console.WriteLine(string.Format($"ID: " +
                     $"{item.Key,-5} | Star: {item.Value.HostName,-30}" +
                  $" | Planets: {item.Value.St_PlCount,-2}"));
             }
-            Console.WriteLine("Dicionário filtro: " + filter.Count);
+            Console.WriteLine("Dicionário filtro: " + filterByName.Count);
+        }
+
+        public void SearchByDiscoveryMethod(string name) {
+            Facade.starList = filterByDiscoveryMethod; // obrigatório!!!!
+
+            Console.WriteLine("Filtrar pelo nome");
+
+            filterByDiscoveryMethod =
+                (from item in filterByDiscoveryMethod
+                 where item.Value.DiscoveryMethod.StartsWith(name)
+                 select item).ToDictionary(p => p.Key, p => p.Value);
+
+            // Imprimir
+            foreach (KeyValuePair<int, Star> item in filterByDiscoveryMethod) {
+                Console.WriteLine(string.Format($"ID: " +
+                    $"{item.Key,-5} | Star: {item.Value.HostName,-30}" +
+                 $" | Discovery method: {item.Value.DiscoveryMethod,-2}"));
+            }
+            Console.WriteLine("Dicionário filtro: " + filterByName.Count);
         }
 
         // Inicializar as variáveis.
