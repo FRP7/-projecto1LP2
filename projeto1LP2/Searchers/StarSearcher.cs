@@ -43,7 +43,7 @@ namespace projeto1LP2
 
             filterByName =
                 (from item in filterByName
-                 where item.Value.HostName.StartsWith(input)
+                     where item.Value.HostName.StartsWith(input.ToUpper())
                  select item).ToDictionary(p => p.Key, p => p.Value);
 
             // Imprimir
@@ -63,7 +63,7 @@ namespace projeto1LP2
 
             filterByDiscoveryMethod =
                 (from item in filterByDiscoveryMethod
-                 where item.Value.DiscoveryMethod.StartsWith(input)
+                 where item.Value.DiscoveryMethod.StartsWith(input.ToUpper())
                  select item).ToDictionary(p => p.Key, p => p.Value);
 
             // Imprimir
