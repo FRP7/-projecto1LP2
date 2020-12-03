@@ -94,6 +94,25 @@ namespace projeto1LP2
             Console.WriteLine("Dicionário filtro: " + filterByName.Count);
         }
 
+        public void SearchByRad(double input) {
+            Facade.starList = filterByDiscoveryMethod; // obrigatório!!!!
+
+            Console.WriteLine("Filtrar pela temperatura");
+
+            filterByDiscoveryMethod =
+                (from item in filterByDiscoveryMethod
+                 where item.Value.St_Rad == input
+                 select item).ToDictionary(p => p.Key, p => p.Value);
+
+            // Imprimir
+            foreach (KeyValuePair<int, Star> item in filterByDiscoveryMethod) {
+                Console.WriteLine(string.Format($"ID: " +
+                    $"{item.Key,-5} | Star: {item.Value.HostName,-30}" +
+                 $" | Radius: {item.Value.St_Rad,-2}"));
+            }
+            Console.WriteLine("Dicionário filtro: " + filterByName.Count);
+        }
+
         // Inicializar as variáveis.
         public StarSearcher() {
             facade = new Facade();
