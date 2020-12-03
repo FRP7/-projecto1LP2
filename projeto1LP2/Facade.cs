@@ -52,5 +52,41 @@ namespace projeto1LP2
             StarSearcher starSearcher = new StarSearcher();
             starSearcher.SearchByDiscoveryMethod(name);
         }
+
+        // Método de pesquisa de planetas pelo nome.
+        public void SearchByPlanetName(string name) {
+            PlanetSearcher planetSearcher = new PlanetSearcher();
+            planetSearcher.SearchByPlanetName(name);
+        }
+
+        // Método de pesquisa de planetas pelo nome das suas estrelas.
+        public void SearchByPlanetHostName(string hostname) {
+            PlanetSearcher planetSearcher = new PlanetSearcher();
+            planetSearcher.SearchByPlanetHostName(hostname);
+        }
+
+        // Método de pesquisa de planetas pelo método de descoberta.
+        public void SearchByPlanetDiscoveryMethod(string discoveryMethod) {
+            PlanetSearcher planetSearcher = new PlanetSearcher();
+            planetSearcher.SearchByPlanetDiscoveryMethod(discoveryMethod);
+        }
+
+        // Método de pesquisa de planetas pelo ano de descoberta.
+        public void SearchByPlanetDiscoveryYear(int? min, int? max) {
+            PlanetSearcher planetSearcher = new PlanetSearcher();
+            planetSearcher.SearchByPlanetDiscoveryYear(min, max);
+        }
+
+        // Método de pesquisa de planetas pelo raio.
+        public void SearchByPlanetRadius(double? min, double? max) {
+            PlanetSearcher planetSearcher = new PlanetSearcher();
+            planetSearcher.SearchByPlanetRadius(min, max);
+        }
+
+        // Método de pesquisa de planetas pela massa.
+        public void SearchByPlanetMass(double? min, double? max) {
+            PlanetSearcher planetSearcher = new PlanetSearcher();
+            planetSearcher.SearchByPlanetMass(min, max);
+        }
     }
 }
