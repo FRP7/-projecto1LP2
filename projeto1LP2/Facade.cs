@@ -53,49 +53,49 @@ namespace projeto1LP2
             starSearcher.SearchByDiscoveryMethod(input);
         }
 
-        public void SearchByDiscoveryYear(int input) {
+        public void SearchByDiscoveryYear(int min, int max) {
             StarSearcher starSearcher = new StarSearcher();
-            starSearcher.SearchByDiscoveryYear(input);
+            starSearcher.SearchByDiscoveryYear(min, max);
         }
 
-        public void SearchByTeff(double input) {
+        public void SearchByTeff(double min, double max) {
             StarSearcher starSearcher = new StarSearcher();
-            starSearcher.SearchByTeff(input);
+            starSearcher.SearchByTeff(min, max);
         }
 
-        public void SearchByRad(double input) {
+        public void SearchByRad(double min, double max) {
             StarSearcher starSearcher = new StarSearcher();
-            starSearcher.SearchByRad(input);
+            starSearcher.SearchByRad(min, max);
         }
 
-        public void SearchByMass(double input) {
+        public void SearchByMass(double min, double max) {
             StarSearcher starSearcher = new StarSearcher();
-            starSearcher.SearchByMass(input);
+            starSearcher.SearchByMass(min, max);
         }
 
-        public void SearchByAge(double input) {
+        public void SearchByAge(double min, double max) {
             StarSearcher starSearcher = new StarSearcher();
-            starSearcher.SearchByAge(input);
+            starSearcher.SearchByAge(min, max);
         }
 
-        public void SearchByVsin(double input) {
+        public void SearchByVsin(double min, double max) {
             StarSearcher starSearcher = new StarSearcher();
-            starSearcher.SearchByVsin(input);
+            starSearcher.SearchByVsin(min, max);
         }
 
-        public void SearchByRtop(double input) {
+        public void SearchByRtop(double min, double max) {
             StarSearcher starSearcher = new StarSearcher();
-            starSearcher.SearchByRotp(input);
+            starSearcher.SearchByRotp(min, max);
         }
 
-        public void SearchByDist(double input) {
+        public void SearchByDist(double min, double max) {
             StarSearcher starSearcher = new StarSearcher();
-            starSearcher.SearchByDist(input);
+            starSearcher.SearchByDist(min, max);
         }
 
-        public void SearchByPlCount(double input) {
+        public void SearchByPlCount(double min, double max) {
             StarSearcher starSearcher = new StarSearcher();
-            starSearcher.SearchByPlCount(input);
+            starSearcher.SearchByPlCount(min, max);
         }
     }
 }

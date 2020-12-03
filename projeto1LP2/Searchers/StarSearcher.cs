@@ -76,14 +76,14 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de estrelas pelo ano de descoberta.
-        public void SearchByDiscoveryYear(int input) {
+        public void SearchByDiscoveryYear(int min, int max) {
             Facade.starList = filterByDiscoveryYear; // obrigatório!!!!
 
             Console.WriteLine("Filtrar pelo ano de descoberta");
 
             filterByDiscoveryYear =
                 (from item in filterByDiscoveryYear
-                 where item.Value.Disc_Year == input
+                 where item.Value.Disc_Year > min && item.Value.Disc_Year < max
                  select item).ToDictionary(p => p.Key, p => p.Value);
 
             // Imprimir
@@ -96,14 +96,14 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de estrelas pela temperatura.
-        public void SearchByTeff(double input) {
+        public void SearchByTeff(double min, double max) {
             Facade.starList = filterByTaff; // obrigatório!!!!
 
             Console.WriteLine("Filtrar pela temperatura");
 
             filterByTaff =
                 (from item in filterByTaff
-                 where item.Value.St_Teff == input
+                 where item.Value.St_Teff > min && item.Value.St_Teff < max
                  select item).ToDictionary(p => p.Key, p => p.Value);
 
             // Imprimir
@@ -116,14 +116,14 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de estrelas pelo raio.
-        public void SearchByRad(double input) {
+        public void SearchByRad(double min, double max) {
             Facade.starList = filterByRad; // obrigatório!!!!
 
             Console.WriteLine("Filtrar pelo raio");
 
             filterByRad =
                 (from item in filterByRad
-                 where item.Value.St_Rad == input
+                 where item.Value.St_Rad > min && item.Value.St_Rad < max
                  select item).ToDictionary(p => p.Key, p => p.Value);
 
             // Imprimir
@@ -136,14 +136,14 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de estrelas pela massa.
-        public void SearchByMass(double input) {
+        public void SearchByMass(double min, double max) {
             Facade.starList = filterByMass; // obrigatório!!!!
 
             Console.WriteLine("Filtrar pela massa");
 
             filterByMass =
                 (from item in filterByMass
-                 where item.Value.St_Mass == input
+                 where item.Value.St_Mass > min && item.Value.St_Mass < max
                  select item).ToDictionary(p => p.Key, p => p.Value);
 
             // Imprimir
@@ -156,14 +156,14 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de estrelas pela idade.
-        public void SearchByAge(double input) {
+        public void SearchByAge(double min, double max) {
             Facade.starList = filterByAge; // obrigatório!!!!
 
             Console.WriteLine("Filtrar pela idade");
 
             filterByAge =
                 (from item in filterByAge
-                 where item.Value.St_Age == input
+                 where item.Value.St_Age > min && item.Value.St_Age < max
                  select item).ToDictionary(p => p.Key, p => p.Value);
 
             // Imprimir
@@ -176,14 +176,14 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de estrelas pela velocidade de rotação.
-        public void SearchByVsin(double input) {
+        public void SearchByVsin(double min, double max) {
             Facade.starList = filterByVsin; // obrigatório!!!!
 
             Console.WriteLine("Filtrar pela velocidade de rotação");
 
             filterByVsin =
                 (from item in filterByVsin
-                 where item.Value.St_Vsin == input
+                 where item.Value.St_Vsin > min && item.Value.St_Vsin < max
                  select item).ToDictionary(p => p.Key, p => p.Value);
 
             // Imprimir
@@ -196,14 +196,14 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de estrelas pelo período de rotação.
-        public void SearchByRotp(double input) {
+        public void SearchByRotp(double min, double max) {
             Facade.starList = filterByRotp; // obrigatório!!!!
 
             Console.WriteLine("Filtrar pelo período de rotação");
 
             filterByRotp =
                 (from item in filterByRotp
-                 where item.Value.St_Rotp == input
+                 where item.Value.St_Rotp > min && item.Value.St_Rotp < max
                  select item).ToDictionary(p => p.Key, p => p.Value);
 
             // Imprimir
@@ -216,14 +216,14 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de estrelas pela distância.
-        public void SearchByDist(double input) {
+        public void SearchByDist(double min, double max) {
             Facade.starList = filterByDyst; // obrigatório!!!!
 
             Console.WriteLine("Filtrar pela distância");
 
             filterByDyst =
                 (from item in filterByDyst
-                 where item.Value.Sy_Dist == input
+                 where item.Value.Sy_Dist > min && item.Value.Sy_Dist < max
                  select item).ToDictionary(p => p.Key, p => p.Value);
 
             // Imprimir
@@ -236,14 +236,14 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de estrelas pela quantidade de planetas.
-        public void SearchByPlCount(double input) {
+        public void SearchByPlCount(double min, double max) {
             Facade.starList = filterByPlCount; // obrigatório!!!!
 
             Console.WriteLine("Filtrar pelo número de planetas");
 
             filterByPlCount =
                 (from item in filterByPlCount
-                 where item.Value.St_PlCount == input
+                 where item.Value.St_PlCount > min && item.Value.St_PlCount < max
                  select item).ToDictionary(p => p.Key, p => p.Value);
 
             // Imprimir
