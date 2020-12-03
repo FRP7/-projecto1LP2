@@ -67,5 +67,10 @@ namespace projeto1LP2
             StarSearcher starSearcher = new StarSearcher();
             starSearcher.SearchByRad(input);
         }
+
+        public void SearchByMass(double input) {
+            StarSearcher starSearcher = new StarSearcher();
+            starSearcher.SearchByMass(input);
+        }
     }
 }

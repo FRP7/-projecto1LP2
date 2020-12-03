@@ -22,6 +22,7 @@ namespace projeto1LP2
             //facade.SearchByDiscoveryYear(2007);
             //facade.SearchByTeff(5338.00);
             //facade.SearchByRad(10.64);
+            facade.SearchByMass(2.70);
             Console.WriteLine("Dicionario principal: " + Facade.starList.Count);
         }
     }

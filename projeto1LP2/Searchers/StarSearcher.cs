@@ -97,11 +97,30 @@ namespace projeto1LP2
         public void SearchByRad(double input) {
             Facade.starList = filterByDiscoveryMethod; // obrigatório!!!!
 
-            Console.WriteLine("Filtrar pela temperatura");
+            Console.WriteLine("Filtrar pelo raio");
 
             filterByDiscoveryMethod =
                 (from item in filterByDiscoveryMethod
                  where item.Value.St_Rad == input
+                 select item).ToDictionary(p => p.Key, p => p.Value);
+
+            // Imprimir
+            foreach (KeyValuePair<int, Star> item in filterByDiscoveryMethod) {
+                Console.WriteLine(string.Format($"ID: " +
+                    $"{item.Key,-5} | Star: {item.Value.HostName,-30}" +
+                 $" | Radius: {item.Value.St_Rad,-2}"));
+            }
+            Console.WriteLine("Dicionário filtro: " + filterByName.Count);
+        }
+
+        public void SearchByMass(double input) {
+            Facade.starList = filterByDiscoveryMethod; // obrigatório!!!!
+
+            Console.WriteLine("Filtrar pela massa");
+
+            filterByDiscoveryMethod =
+                (from item in filterByDiscoveryMethod
+                 where item.Value.St_Mass == input
                  select item).ToDictionary(p => p.Key, p => p.Value);
 
             // Imprimir
