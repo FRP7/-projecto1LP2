@@ -75,6 +75,25 @@ namespace projeto1LP2
             Console.WriteLine("Dicionário filtro: " + filterByName.Count);
         }
 
+        public void SearchByTeff(double input) {
+            Facade.starList = filterByDiscoveryMethod; // obrigatório!!!!
+
+            Console.WriteLine("Filtrar pela temperatura");
+
+            filterByDiscoveryMethod =
+                (from item in filterByDiscoveryMethod
+                 where item.Value.St_Teff == input
+                 select item).ToDictionary(p => p.Key, p => p.Value);
+
+            // Imprimir
+            foreach (KeyValuePair<int, Star> item in filterByDiscoveryMethod) {
+                Console.WriteLine(string.Format($"ID: " +
+                    $"{item.Key,-5} | Star: {item.Value.HostName,-30}" +
+                 $" | Temperature: {item.Value.St_Teff,-2}"));
+            }
+            Console.WriteLine("Dicionário filtro: " + filterByName.Count);
+        }
+
         // Inicializar as variáveis.
         public StarSearcher() {
             facade = new Facade();

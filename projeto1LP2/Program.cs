@@ -19,7 +19,8 @@ namespace projeto1LP2
             //// testar se o dicionário principal permance inalterado
             //Console.WriteLine("Dicionario principal: " + Facade.starList.Count);
             //Console.WriteLine("Dicionario principal: " + Facade.starList[0].HostName);
-            facade.SearchByDiscoveryYear(2007);
+            //facade.SearchByDiscoveryYear(2007);
+            //facade.SearchByTeff(5338.00);
             Console.WriteLine("Dicionario principal: " + Facade.starList.Count);
         }
     }

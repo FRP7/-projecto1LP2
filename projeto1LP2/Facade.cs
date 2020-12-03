@@ -57,5 +57,10 @@ namespace projeto1LP2
             StarSearcher starSearcher = new StarSearcher();
             starSearcher.SearchByDiscoveryYear(input);
         }
+
+        public void SearchByTeff(double input) {
+            StarSearcher starSearcher = new StarSearcher();
+            starSearcher.SearchByTeff(input);
+        }
     }
 }
