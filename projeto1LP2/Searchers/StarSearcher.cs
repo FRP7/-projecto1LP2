@@ -127,7 +127,102 @@ namespace projeto1LP2
             foreach (KeyValuePair<int, Star> item in filterByDiscoveryMethod) {
                 Console.WriteLine(string.Format($"ID: " +
                     $"{item.Key,-5} | Star: {item.Value.HostName,-30}" +
-                 $" | Radius: {item.Value.St_Rad,-2}"));
+                 $" | Mass: {item.Value.St_Mass,-2}"));
+            }
+            Console.WriteLine("Dicionário filtro: " + filterByName.Count);
+        }
+
+        public void SearchByAge(double input) {
+            Facade.starList = filterByDiscoveryMethod; // obrigatório!!!!
+
+            Console.WriteLine("Filtrar pela idade");
+
+            filterByDiscoveryMethod =
+                (from item in filterByDiscoveryMethod
+                 where item.Value.St_Age == input
+                 select item).ToDictionary(p => p.Key, p => p.Value);
+
+            // Imprimir
+            foreach (KeyValuePair<int, Star> item in filterByDiscoveryMethod) {
+                Console.WriteLine(string.Format($"ID: " +
+                    $"{item.Key,-5} | Star: {item.Value.HostName,-30}" +
+                 $" | Age: {item.Value.St_Age,-2}"));
+            }
+            Console.WriteLine("Dicionário filtro: " + filterByName.Count);
+        }
+
+        public void SearchByVsin(double input) {
+            Facade.starList = filterByDiscoveryMethod; // obrigatório!!!!
+
+            Console.WriteLine("Filtrar pela velocidade de rotação");
+
+            filterByDiscoveryMethod =
+                (from item in filterByDiscoveryMethod
+                 where item.Value.St_Vsin == input
+                 select item).ToDictionary(p => p.Key, p => p.Value);
+
+            // Imprimir
+            foreach (KeyValuePair<int, Star> item in filterByDiscoveryMethod) {
+                Console.WriteLine(string.Format($"ID: " +
+                    $"{item.Key,-5} | Star: {item.Value.HostName,-30}" +
+                 $" | Rotation velocity: {item.Value.St_Vsin,-2}"));
+            }
+            Console.WriteLine("Dicionário filtro: " + filterByName.Count);
+        }
+
+        public void SearchByRotp(double input) {
+            Facade.starList = filterByDiscoveryMethod; // obrigatório!!!!
+
+            Console.WriteLine("Filtrar pelo período de rotação");
+
+            filterByDiscoveryMethod =
+                (from item in filterByDiscoveryMethod
+                 where item.Value.St_Rotp == input
+                 select item).ToDictionary(p => p.Key, p => p.Value);
+
+            // Imprimir
+            foreach (KeyValuePair<int, Star> item in filterByDiscoveryMethod) {
+                Console.WriteLine(string.Format($"ID: " +
+                    $"{item.Key,-5} | Star: {item.Value.HostName,-30}" +
+                 $" | Rotation period: {item.Value.St_Rotp,-2}"));
+            }
+            Console.WriteLine("Dicionário filtro: " + filterByName.Count);
+        }
+
+        public void SearchByDist(double input) {
+            Facade.starList = filterByDiscoveryMethod; // obrigatório!!!!
+
+            Console.WriteLine("Filtrar pela distância");
+
+            filterByDiscoveryMethod =
+                (from item in filterByDiscoveryMethod
+                 where item.Value.Sy_Dist == input
+                 select item).ToDictionary(p => p.Key, p => p.Value);
+
+            // Imprimir
+            foreach (KeyValuePair<int, Star> item in filterByDiscoveryMethod) {
+                Console.WriteLine(string.Format($"ID: " +
+                    $"{item.Key,-5} | Star: {item.Value.HostName,-30}" +
+                 $" | Distance: {item.Value.Sy_Dist,-2}"));
+            }
+            Console.WriteLine("Dicionário filtro: " + filterByName.Count);
+        }
+
+        public void SearchByPlCount(double input) {
+            Facade.starList = filterByDiscoveryMethod; // obrigatório!!!!
+
+            Console.WriteLine("Filtrar pelo número de planetas");
+
+            filterByDiscoveryMethod =
+                (from item in filterByDiscoveryMethod
+                 where item.Value.St_PlCount == input
+                 select item).ToDictionary(p => p.Key, p => p.Value);
+
+            // Imprimir
+            foreach (KeyValuePair<int, Star> item in filterByDiscoveryMethod) {
+                Console.WriteLine(string.Format($"ID: " +
+                    $"{item.Key,-5} | Star: {item.Value.HostName,-30}" +
+                 $" | Planet count: {item.Value.St_PlCount,-2}"));
             }
             Console.WriteLine("Dicionário filtro: " + filterByName.Count);
         }
