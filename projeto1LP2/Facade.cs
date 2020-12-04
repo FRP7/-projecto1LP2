@@ -42,9 +42,9 @@ namespace projeto1LP2
         }
 
         // Método que chama método de pesquisa de estrelas pelo nome
-        public void SearchByName(string input) {
+        public void SearchByName(string input, bool isAscending) {
             StarSearcher starSearcher = new StarSearcher();
-            starSearcher.SearchByName(input);
+            starSearcher.SearchByName(input, isAscending);
         }
 
         // Método que chama método de pesquisa de estrelas pelo método de descoberta

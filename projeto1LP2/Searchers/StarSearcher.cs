@@ -36,16 +36,25 @@ namespace projeto1LP2
             new Dictionary<int, Star>(Facade.starList);
 
         // Método de pesquisa de estrelas pelo nome.
-        public void SearchByName(string input) {
+        public void SearchByName(string input, bool isAscending) {
             Facade.starList = filterByName; // obrigatório!!!!
 
             Console.WriteLine("Filtrar pelo nome");
 
             if (input != null) {
-                filterByName =
-                    (from item in filterByName
-                     where item.Value.HostName.StartsWith(input.ToUpper())
-                     select item).ToDictionary(p => p.Key, p => p.Value);
+                if (isAscending == true) {
+                    filterByName =
+                        (from item in filterByName
+                         where item.Value.HostName.StartsWith(input.ToUpper())
+                         select item).OrderBy(x => x.Key)
+                         .ToDictionary(p => p.Key, p => p.Value);
+                } else {
+                    filterByName =
+                        (from item in filterByName
+                         where item.Value.HostName.StartsWith(input.ToUpper())
+                         select item).OrderByDescending(x => x.Key)
+                         .ToDictionary(p => p.Key, p => p.Value);
+                }
 
                 // Imprimir
                 foreach (KeyValuePair<int, Star> item in filterByName) {
