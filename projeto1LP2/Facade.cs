@@ -80,6 +80,13 @@ namespace projeto1LP2
             planetSearcher.SearchByPlanetDiscoveryYear(min, max, isAscending);
         }
 
+        // Método de pesquisa de planetas pelo ano de descoberta.
+        public void SearchByPlanetOrbitalPeriod(int? min, int? max, bool isAscending)
+        {
+            PlanetSearcher planetSearcher = new PlanetSearcher();
+            planetSearcher.SearchByPlanetOrbitalPeriod(min, max, isAscending);
+        }
+
         // Método de pesquisa de planetas pelo raio.
         public void SearchByPlanetRadius(double? min, double? max, bool isAscending)
         {
@@ -87,11 +94,11 @@ namespace projeto1LP2
             planetSearcher.SearchByPlanetRadius(min, max, isAscending);
         }
 
-        // Método de pesquisa de planetas pela massa.
-        public void SearchByPlanetMass(double? min, double? max, bool isAscending)
+        // Método de pesquisa de planetas pelo raio.
+        public void SearchByPlanetHostRad(double? min, double? max, bool isAscending)
         {
             PlanetSearcher planetSearcher = new PlanetSearcher();
-            planetSearcher.SearchByPlanetMass(min, max, isAscending);
+            planetSearcher.SearchByPlanetHostRad(min, max, isAscending);
         }
 
         // Método de pesquisa de planetas pela temperatura de equilibrio.
@@ -102,10 +109,17 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de planetas pela temperatura efetiva da sua estrela.
-        public void SearchByPlanetHostTeff(double? min, double? max, bool isAscending)
+        public void SearchByPlanetHostTeff(int? min, int? max, bool isAscending)
         {
             PlanetSearcher planetSearcher = new PlanetSearcher();
             planetSearcher.SearchByPlanetHostTeff(min, max, isAscending);
+        }
+
+        // Método de pesquisa de planetas pela massa.
+        public void SearchByPlanetMass(double? min, double? max, bool isAscending)
+        {
+            PlanetSearcher planetSearcher = new PlanetSearcher();
+            planetSearcher.SearchByPlanetMass(min, max, isAscending);
         }
 
         // Método de pesquisa de planetas pela massa da sua estrela.
@@ -116,7 +130,7 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de planetas pela idade da sua estrela.
-        public void SearchByPlanetHostAge(double? min, double? max, bool isAscending)
+        public void SearchByPlanetHostAge(int? min, int? max, bool isAscending)
         {
             PlanetSearcher planetSearcher = new PlanetSearcher();
             planetSearcher.SearchByPlanetHostAge(min, max, isAscending);
@@ -130,7 +144,7 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de planetas pelo período de rotação da sua estrela.
-        public void SearchByPlanetHostRotp(double? min, double? max, bool isAscending)
+        public void SearchByPlanetHostRotp(int? min, int? max, bool isAscending)
         {
             PlanetSearcher planetSearcher = new PlanetSearcher();
             planetSearcher.SearchByPlanetHostRotp(min, max, isAscending);

@@ -56,7 +56,7 @@ namespace projeto1LP2
                 {
                     filterByName =
                         (from item in filterByName
-                         where item.Value.Pl_Name.StartsWith(input.ToUpper())
+                         where item.Value.Pl_Name.StartsWith(input)
                          select item).OrderBy(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -64,7 +64,7 @@ namespace projeto1LP2
                 {
                     filterByName =
                         (from item in filterByName
-                         where item.Value.Pl_Name.StartsWith(input.ToUpper())
+                         where item.Value.Pl_Name.StartsWith(input)
                          select item).OrderByDescending(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -100,7 +100,7 @@ namespace projeto1LP2
                 {
                     filterByHostName =
                         (from item in filterByHostName
-                         where item.Value.HostName.StartsWith(input.ToUpper())
+                         where item.Value.HostName.StartsWith(input)
                          select item).OrderBy(x => x.Key)
                          .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -108,7 +108,7 @@ namespace projeto1LP2
                 {
                     filterByHostName =
                         (from item in filterByHostName
-                         where item.Value.HostName.StartsWith(input.ToUpper())
+                         where item.Value.HostName.StartsWith(input)
                          select item).OrderByDescending(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -146,7 +146,7 @@ namespace projeto1LP2
                 {
                     filterByDiscoveryMethod =
                         (from item in filterByDiscoveryMethod
-                         where item.Value.DiscoveryMethod.StartsWith(input.ToUpper())
+                         where item.Value.DiscoveryMethod.StartsWith(input)
                          select item).OrderBy(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -154,7 +154,7 @@ namespace projeto1LP2
                 {
                     filterByDiscoveryMethod =
                         (from item in filterByDiscoveryMethod
-                         where item.Value.DiscoveryMethod.StartsWith(input.ToUpper())
+                         where item.Value.DiscoveryMethod.StartsWith(input)
                          select item).OrderByDescending(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -306,7 +306,7 @@ namespace projeto1LP2
                 foreach (KeyValuePair<int, Planet> item in filterByOrbitalPeriod)
                 {
                     Console.WriteLine(string.Format($"ID: " +
-                        $"{item.Key,-5} | Planet: {item.Value.Pl_Name,-30}" +
+                        $"{item.Key,-5} | Planet: {item.Value.Pl_Name,-2}" +
                      $" | Orbital Period: {item.Value.Pl_Orbper,-5}"));
                 }
             }
@@ -316,7 +316,7 @@ namespace projeto1LP2
                 {
                     filterByOrbitalPeriod =
                         (from item in filterByOrbitalPeriod
-                         where item.Value.Pl_Orbper < max
+                         where item.Value.Pl_Orbper > min
                          select item).OrderBy(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -324,7 +324,7 @@ namespace projeto1LP2
                 {
                     filterByOrbitalPeriod =
                         (from item in filterByOrbitalPeriod
-                         where item.Value.Pl_Orbper < max
+                         where item.Value.Pl_Orbper > min
                          select item).OrderByDescending(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -332,7 +332,7 @@ namespace projeto1LP2
                 foreach (KeyValuePair<int, Planet> item in filterByOrbitalPeriod)
                 {
                     Console.WriteLine(string.Format($"ID: " +
-                        $"{item.Key,-5} | Planet: {item.Value.Pl_Name,-30}" +
+                        $"{item.Key,-5} | Planet: {item.Value.Pl_Name,-2}" +
                      $" | Orbital Period: {item.Value.Pl_Orbper,-5}"));
                 }
             }
@@ -342,7 +342,7 @@ namespace projeto1LP2
                 {
                     filterByOrbitalPeriod =
                         (from item in filterByOrbitalPeriod
-                         where item.Value.Pl_Orbper < max
+                         where item.Value.Pl_Orbper > min && item.Value.Pl_Orbper < max
                          select item).OrderBy(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -350,7 +350,7 @@ namespace projeto1LP2
                 {
                     filterByOrbitalPeriod =
                         (from item in filterByOrbitalPeriod
-                         where item.Value.Pl_Orbper < max
+                         where item.Value.Pl_Orbper > min && item.Value.Pl_Orbper < max
                          select item).OrderByDescending(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -358,7 +358,7 @@ namespace projeto1LP2
                 foreach (KeyValuePair<int, Planet> item in filterByOrbitalPeriod)
                 {
                     Console.WriteLine(string.Format($"ID: " +
-                        $"{item.Key,-5} | Planet: {item.Value.Pl_Name,-30}" +
+                        $"{item.Key,-5} | Planet: {item.Value.Pl_Name,-2}" +
                      $" | Orbital Period: {item.Value.Pl_Orbper,-5}"));
                 }
             }
@@ -368,7 +368,7 @@ namespace projeto1LP2
                 foreach (KeyValuePair<int, Planet> item in filterByOrbitalPeriod)
                 {
                     Console.WriteLine(string.Format($"ID: " +
-                        $"{item.Key,-5} | Planet: {item.Value.Pl_Name,-30}" +
+                        $"{item.Key,-5} | Planet: {item.Value.Pl_Name,-2}" +
                      $" | Orbital Period: {item.Value.Pl_Orbper,-5}"));
                 }
             }
@@ -414,7 +414,7 @@ namespace projeto1LP2
                 {
                     filterByRadius =
                         (from item in filterByRadius
-                         where item.Value.Pl_Rade < max
+                         where item.Value.Pl_Rade > min
                          select item).OrderBy(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -422,7 +422,7 @@ namespace projeto1LP2
                 {
                     filterByRadius =
                         (from item in filterByRadius
-                         where item.Value.Pl_Rade < max
+                         where item.Value.Pl_Rade > min
                          select item).OrderByDescending(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -440,7 +440,7 @@ namespace projeto1LP2
                 {
                     filterByRadius =
                         (from item in filterByRadius
-                         where item.Value.Pl_Rade < max
+                         where item.Value.Pl_Rade > min && item.Value.Pl_Rade < max
                          select item).OrderBy(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -448,7 +448,7 @@ namespace projeto1LP2
                 {
                     filterByRadius =
                         (from item in filterByRadius
-                         where item.Value.Pl_Rade < max
+                         where item.Value.Pl_Rade > min && item.Value.Pl_Rade < max
                          select item).OrderByDescending(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -473,102 +473,102 @@ namespace projeto1LP2
             Console.WriteLine("Dicionary filter: " + filterByRadius.Count);
         }
 
-        // Método de pesquisa de planetas pela massa.
-        public void SearchByPlanetMass(double? min, double? max, bool isAscending)
+        // Método de pesquisa de planetas pelo raio da sua estrela.
+        public void SearchByPlanetHostRad(double? min, double? max, bool isAscending)
         {
-            Facade.planetList = filterByMass;
+            Facade.planetList = filterByHostRad;
 
-            Console.WriteLine("Filter by mass");
+            Console.WriteLine("Filter by planet hosting star radius");
 
             if (min == null && max != null)
             {
                 if (isAscending)
                 {
-                    filterByMass =
-                        (from item in filterByMass
-                         where item.Value.Pl_Masse < max
+                    filterByHostRad =
+                        (from item in filterByHostRad
+                         where item.Value.St_Rad < max
                          select item).OrderBy(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
                 {
-                    filterByMass =
-                        (from item in filterByMass
-                         where item.Value.Pl_Masse < max
+                    filterByHostRad =
+                        (from item in filterByHostRad
+                         where item.Value.St_Rad < max
                          select item).OrderByDescending(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
-                foreach (KeyValuePair<int, Planet> item in filterByMass)
+                foreach (KeyValuePair<int, Planet> item in filterByHostRad)
                 {
                     Console.WriteLine(string.Format($"ID: " +
                         $"{item.Key,-5} | Planet: {item.Value.Pl_Name,-30}" +
-                     $" | Mass: {item.Value.Pl_Masse,-3}"));
+                     $" | Host Star Radius: {item.Value.St_Rad,-20}"));
                 }
             }
             else if (min != null && max == null)
             {
                 if (isAscending)
                 {
-                    filterByMass =
-                        (from item in filterByMass
-                         where item.Value.Pl_Masse < max
+                    filterByHostRad =
+                        (from item in filterByHostRad
+                         where item.Value.St_Rad > min
                          select item).OrderBy(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
                 {
-                    filterByMass =
-                        (from item in filterByMass
-                         where item.Value.Pl_Masse < max
+                    filterByHostRad =
+                        (from item in filterByHostRad
+                         where item.Value.St_Rad > min
                          select item).OrderByDescending(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
-                foreach (KeyValuePair<int, Planet> item in filterByMass)
+                foreach (KeyValuePair<int, Planet> item in filterByHostRad)
                 {
                     Console.WriteLine(string.Format($"ID: " +
                         $"{item.Key,-5} | Planet: {item.Value.Pl_Name,-30}" +
-                     $" | Mass: {item.Value.Pl_Masse,-3}"));
+                     $" | Host Star Radius: {item.Value.St_Rad,-20}"));
                 }
             }
             else if (min != null && max != null)
             {
                 if (isAscending)
                 {
-                    filterByMass =
-                        (from item in filterByMass
-                         where item.Value.Pl_Masse < max
+                    filterByHostRad =
+                        (from item in filterByHostRad
+                         where item.Value.St_Rad > min && item.Value.St_Rad < max
                          select item).OrderBy(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
                 {
-                    filterByMass =
-                        (from item in filterByMass
-                         where item.Value.Pl_Masse < max
+                    filterByHostRad =
+                        (from item in filterByHostRad
+                         where item.Value.St_Rad > min && item.Value.St_Rad < max
                          select item).OrderByDescending(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
-                foreach (KeyValuePair<int, Planet> item in filterByMass)
+                foreach (KeyValuePair<int, Planet> item in filterByHostRad)
                 {
                     Console.WriteLine(string.Format($"ID: " +
                         $"{item.Key,-5} | Planet: {item.Value.Pl_Name,-30}" +
-                     $" | Mass: {item.Value.Pl_Masse,-3}"));
+                     $" | Host Star Radius: {item.Value.St_Rad,-20}"));
                 }
             }
             else
             {
                 // Imprimir
-                foreach (KeyValuePair<int, Planet> item in filterByMass)
+                foreach (KeyValuePair<int, Planet> item in filterByHostRad)
                 {
                     Console.WriteLine(string.Format($"ID: " +
                         $"{item.Key,-5} | Planet: {item.Value.Pl_Name,-30}" +
-                     $" | Mass: {item.Value.Pl_Masse,-3}"));
+                     $" | Host Star Radius: {item.Value.St_Rad,-20}"));
                 }
             }
-            Console.WriteLine("Dicionary filter: " + filterByMass.Count);
+            Console.WriteLine("Dicionary filter: " + filterByHostRad.Count);
         }
 
         // Método de pesquisa de planetas pela temperatura de equilibrio.
@@ -610,7 +610,7 @@ namespace projeto1LP2
                 {
                     filterByEqt =
                         (from item in filterByEqt
-                         where item.Value.Pl_Eqt < max
+                         where item.Value.Pl_Eqt > min
                          select item).OrderBy(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -618,7 +618,7 @@ namespace projeto1LP2
                 {
                     filterByEqt =
                         (from item in filterByEqt
-                         where item.Value.Pl_Eqt < max
+                         where item.Value.Pl_Eqt > min
                          select item).OrderByDescending(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -636,7 +636,7 @@ namespace projeto1LP2
                 {
                     filterByEqt =
                         (from item in filterByEqt
-                         where item.Value.Pl_Eqt < max
+                         where item.Value.Pl_Eqt > min && item.Value.Pl_Eqt < max
                          select item).OrderBy(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -644,7 +644,7 @@ namespace projeto1LP2
                 {
                     filterByEqt =
                         (from item in filterByEqt
-                         where item.Value.Pl_Eqt < max
+                         where item.Value.Pl_Eqt > min && item.Value.Pl_Eqt < max
                          select item).OrderByDescending(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -670,7 +670,7 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de planetas pela temperatura efetiva da sua estrela.
-        public void SearchByPlanetHostTeff(double? min, double? max, bool isAscending)
+        public void SearchByPlanetHostTeff(int? min, int? max, bool isAscending)
         {
             Facade.planetList = filterByHostTeff;
 
@@ -767,102 +767,102 @@ namespace projeto1LP2
             Console.WriteLine("Dicionary filter: " + filterByHostTeff.Count);
         }
 
-        // Método de pesquisa de planetas pelo raio da sua estrela.
-        public void SearchByPlanetHostRad(double? min, double? max, bool isAscending)
+        // Método de pesquisa de planetas pela massa.
+        public void SearchByPlanetMass(double? min, double? max, bool isAscending)
         {
-            Facade.planetList = filterByHostRad;
+            Facade.planetList = filterByMass;
 
-            Console.WriteLine("Filter by planet hosting star radius");
+            Console.WriteLine("Filter by mass");
 
-            if (min != null && max == null)
+            if (min == null && max != null)
             {
                 if (isAscending)
                 {
-                    filterByHostRad =
-                        (from item in filterByHostRad
-                         where item.Value.St_Rad > min
+                    filterByMass =
+                        (from item in filterByMass
+                         where item.Value.Pl_Masse < max
                          select item).OrderBy(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
                 {
-                    filterByHostRad =
-                        (from item in filterByHostRad
-                         where item.Value.St_Rad > min
+                    filterByMass =
+                        (from item in filterByMass
+                         where item.Value.Pl_Masse < max
                          select item).OrderByDescending(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
-                foreach (KeyValuePair<int, Planet> item in filterByHostRad)
+                foreach (KeyValuePair<int, Planet> item in filterByMass)
                 {
                     Console.WriteLine(string.Format($"ID: " +
                         $"{item.Key,-5} | Planet: {item.Value.Pl_Name,-30}" +
-                     $" | Host Star Radius: {item.Value.St_Rad,-20}"));
+                     $" | Mass: {item.Value.Pl_Masse,-3}"));
                 }
             }
-            else if (min == null && max != null)
+            else if (min != null && max == null)
             {
                 if (isAscending)
                 {
-                    filterByHostRad =
-                        (from item in filterByHostRad
-                         where item.Value.St_Rad < max
+                    filterByMass =
+                        (from item in filterByMass
+                         where item.Value.Pl_Masse > min
                          select item).OrderBy(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
                 {
-                    filterByHostRad =
-                        (from item in filterByHostRad
-                         where item.Value.St_Rad < max
+                    filterByMass =
+                        (from item in filterByMass
+                         where item.Value.Pl_Masse > min
                          select item).OrderByDescending(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
-                foreach (KeyValuePair<int, Planet> item in filterByHostRad)
+                foreach (KeyValuePair<int, Planet> item in filterByMass)
                 {
                     Console.WriteLine(string.Format($"ID: " +
                         $"{item.Key,-5} | Planet: {item.Value.Pl_Name,-30}" +
-                     $" | Host Star Radius: {item.Value.St_Rad,-20}"));
+                     $" | Mass: {item.Value.Pl_Masse,-3}"));
                 }
             }
             else if (min != null && max != null)
             {
                 if (isAscending)
                 {
-                    filterByHostRad =
-                        (from item in filterByHostRad
-                         where item.Value.St_Rad > min && item.Value.St_Rad < max
+                    filterByMass =
+                        (from item in filterByMass
+                         where item.Value.Pl_Masse > min && item.Value.Pl_Masse < max
                          select item).OrderBy(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
                 {
-                    filterByHostRad =
-                        (from item in filterByHostRad
-                         where item.Value.St_Rad > min && item.Value.St_Rad < max
+                    filterByMass =
+                        (from item in filterByMass
+                         where item.Value.Pl_Masse < max && item.Value.Pl_Masse < max
                          select item).OrderByDescending(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
-                foreach (KeyValuePair<int, Planet> item in filterByHostRad)
+                foreach (KeyValuePair<int, Planet> item in filterByMass)
                 {
                     Console.WriteLine(string.Format($"ID: " +
                         $"{item.Key,-5} | Planet: {item.Value.Pl_Name,-30}" +
-                     $" | Host Star Radius: {item.Value.St_Rad,-20}"));
+                     $" | Mass: {item.Value.Pl_Masse,-3}"));
                 }
             }
             else
             {
                 // Imprimir
-                foreach (KeyValuePair<int, Planet> item in filterByHostRad)
+                foreach (KeyValuePair<int, Planet> item in filterByMass)
                 {
                     Console.WriteLine(string.Format($"ID: " +
                         $"{item.Key,-5} | Planet: {item.Value.Pl_Name,-30}" +
-                     $" | Host Star Radius: {item.Value.St_Rad,-20}"));
+                     $" | Mass: {item.Value.Pl_Masse,-3}"));
                 }
             }
-            Console.WriteLine("Dicionary filter: " + filterByHostRad.Count);
+            Console.WriteLine("Dicionary filter: " + filterByMass.Count);
         }
 
         // Método de pesquisa de planetas pela massa da sua estrela.
@@ -872,13 +872,13 @@ namespace projeto1LP2
 
             Console.WriteLine("Filter by planet host star mass");
 
-            if (min != null && max == null)
+            if (min == null && max != null)
             {
                 if (isAscending)
                 {
                     filterByHostMass =
                         (from item in filterByHostMass
-                         where item.Value.St_Mass > min
+                         where item.Value.St_Mass < max
                          select item).OrderBy(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -886,7 +886,7 @@ namespace projeto1LP2
                 {
                     filterByHostMass =
                         (from item in filterByHostMass
-                         where item.Value.St_Mass > min
+                         where item.Value.St_Mass < max
                          select item).OrderByDescending(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -898,13 +898,13 @@ namespace projeto1LP2
                      $" | Host Star Mass: {item.Value.St_Mass,-20}"));
                 }
             }
-            else if (min == null && max != null)
+            else if (min != null && max == null)
             {
                 if (isAscending)
                 {
                     filterByHostMass =
                         (from item in filterByHostMass
-                         where item.Value.St_Mass < max
+                         where item.Value.St_Mass > min
                          select item).OrderBy(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -912,7 +912,7 @@ namespace projeto1LP2
                 {
                     filterByHostMass =
                         (from item in filterByHostMass
-                         where item.Value.St_Mass < max
+                         where item.Value.St_Mass > min
                          select item).OrderByDescending(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -964,19 +964,19 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de planetas pela idade da sua estrela.
-        public void SearchByPlanetHostAge(double? min, double? max, bool isAscending)
+        public void SearchByPlanetHostAge(int? min, int? max, bool isAscending)
         {
             Facade.planetList = filterByHostAge;
 
             Console.WriteLine("Filter by planet host star age");
 
-            if (min != null && max == null)
+            if (min == null && max != null)
             {
                 if (isAscending)
                 {
                     filterByHostAge =
                         (from item in filterByHostAge
-                         where item.Value.St_Age > min
+                         where item.Value.St_Age < max
                          select item).OrderBy(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -984,7 +984,7 @@ namespace projeto1LP2
                 {
                     filterByHostAge =
                         (from item in filterByHostAge
-                         where item.Value.St_Age > min
+                         where item.Value.St_Age < max
                          select item).OrderByDescending(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -996,13 +996,13 @@ namespace projeto1LP2
                      $" | Host Star Age: {item.Value.St_Age,-10}"));
                 }
             }
-            else if (min == null && max != null)
+            else if (min != null && max == null)
             {
                 if (isAscending)
                 {
                     filterByHostAge =
                         (from item in filterByHostAge
-                         where item.Value.St_Age < max
+                         where item.Value.St_Age > min
                          select item).OrderBy(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -1010,7 +1010,7 @@ namespace projeto1LP2
                 {
                     filterByHostAge =
                         (from item in filterByHostAge
-                         where item.Value.St_Age < max
+                         where item.Value.St_Age > min
                          select item).OrderByDescending(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -1068,23 +1068,23 @@ namespace projeto1LP2
 
             Console.WriteLine("Filter by planet host star rotation speed");
 
-            if (min != null && max == null)
+            if (min == null && max != null)
             {
                 if (isAscending)
                 {
                     filterByHostVsin =
                         (from item in filterByHostVsin
-                         where item.Value.St_Vsin > min
+                         where item.Value.St_Vsin < max
                          select item).OrderBy(x => x.Key)
-                        .ToDictionary(p => p.Key, p => p.Value);
+                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
                 {
                     filterByHostVsin =
                         (from item in filterByHostVsin
-                         where item.Value.St_Vsin > min
+                         where item.Value.St_Vsin < max
                          select item).OrderByDescending(x => x.Key)
-                        .ToDictionary(p => p.Key, p => p.Value);
+                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
                 foreach (KeyValuePair<int, Planet> item in filterByHostVsin)
@@ -1094,23 +1094,23 @@ namespace projeto1LP2
                      $" | Host Star Rotation velocity: {item.Value.St_Vsin,-5}"));
                 }
             }
-            else if (min == null && max != null)
+            else if (min != null && max == null)
             {
                 if (isAscending)
                 {
                     filterByHostVsin =
                         (from item in filterByHostVsin
-                         where item.Value.St_Vsin < max
+                         where item.Value.St_Vsin > min
                          select item).OrderBy(x => x.Key)
-                         .ToDictionary(p => p.Key, p => p.Value);
+                        .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
                 {
                     filterByHostVsin =
                         (from item in filterByHostVsin
-                         where item.Value.St_Vsin < max
+                         where item.Value.St_Vsin > min
                          select item).OrderByDescending(x => x.Key)
-                         .ToDictionary(p => p.Key, p => p.Value);
+                        .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
                 foreach (KeyValuePair<int, Planet> item in filterByHostVsin)
@@ -1160,13 +1160,39 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de planetas pelo período de rotação da sua estrela.
-        public void SearchByPlanetHostRotp(double? min, double? max, bool isAscending)
+        public void SearchByPlanetHostRotp(int? min, int? max, bool isAscending)
         {
             Facade.planetList = filterByHostRotp;
 
             Console.WriteLine("Filter by planet host star rotation period");
 
-            if (min != null && max == null)
+            if (min == null && max != null)
+            {
+                if (isAscending)
+                {
+                    filterByHostRotp =
+                        (from item in filterByHostRotp
+                         where item.Value.St_Rotp < max
+                         select item).OrderBy(x => x.Key)
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                else
+                {
+                    filterByHostRotp =
+                        (from item in filterByHostRotp
+                         where item.Value.St_Rotp < max
+                         select item).OrderByDescending(x => x.Key)
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                // Imprimir
+                foreach (KeyValuePair<int, Planet> item in filterByHostRotp)
+                {
+                    Console.WriteLine(string.Format($"ID: " +
+                        $"{item.Key,-5} | Planet: {item.Value.Pl_Name,-30}" +
+                     $" | Host Star Rotation period: {item.Value.St_Rotp,-4}"));
+                }
+            }
+            else if (min != null && max == null)
             {
                 if (isAscending)
                 {
@@ -1181,32 +1207,6 @@ namespace projeto1LP2
                     filterByHostRotp =
                         (from item in filterByHostRotp
                          where item.Value.St_Rotp > min
-                         select item).OrderByDescending(x => x.Key)
-                        .ToDictionary(p => p.Key, p => p.Value);
-                }
-                // Imprimir
-                foreach (KeyValuePair<int, Planet> item in filterByHostRotp)
-                {
-                    Console.WriteLine(string.Format($"ID: " +
-                        $"{item.Key,-5} | Planet: {item.Value.Pl_Name,-30}" +
-                     $" | Host Star Rotation period: {item.Value.St_Rotp,-4}"));
-                }
-            }
-            else if (min == null && max != null)
-            {
-                if (isAscending)
-                {
-                    filterByHostRotp =
-                        (from item in filterByHostRotp
-                         where item.Value.St_Rotp < max
-                         select item).OrderBy(x => x.Key)
-                        .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else
-                {
-                    filterByHostRotp =
-                        (from item in filterByHostRotp
-                         where item.Value.St_Rotp < max
                          select item).OrderByDescending(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -1264,33 +1264,7 @@ namespace projeto1LP2
 
             Console.WriteLine("Filter by distance from the sun to the host star");
 
-            if (min != null && max == null)
-            {
-                if (isAscending)
-                {
-                    filterByHostDist =
-                        (from item in filterByHostDist
-                         where item.Value.Sy_Dist > min
-                         select item).OrderBy(x => x.Key)
-                        .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else
-                {
-                    filterByHostDist =
-                        (from item in filterByHostDist
-                         where item.Value.Sy_Dist > min
-                         select item).OrderByDescending(x => x.Key)
-                        .ToDictionary(p => p.Key, p => p.Value);
-                }
-                // Imprimir
-                foreach (KeyValuePair<int, Planet> item in filterByHostDist)
-                {
-                    Console.WriteLine(string.Format($"ID: " +
-                        $"{item.Key,-5} | Planet: {item.Value.Pl_Name,-30}" +
-                     $" | Host Star Distance to the Sun: {item.Value.Sy_Dist,-5}"));
-                }
-            }
-            else if (min == null && max != null)
+            if (min == null && max != null)
             {
                 if (isAscending)
                 {
@@ -1305,6 +1279,32 @@ namespace projeto1LP2
                     filterByHostDist =
                         (from item in filterByHostDist
                          where item.Value.Sy_Dist < max
+                         select item).OrderByDescending(x => x.Key)
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                // Imprimir
+                foreach (KeyValuePair<int, Planet> item in filterByHostDist)
+                {
+                    Console.WriteLine(string.Format($"ID: " +
+                        $"{item.Key,-5} | Planet: {item.Value.Pl_Name,-30}" +
+                     $" | Host Star Distance to the Sun: {item.Value.Sy_Dist,-5}"));
+                }
+            }
+            else if (min != null && max == null)
+            {
+                if (isAscending)
+                {
+                    filterByHostDist =
+                        (from item in filterByHostDist
+                         where item.Value.Sy_Dist > min
+                         select item).OrderBy(x => x.Key)
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                else
+                {
+                    filterByHostDist =
+                        (from item in filterByHostDist
+                         where item.Value.Sy_Dist > min
                          select item).OrderByDescending(x => x.Key)
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
