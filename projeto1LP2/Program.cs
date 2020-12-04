@@ -9,16 +9,8 @@ namespace projeto1LP2
     class Program
     {
         static void Main(string[] args) {
-            /*Menu menu = new Menu();
-            menu.MainMenu();*/
-            // testar filtros
-            Facade facade = new Facade();
-            facade.ReadFile();
-            facade.SearchByDiscoveryMethod("R");
-            facade.SearchByName("t");
-            // testar se o dicionário principal permance inalterado
-            Console.WriteLine("Dicionario principal: " + Facade.starList.Count);
-            Console.WriteLine("Dicionario principal: " + Facade.starList[0].HostName);
+            Menu menu = new Menu();
+            menu.MainMenu();
         }
     }
 }
