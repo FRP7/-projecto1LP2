@@ -42,60 +42,60 @@ namespace projeto1LP2
         }
 
         // Método que chama método de pesquisa de estrelas pelo nome
-        public void SearchByName(string input, bool isAscending) {
+        public void SearchByName(string input, bool ?isAscending) {
             StarSearcher starSearcher = new StarSearcher();
             starSearcher.SearchByName(input, isAscending);
         }
 
         // Método que chama método de pesquisa de estrelas pelo método de descoberta
-        public void SearchByDiscoveryMethod(string input) {
+        public void SearchByDiscoveryMethod(string input, bool ?isAscending) {
             StarSearcher starSearcher = new StarSearcher();
-            starSearcher.SearchByDiscoveryMethod(input);
+            starSearcher.SearchByDiscoveryMethod(input, isAscending);
         }
 
-        public void SearchByDiscoveryYear(int ?min, int ?max) {
+        public void SearchByDiscoveryYear(int ?min, int ?max, bool ?isAscending) {
             StarSearcher starSearcher = new StarSearcher();
-            starSearcher.SearchByDiscoveryYear(min, max);
+            starSearcher.SearchByDiscoveryYear(min, max, isAscending);
         }
 
-        public void SearchByTeff(double ?min, double ?max) {
+        public void SearchByTeff(double ?min, double ?max, bool ?isAscending) {
             StarSearcher starSearcher = new StarSearcher();
-            starSearcher.SearchByTeff(min, max);
+            starSearcher.SearchByTeff(min, max, isAscending);
         }
 
-        public void SearchByRad(double ?min, double ?max) {
+        public void SearchByRad(double ?min, double ?max, bool ?isAscending) {
             StarSearcher starSearcher = new StarSearcher();
-            starSearcher.SearchByRad(min, max);
+            starSearcher.SearchByRad(min, max, isAscending);
         }
 
-        public void SearchByMass(double ?min, double ?max) {
+        public void SearchByMass(double ?min, double ?max, bool ?isAscending) {
             StarSearcher starSearcher = new StarSearcher();
-            starSearcher.SearchByMass(min, max);
+            starSearcher.SearchByMass(min, max, isAscending);
         }
 
-        public void SearchByAge(double ?min, double ?max) {
+        public void SearchByAge(double ?min, double ?max, bool ?isAscending) {
             StarSearcher starSearcher = new StarSearcher();
-            starSearcher.SearchByAge(min, max);
+            starSearcher.SearchByAge(min, max, isAscending);
         }
 
-        public void SearchByVsin(double ?min, double ?max) {
+        public void SearchByVsin(double ?min, double ?max, bool ?isAscending) {
             StarSearcher starSearcher = new StarSearcher();
-            starSearcher.SearchByVsin(min, max);
+            starSearcher.SearchByVsin(min, max, isAscending);
         }
 
-        public void SearchByRtop(double ?min, double ?max) {
+        public void SearchByRtop(double ?min, double ?max, bool ?isAscending) {
             StarSearcher starSearcher = new StarSearcher();
-            starSearcher.SearchByRotp(min, max);
+            starSearcher.SearchByRotp(min, max, isAscending);
         }
 
-        public void SearchByDist(double ?min, double ?max) {
+        public void SearchByDist(double ?min, double ?max, bool ?isAscending) {
             StarSearcher starSearcher = new StarSearcher();
-            starSearcher.SearchByDist(min, max);
+            starSearcher.SearchByDist(min, max, isAscending);
         }
 
-        public void SearchByPlCount(double ?min, double ?max) {
+        public void SearchByPlCount(double ?min, double ?max, bool ?isAscending) {
             StarSearcher starSearcher = new StarSearcher();
-            starSearcher.SearchByPlCount(min, max);
+            starSearcher.SearchByPlCount(min, max, isAscending);
         }
     }
 }
