@@ -39,20 +39,43 @@ namespace projeto1LP2
         public void SearchByName(string input, bool? isAscending) {
             Facade.starList = filterByName; // obrigatório!!!!
 
+            //string orderBy = "St_Teff";
+
+            //Func<Star, Object> orderByFunc = null;
+
+            //Func<Star, Object> orderByFunc = item => item.St_Teff;
+
+            Func<KeyValuePair<int, Star>, Object> orderByFunc = item => item.Value.St_Teff;
+
+            /*if (orderBy == "St_Teff") {
+                orderByFunc = item => item.St_Teff;
+            } else if(orderBy == "Disc_Year") {
+                orderByFunc = item => item.Disc_Year;
+            }*/
+
             Console.WriteLine("Filtrar pelo nome");
+
 
             if (input != null) {
                 if (isAscending == true) {
+                    /*filterByName =
+                        (from item in filterByName
+                         where item.Value.HostName.StartsWith(input.ToUpper())
+                         select item).OrderBy(x => orderByFunc)
+                         .ToDictionary(p => p.Key, p => p.Value);*/
+
                     filterByName =
                         (from item in filterByName
                          where item.Value.HostName.StartsWith(input.ToUpper())
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                          .ToDictionary(p => p.Key, p => p.Value);
+
+
                 } else if (isAscending == false) {
                     filterByName =
                         (from item in filterByName
                          where item.Value.HostName.StartsWith(input.ToUpper())
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc)
                          .ToDictionary(p => p.Key, p => p.Value);
                 } else if (isAscending == null) {
                     filterByName =
@@ -65,14 +88,14 @@ namespace projeto1LP2
                 foreach (KeyValuePair<int, Star> item in filterByName) {
                     Console.WriteLine(string.Format($"ID: " +
                         $"{item.Key,-5} | Star: {item.Value.HostName,-30}" +
-                     $" | Planets: {item.Value.St_PlCount,-2}"));
+                     $" | Planets: {item.Value.St_PlCount,-2}  | Teff: {item.Value.St_Teff} "));
                 }
             } else {
                 // Imprimir
                 foreach (KeyValuePair<int, Star> item in filterByName) {
                     Console.WriteLine(string.Format($"ID: " +
                         $"{item.Key,-5} | Star: {item.Value.HostName,-30}" +
-                     $" | Planets: {item.Value.St_PlCount,-2}"));
+                     $" | Planets: {item.Value.St_PlCount,-2} | Teff: { item.Value.St_Teff}"));
                 }
             }
             Console.WriteLine("Dicionário filtro: " + filterByName.Count);
@@ -187,15 +210,13 @@ namespace projeto1LP2
                    where item.Value.Disc_Year > min && item.Value.Disc_Year < max
                    select item).OrderBy(x => x.Key)
                    .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if(isAscending == false) {
+                } else if (isAscending == false) {
                     filterByDiscoveryYear =
                  (from item in filterByDiscoveryYear
                   where item.Value.Disc_Year > min && item.Value.Disc_Year < max
                   select item).OrderByDescending(x => x.Key)
                   .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if(isAscending == null) {
+                } else if (isAscending == null) {
                     filterByDiscoveryYear =
                (from item in filterByDiscoveryYear
                 where item.Value.Disc_Year > min && item.Value.Disc_Year < max
@@ -220,7 +241,7 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de estrelas pela temperatura.
-        public void SearchByTeff(double? min, double? max, bool ?isAscending) {
+        public void SearchByTeff(double? min, double? max, bool? isAscending) {
             Facade.starList = filterByTaff; // obrigatório!!!!
 
             Console.WriteLine("Filtrar pela temperatura");
@@ -232,15 +253,13 @@ namespace projeto1LP2
                     where item.Value.St_Teff < max
                     select item).OrderBy(x => x.Key)
                     .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if(isAscending == false) {
+                } else if (isAscending == false) {
                     filterByTaff =
                  (from item in filterByTaff
                   where item.Value.St_Teff < max
                   select item).OrderByDescending(x => x.Key)
                   .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if(isAscending == null) {
+                } else if (isAscending == null) {
                     filterByTaff =
                 (from item in filterByTaff
                  where item.Value.St_Teff < max
@@ -259,15 +278,13 @@ namespace projeto1LP2
                     where item.Value.St_Teff > min
                     select item).OrderBy(x => x.Key)
                     .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if(isAscending == false) {
+                } else if (isAscending == false) {
                     filterByTaff =
                (from item in filterByTaff
                 where item.Value.St_Teff > min
                 select item).OrderByDescending(x => x.Key)
                 .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if(isAscending == null) {
+                } else if (isAscending == null) {
                     filterByTaff =
                (from item in filterByTaff
                 where item.Value.St_Teff > min
@@ -286,15 +303,13 @@ namespace projeto1LP2
                     where item.Value.St_Teff > min && item.Value.St_Teff < max
                     select item).OrderBy(x => x.Key)
                     .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if(isAscending == false) {
+                } else if (isAscending == false) {
                     filterByTaff =
                  (from item in filterByTaff
                   where item.Value.St_Teff > min && item.Value.St_Teff < max
                   select item).OrderByDescending(x => x.Key)
                   .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if(isAscending == null) {
+                } else if (isAscending == null) {
                     filterByTaff =
                  (from item in filterByTaff
                   where item.Value.St_Teff > min && item.Value.St_Teff < max
@@ -318,7 +333,7 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de estrelas pelo raio.
-        public void SearchByRad(double? min, double? max, bool ?isAscending) {
+        public void SearchByRad(double? min, double? max, bool? isAscending) {
             Facade.starList = filterByRad; // obrigatório!!!!
 
             Console.WriteLine("Filtrar pelo raio");
@@ -330,14 +345,12 @@ namespace projeto1LP2
                                     where item.Value.St_Rad > min
                                     select item).OrderBy(x => x.Key).
                                     ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if(isAscending == false) {
+                } else if (isAscending == false) {
                     (from item in filterByRad
                      where item.Value.St_Rad > min
                      select item).OrderByDescending(x => x.Key).
                                     ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if(isAscending == null) {
+                } else if (isAscending == null) {
                     (from item in filterByRad
                      where item.Value.St_Rad > min
                      select item).ToDictionary(p => p.Key, p => p.Value);
@@ -355,15 +368,13 @@ namespace projeto1LP2
                                    where item.Value.St_Rad < max
                                    select item).OrderBy(x => x.Key)
                                    .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if(isAscending == false) {
+                } else if (isAscending == false) {
                     filterByRad =
                                  (from item in filterByRad
                                   where item.Value.St_Rad < max
                                   select item).OrderByDescending(x => x.Key)
                                   .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if(isAscending == null) {
+                } else if (isAscending == null) {
                     filterByRad =
                                  (from item in filterByRad
                                   where item.Value.St_Rad < max
@@ -383,15 +394,13 @@ namespace projeto1LP2
                     where item.Value.St_Rad > min && item.Value.St_Rad < max
                     select item).OrderBy(x => x.Key)
                     .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if(isAscending == false) {
+                } else if (isAscending == false) {
                     filterByRad =
                   (from item in filterByRad
                    where item.Value.St_Rad > min && item.Value.St_Rad < max
                    select item).OrderByDescending(x => x.Key)
                    .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if(isAscending == null) {
+                } else if (isAscending == null) {
                     filterByRad =
                   (from item in filterByRad
                    where item.Value.St_Rad > min && item.Value.St_Rad < max
@@ -417,7 +426,7 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de estrelas pela massa.
-        public void SearchByMass(double? min, double? max, bool ?isAscending) {
+        public void SearchByMass(double? min, double? max, bool? isAscending) {
             Facade.starList = filterByMass; // obrigatório!!!!
 
             Console.WriteLine("Filtrar pela massa");
@@ -429,15 +438,13 @@ namespace projeto1LP2
                    where item.Value.St_Mass > min
                    select item).OrderBy(x => x.Key)
                    .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if(isAscending == false) {
+                } else if (isAscending == false) {
                     filterByMass =
                (from item in filterByMass
                 where item.Value.St_Mass > min
                 select item).OrderByDescending(x => x.Key)
                 .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if(isAscending == null) {
+                } else if (isAscending == null) {
                     filterByMass =
             (from item in filterByMass
              where item.Value.St_Mass > min
@@ -457,8 +464,7 @@ namespace projeto1LP2
                    where item.Value.St_Mass < max
                    select item).OrderBy(x => x.Key)
                    .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if(isAscending == false) {
+                } else if (isAscending == false) {
                     filterByMass =
                  (from item in filterByMass
                   where item.Value.St_Mass < max
@@ -484,15 +490,13 @@ namespace projeto1LP2
                    where item.Value.St_Mass > min && item.Value.St_Mass < max
                    select item).OrderBy(x => x.Key)
                    .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if (isAscending == false) {
+                } else if (isAscending == false) {
                     filterByMass =
                   (from item in filterByMass
                    where item.Value.St_Mass > min && item.Value.St_Mass < max
                    select item).OrderByDescending(x => x.Key)
                    .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if (isAscending == null) {
+                } else if (isAscending == null) {
                     filterByMass =
                   (from item in filterByMass
                    where item.Value.St_Mass > min && item.Value.St_Mass < max
@@ -517,7 +521,7 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de estrelas pela idade.
-        public void SearchByAge(double? min, double? max, bool ?isAscending) {
+        public void SearchByAge(double? min, double? max, bool? isAscending) {
             Facade.starList = filterByAge; // obrigatório!!!!
 
             Console.WriteLine("Filtrar pela idade");
@@ -529,15 +533,13 @@ namespace projeto1LP2
                     where item.Value.St_Age > min
                     select item).OrderBy(x => x.Key)
                     .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if (isAscending == false) {
+                } else if (isAscending == false) {
                     filterByAge =
                    (from item in filterByAge
                     where item.Value.St_Age > min
                     select item).OrderByDescending(x => x.Key)
                     .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if (isAscending == null) {
+                } else if (isAscending == null) {
                     filterByAge =
                    (from item in filterByAge
                     where item.Value.St_Age > min
@@ -557,15 +559,13 @@ namespace projeto1LP2
                     where item.Value.St_Age < max
                     select item).OrderBy(x => x.Key)
                     .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if (isAscending == true) {
+                } else if (isAscending == true) {
                     filterByAge =
                    (from item in filterByAge
                     where item.Value.St_Age < max
                     select item).OrderByDescending(x => x.Key)
                     .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if (isAscending == true) {
+                } else if (isAscending == true) {
                     filterByAge =
                    (from item in filterByAge
                     where item.Value.St_Age < max
@@ -585,8 +585,7 @@ namespace projeto1LP2
                     where item.Value.St_Age > min && item.Value.St_Age < max
                     select item).OrderBy(x => x.Key)
                     .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if (isAscending == true) {
+                } else if (isAscending == true) {
                     filterByAge =
                    (from item in filterByAge
                     where item.Value.St_Age > min && item.Value.St_Age < max
@@ -617,7 +616,7 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de estrelas pela velocidade de rotação.
-        public void SearchByVsin(double? min, double? max, bool ?isAscending) {
+        public void SearchByVsin(double? min, double? max, bool? isAscending) {
             Facade.starList = filterByVsin; // obrigatório!!!!
 
             Console.WriteLine("Filtrar pela velocidade de rotação");
@@ -629,8 +628,7 @@ namespace projeto1LP2
                                      where item.Value.St_Vsin > min
                                      select item).OrderBy(x => x.Key)
                                      .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if (isAscending == true) {
+                } else if (isAscending == true) {
                     filterByVsin =
                                     (from item in filterByVsin
                                      where item.Value.St_Vsin > min
@@ -657,8 +655,7 @@ namespace projeto1LP2
                      where item.Value.St_Vsin < max
                      select item).OrderBy(x => x.Key)
                      .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if (isAscending == false) {
+                } else if (isAscending == false) {
                     filterByVsin =
                     (from item in filterByVsin
                      where item.Value.St_Vsin < max
@@ -684,8 +681,7 @@ namespace projeto1LP2
                      where item.Value.St_Vsin > min && item.Value.St_Vsin < max
                      select item).OrderBy(x => x.Key)
                      .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if (isAscending == false) {
+                } else if (isAscending == false) {
                     filterByVsin =
                     (from item in filterByVsin
                      where item.Value.St_Vsin > min && item.Value.St_Vsin < max
@@ -716,7 +712,7 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de estrelas pelo período de rotação.
-        public void SearchByRotp(double? min, double? max, bool ?isAscending) {
+        public void SearchByRotp(double? min, double? max, bool? isAscending) {
             Facade.starList = filterByRotp; // obrigatório!!!!
 
             Console.WriteLine("Filtrar pelo período de rotação");
@@ -728,8 +724,7 @@ namespace projeto1LP2
                     where item.Value.St_Rotp > min
                     select item).OrderBy(x => x.Key)
                     .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if (isAscending == false) {
+                } else if (isAscending == false) {
                     filterByRotp =
                    (from item in filterByRotp
                     where item.Value.St_Rotp > min
@@ -754,15 +749,13 @@ namespace projeto1LP2
                     where item.Value.St_Rotp < max
                     select item).OrderBy(x => x.Key)
                     .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if (isAscending == false) {
+                } else if (isAscending == false) {
                     filterByRotp =
                    (from item in filterByRotp
                     where item.Value.St_Rotp < max
                     select item).OrderByDescending(x => x.Key)
                     .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if (isAscending == null) {
+                } else if (isAscending == null) {
                     filterByRotp =
                    (from item in filterByRotp
                     where item.Value.St_Rotp < max
@@ -782,8 +775,7 @@ namespace projeto1LP2
                     where item.Value.St_Rotp > min && item.Value.St_Rotp < max
                     select item).OrderBy(x => x.Key)
                     .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if (isAscending == false) {
+                } else if (isAscending == false) {
                     filterByRotp =
                    (from item in filterByRotp
                     where item.Value.St_Rotp > min && item.Value.St_Rotp < max
@@ -814,7 +806,7 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de estrelas pela distância.
-        public void SearchByDist(double? min, double? max, bool ?isAscending) {
+        public void SearchByDist(double? min, double? max, bool? isAscending) {
             Facade.starList = filterByDyst; // obrigatório!!!!
 
             Console.WriteLine("Filtrar pela distância");
@@ -826,8 +818,7 @@ namespace projeto1LP2
                      where item.Value.Sy_Dist > min
                      select item).OrderBy(x => x.Key)
                      .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if (isAscending == false) {
+                } else if (isAscending == false) {
                     filterByDyst =
                     (from item in filterByDyst
                      where item.Value.Sy_Dist > min
@@ -853,8 +844,7 @@ namespace projeto1LP2
                      where item.Value.Sy_Dist < max
                      select item).OrderBy(x => x.Key)
                      .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if (isAscending == false) {
+                } else if (isAscending == false) {
                     filterByDyst =
                     (from item in filterByDyst
                      where item.Value.Sy_Dist < max
@@ -881,15 +871,13 @@ namespace projeto1LP2
                      where item.Value.Sy_Dist > min && item.Value.Sy_Dist < max
                      select item).OrderBy(x => x.Key)
                      .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if (isAscending == false) {
+                } else if (isAscending == false) {
                     filterByDyst =
                     (from item in filterByDyst
                      where item.Value.Sy_Dist > min && item.Value.Sy_Dist < max
                      select item).OrderByDescending(x => x.Key)
                      .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if (isAscending == null) {
+                } else if (isAscending == null) {
                     filterByDyst =
                     (from item in filterByDyst
                      where item.Value.Sy_Dist > min && item.Value.Sy_Dist < max
@@ -914,7 +902,7 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de estrelas pela quantidade de planetas.
-        public void SearchByPlCount(double? min, double? max, bool ?isAscending) {
+        public void SearchByPlCount(double? min, double? max, bool? isAscending) {
             Facade.starList = filterByPlCount; // obrigatório!!!!
 
             Console.WriteLine("Filtrar pelo número de planetas");
@@ -926,15 +914,13 @@ namespace projeto1LP2
                   where item.Value.St_PlCount > min
                   select item).OrderBy(x => x.Key)
                   .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if (isAscending == false) {
+                } else if (isAscending == false) {
                     filterByPlCount =
                  (from item in filterByPlCount
                   where item.Value.St_PlCount > min
                   select item).OrderBy(x => x.Key)
                   .ToDictionary(p => p.Key, p => p.Value);
-                } 
-                else if (isAscending == null) {
+                } else if (isAscending == null) {
                     filterByPlCount =
                  (from item in filterByPlCount
                   where item.Value.St_PlCount > min
@@ -954,15 +940,13 @@ namespace projeto1LP2
                   where item.Value.St_PlCount < max
                   select item).OrderBy(x => x.Key)
                   .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if (isAscending == false) {
+                } else if (isAscending == false) {
                     filterByPlCount =
                  (from item in filterByPlCount
                   where item.Value.St_PlCount < max
                   select item).OrderBy(x => x.Key)
                   .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if (isAscending == null) {
+                } else if (isAscending == null) {
                     filterByPlCount =
                  (from item in filterByPlCount
                   where item.Value.St_PlCount < max
@@ -982,15 +966,13 @@ namespace projeto1LP2
                   where item.Value.St_PlCount > min && item.Value.St_PlCount < max
                   select item).OrderBy(x => x.Key)
                   .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if (isAscending == false) {
+                } else if (isAscending == false) {
                     filterByPlCount =
                  (from item in filterByPlCount
                   where item.Value.St_PlCount > min && item.Value.St_PlCount < max
                   select item).OrderByDescending(x => x.Key)
                   .ToDictionary(p => p.Key, p => p.Value);
-                }
-                else if (isAscending == null) {
+                } else if (isAscending == null) {
                     filterByPlCount =
                  (from item in filterByPlCount
                   where item.Value.St_PlCount > min && item.Value.St_PlCount < max
