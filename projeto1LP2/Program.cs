@@ -14,11 +14,8 @@ namespace projeto1LP2
             // testar filtros
             Facade facade = new Facade();
             facade.ReadFile();
-            facade.SearchByDiscoveryMethod("R");
-            facade.SearchByName("t");
-            // testar se o dicionário principal permance inalterado
+            facade.SearchByPlCount(10, 20, false, StarFields.St_Teff);
             Console.WriteLine("Dicionario principal: " + Facade.starList.Count);
-            Console.WriteLine("Dicionario principal: " + Facade.starList[0].HostName);
         }
     }
 }
