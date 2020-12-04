@@ -94,9 +94,11 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de planetas pelo nome.
-        public void SearchByPlanetName(string input, bool isAscending)
+        public void SearchByPlanetName(string input, bool isAscending, PlanetField fields)
         {
             Facade.planetList = filterByName;
+
+            CheckField(fields);
 
             Console.WriteLine("Filter by name");
 
@@ -107,7 +109,7 @@ namespace projeto1LP2
                     filterByName =
                         (from item in filterByName
                          where item.Value.Pl_Name.StartsWith(input)
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -115,7 +117,7 @@ namespace projeto1LP2
                     filterByName =
                         (from item in filterByName
                          where item.Value.Pl_Name.StartsWith(input)
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -138,9 +140,11 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de planetas pelo nome das suas estrelas.
-        public void SearchByPlanetHostName(string input, bool isAscending)
+        public void SearchByPlanetHostName(string input, bool isAscending, PlanetField fields)
         {
             Facade.planetList = filterByHostName;
+
+            CheckField(fields);
 
             Console.WriteLine("Filter by host star");
 
@@ -151,7 +155,7 @@ namespace projeto1LP2
                     filterByHostName =
                         (from item in filterByHostName
                          where item.Value.HostName.StartsWith(input)
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                          .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -159,7 +163,7 @@ namespace projeto1LP2
                     filterByHostName =
                         (from item in filterByHostName
                          where item.Value.HostName.StartsWith(input)
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -184,9 +188,11 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de planetas pelo método de descoberta.
-        public void SearchByPlanetDiscoveryMethod(string input, bool isAscending)
+        public void SearchByPlanetDiscoveryMethod(string input, bool isAscending, PlanetField fields)
         {
             Facade.planetList = filterByDiscoveryMethod; // obrigatório!!!!
+
+            CheckField(fields);
 
             Console.WriteLine("Filter by discovery method");
 
@@ -197,7 +203,7 @@ namespace projeto1LP2
                     filterByDiscoveryMethod =
                         (from item in filterByDiscoveryMethod
                          where item.Value.DiscoveryMethod.StartsWith(input)
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -205,7 +211,7 @@ namespace projeto1LP2
                     filterByDiscoveryMethod =
                         (from item in filterByDiscoveryMethod
                          where item.Value.DiscoveryMethod.StartsWith(input)
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -230,9 +236,11 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de planetas pelo ano de descoberta.
-        public void SearchByPlanetDiscoveryYear(int? min, int? max, bool isAscending)
+        public void SearchByPlanetDiscoveryYear(int? min, int? max, bool isAscending, PlanetField fields)
         {
             Facade.planetList = filterByDiscoveryYear;
+
+            CheckField(fields);
 
             Console.WriteLine("Filter by discovery year");
 
@@ -243,7 +251,7 @@ namespace projeto1LP2
                     filterByDiscoveryYear =
                         (from item in filterByDiscoveryYear
                          where item.Value.Disc_Year < max
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -251,7 +259,7 @@ namespace projeto1LP2
                     filterByDiscoveryYear =
                         (from item in filterByDiscoveryYear
                          where item.Value.Disc_Year < max
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -269,7 +277,7 @@ namespace projeto1LP2
                     filterByDiscoveryYear =
                         (from item in filterByDiscoveryYear
                          where item.Value.Disc_Year > min
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -277,7 +285,7 @@ namespace projeto1LP2
                     filterByDiscoveryYear =
                         (from item in filterByDiscoveryYear
                          where item.Value.Disc_Year > min
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -295,7 +303,7 @@ namespace projeto1LP2
                     filterByDiscoveryYear =
                         (from item in filterByDiscoveryYear
                          where item.Value.Disc_Year > min && item.Value.Disc_Year < max
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -303,7 +311,7 @@ namespace projeto1LP2
                     filterByDiscoveryYear =
                         (from item in filterByDiscoveryYear
                          where item.Value.Disc_Year > min && item.Value.Disc_Year < max
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -328,9 +336,11 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de planetas pelo periodo de orbita.
-        public void SearchByPlanetOrbitalPeriod(int? min, int? max, bool isAscending)
+        public void SearchByPlanetOrbitalPeriod(int? min, int? max, bool isAscending, PlanetField fields)
         {
             Facade.planetList = filterByOrbitalPeriod;
+
+            CheckField(fields);
 
             Console.WriteLine("Filter by orbital period");
 
@@ -341,7 +351,7 @@ namespace projeto1LP2
                     filterByOrbitalPeriod =
                         (from item in filterByOrbitalPeriod
                          where item.Value.Pl_Orbper < max
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -349,7 +359,7 @@ namespace projeto1LP2
                     filterByOrbitalPeriod =
                         (from item in filterByOrbitalPeriod
                          where item.Value.Pl_Orbper < max
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -367,7 +377,7 @@ namespace projeto1LP2
                     filterByOrbitalPeriod =
                         (from item in filterByOrbitalPeriod
                          where item.Value.Pl_Orbper > min
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -375,7 +385,7 @@ namespace projeto1LP2
                     filterByOrbitalPeriod =
                         (from item in filterByOrbitalPeriod
                          where item.Value.Pl_Orbper > min
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -393,7 +403,7 @@ namespace projeto1LP2
                     filterByOrbitalPeriod =
                         (from item in filterByOrbitalPeriod
                          where item.Value.Pl_Orbper > min && item.Value.Pl_Orbper < max
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -401,7 +411,7 @@ namespace projeto1LP2
                     filterByOrbitalPeriod =
                         (from item in filterByOrbitalPeriod
                          where item.Value.Pl_Orbper > min && item.Value.Pl_Orbper < max
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -426,9 +436,11 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de planetas pelo raio.
-        public void SearchByPlanetRadius(double? min, double? max, bool isAscending)
+        public void SearchByPlanetRadius(double? min, double? max, bool isAscending, PlanetField fields)
         {
             Facade.planetList = filterByRadius;
+
+            CheckField(fields);
 
             Console.WriteLine("Filter by radius");
 
@@ -439,7 +451,7 @@ namespace projeto1LP2
                     filterByRadius =
                         (from item in filterByRadius
                          where item.Value.Pl_Rade < max
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -447,7 +459,7 @@ namespace projeto1LP2
                     filterByRadius =
                         (from item in filterByRadius
                          where item.Value.Pl_Rade < max
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -465,7 +477,7 @@ namespace projeto1LP2
                     filterByRadius =
                         (from item in filterByRadius
                          where item.Value.Pl_Rade > min
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -473,7 +485,7 @@ namespace projeto1LP2
                     filterByRadius =
                         (from item in filterByRadius
                          where item.Value.Pl_Rade > min
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -491,7 +503,7 @@ namespace projeto1LP2
                     filterByRadius =
                         (from item in filterByRadius
                          where item.Value.Pl_Rade > min && item.Value.Pl_Rade < max
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -499,7 +511,7 @@ namespace projeto1LP2
                     filterByRadius =
                         (from item in filterByRadius
                          where item.Value.Pl_Rade > min && item.Value.Pl_Rade < max
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -524,9 +536,11 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de planetas pelo raio da sua estrela.
-        public void SearchByPlanetHostRad(double? min, double? max, bool isAscending)
+        public void SearchByPlanetHostRad(double? min, double? max, bool isAscending, PlanetField fields)
         {
             Facade.planetList = filterByHostRad;
+
+            CheckField(fields);
 
             Console.WriteLine("Filter by planet hosting star radius");
 
@@ -537,7 +551,7 @@ namespace projeto1LP2
                     filterByHostRad =
                         (from item in filterByHostRad
                          where item.Value.St_Rad < max
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -545,7 +559,7 @@ namespace projeto1LP2
                     filterByHostRad =
                         (from item in filterByHostRad
                          where item.Value.St_Rad < max
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -563,7 +577,7 @@ namespace projeto1LP2
                     filterByHostRad =
                         (from item in filterByHostRad
                          where item.Value.St_Rad > min
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -571,7 +585,7 @@ namespace projeto1LP2
                     filterByHostRad =
                         (from item in filterByHostRad
                          where item.Value.St_Rad > min
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -589,7 +603,7 @@ namespace projeto1LP2
                     filterByHostRad =
                         (from item in filterByHostRad
                          where item.Value.St_Rad > min && item.Value.St_Rad < max
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -597,7 +611,7 @@ namespace projeto1LP2
                     filterByHostRad =
                         (from item in filterByHostRad
                          where item.Value.St_Rad > min && item.Value.St_Rad < max
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -622,9 +636,11 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de planetas pela temperatura de equilibrio.
-        public void SearchByPlanetEqt(int? min, int? max, bool isAscending)
+        public void SearchByPlanetEqt(int? min, int? max, bool isAscending, PlanetField fields)
         {
             Facade.planetList = filterByEqt;
+
+            CheckField(fields);
 
             Console.WriteLine("Filter by equilibrium temperature");
 
@@ -635,7 +651,7 @@ namespace projeto1LP2
                     filterByEqt =
                         (from item in filterByEqt
                          where item.Value.Pl_Eqt < max
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -643,7 +659,7 @@ namespace projeto1LP2
                     filterByEqt =
                         (from item in filterByEqt
                          where item.Value.Pl_Eqt < max
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -661,7 +677,7 @@ namespace projeto1LP2
                     filterByEqt =
                         (from item in filterByEqt
                          where item.Value.Pl_Eqt > min
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -669,7 +685,7 @@ namespace projeto1LP2
                     filterByEqt =
                         (from item in filterByEqt
                          where item.Value.Pl_Eqt > min
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -687,7 +703,7 @@ namespace projeto1LP2
                     filterByEqt =
                         (from item in filterByEqt
                          where item.Value.Pl_Eqt > min && item.Value.Pl_Eqt < max
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -695,7 +711,7 @@ namespace projeto1LP2
                     filterByEqt =
                         (from item in filterByEqt
                          where item.Value.Pl_Eqt > min && item.Value.Pl_Eqt < max
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -720,9 +736,11 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de planetas pela temperatura efetiva da sua estrela.
-        public void SearchByPlanetHostTeff(int? min, int? max, bool isAscending)
+        public void SearchByPlanetHostTeff(int? min, int? max, bool isAscending, PlanetField fields)
         {
             Facade.planetList = filterByHostTeff;
+
+            CheckField(fields);
 
             Console.WriteLine("Filter by the planet hosting star temperature");
 
@@ -733,7 +751,7 @@ namespace projeto1LP2
                     filterByHostTeff =
                         (from item in filterByHostTeff
                          where item.Value.St_Teff < max
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -741,7 +759,7 @@ namespace projeto1LP2
                     filterByHostTeff =
                         (from item in filterByHostTeff
                          where item.Value.St_Teff < max
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -759,7 +777,7 @@ namespace projeto1LP2
                     filterByHostTeff =
                         (from item in filterByHostTeff
                          where item.Value.St_Teff > min
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -767,7 +785,7 @@ namespace projeto1LP2
                     filterByHostTeff =
                         (from item in filterByHostTeff
                          where item.Value.St_Teff > min
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -785,7 +803,7 @@ namespace projeto1LP2
                     filterByHostTeff =
                         (from item in filterByHostTeff
                          where item.Value.St_Teff > min && item.Value.St_Teff < max
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -793,7 +811,7 @@ namespace projeto1LP2
                     filterByHostTeff =
                         (from item in filterByHostTeff
                          where item.Value.St_Teff > min && item.Value.St_Teff < max
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -818,9 +836,11 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de planetas pela massa.
-        public void SearchByPlanetMass(double? min, double? max, bool isAscending)
+        public void SearchByPlanetMass(double? min, double? max, bool isAscending, PlanetField fields)
         {
             Facade.planetList = filterByMass;
+
+            CheckField(fields);
 
             Console.WriteLine("Filter by mass");
 
@@ -831,7 +851,7 @@ namespace projeto1LP2
                     filterByMass =
                         (from item in filterByMass
                          where item.Value.Pl_Masse < max
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -839,7 +859,7 @@ namespace projeto1LP2
                     filterByMass =
                         (from item in filterByMass
                          where item.Value.Pl_Masse < max
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -857,7 +877,7 @@ namespace projeto1LP2
                     filterByMass =
                         (from item in filterByMass
                          where item.Value.Pl_Masse > min
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -865,7 +885,7 @@ namespace projeto1LP2
                     filterByMass =
                         (from item in filterByMass
                          where item.Value.Pl_Masse > min
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -883,7 +903,7 @@ namespace projeto1LP2
                     filterByMass =
                         (from item in filterByMass
                          where item.Value.Pl_Masse > min && item.Value.Pl_Masse < max
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -891,7 +911,7 @@ namespace projeto1LP2
                     filterByMass =
                         (from item in filterByMass
                          where item.Value.Pl_Masse < max && item.Value.Pl_Masse < max
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -916,9 +936,11 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de planetas pela massa da sua estrela.
-        public void SearchByPlanetHostMass(double? min, double? max, bool isAscending)
+        public void SearchByPlanetHostMass(double? min, double? max, bool isAscending, PlanetField fields)
         {
             Facade.planetList = filterByHostMass;
+
+            CheckField(fields);
 
             Console.WriteLine("Filter by planet host star mass");
 
@@ -929,7 +951,7 @@ namespace projeto1LP2
                     filterByHostMass =
                         (from item in filterByHostMass
                          where item.Value.St_Mass < max
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -937,7 +959,7 @@ namespace projeto1LP2
                     filterByHostMass =
                         (from item in filterByHostMass
                          where item.Value.St_Mass < max
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -955,7 +977,7 @@ namespace projeto1LP2
                     filterByHostMass =
                         (from item in filterByHostMass
                          where item.Value.St_Mass > min
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -963,7 +985,7 @@ namespace projeto1LP2
                     filterByHostMass =
                         (from item in filterByHostMass
                          where item.Value.St_Mass > min
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -981,7 +1003,7 @@ namespace projeto1LP2
                     filterByHostMass =
                         (from item in filterByHostMass
                          where item.Value.St_Mass > min && item.Value.St_Mass < max
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -989,7 +1011,7 @@ namespace projeto1LP2
                     filterByHostMass =
                         (from item in filterByHostMass
                          where item.Value.St_Mass > min && item.Value.St_Mass < max
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -1014,9 +1036,11 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de planetas pela idade da sua estrela.
-        public void SearchByPlanetHostAge(int? min, int? max, bool isAscending)
+        public void SearchByPlanetHostAge(int? min, int? max, bool isAscending, PlanetField fields)
         {
             Facade.planetList = filterByHostAge;
+
+            CheckField(fields);
 
             Console.WriteLine("Filter by planet host star age");
 
@@ -1027,7 +1051,7 @@ namespace projeto1LP2
                     filterByHostAge =
                         (from item in filterByHostAge
                          where item.Value.St_Age < max
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -1035,7 +1059,7 @@ namespace projeto1LP2
                     filterByHostAge =
                         (from item in filterByHostAge
                          where item.Value.St_Age < max
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -1053,7 +1077,7 @@ namespace projeto1LP2
                     filterByHostAge =
                         (from item in filterByHostAge
                          where item.Value.St_Age > min
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -1061,7 +1085,7 @@ namespace projeto1LP2
                     filterByHostAge =
                         (from item in filterByHostAge
                          where item.Value.St_Age > min
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -1079,7 +1103,7 @@ namespace projeto1LP2
                     filterByHostAge =
                         (from item in filterByHostAge
                          where item.Value.St_Age > min && item.Value.St_Age < max
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -1087,7 +1111,7 @@ namespace projeto1LP2
                     filterByHostAge =
                         (from item in filterByHostAge
                          where item.Value.St_Age > min && item.Value.St_Age < max
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -1112,9 +1136,11 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de planetas pela velocidade de rotação da sua estrela.
-        public void SearchByPlanetHostVsin(double? min, double? max, bool isAscending)
+        public void SearchByPlanetHostVsin(double? min, double? max, bool isAscending, PlanetField fields)
         {
             Facade.planetList = filterByHostVsin;
+
+            CheckField(fields);
 
             Console.WriteLine("Filter by planet host star rotation speed");
 
@@ -1125,7 +1151,7 @@ namespace projeto1LP2
                     filterByHostVsin =
                         (from item in filterByHostVsin
                          where item.Value.St_Vsin < max
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                          .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -1133,7 +1159,7 @@ namespace projeto1LP2
                     filterByHostVsin =
                         (from item in filterByHostVsin
                          where item.Value.St_Vsin < max
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                          .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -1151,7 +1177,7 @@ namespace projeto1LP2
                     filterByHostVsin =
                         (from item in filterByHostVsin
                          where item.Value.St_Vsin > min
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -1159,7 +1185,7 @@ namespace projeto1LP2
                     filterByHostVsin =
                         (from item in filterByHostVsin
                          where item.Value.St_Vsin > min
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -1177,7 +1203,7 @@ namespace projeto1LP2
                     filterByHostVsin =
                         (from item in filterByHostVsin
                          where item.Value.St_Vsin > min && item.Value.St_Vsin < max
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                          .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -1185,7 +1211,7 @@ namespace projeto1LP2
                     filterByHostVsin =
                          (from item in filterByHostVsin
                           where item.Value.St_Vsin > min && item.Value.St_Vsin < max
-                          select item).OrderByDescending(x => x.Key)
+                          select item).OrderByDescending(x => orderByFunc(x))
                          .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -1210,9 +1236,11 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de planetas pelo período de rotação da sua estrela.
-        public void SearchByPlanetHostRotp(int? min, int? max, bool isAscending)
+        public void SearchByPlanetHostRotp(int? min, int? max, bool isAscending, PlanetField fields)
         {
             Facade.planetList = filterByHostRotp;
+
+            CheckField(fields);
 
             Console.WriteLine("Filter by planet host star rotation period");
 
@@ -1223,7 +1251,7 @@ namespace projeto1LP2
                     filterByHostRotp =
                         (from item in filterByHostRotp
                          where item.Value.St_Rotp < max
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -1231,7 +1259,7 @@ namespace projeto1LP2
                     filterByHostRotp =
                         (from item in filterByHostRotp
                          where item.Value.St_Rotp < max
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -1249,7 +1277,7 @@ namespace projeto1LP2
                     filterByHostRotp =
                         (from item in filterByHostRotp
                          where item.Value.St_Rotp > min
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                          .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -1257,7 +1285,7 @@ namespace projeto1LP2
                     filterByHostRotp =
                         (from item in filterByHostRotp
                          where item.Value.St_Rotp > min
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -1275,7 +1303,7 @@ namespace projeto1LP2
                     filterByHostRotp =
                         (from item in filterByHostRotp
                          where item.Value.St_Rotp > min && item.Value.St_Rotp < max
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -1283,7 +1311,7 @@ namespace projeto1LP2
                     filterByHostRotp =
                         (from item in filterByHostRotp
                          where item.Value.St_Rotp > min && item.Value.St_Rotp < max
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -1308,9 +1336,11 @@ namespace projeto1LP2
         }
 
         // Método de pesquisa de planetas pela distância do sol até a sua estrela.
-        public void SearchByPlanetHostDist(double? min, double? max, bool isAscending)
+        public void SearchByPlanetHostDist(double? min, double? max, bool isAscending, PlanetField fields)
         {
             Facade.planetList = filterByHostDist;
+
+            CheckField(fields);
 
             Console.WriteLine("Filter by distance from the sun to the host star");
 
@@ -1321,7 +1351,7 @@ namespace projeto1LP2
                     filterByHostDist =
                         (from item in filterByHostDist
                          where item.Value.Sy_Dist < max
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                          .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -1329,7 +1359,7 @@ namespace projeto1LP2
                     filterByHostDist =
                         (from item in filterByHostDist
                          where item.Value.Sy_Dist < max
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -1347,7 +1377,7 @@ namespace projeto1LP2
                     filterByHostDist =
                         (from item in filterByHostDist
                          where item.Value.Sy_Dist > min
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -1355,7 +1385,7 @@ namespace projeto1LP2
                     filterByHostDist =
                         (from item in filterByHostDist
                          where item.Value.Sy_Dist > min
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -1373,7 +1403,7 @@ namespace projeto1LP2
                     filterByHostDist =
                         (from item in filterByHostDist
                          where item.Value.Sy_Dist > min && item.Value.Sy_Dist < max
-                         select item).OrderBy(x => x.Key)
+                         select item).OrderBy(x => orderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -1381,7 +1411,7 @@ namespace projeto1LP2
                     filterByHostDist =
                         (from item in filterByHostDist
                          where item.Value.Sy_Dist > min && item.Value.Sy_Dist < max
-                         select item).OrderByDescending(x => x.Key)
+                         select item).OrderByDescending(x => orderByFunc(x))
                          .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir

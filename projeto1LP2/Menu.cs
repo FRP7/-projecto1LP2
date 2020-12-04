@@ -105,7 +105,7 @@ namespace projeto1LP2
                                             System.Threading.Thread.Sleep(500); Console.WriteLine(" .\n");
                                             System.Threading.Thread.Sleep(500);
                                             facade.SearchByPlanetName(
-                                                filterString, true);
+                                                filterString, true, PlanetField.Disc_Year);
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
@@ -116,7 +116,7 @@ namespace projeto1LP2
                                             System.Threading.Thread.Sleep(500); Console.WriteLine(" .\n");
                                             System.Threading.Thread.Sleep(500);
                                             facade.SearchByPlanetName(
-                                                filterString, false);
+                                                filterString, false, PlanetField.Disc_Year);
                                             MainMenu();
                                         }
                                         else
@@ -155,7 +155,7 @@ namespace projeto1LP2
                                             System.Threading.Thread.Sleep(500); Console.WriteLine(" .\n");
                                             System.Threading.Thread.Sleep(500);
                                             facade.SearchByPlanetHostName(
-                                                filterString, true);
+                                                filterString, true, PlanetField.Disc_Year);
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
@@ -166,7 +166,7 @@ namespace projeto1LP2
                                             System.Threading.Thread.Sleep(500); Console.WriteLine(" .\n");
                                             System.Threading.Thread.Sleep(500);
                                             facade.SearchByPlanetHostName(
-                                                filterString, false);
+                                                filterString, false, PlanetField.Disc_Year);
                                             MainMenu();
                                         }
                                         else
@@ -205,7 +205,7 @@ namespace projeto1LP2
                                             System.Threading.Thread.Sleep(500); Console.WriteLine(" .\n");
                                             System.Threading.Thread.Sleep(500);
                                             facade.SearchByPlanetDiscoveryMethod(
-                                                filterString, true);
+                                                filterString, true, PlanetField.Disc_Year);
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
@@ -216,7 +216,7 @@ namespace projeto1LP2
                                             System.Threading.Thread.Sleep(500); Console.WriteLine(" .\n");
                                             System.Threading.Thread.Sleep(500);
                                             facade.SearchByPlanetDiscoveryMethod(
-                                                filterString, false);
+                                                filterString, false, PlanetField.Disc_Year);
                                             MainMenu();
                                         }
                                         else
@@ -259,7 +259,7 @@ namespace projeto1LP2
                                             System.Threading.Thread.Sleep(500); Console.WriteLine(" .\n");
                                             System.Threading.Thread.Sleep(500);
                                             facade.SearchByPlanetDiscoveryYear(
-                                                filterIntMin, filterIntMax, true);
+                                                filterIntMin, filterIntMax, true, PlanetField.Disc_Year);
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
@@ -270,7 +270,7 @@ namespace projeto1LP2
                                             System.Threading.Thread.Sleep(500); Console.WriteLine(" .\n");
                                             System.Threading.Thread.Sleep(500);
                                             facade.SearchByPlanetDiscoveryYear(
-                                                filterIntMin, filterIntMax, false);
+                                                filterIntMin, filterIntMax, false, PlanetField.Disc_Year);
                                             MainMenu();
                                         }
                                         else
@@ -313,7 +313,7 @@ namespace projeto1LP2
                                             System.Threading.Thread.Sleep(500); Console.WriteLine(" .\n");
                                             System.Threading.Thread.Sleep(500);
                                             facade.SearchByPlanetOrbitalPeriod(
-                                                filterIntMin, filterIntMax, true);
+                                                filterIntMin, filterIntMax, true, PlanetField.Disc_Year);
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
@@ -324,7 +324,7 @@ namespace projeto1LP2
                                             System.Threading.Thread.Sleep(500); Console.WriteLine(" .\n");
                                             System.Threading.Thread.Sleep(500);
                                             facade.SearchByPlanetOrbitalPeriod(
-                                                filterIntMin, filterIntMax, false);
+                                                filterIntMin, filterIntMax, false, PlanetField.Disc_Year);
                                             MainMenu();
                                         }
                                         else
@@ -367,7 +367,7 @@ namespace projeto1LP2
                                             System.Threading.Thread.Sleep(500); Console.WriteLine(" .\n");
                                             System.Threading.Thread.Sleep(500);
                                             facade.SearchByPlanetRadius(
-                                                filterDoubleMin, filterDoubleMax, true);
+                                                filterDoubleMin, filterDoubleMax, true, PlanetField.Disc_Year);
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
@@ -378,7 +378,7 @@ namespace projeto1LP2
                                             System.Threading.Thread.Sleep(500); Console.WriteLine(" .\n");
                                             System.Threading.Thread.Sleep(500);
                                             facade.SearchByPlanetRadius(
-                                                filterDoubleMin, filterDoubleMax, false);
+                                                filterDoubleMin, filterDoubleMax, false, PlanetField.Disc_Year);
                                             MainMenu();
                                         }
                                         else
@@ -421,7 +421,7 @@ namespace projeto1LP2
                                             System.Threading.Thread.Sleep(500); Console.WriteLine(" .\n");
                                             System.Threading.Thread.Sleep(500);
                                             facade.SearchByPlanetHostRad(
-                                                filterDoubleMin, filterDoubleMax, true);
+                                                filterDoubleMin, filterDoubleMax, true, PlanetField.Disc_Year);
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
@@ -432,7 +432,7 @@ namespace projeto1LP2
                                             System.Threading.Thread.Sleep(500); Console.WriteLine(" .\n");
                                             System.Threading.Thread.Sleep(500);
                                             facade.SearchByPlanetHostRad(
-                                                filterDoubleMin, filterDoubleMax, false);
+                                                filterDoubleMin, filterDoubleMax, false, PlanetField.Disc_Year);
                                             MainMenu();
                                         }
                                         else
@@ -475,7 +475,7 @@ namespace projeto1LP2
                                             System.Threading.Thread.Sleep(500); Console.WriteLine(" .\n");
                                             System.Threading.Thread.Sleep(500);
                                             facade.SearchByPlanetEqt(
-                                                filterIntMin, filterIntMax, true);
+                                                filterIntMin, filterIntMax, true, PlanetField.Disc_Year);
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
@@ -486,7 +486,7 @@ namespace projeto1LP2
                                             System.Threading.Thread.Sleep(500); Console.WriteLine(" .\n");
                                             System.Threading.Thread.Sleep(500);
                                             facade.SearchByPlanetEqt(
-                                                filterIntMin, filterIntMax, false);
+                                                filterIntMin, filterIntMax, false, PlanetField.Disc_Year);
                                             MainMenu();
                                         }
                                         else
@@ -529,7 +529,7 @@ namespace projeto1LP2
                                             System.Threading.Thread.Sleep(500); Console.WriteLine(" .\n");
                                             System.Threading.Thread.Sleep(500);
                                             facade.SearchByPlanetHostTeff(
-                                                filterIntMin, filterIntMax, true);
+                                                filterIntMin, filterIntMax, true, PlanetField.Disc_Year);
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
@@ -540,7 +540,7 @@ namespace projeto1LP2
                                             System.Threading.Thread.Sleep(500); Console.WriteLine(" .\n");
                                             System.Threading.Thread.Sleep(500);
                                             facade.SearchByPlanetHostTeff(
-                                                filterIntMin, filterIntMax, false);
+                                                filterIntMin, filterIntMax, false, PlanetField.Disc_Year);
                                             MainMenu();
                                         }
                                         else
@@ -583,7 +583,7 @@ namespace projeto1LP2
                                             System.Threading.Thread.Sleep(500); Console.WriteLine(" .\n");
                                             System.Threading.Thread.Sleep(500);
                                             facade.SearchByPlanetMass(
-                                                filterDoubleMin, filterDoubleMax, true);
+                                                filterDoubleMin, filterDoubleMax, true, PlanetField.Disc_Year);
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
@@ -594,7 +594,7 @@ namespace projeto1LP2
                                             System.Threading.Thread.Sleep(500); Console.WriteLine(" .\n");
                                             System.Threading.Thread.Sleep(500);
                                             facade.SearchByPlanetMass(
-                                                filterDoubleMin, filterDoubleMax, false);
+                                                filterDoubleMin, filterDoubleMax, false, PlanetField.Disc_Year);
                                             MainMenu();
                                         }
                                         else
@@ -637,7 +637,7 @@ namespace projeto1LP2
                                             System.Threading.Thread.Sleep(500); Console.WriteLine(" .\n");
                                             System.Threading.Thread.Sleep(500);
                                             facade.SearchByPlanetHostMass(
-                                                filterDoubleMin, filterDoubleMax, true);
+                                                filterDoubleMin, filterDoubleMax, true, PlanetField.Disc_Year);
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
@@ -648,7 +648,7 @@ namespace projeto1LP2
                                             System.Threading.Thread.Sleep(500); Console.WriteLine(" .\n");
                                             System.Threading.Thread.Sleep(500);
                                             facade.SearchByPlanetHostMass(
-                                                filterDoubleMin, filterDoubleMax, false);
+                                                filterDoubleMin, filterDoubleMax, false, PlanetField.Disc_Year);
                                             MainMenu();
                                         }
                                         else
@@ -691,7 +691,7 @@ namespace projeto1LP2
                                             System.Threading.Thread.Sleep(500); Console.WriteLine(" .\n");
                                             System.Threading.Thread.Sleep(500);
                                             facade.SearchByPlanetHostAge(
-                                                filterIntMin, filterIntMax, true);
+                                                filterIntMin, filterIntMax, true, PlanetField.Disc_Year);
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
@@ -702,7 +702,7 @@ namespace projeto1LP2
                                             System.Threading.Thread.Sleep(500); Console.WriteLine(" .\n");
                                             System.Threading.Thread.Sleep(500);
                                             facade.SearchByPlanetHostAge(
-                                                filterIntMin, filterIntMax, false);
+                                                filterIntMin, filterIntMax, false, PlanetField.Disc_Year);
                                             MainMenu();
                                         }
                                         else
@@ -745,7 +745,7 @@ namespace projeto1LP2
                                             System.Threading.Thread.Sleep(500); Console.WriteLine(" .\n");
                                             System.Threading.Thread.Sleep(500);
                                             facade.SearchByPlanetHostVsin(
-                                                filterDoubleMin, filterDoubleMax, true);
+                                                filterDoubleMin, filterDoubleMax, true, PlanetField.Disc_Year);
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
@@ -756,7 +756,7 @@ namespace projeto1LP2
                                             System.Threading.Thread.Sleep(500); Console.WriteLine(" .\n");
                                             System.Threading.Thread.Sleep(500);
                                             facade.SearchByPlanetHostVsin(
-                                                filterDoubleMin, filterDoubleMax, false);
+                                                filterDoubleMin, filterDoubleMax, false, PlanetField.Disc_Year);
                                             MainMenu();
                                         }
                                         else
@@ -799,7 +799,7 @@ namespace projeto1LP2
                                             System.Threading.Thread.Sleep(500); Console.WriteLine(" .\n");
                                             System.Threading.Thread.Sleep(500);
                                             facade.SearchByPlanetHostRotp(
-                                                filterIntMin, filterIntMax, true);
+                                                filterIntMin, filterIntMax, true, PlanetField.Disc_Year);
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
@@ -810,7 +810,7 @@ namespace projeto1LP2
                                             System.Threading.Thread.Sleep(500); Console.WriteLine(" .\n");
                                             System.Threading.Thread.Sleep(500);
                                             facade.SearchByPlanetHostRotp(
-                                                filterIntMin, filterIntMax, false);
+                                                filterIntMin, filterIntMax, false, PlanetField.Disc_Year);
                                             MainMenu();
                                         }
                                         else
@@ -853,7 +853,7 @@ namespace projeto1LP2
                                             System.Threading.Thread.Sleep(500); Console.WriteLine(" .\n");
                                             System.Threading.Thread.Sleep(500);
                                             facade.SearchByPlanetHostDist(
-                                                filterDoubleMin, filterDoubleMax, true);
+                                                filterDoubleMin, filterDoubleMax, true, PlanetField.Disc_Year);
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
@@ -864,7 +864,7 @@ namespace projeto1LP2
                                             System.Threading.Thread.Sleep(500); Console.WriteLine(" .\n");
                                             System.Threading.Thread.Sleep(500);
                                             facade.SearchByPlanetHostDist(
-                                                filterDoubleMin, filterDoubleMax, false);
+                                                filterDoubleMin, filterDoubleMax, false, PlanetField.Disc_Year);
                                             MainMenu();
                                         }
                                         else
