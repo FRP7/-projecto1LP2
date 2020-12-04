@@ -14,6 +14,7 @@ namespace projeto1LP2
             // testar filtros
             Facade facade = new Facade();
             facade.ReadFile();
+            facade.SearchByPlCount(10, 20, false, StarFields.St_Teff);
             Console.WriteLine("Dicionario principal: " + Facade.starList.Count);
         }
     }
