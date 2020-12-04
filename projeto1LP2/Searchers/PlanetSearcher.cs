@@ -43,6 +43,56 @@ namespace projeto1LP2
         private Dictionary<int, Planet> filterByHostDist =
             new Dictionary<int, Planet>(Facade.planetList);
 
+        private Func<KeyValuePair<int, Planet>, Object> orderByFunc;
+
+        private void CheckField(PlanetField fields) {
+            if (fields == PlanetField.Pl_Name) {
+                orderByFunc = item => item.Value.Pl_Name;
+            }
+            if (fields == PlanetField.HostName) {
+                orderByFunc = item => item.Value.HostName;
+            }
+            if (fields == PlanetField.DiscoveryMethod) {
+                orderByFunc = item => item.Value.DiscoveryMethod;
+            }
+            if (fields == PlanetField.Disc_Year) {
+                orderByFunc = item => item.Value.Disc_Year;
+            }
+            if (fields == PlanetField.Pl_Orbper) {
+                orderByFunc = item => item.Value.Pl_Orbper;
+            }
+            if (fields == PlanetField.Pl_Rade) {
+                orderByFunc = item => item.Value.Pl_Rade;
+            }
+            if (fields == PlanetField.Pl_Masse) {
+                orderByFunc = item => item.Value.Pl_Masse;
+            }
+            if (fields == PlanetField.Pl_Eqt) {
+                orderByFunc = item => item.Value.Pl_Eqt;
+            }
+            if (fields == PlanetField.St_Teff) {
+                orderByFunc = item => item.Value.St_Teff;
+            }
+            if (fields == PlanetField.St_Rad) {
+                orderByFunc = item => item.Value.St_Rad;
+            }
+            if (fields == PlanetField.St_Mass) {
+                orderByFunc = item => item.Value.St_Mass;
+            }
+            if (fields == PlanetField.St_Age) {
+                orderByFunc = item => item.Value.St_Age;
+            }
+            if (fields == PlanetField.St_Vsin) {
+                orderByFunc = item => item.Value.St_Vsin;
+            }
+            if (fields == PlanetField.St_Rotp) {
+                orderByFunc = item => item.Value.St_Rotp;
+            }
+            if (fields == PlanetField.Sy_Dist) {
+                orderByFunc = item => item.Value.Sy_Dist;
+            }
+        }
+
         // Método de pesquisa de planetas pelo nome.
         public void SearchByPlanetName(string input, bool isAscending)
         {
