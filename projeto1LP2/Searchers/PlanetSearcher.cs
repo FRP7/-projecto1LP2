@@ -96,49 +96,49 @@ namespace projeto1LP2
 
         private void SecondField(PlanetField fields) {
             if (fields == PlanetField.Pl_Name) {
-                orderByFunc = item => item.Value.HostName.Length;
+                secondOrderByFunc = item => item.Value.HostName.Length;
             }
             if (fields == PlanetField.HostName) {
-                orderByFunc = item => item.Value.DiscoveryMethod.Length;
+                secondOrderByFunc = item => item.Value.DiscoveryMethod.Length;
             }
             if (fields == PlanetField.DiscoveryMethod) {
-                orderByFunc = item => item.Value.Disc_Year;
+                secondOrderByFunc = item => item.Value.Disc_Year;
             }
             if (fields == PlanetField.Disc_Year) {
-                orderByFunc = item => item.Value.Pl_Orbper;
+                secondOrderByFunc = item => item.Value.Pl_Orbper;
             }
             if (fields == PlanetField.Pl_Orbper) {
-                orderByFunc = item => item.Value.Pl_Rade;
+                secondOrderByFunc = item => item.Value.Pl_Rade;
             }
             if (fields == PlanetField.Pl_Rade) {
-                orderByFunc = item => item.Value.Pl_Masse;
+                secondOrderByFunc = item => item.Value.Pl_Masse;
             }
             if (fields == PlanetField.Pl_Masse) {
-                orderByFunc = item => item.Value.Pl_Eqt;
+                secondOrderByFunc = item => item.Value.Pl_Eqt;
             }
             if (fields == PlanetField.Pl_Eqt) {
-                orderByFunc = item => item.Value.St_Teff;
+                secondOrderByFunc = item => item.Value.St_Teff;
             }
             if (fields == PlanetField.St_Teff) {
-                orderByFunc = item => item.Value.St_Rad;
+                secondOrderByFunc = item => item.Value.St_Rad;
             }
             if (fields == PlanetField.St_Rad) {
-                orderByFunc = item => item.Value.St_Mass;
+                secondOrderByFunc = item => item.Value.St_Mass;
             }
             if (fields == PlanetField.St_Mass) {
-                orderByFunc = item => item.Value.St_Age;
+                secondOrderByFunc = item => item.Value.St_Age;
             }
             if (fields == PlanetField.St_Age) {
-                orderByFunc = item => item.Value.St_Vsin;
+                secondOrderByFunc = item => item.Value.St_Vsin;
             }
             if (fields == PlanetField.St_Vsin) {
-                orderByFunc = item => item.Value.St_Rotp;
+                secondOrderByFunc = item => item.Value.St_Rotp;
             }
             if (fields == PlanetField.St_Rotp) {
-                orderByFunc = item => item.Value.Sy_Dist;
+                secondOrderByFunc = item => item.Value.Sy_Dist;
             }
             if (fields == PlanetField.Sy_Dist) {
-                orderByFunc = item => item.Value.St_Rotp;
+                secondOrderByFunc = item => item.Value.St_Rotp;
             }
         }
 

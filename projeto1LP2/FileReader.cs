@@ -37,10 +37,6 @@ namespace projeto1LP2
             bool starName = false;
             // Indicar se existem ambas as colunas.
             bool itExists = false;
-            // Contar as colunas.
-            int countColumns = 0;
-            // Verificar se tem o número de colunas certo.
-            int checkColumns = 0;
 
             // Tentar ler o ficheiro
             try {
@@ -57,7 +53,6 @@ namespace projeto1LP2
                     do {
                         content = sr.ReadLine();
                         if(content.Contains("COLUMN")) {
-                            countColumns++;
                         }
                     } while (content.StartsWith("#"));
 
@@ -74,10 +69,9 @@ namespace projeto1LP2
                         if (lines[i].Contains("hostname")) {
                             starName = true;
                         }
-                        checkColumns++;
                     }
 
-                    if (planetName == true && starName == true && checkColumns == countColumns) {
+                    if (planetName == true && starName == true) {
                         itExists = true;
                     }
 
