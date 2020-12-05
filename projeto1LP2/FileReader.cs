@@ -52,8 +52,6 @@ namespace projeto1LP2
                     // Passar à frente as primeiras linhas v2
                     do {
                         content = sr.ReadLine();
-                        if(content.Contains("COLUMN")) {
-                        }
                     } while (content.StartsWith("#"));
 
                     // Dividir a linha e colocar cada campo na array.
@@ -129,6 +127,12 @@ namespace projeto1LP2
             int intSupport = 0;
             double doubleSupport = 0;
 
+            // Contar as colunas
+            int columnCount = 0;
+
+            // Contar a quantidade de conteúdo que tem cada coluna
+            int contentCount = 0;
+
             // Variável array de iteração.
             int[] index = new int[15];
 
@@ -163,62 +167,77 @@ namespace projeto1LP2
                     if (lines[i].Contains("pl_name")) {
                         index[0] = i;
                         itExists[0] = true;
+                        columnCount++;
                     }
                     if (lines[i].Contains("hostname")) {
                         index[1] = i;
                         itExists[1] = true;
+                        columnCount++;
                     }
                     if (lines[i].Contains("discoverymethod")) {
                         index[2] = i;
                         itExists[2] = true;
+                        columnCount++;
                     }
                     if (lines[i].Contains("disc_year")) {
                         index[3] = i;
                         itExists[3] = true;
+                        columnCount++;
                     }
                     if (lines[i].Contains("pl_orbper")) {
                         index[4] = i;
                         itExists[4] = true;
+                        columnCount++;
                     }
                     if (lines[i].Contains("pl_rade")) {
                         index[5] = i;
                         itExists[5] = true;
+                        columnCount++;
                     }
                     if (lines[i].Contains("pl_bmasse")) {
                         index[6] = i;
                         itExists[6] = true;
+                        columnCount++;
                     }
                     if (lines[i].Contains("pl_eqt")) {
                         index[7] = i;
                         itExists[7] = true;
+                        columnCount++;
                     }
                     if (lines[i].Contains("st_teff")) {
                         index[8] = i;
                         itExists[8] = true;
+                        columnCount++;
                     }
                     if (lines[i].Contains("st_rad")) {
                         index[9] = i;
                         itExists[9] = true;
+                        columnCount++;
                     }
                     if (lines[i].Contains("st_mass")) {
                         index[10] = i;
                         itExists[10] = true;
+                        columnCount++;
                     }
                     if (lines[i].Contains("st_age")) {
                         index[11] = i;
                         itExists[11] = true;
+                        columnCount++;
                     }
                     if (lines[i].Contains("st_vsin")) {
                         index[12] = i;
                         itExists[12] = true;
+                        columnCount++;
                     }
                     if (lines[i].Contains("st_rotp")) {
                         index[13] = i;
                         itExists[13] = true;
+                        columnCount++;
                     }
                     if (lines[i].Contains("sy_dist")) {
                         index[14] = i;
                         itExists[14] = true;
+                        columnCount++;
                     }
                 }
 
@@ -378,7 +397,7 @@ namespace projeto1LP2
                         doubleSupport);
                             //Console.WriteLine("Valor válido " + lines[index[3]]);
                         } else {
-                            Console.WriteLine("Valor inválido " + lines[index[10]]);
+                            //Console.WriteLine("Valor inválido " + lines[index[10]]);
                             return false;
                         }
 
@@ -396,7 +415,7 @@ namespace projeto1LP2
                         doubleSupport);
                             //Console.WriteLine("Valor válido " + lines[index[3]]);
                         } else {
-                            Console.WriteLine("Valor inválido " + lines[index[11]]);
+                            //Console.WriteLine("Valor inválido " + lines[index[11]]);
                             return false;
                         }
 
@@ -482,6 +501,69 @@ namespace projeto1LP2
 
                 }
             }
+
+            // Verificar se a quantidade de conteúdo existente é pelo menos igual ao número de colunas lidas
+            contentCount = Facade.planetList.Values.SelectMany(x => x.Pl_Name).Count();
+            if (contentCount < columnCount) {
+                return false;
+            } 
+            contentCount = Facade.planetList.Values.Select(x => x.HostName).Count();
+            if (contentCount < columnCount) {
+                return false;
+            } 
+            contentCount = Facade.planetList.Values.Select(x => x.DiscoveryMethod).Count();
+            if (contentCount < columnCount) {
+                return false;
+            }
+            contentCount = Facade.planetList.Values.Select(x => x.Disc_Year).Count();
+            if (contentCount < columnCount) {
+                return false;
+            } 
+            contentCount = Facade.planetList.Values.Select(x => x.Pl_Orbper).Count();
+            if (contentCount < columnCount) {
+                return false;
+            } 
+            contentCount = Facade.planetList.Values.Select(x => x.Pl_Rade).Count();
+            if (contentCount < columnCount) {
+                return false;
+            } 
+            contentCount = Facade.planetList.Values.Select(x => x.Pl_Masse).Count();
+            if (contentCount < columnCount) {
+                return false;
+            } 
+            contentCount = Facade.planetList.Values.Select(x => x.Pl_Eqt).Count();
+            if (contentCount < columnCount) {
+                return false;
+            } 
+            contentCount = Facade.planetList.Values.Select(x => x.St_Teff).Count();
+            if (contentCount < columnCount) {
+                return false;
+            } 
+            contentCount = Facade.planetList.Values.Select(x => x.St_Rad).Count();
+            if (contentCount < columnCount) {
+                return false;
+            } 
+            contentCount = Facade.planetList.Values.Select(x => x.St_Mass).Count();
+            if (contentCount < columnCount) {
+                return false;
+            } 
+            contentCount = Facade.planetList.Values.Select(x => x.St_Age).Count();
+            if (contentCount < columnCount) {
+                return false;
+            } 
+            contentCount = Facade.planetList.Values.Select(x => x.St_Vsin).Count();
+            if (contentCount < columnCount) {
+                return false;
+            } 
+            contentCount = Facade.planetList.Values.Select(x => x.St_Rotp).Count();
+            if (contentCount < columnCount) {
+                return false;
+            } 
+            contentCount = Facade.planetList.Values.Select(x => x.Sy_Dist).Count();
+            if (contentCount < columnCount) {
+                return false;
+            }
+
             return true;
         }
 
