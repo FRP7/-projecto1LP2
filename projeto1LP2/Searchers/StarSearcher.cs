@@ -40,10 +40,10 @@ namespace projeto1LP2
 
         private void CheckField(StarFields fields) {
             if(fields == StarFields.HostName) {
-                orderByFunc = item => item.Value.HostName;
+                orderByFunc = item => item.Value.HostName.Length;
             }
             if (fields == StarFields.DiscoveryMethod) {
-                orderByFunc = item => item.Value.DiscoveryMethod;
+                orderByFunc = item => item.Value.DiscoveryMethod.Length;
             }
             if (fields == StarFields.Disc_Year) {
                 orderByFunc = item => item.Value.Disc_Year;
@@ -76,7 +76,7 @@ namespace projeto1LP2
 
         private void SecondField(StarFields fields) {
             if (fields == StarFields.HostName) {
-                secondOrderByFunc = item => item.Value.DiscoveryMethod;
+                secondOrderByFunc = item => item.Value.DiscoveryMethod.Length;
             }
             if (fields == StarFields.DiscoveryMethod) {
                 secondOrderByFunc = item => item.Value.Disc_Year;

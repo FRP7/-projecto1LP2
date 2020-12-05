@@ -48,13 +48,13 @@ namespace projeto1LP2
 
         private void CheckField(PlanetField fields) {
             if (fields == PlanetField.Pl_Name) {
-                orderByFunc = item => item.Value.Pl_Name;
+                orderByFunc = item => item.Value.Pl_Name.Length;
             }
             if (fields == PlanetField.HostName) {
-                orderByFunc = item => item.Value.HostName;
+                orderByFunc = item => item.Value.HostName.Length;
             }
             if (fields == PlanetField.DiscoveryMethod) {
-                orderByFunc = item => item.Value.DiscoveryMethod;
+                orderByFunc = item => item.Value.DiscoveryMethod.Length;
             }
             if (fields == PlanetField.Disc_Year) {
                 orderByFunc = item => item.Value.Disc_Year;
@@ -96,10 +96,10 @@ namespace projeto1LP2
 
         private void SecondField(PlanetField fields) {
             if (fields == PlanetField.Pl_Name) {
-                orderByFunc = item => item.Value.HostName;
+                orderByFunc = item => item.Value.HostName.Length;
             }
             if (fields == PlanetField.HostName) {
-                orderByFunc = item => item.Value.DiscoveryMethod;
+                orderByFunc = item => item.Value.DiscoveryMethod.Length;
             }
             if (fields == PlanetField.DiscoveryMethod) {
                 orderByFunc = item => item.Value.Disc_Year;
