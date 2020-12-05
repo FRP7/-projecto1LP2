@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 
 namespace projeto1LP2
 {
