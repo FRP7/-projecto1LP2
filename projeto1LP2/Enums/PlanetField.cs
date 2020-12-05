@@ -2,6 +2,9 @@
 
 namespace projeto1LP2
 {
+    /// <summary>
+    /// Enum de campos do planeta.
+    /// </summary>
     enum PlanetField
     {
         Pl_Name,

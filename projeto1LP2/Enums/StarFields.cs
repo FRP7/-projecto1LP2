@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace projeto1LP2
 {
+    /// <summary>
+    /// Enum de campos da estrela.
+    /// </summary>
     enum StarFields
     {
         HostName,
