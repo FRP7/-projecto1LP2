@@ -34,7 +34,7 @@ namespace projeto1LP2
                 }
             }
             // Caso o ficheiro não consiga ser lido.
-            catch(Exception) {
+            catch (Exception) {
                 Console.WriteLine("O ficheiro não pode ser lido");
             }
         }
@@ -49,8 +49,6 @@ namespace projeto1LP2
             bool planetName = false;
             // Indicar se existe a coluna da estrela.
             bool starName = false;
-            // Indicar se existem ambas as colunas.
-            bool itExists = false;
 
             // Tentar ler o ficheiro.
             try {
@@ -84,7 +82,7 @@ namespace projeto1LP2
 
                     // Verificar se os campos obrigatórios existem.
                     if (planetName == true && starName == true) {
-                        itExists = true;
+                        return true;
                     } else {
                         /* Atirar exceção caso não tenha as colunas 
                          * obrigatórias. */
@@ -92,13 +90,12 @@ namespace projeto1LP2
                     }
 
                 }
-                return itExists;
             }
             // Caso não  tenhas as colunas obrigatórias.
             catch (Exception) {
-               Console.WriteLine("O ficheiro não tem as colunas obrigatórias");
-               itExists = false;
-               return itExists;
+                Console.WriteLine("O ficheiro não tem as colunas " +
+                    "obrigatórias.");
+                return false;
             }
         }
 
@@ -295,7 +292,7 @@ namespace projeto1LP2
 
                     // Disc_Year.
                     if (itExists[3] == true) {
-                        if (lines[index[3]].Any(x => char.IsLetter(x)) 
+                        if (lines[index[3]].Any(x => char.IsLetter(x))
                             == false) {
                             int.TryParse(lines[index[3]], NumberStyles.Any,
                         CultureInfo.InvariantCulture, out
@@ -313,7 +310,7 @@ namespace projeto1LP2
 
                     // Pl_Orbper.
                     if (itExists[4] == true) {
-                        if (lines[index[4]].Any(x => char.IsLetter(x)) 
+                        if (lines[index[4]].Any(x => char.IsLetter(x))
                             == false) {
                             double.TryParse(lines[index[4]], NumberStyles.Any,
                         CultureInfo.InvariantCulture, out
@@ -367,7 +364,7 @@ namespace projeto1LP2
 
                     // Pl_Eqt.
                     if (itExists[7] == true) {
-                        if (lines[index[7]].Any(x => char.IsLetter(x)) 
+                        if (lines[index[7]].Any(x => char.IsLetter(x))
                             == false) {
                             int.TryParse(lines[index[7]], NumberStyles.Any,
                         CultureInfo.InvariantCulture, out
@@ -385,7 +382,7 @@ namespace projeto1LP2
 
                     // St_Teff.
                     if (itExists[8] == true) {
-                        if (lines[index[8]].Any(x => char.IsLetter(x)) 
+                        if (lines[index[8]].Any(x => char.IsLetter(x))
                             == false) {
                             double.TryParse(lines[index[8]], NumberStyles.Any,
                         CultureInfo.InvariantCulture, out
@@ -403,7 +400,7 @@ namespace projeto1LP2
 
                     // St_Rad.
                     if (itExists[9] == true) {
-                        if (lines[index[9]].Any(x => char.IsLetter(x)) 
+                        if (lines[index[9]].Any(x => char.IsLetter(x))
                             == false) {
                             double.TryParse(lines[index[9]], NumberStyles.Any,
                         CultureInfo.InvariantCulture, out
@@ -421,7 +418,7 @@ namespace projeto1LP2
 
                     // St_Mass.
                     if (itExists[10] == true) {
-                        if (lines[index[10]].Any(x => char.IsLetter(x)) 
+                        if (lines[index[10]].Any(x => char.IsLetter(x))
                             == false) {
                             double.TryParse(lines[index[10]], NumberStyles.Any,
                         CultureInfo.InvariantCulture, out
@@ -457,7 +454,7 @@ namespace projeto1LP2
 
                     // St_Vsin.
                     if (itExists[12] == true) {
-                        if (lines[index[12]].Any(x => char.IsLetter(x)) 
+                        if (lines[index[12]].Any(x => char.IsLetter(x))
                             == false) {
                             double.TryParse(lines[index[12]], NumberStyles.Any,
                         CultureInfo.InvariantCulture, out
@@ -492,7 +489,7 @@ namespace projeto1LP2
                     }
 
                     // Sy_Dist.
-                    if (lines[index[14]].Any(x => char.IsLetter(x)) 
+                    if (lines[index[14]].Any(x => char.IsLetter(x))
                         == false) {
                         double.TryParse(lines[index[14]], NumberStyles.Any,
                     CultureInfo.InvariantCulture, out
@@ -539,14 +536,14 @@ namespace projeto1LP2
                 (x => x.Pl_Name).Count();
             if (contentCount < columnCount) {
                 return false;
-            } 
+            }
 
             // Coluna HostName.
             contentCount = Facade.planetList.Values.Select
                 (x => x.HostName).Count();
             if (contentCount < columnCount) {
                 return false;
-            } 
+            }
 
             // Coluna DiscoveryMethod.
             contentCount = Facade.planetList.Values.Select
@@ -827,7 +824,7 @@ namespace projeto1LP2
 
                     // St_Mass.
                     if (itExists[5] == true) {
-                        if (lines[index[5]].Any(x => char.IsLetter(x)) 
+                        if (lines[index[5]].Any(x => char.IsLetter(x))
                             == false) {
                             double.TryParse(lines[index[5]], NumberStyles.Any,
                         CultureInfo.InvariantCulture, out
@@ -881,7 +878,7 @@ namespace projeto1LP2
 
                     // St_Rotp.
                     if (itExists[8] == true) {
-                        if (lines[index[8]].Any(x => char.IsLetter(x)) 
+                        if (lines[index[8]].Any(x => char.IsLetter(x))
                             == false) {
                             double.TryParse(lines[index[8]], NumberStyles.Any,
                         CultureInfo.InvariantCulture, out
