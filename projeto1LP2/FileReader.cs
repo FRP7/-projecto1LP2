@@ -37,6 +37,10 @@ namespace projeto1LP2
             bool starName = false;
             // Indicar se existem ambas as colunas.
             bool itExists = false;
+            // Contar as colunas.
+            int countColumns = 0;
+            // Verificar se tem o número de colunas certo.
+            int checkColumns = 0;
 
             // Tentar ler o ficheiro
             try {
@@ -49,14 +53,12 @@ namespace projeto1LP2
                 using (StreamReader sr = File.OpenText(fileName)) {
                     lineCount = File.ReadLines(fileName).Count();
 
-                    // Passar à frente as primeiras linhas.
-                    /*for (int i = 0; i < 48; i++) {
-                        content = sr.ReadLine();
-                    }*/
-
                     // Passar à frente as primeiras linhas v2
                     do {
                         content = sr.ReadLine();
+                        if(content.Contains("COLUMN")) {
+                            countColumns++;
+                        }
                     } while (content.StartsWith("#"));
 
                     // Dividir a linha e colocar cada campo na array.
@@ -72,9 +74,10 @@ namespace projeto1LP2
                         if (lines[i].Contains("hostname")) {
                             starName = true;
                         }
+                        checkColumns++;
                     }
 
-                    if (planetName == true && starName == true) {
+                    if (planetName == true && starName == true && checkColumns == countColumns) {
                         itExists = true;
                     }
 
