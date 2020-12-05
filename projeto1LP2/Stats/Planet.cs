@@ -5,51 +5,51 @@ namespace projeto1LP2
     struct Planet
     {
         // Nome do planeta.
-        public string Pl_Name { get; set; }
+        public string Pl_Name { get; }
 
         // Nome da estrela que o planeta orbita.
-        public string HostName { get; set; }
+        public string HostName { get; }
 
         // Método de descoberta.
-        public string DiscoveryMethod { get; set; }
+        public string DiscoveryMethod { get; }
 
         // Ano de descoberta.
-        public Nullable<int> Disc_Year { get; set; }
+        public Nullable<int> Disc_Year { get; }
 
         // Período orbital (em dias).
-        public Nullable<double> Pl_Orbper { get; set; }
+        public Nullable<double> Pl_Orbper { get; }
 
         // Raio do planeta (em comparação com a Terra).
-        public Nullable<double> Pl_Rade { get; set; }
+        public Nullable<double> Pl_Rade { get; }
 
         // Massa do planeta (em comparação com a Terra
-        public Nullable<double> Pl_Masse { get; set; }
+        public Nullable<double> Pl_Masse { get; }
 
         // Temperatura do equilíbrio do planeta (em Kelvins).
-        public Nullable<int> Pl_Eqt { get; set; }
+        public Nullable<int> Pl_Eqt { get; }
 
         // Temperatura efetiva da estrela (em Kelvins).
-        public Nullable<double> St_Teff { get; set; }
+        public Nullable<double> St_Teff { get; }
 
         // Raio da estrela (em comparação com o Sol).
-        public Nullable<double> St_Rad { get; set; }
+        public Nullable<double> St_Rad { get; }
 
         // Massa da estrela (em comparação com o Sol).
-        public Nullable<double> St_Mass { get; set; }
+        public Nullable<double> St_Mass { get; }
 
         /* Idade da estrela (em Giga-anos, ou seja, por milhar de 
          * milhão de anos).*/
-        public Nullable<double> St_Age { get; set; } // Não tem
+        public Nullable<double> St_Age { get; } 
 
         // Velocidade de rotação da estrela (em km/s).
-        public Nullable<double> St_Vsin { get; set; } //não tem
+        public Nullable<double> St_Vsin { get; } //não tem
 
         // Período de rotação da estrela (em dias).
-        public Nullable<double> St_Rotp { get; set; } //não tem.
+        public Nullable<double> St_Rotp { get; } 
 
         /* Distância entre a Terra e a estrela (em Parsecs, 
          * sendo 1 Parsec ≈ 3,26 anos-luz).*/
-        public Nullable<double> Sy_Dist { get; set; }
+        public Nullable<double> Sy_Dist { get; }
 
         /// <summary>
         /// Inicializar as propriedades.
