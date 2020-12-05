@@ -44,6 +44,7 @@ namespace projeto1LP2
             new Dictionary<int, Planet>(Facade.planetList);
 
         private Func<KeyValuePair<int, Planet>, Object> orderByFunc;
+        private Func<KeyValuePair<int, Planet>, Object> secondOrderByFunc;
 
         private void CheckField(PlanetField fields) {
             if (fields == PlanetField.Pl_Name) {
@@ -93,12 +94,62 @@ namespace projeto1LP2
             }
         }
 
+        private void SecondField(PlanetField fields) {
+            if (fields == PlanetField.Pl_Name) {
+                orderByFunc = item => item.Value.HostName;
+            }
+            if (fields == PlanetField.HostName) {
+                orderByFunc = item => item.Value.DiscoveryMethod;
+            }
+            if (fields == PlanetField.DiscoveryMethod) {
+                orderByFunc = item => item.Value.Disc_Year;
+            }
+            if (fields == PlanetField.Disc_Year) {
+                orderByFunc = item => item.Value.Pl_Orbper;
+            }
+            if (fields == PlanetField.Pl_Orbper) {
+                orderByFunc = item => item.Value.Pl_Rade;
+            }
+            if (fields == PlanetField.Pl_Rade) {
+                orderByFunc = item => item.Value.Pl_Masse;
+            }
+            if (fields == PlanetField.Pl_Masse) {
+                orderByFunc = item => item.Value.Pl_Eqt;
+            }
+            if (fields == PlanetField.Pl_Eqt) {
+                orderByFunc = item => item.Value.St_Teff;
+            }
+            if (fields == PlanetField.St_Teff) {
+                orderByFunc = item => item.Value.St_Rad;
+            }
+            if (fields == PlanetField.St_Rad) {
+                orderByFunc = item => item.Value.St_Mass;
+            }
+            if (fields == PlanetField.St_Mass) {
+                orderByFunc = item => item.Value.St_Age;
+            }
+            if (fields == PlanetField.St_Age) {
+                orderByFunc = item => item.Value.St_Vsin;
+            }
+            if (fields == PlanetField.St_Vsin) {
+                orderByFunc = item => item.Value.St_Rotp;
+            }
+            if (fields == PlanetField.St_Rotp) {
+                orderByFunc = item => item.Value.Sy_Dist;
+            }
+            if (fields == PlanetField.Sy_Dist) {
+                orderByFunc = item => item.Value.St_Rotp;
+            }
+        }
+
         // Método de pesquisa de planetas pelo nome.
         public void SearchByPlanetName(string input, bool isAscending, PlanetField fields)
         {
             Facade.planetList = filterByName;
 
             CheckField(fields);
+
+            SecondField(fields);
 
             Console.WriteLine("Filter by name");
 
@@ -109,7 +160,7 @@ namespace projeto1LP2
                     filterByName =
                         (from item in filterByName
                          where item.Value.Pl_Name.StartsWith(input)
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -117,7 +168,7 @@ namespace projeto1LP2
                     filterByName =
                         (from item in filterByName
                          where item.Value.Pl_Name.StartsWith(input)
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -146,6 +197,8 @@ namespace projeto1LP2
 
             CheckField(fields);
 
+            SecondField(fields);
+
             Console.WriteLine("Filter by host star");
 
             if (input != null)
@@ -155,7 +208,7 @@ namespace projeto1LP2
                     filterByHostName =
                         (from item in filterByHostName
                          where item.Value.HostName.StartsWith(input)
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                          .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -163,7 +216,7 @@ namespace projeto1LP2
                     filterByHostName =
                         (from item in filterByHostName
                          where item.Value.HostName.StartsWith(input)
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -194,6 +247,8 @@ namespace projeto1LP2
 
             CheckField(fields);
 
+            SecondField(fields);
+
             Console.WriteLine("Filter by discovery method");
 
             if (input != null)
@@ -203,7 +258,7 @@ namespace projeto1LP2
                     filterByDiscoveryMethod =
                         (from item in filterByDiscoveryMethod
                          where item.Value.DiscoveryMethod.StartsWith(input)
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -211,7 +266,7 @@ namespace projeto1LP2
                     filterByDiscoveryMethod =
                         (from item in filterByDiscoveryMethod
                          where item.Value.DiscoveryMethod.StartsWith(input)
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -242,6 +297,8 @@ namespace projeto1LP2
 
             CheckField(fields);
 
+            SecondField(fields);
+
             Console.WriteLine("Filter by discovery year");
 
             if (min == null && max != null)
@@ -251,7 +308,7 @@ namespace projeto1LP2
                     filterByDiscoveryYear =
                         (from item in filterByDiscoveryYear
                          where item.Value.Disc_Year < max
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -259,7 +316,7 @@ namespace projeto1LP2
                     filterByDiscoveryYear =
                         (from item in filterByDiscoveryYear
                          where item.Value.Disc_Year < max
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -277,7 +334,7 @@ namespace projeto1LP2
                     filterByDiscoveryYear =
                         (from item in filterByDiscoveryYear
                          where item.Value.Disc_Year > min
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -285,7 +342,7 @@ namespace projeto1LP2
                     filterByDiscoveryYear =
                         (from item in filterByDiscoveryYear
                          where item.Value.Disc_Year > min
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -303,7 +360,7 @@ namespace projeto1LP2
                     filterByDiscoveryYear =
                         (from item in filterByDiscoveryYear
                          where item.Value.Disc_Year > min && item.Value.Disc_Year < max
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -311,7 +368,7 @@ namespace projeto1LP2
                     filterByDiscoveryYear =
                         (from item in filterByDiscoveryYear
                          where item.Value.Disc_Year > min && item.Value.Disc_Year < max
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -342,6 +399,8 @@ namespace projeto1LP2
 
             CheckField(fields);
 
+            SecondField(fields);
+
             Console.WriteLine("Filter by orbital period");
 
             if (min == null && max != null)
@@ -351,7 +410,7 @@ namespace projeto1LP2
                     filterByOrbitalPeriod =
                         (from item in filterByOrbitalPeriod
                          where item.Value.Pl_Orbper < max
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -359,7 +418,7 @@ namespace projeto1LP2
                     filterByOrbitalPeriod =
                         (from item in filterByOrbitalPeriod
                          where item.Value.Pl_Orbper < max
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -377,7 +436,7 @@ namespace projeto1LP2
                     filterByOrbitalPeriod =
                         (from item in filterByOrbitalPeriod
                          where item.Value.Pl_Orbper > min
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -385,7 +444,7 @@ namespace projeto1LP2
                     filterByOrbitalPeriod =
                         (from item in filterByOrbitalPeriod
                          where item.Value.Pl_Orbper > min
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -403,7 +462,7 @@ namespace projeto1LP2
                     filterByOrbitalPeriod =
                         (from item in filterByOrbitalPeriod
                          where item.Value.Pl_Orbper > min && item.Value.Pl_Orbper < max
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -411,7 +470,7 @@ namespace projeto1LP2
                     filterByOrbitalPeriod =
                         (from item in filterByOrbitalPeriod
                          where item.Value.Pl_Orbper > min && item.Value.Pl_Orbper < max
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -442,6 +501,8 @@ namespace projeto1LP2
 
             CheckField(fields);
 
+            SecondField(fields);
+
             Console.WriteLine("Filter by radius");
 
             if (min == null && max != null)
@@ -451,7 +512,7 @@ namespace projeto1LP2
                     filterByRadius =
                         (from item in filterByRadius
                          where item.Value.Pl_Rade < max
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -459,7 +520,7 @@ namespace projeto1LP2
                     filterByRadius =
                         (from item in filterByRadius
                          where item.Value.Pl_Rade < max
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -477,7 +538,7 @@ namespace projeto1LP2
                     filterByRadius =
                         (from item in filterByRadius
                          where item.Value.Pl_Rade > min
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -485,7 +546,7 @@ namespace projeto1LP2
                     filterByRadius =
                         (from item in filterByRadius
                          where item.Value.Pl_Rade > min
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -503,7 +564,7 @@ namespace projeto1LP2
                     filterByRadius =
                         (from item in filterByRadius
                          where item.Value.Pl_Rade > min && item.Value.Pl_Rade < max
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -511,7 +572,7 @@ namespace projeto1LP2
                     filterByRadius =
                         (from item in filterByRadius
                          where item.Value.Pl_Rade > min && item.Value.Pl_Rade < max
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -542,6 +603,8 @@ namespace projeto1LP2
 
             CheckField(fields);
 
+            SecondField(fields);
+
             Console.WriteLine("Filter by planet hosting star radius");
 
             if (min == null && max != null)
@@ -551,7 +614,7 @@ namespace projeto1LP2
                     filterByHostRad =
                         (from item in filterByHostRad
                          where item.Value.St_Rad < max
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -559,7 +622,7 @@ namespace projeto1LP2
                     filterByHostRad =
                         (from item in filterByHostRad
                          where item.Value.St_Rad < max
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -577,7 +640,7 @@ namespace projeto1LP2
                     filterByHostRad =
                         (from item in filterByHostRad
                          where item.Value.St_Rad > min
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -585,7 +648,7 @@ namespace projeto1LP2
                     filterByHostRad =
                         (from item in filterByHostRad
                          where item.Value.St_Rad > min
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -603,7 +666,7 @@ namespace projeto1LP2
                     filterByHostRad =
                         (from item in filterByHostRad
                          where item.Value.St_Rad > min && item.Value.St_Rad < max
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -611,7 +674,7 @@ namespace projeto1LP2
                     filterByHostRad =
                         (from item in filterByHostRad
                          where item.Value.St_Rad > min && item.Value.St_Rad < max
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -642,6 +705,8 @@ namespace projeto1LP2
 
             CheckField(fields);
 
+            SecondField(fields);
+
             Console.WriteLine("Filter by equilibrium temperature");
 
             if (min == null && max != null)
@@ -651,7 +716,7 @@ namespace projeto1LP2
                     filterByEqt =
                         (from item in filterByEqt
                          where item.Value.Pl_Eqt < max
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -659,7 +724,7 @@ namespace projeto1LP2
                     filterByEqt =
                         (from item in filterByEqt
                          where item.Value.Pl_Eqt < max
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -677,7 +742,7 @@ namespace projeto1LP2
                     filterByEqt =
                         (from item in filterByEqt
                          where item.Value.Pl_Eqt > min
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -685,7 +750,7 @@ namespace projeto1LP2
                     filterByEqt =
                         (from item in filterByEqt
                          where item.Value.Pl_Eqt > min
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -703,7 +768,7 @@ namespace projeto1LP2
                     filterByEqt =
                         (from item in filterByEqt
                          where item.Value.Pl_Eqt > min && item.Value.Pl_Eqt < max
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -711,7 +776,7 @@ namespace projeto1LP2
                     filterByEqt =
                         (from item in filterByEqt
                          where item.Value.Pl_Eqt > min && item.Value.Pl_Eqt < max
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -742,6 +807,8 @@ namespace projeto1LP2
 
             CheckField(fields);
 
+            SecondField(fields);
+
             Console.WriteLine("Filter by the planet hosting star temperature");
 
             if (min == null && max != null)
@@ -751,7 +818,7 @@ namespace projeto1LP2
                     filterByHostTeff =
                         (from item in filterByHostTeff
                          where item.Value.St_Teff < max
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -759,7 +826,7 @@ namespace projeto1LP2
                     filterByHostTeff =
                         (from item in filterByHostTeff
                          where item.Value.St_Teff < max
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -777,7 +844,7 @@ namespace projeto1LP2
                     filterByHostTeff =
                         (from item in filterByHostTeff
                          where item.Value.St_Teff > min
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -785,7 +852,7 @@ namespace projeto1LP2
                     filterByHostTeff =
                         (from item in filterByHostTeff
                          where item.Value.St_Teff > min
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -803,7 +870,7 @@ namespace projeto1LP2
                     filterByHostTeff =
                         (from item in filterByHostTeff
                          where item.Value.St_Teff > min && item.Value.St_Teff < max
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -811,7 +878,7 @@ namespace projeto1LP2
                     filterByHostTeff =
                         (from item in filterByHostTeff
                          where item.Value.St_Teff > min && item.Value.St_Teff < max
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -842,6 +909,8 @@ namespace projeto1LP2
 
             CheckField(fields);
 
+            SecondField(fields);
+
             Console.WriteLine("Filter by mass");
 
             if (min == null && max != null)
@@ -851,7 +920,7 @@ namespace projeto1LP2
                     filterByMass =
                         (from item in filterByMass
                          where item.Value.Pl_Masse < max
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -859,7 +928,7 @@ namespace projeto1LP2
                     filterByMass =
                         (from item in filterByMass
                          where item.Value.Pl_Masse < max
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -877,7 +946,7 @@ namespace projeto1LP2
                     filterByMass =
                         (from item in filterByMass
                          where item.Value.Pl_Masse > min
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -885,7 +954,7 @@ namespace projeto1LP2
                     filterByMass =
                         (from item in filterByMass
                          where item.Value.Pl_Masse > min
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -903,7 +972,7 @@ namespace projeto1LP2
                     filterByMass =
                         (from item in filterByMass
                          where item.Value.Pl_Masse > min && item.Value.Pl_Masse < max
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -911,7 +980,7 @@ namespace projeto1LP2
                     filterByMass =
                         (from item in filterByMass
                          where item.Value.Pl_Masse < max && item.Value.Pl_Masse < max
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -942,6 +1011,8 @@ namespace projeto1LP2
 
             CheckField(fields);
 
+            SecondField(fields);
+
             Console.WriteLine("Filter by planet host star mass");
 
             if (min == null && max != null)
@@ -951,7 +1022,7 @@ namespace projeto1LP2
                     filterByHostMass =
                         (from item in filterByHostMass
                          where item.Value.St_Mass < max
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -959,7 +1030,7 @@ namespace projeto1LP2
                     filterByHostMass =
                         (from item in filterByHostMass
                          where item.Value.St_Mass < max
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -977,7 +1048,7 @@ namespace projeto1LP2
                     filterByHostMass =
                         (from item in filterByHostMass
                          where item.Value.St_Mass > min
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -985,7 +1056,7 @@ namespace projeto1LP2
                     filterByHostMass =
                         (from item in filterByHostMass
                          where item.Value.St_Mass > min
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -1003,7 +1074,7 @@ namespace projeto1LP2
                     filterByHostMass =
                         (from item in filterByHostMass
                          where item.Value.St_Mass > min && item.Value.St_Mass < max
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -1011,7 +1082,7 @@ namespace projeto1LP2
                     filterByHostMass =
                         (from item in filterByHostMass
                          where item.Value.St_Mass > min && item.Value.St_Mass < max
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -1042,6 +1113,8 @@ namespace projeto1LP2
 
             CheckField(fields);
 
+            SecondField(fields);
+
             Console.WriteLine("Filter by planet host star age");
 
             if (min == null && max != null)
@@ -1051,7 +1124,7 @@ namespace projeto1LP2
                     filterByHostAge =
                         (from item in filterByHostAge
                          where item.Value.St_Age < max
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -1059,7 +1132,7 @@ namespace projeto1LP2
                     filterByHostAge =
                         (from item in filterByHostAge
                          where item.Value.St_Age < max
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -1077,7 +1150,7 @@ namespace projeto1LP2
                     filterByHostAge =
                         (from item in filterByHostAge
                          where item.Value.St_Age > min
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -1085,7 +1158,7 @@ namespace projeto1LP2
                     filterByHostAge =
                         (from item in filterByHostAge
                          where item.Value.St_Age > min
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -1103,7 +1176,7 @@ namespace projeto1LP2
                     filterByHostAge =
                         (from item in filterByHostAge
                          where item.Value.St_Age > min && item.Value.St_Age < max
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -1111,7 +1184,7 @@ namespace projeto1LP2
                     filterByHostAge =
                         (from item in filterByHostAge
                          where item.Value.St_Age > min && item.Value.St_Age < max
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -1142,6 +1215,8 @@ namespace projeto1LP2
 
             CheckField(fields);
 
+            SecondField(fields);
+
             Console.WriteLine("Filter by planet host star rotation speed");
 
             if (min == null && max != null)
@@ -1151,7 +1226,7 @@ namespace projeto1LP2
                     filterByHostVsin =
                         (from item in filterByHostVsin
                          where item.Value.St_Vsin < max
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                          .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -1159,7 +1234,7 @@ namespace projeto1LP2
                     filterByHostVsin =
                         (from item in filterByHostVsin
                          where item.Value.St_Vsin < max
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                          .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -1177,7 +1252,7 @@ namespace projeto1LP2
                     filterByHostVsin =
                         (from item in filterByHostVsin
                          where item.Value.St_Vsin > min
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -1185,7 +1260,7 @@ namespace projeto1LP2
                     filterByHostVsin =
                         (from item in filterByHostVsin
                          where item.Value.St_Vsin > min
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -1203,7 +1278,7 @@ namespace projeto1LP2
                     filterByHostVsin =
                         (from item in filterByHostVsin
                          where item.Value.St_Vsin > min && item.Value.St_Vsin < max
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                          .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -1211,7 +1286,7 @@ namespace projeto1LP2
                     filterByHostVsin =
                          (from item in filterByHostVsin
                           where item.Value.St_Vsin > min && item.Value.St_Vsin < max
-                          select item).OrderByDescending(x => orderByFunc(x))
+                          select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                          .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -1242,6 +1317,8 @@ namespace projeto1LP2
 
             CheckField(fields);
 
+            SecondField(fields);
+
             Console.WriteLine("Filter by planet host star rotation period");
 
             if (min == null && max != null)
@@ -1251,7 +1328,7 @@ namespace projeto1LP2
                     filterByHostRotp =
                         (from item in filterByHostRotp
                          where item.Value.St_Rotp < max
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -1259,7 +1336,7 @@ namespace projeto1LP2
                     filterByHostRotp =
                         (from item in filterByHostRotp
                          where item.Value.St_Rotp < max
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -1277,7 +1354,7 @@ namespace projeto1LP2
                     filterByHostRotp =
                         (from item in filterByHostRotp
                          where item.Value.St_Rotp > min
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                          .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -1285,7 +1362,7 @@ namespace projeto1LP2
                     filterByHostRotp =
                         (from item in filterByHostRotp
                          where item.Value.St_Rotp > min
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -1303,7 +1380,7 @@ namespace projeto1LP2
                     filterByHostRotp =
                         (from item in filterByHostRotp
                          where item.Value.St_Rotp > min && item.Value.St_Rotp < max
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -1311,7 +1388,7 @@ namespace projeto1LP2
                     filterByHostRotp =
                         (from item in filterByHostRotp
                          where item.Value.St_Rotp > min && item.Value.St_Rotp < max
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -1342,6 +1419,8 @@ namespace projeto1LP2
 
             CheckField(fields);
 
+            SecondField(fields);
+
             Console.WriteLine("Filter by distance from the sun to the host star");
 
             if (min == null && max != null)
@@ -1351,7 +1430,7 @@ namespace projeto1LP2
                     filterByHostDist =
                         (from item in filterByHostDist
                          where item.Value.Sy_Dist < max
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                          .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -1359,7 +1438,7 @@ namespace projeto1LP2
                     filterByHostDist =
                         (from item in filterByHostDist
                          where item.Value.Sy_Dist < max
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -1377,7 +1456,7 @@ namespace projeto1LP2
                     filterByHostDist =
                         (from item in filterByHostDist
                          where item.Value.Sy_Dist > min
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -1385,7 +1464,7 @@ namespace projeto1LP2
                     filterByHostDist =
                         (from item in filterByHostDist
                          where item.Value.Sy_Dist > min
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -1403,7 +1482,7 @@ namespace projeto1LP2
                     filterByHostDist =
                         (from item in filterByHostDist
                          where item.Value.Sy_Dist > min && item.Value.Sy_Dist < max
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -1411,7 +1490,7 @@ namespace projeto1LP2
                     filterByHostDist =
                         (from item in filterByHostDist
                          where item.Value.Sy_Dist > min && item.Value.Sy_Dist < max
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                          .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
