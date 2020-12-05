@@ -50,9 +50,15 @@ namespace projeto1LP2
                     lineCount = File.ReadLines(fileName).Count();
 
                     // Passar à frente as primeiras linhas.
-                    for (int i = 0; i < 48; i++) {
+                    /*for (int i = 0; i < 48; i++) {
                         content = sr.ReadLine();
-                    }
+                    }*/
+
+                    // Passar à frente as primeiras linhas v2
+                    do {
+                        content = sr.ReadLine();
+                    } while (content.StartsWith("#"));
+
                     // Dividir a linha e colocar cada campo na array.
                     lines = new string[content.Length];
                     lines = content.Split(',');
