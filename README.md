@@ -30,7 +30,7 @@
 
 **Forma de implementação:** Interativo, consola.
 
-**Descrição breve da solução.:**
+**Descrição breve da solução:**
 
 Esta solução tem como objetivo ler, organizar e mostrar os dados de um ficheiro
 *csv* da *NASA* de Exoplanetas. 
@@ -70,7 +70,8 @@ tabela semelhante a *SQL* e o facto de utilizar *Keys* é bastante poderoso e
 uma `Key` única e um valor. Como os planetas e as estrelas têm mais do que um
 valor, concluí que seria melhor criar duas `Struct` para serem utilizadas como
 valor (visto que são tipos de valor), uma para as estrelas e outra para os 
-planetas. Aí pude organizar bem os dados e tornar o código mais compreensível.
+planetas. Assim pude organizar bem os dados e tornar o código mais
+compreensível.
 
 **Queries:**
 
