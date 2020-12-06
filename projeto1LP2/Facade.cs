@@ -187,49 +187,63 @@ namespace projeto1LP2
             return StarFields.HostName;
         }
 
-        // Método para imprimir informação na consola
+        // Método para imprimir informação na consola Planetas
         public void PrintInfo(Dictionary<int, Planet> filter)
         {
+            Console.WriteLine("  ID |" +
+                "           Planet           |" +
+                "            Star            |" +
+                "         Disc Method          |" +
+                " Disc Year|" +
+                "   Orb Per  |" +
+                "Pl Radius |" +
+                " St Radius|" +
+                " Pl Temp  |" +
+                " St Temp  |" +
+                " Pl Mass  |" +
+                " St Mass  |" +
+                "  St Age  |" +
+                "St Rot Vel|" +
+                "St Rot Per|" +
+                "St Dist Sun");
             // Imprimir
             foreach (KeyValuePair<int, Planet> item in filter)
             {
-                Console.WriteLine(string.Format($"ID:{item.Key,-5}|" +
-                    $"Planet:{item.Value.HostName}|" +
-                    $"Host:{item.Value.HostName}|" +
-                    $"Disc Method:{item.Value.DiscoveryMethod}|" +
-                    $"Disc Year:{item.Value.Disc_Year,-4}|" +
-                    $"Orb Per:{item.Value.Pl_Orbper,-12}|" +
-                    $"Planet Radius:{item.Value.Pl_Rade,-6}|" +
-                    $"Host Radius:{item.Value.St_Rad,-6}|" +
-                    $"Planet Temp:{item.Value.Pl_Eqt,-5}|" +
-                    $"Host Temper:{item.Value.St_Teff,-7}|" +
-                    $"Planet Mass:{item.Value.Pl_Masse,-10}|" +
-                    $"Host Mass:{item.Value.St_Mass,-6}|" +
-                    $"Host Age:{item.Value.St_Age,-3}|" +
-                    $"Host Rot Vel:{item.Value.St_Vsin,-3}|" +
-                    $"Host Rot Per:{item.Value.St_Rotp,-3}|" +
-                    $"Host Dist to Sun:{item.Value.Sy_Dist,-10}"));
+                Console.WriteLine($"{ item.Key,-5}|{item.Value.HostName}|" +
+                    $"{item.Value.HostName}|{item.Value.DiscoveryMethod}|" +
+                    $"{item.Value.Disc_Year,-10}|{item.Value.Pl_Orbper,-12}|" +
+                    $"{item.Value.Pl_Rade,-10}|{item.Value.St_Rad,-10}|" +
+                    $"{item.Value.Pl_Eqt,-10}|{item.Value.St_Teff,-10}|" +
+                    $"{item.Value.Pl_Masse,-10}|{item.Value.St_Mass,-10}|" +
+                    $"{item.Value.St_Age,-10}|{item.Value.St_Vsin,-10}|" +
+                    $"{item.Value.St_Rotp,-10}|{item.Value.Sy_Dist,-10}");
             }
         }
 
         // Método para imprimir informação na consola Estrelas
         public void PrintInfo(Dictionary<int, Star> filter)
         {
+            Console.WriteLine("  ID |" +
+                "            Star            |" +
+                "         Disc Method          |" +
+                " Disc Year|" +
+                "  Temper  |" +
+                "  Radius  |" +
+                "   Mass   |" +
+                "    Age   |" +
+                "  Rot Vel |" +
+                "  Rot Per |" +
+                " Dist Sun |" +
+                "Num of Planets");
             // Imprimir
             foreach (KeyValuePair<int, Star> item in filter)
             {
-                Console.WriteLine(string.Format($"ID:{item.Key,-5}|" +
-                    $"Star:{item.Value.HostName}|" +
-                    $"Disc Method:{item.Value.DiscoveryMethod}|" +
-                    $"Disc Year:{item.Value.Disc_Year,-4}|" +
-                    $"Temper:{item.Value.St_Teff,-7}|" +
-                    $"Radius:{item.Value.St_Rad,-6}|" +
-                    $"Mass:{item.Value.St_Mass,-6}|" +
-                    $"Age:{item.Value.St_Age,-3}|" +
-                    $"Rot Vel:{item.Value.St_Vsin,-3}|" +
-                    $"Rot Per:{item.Value.St_Rotp,-3}|" +
-                    $"Dist to Sun:{item.Value.Sy_Dist,-10}|" +
-                    $"Num of Planets:{item.Value.St_PlCount,-2}"));
+                Console.WriteLine($"{item.Key,-5}|{item.Value.HostName}|" +
+                    $"{item.Value.DiscoveryMethod}|{item.Value.Disc_Year,-10}|" +
+                    $"{item.Value.St_Teff,-10}|{item.Value.St_Rad,-10}|" +
+                    $"{item.Value.St_Mass,-10}|{item.Value.St_Age,-10}|" +
+                    $"{item.Value.St_Vsin,-10}|{item.Value.St_Rotp,-10}|" +
+                    $"{item.Value.Sy_Dist,-10}|{item.Value.St_PlCount,-10}");
             }
         }
         // Método para odernar informação com inputs string para planetas

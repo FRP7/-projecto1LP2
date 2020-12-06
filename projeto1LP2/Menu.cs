@@ -62,7 +62,7 @@ namespace projeto1LP2
                             {
                                 // Caso o utilizador escolha a opção número 0
                                 case ConsoleKey.D0:
-                                    Console.Write("\nYou have chosen no filter");
+                                    Console.WriteLine("\nYou have chosen no filter");
                                     System.Threading.Thread.Sleep(1000);
                                     // Mostrar planetas
                                     facade.PrintInfo(Facade.planetList);
@@ -766,7 +766,7 @@ namespace projeto1LP2
                             {
                                 // Caso o utilizador escolha a opção número 0
                                 case ConsoleKey.D0:
-                                    Console.Write("\nYou have chosen no filter");
+                                    Console.WriteLine("\nYou have chosen no filter");
                                     System.Threading.Thread.Sleep(1000);
                                     // Mostrar estrelas
                                     facade.PrintInfo(Facade.starList);
