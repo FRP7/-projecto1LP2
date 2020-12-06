@@ -674,8 +674,8 @@ namespace projeto1LP2
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
-                                            Console.Write("\nChosen" +
-                                                " Descendent filter, stand by");
+                                            Console.Write("\nChosen " +
+                                                "Descendent filter, stand by");
                                             System.Threading.Thread.Sleep
                                                 (1000);
                                             facade.SearchByPlanetMass(
@@ -740,8 +740,8 @@ namespace projeto1LP2
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
-                                            Console.Write("\nChosen" +
-                                                " Descendent filter, stand by");
+                                            Console.Write("\nChosen " +
+                                                "Descendent filter, stand by");
                                             System.Threading.Thread.Sleep
                                                 (1000);
                                             facade.SearchByPlanetHostMass(
@@ -1103,8 +1103,8 @@ namespace projeto1LP2
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
-                                            Console.Write("\nChosen" +
-                                                " Descendent filter, stand by");
+                                            Console.Write("\nChosen " +
+                                                "Descendent filter, stand by");
                                             System.Threading.Thread.Sleep
                                                 (1000);
                                             facade.SearchByStarName(
@@ -1432,8 +1432,8 @@ namespace projeto1LP2
                                         }
                                         else
                                         {
-                                            Console.WriteLine("\nUnknown Command," +
-                                                " please try again.");
+                                            Console.WriteLine("\nUnknown " +
+                                                "Command, please try again.");
                                             System.Threading.Thread.Sleep
                                                 (1000);
                                             retry = true;
@@ -1695,7 +1695,8 @@ namespace projeto1LP2
                                         else
                                         {
                                             Console.WriteLine
-                                                ("\nUnknown Command, please try again.");
+                                                ("\nUnknown Command, please " +
+                                                "try again.");
                                             System.Threading.Thread.Sleep
                                                 (1000);
                                             retry = true;
