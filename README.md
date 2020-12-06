@@ -3,50 +3,51 @@
  **Francisco Pires a21804873:**
  
 
- - Planeamento, organizaÁ„o e gest„o do projeto.
+ - Planeamento, organiza√ß√£o e gest√£o do projeto.
  - Leitura do ficheiro (`FileReader`) .
  - `Planet` e `Star`.
  - `PlanetField` e `StarField`.
- - Pesquisa e ordenaÁ„o de estrelas.
- - OrdenaÁ„o dos planetas.
- - *Polishing* e documentaÁ„o do cÛdigo.
- - RelatÛrio.
+ - Pesquisa e ordena√ß√£o de estrelas.
+ - Ordena√ß√£o dos planetas.
+ - *Polishing* e documenta√ß√£o do c√≥digo.
+ - Relat√≥rio.
 
  **Nuno Figueiredo a21705451:**
  
 
- - teste1
- - teste2
- - teste3
+ - Conceptualiza√ß√£o e organiza√ß√£o do `Menu`.
+ - `PlanetSearcher`.
+ - Diversos m√©todos do `Facade`.
+ - Otimiza√ß√£o do c√≥digo.
  
- **RepositÛrio**: https://github.com/FRP7/projecto1LP2
+ **Reposit√≥rio**: https://github.com/FRP7/projecto1LP2
 
-# Arquitectura da soluÁ„o
+# Arquitectura da solu√ß√£o
 
-**Forma de implementaÁ„o:** Interativo, consola.
+**Forma de implementa√ß√£o:** Interativo, consola.
 
-**DescriÁ„o da soluÁ„o:**
+**Descri√ß√£o da solu√ß√£o:**
 
 
-**OrganizaÁ„o:**
+**Organiza√ß√£o:**
 
-A soluÁ„o foi feita tentando sempre que possÌvel respeitar os princÌpios *SOLID*, para isso utiliz·mos como *Design Pattern* o *Facade*. O motivo para esta escolha foi, pensei que como o projeto seria em grupo e o Nuno tem dificuldades em programaÁ„o, seria o estilo mais ideal e mais confort·vel para trabalharmos juntos sem quaisquer tipos de problemas a nÌvel de compreens„o e de *Source Control*.
+A solu√ß√£o foi feita tentando sempre que poss√≠vel respeitar os princ√≠pios *SOLID*, para isso utiliz√°mos como *Design Pattern* o *Facade*. O motivo para esta escolha foi, pensei que como o projeto seria em grupo e o Nuno tem dificuldades em programa√ß√£o, seria o estilo mais ideal e mais confort√°vel para trabalharmos juntos sem quaisquer tipos de problemas a n√≠vel de compreens√£o e de *Source Control*.
 
 **Leitura do ficheiro:**
 
-Para ler o ficheiro, tive que utilizar o `StreamReader` do `System.IO` e logicamente, o cÛdigo passa ‡ frente do texto que tenha "*#*" atÈ chegar a um que n„o tenha (que s„o as colunas). Depois aÌ, divide a linha por vÌrgulas e coloca num *array* que depois o tipo de colunas s„o identificadas por um *array* de `int` atravÈs do *index*.
-ApÛs a identificaÁ„o das colunas, o cÛdigo verifica o resto do ficheiro que com o *index* vai percebendo a qual coluna pertencem e vai colocando na coleÁ„o. 
-O conte˙do dos campos das colunas È convertido para os formatos mais adequados do C# atravÈs do `TryParse` (excepto quando se trata de `string`). `Nullables` s„o utilizados nas vari·veis de valor visto que nem todos os dados contÍm toda a informaÁ„o que pedem as colunas.
+Para ler o ficheiro, tive que utilizar o `StreamReader` do `System.IO` e logicamente, o c√≥digo passa √† frente do texto que tenha "*#*" at√© chegar a um que n√£o tenha (que s√£o as colunas). Depois a√≠, divide a linha por v√≠rgulas e coloca num *array* que depois o tipo de colunas s√£o identificadas por um *array* de `int` atrav√©s do *index*.
+Ap√≥s a identifica√ß√£o das colunas, o c√≥digo verifica o resto do ficheiro que com o *index* vai percebendo a qual coluna pertencem e vai colocando na cole√ß√£o. 
+O conte√∫do dos campos das colunas √© convertido para os formatos mais adequados do C# atrav√©s do `TryParse` (excepto quando se trata de `string`). `Nullables` s√£o utilizados nas vari√°veis de valor visto que nem todos os dados cont√™m toda a informa√ß√£o que pedem as colunas.
 
-**ColeÁ„o:**
+**Cole√ß√£o:**
 
-A coleÁ„o que utiliz·mos foi o `Dictionary`. O motivo para esta decis„o foi que numa perspectiva de fora, creio que faz todo o sentido guardar os dados num tabela semelhante a *SQL* e o facto de utilizar *Keys* È bastante poderoso e ˙til e poder· expandir os horizontes. As coleÁıes sÛ permitem em cada linha uma `Key` ˙nica e um valor, como os planetas e as estrelas tÍm mais do que um par‚metro, concluÌ que seria melhor criar duas `Struct` para serem utilizadas como valor (visto que È um tipo de valor), uma para as estrelas e outra para os planetas. E aÌ pude organizar bem os dados e tornar o cÛdigo mais compreensÌvel.
+A cole√ß√£o que utiliz√°mos foi o `Dictionary`. O motivo para esta decis√£o foi que numa perspectiva de fora, creio que faz todo o sentido guardar os dados num tabela semelhante a *SQL* e o facto de utilizar *Keys* √© bastante poderoso e √∫til e poder√° expandir os horizontes. As cole√ß√µes s√≥ permitem em cada linha uma `Key` √∫nica e um valor, como os planetas e as estrelas t√™m mais do que um par√¢metro, conclu√≠ que seria melhor criar duas `Struct` para serem utilizadas como valor (visto que √© um tipo de valor), uma para as estrelas e outra para os planetas. E a√≠ pude organizar bem os dados e tornar o c√≥digo mais compreens√≠vel.
 
 **Queries:**
 
-Eu comecei primeiro por fazer as pesquisas das estrelas de forma que o Nuno pudesse entender melhor como poderia fazer a pesquisa dos planetas, por isso,  escrevi o cÛdigo de forma que fosse parecido com *queries* de *SQL* para melhor compreens„o.
-Fiz *queries* para pesquisar por todos os par‚metros das estrelas e depois o Nuno fez os dos planetas com base no que fiz das estrelas. 
-Por fim, fiz os *queries* de ordenaÁ„o nas estrelas que depois o Nuno implementou nos planetas.
+Eu comecei primeiro por fazer as pesquisas das estrelas de forma que o Nuno pudesse entender melhor como poderia fazer a pesquisa dos planetas, por isso,  escrevi o c√≥digo de forma que fosse parecido com *queries* de *SQL* para melhor compreens√£o.
+Fiz *queries* para pesquisar por todos os par√¢metros das estrelas e depois o Nuno fez os dos planetas com base no que fiz das estrelas. 
+Por fim, fiz os *queries* de ordena√ß√£o nas estrelas que depois o Nuno implementou nos planetas.
 
 **UML:**
 
@@ -57,12 +58,12 @@ https://imgur.com/a/ztaVQuU
 
 
 
-## ReferÍncias
+## Refer√™ncias
 
-Para criar a coleÁ„o, utilizei esta soluÁ„o (a que tem mais votos) nesta discuss„o no *StackOverflow*: https://stackoverflow.com/questions/6709625/c-sharp-dictionary-with-multiple-values-per-key.
-Para ordenar os dados de uma forma mais din‚mica utilizei esta soluÁ„o no *StackOverflow* proposta pelo professor (a que tem mais votos): https://stackoverflow.com/questions/2728340/how-can-i-do-an-orderby-with-a-dynamic-string-parameter/10413311#10413311
+Para criar a cole√ß√£o, utilizei esta solu√ß√£o (a que tem mais votos) nesta discuss√£o no *StackOverflow*: https://stackoverflow.com/questions/6709625/c-sharp-dictionary-with-multiple-values-per-key.
+Para ordenar os dados de uma forma mais din√¢mica utilizei esta solu√ß√£o no *StackOverflow* proposta pelo professor (a que tem mais votos): https://stackoverflow.com/questions/2728340/how-can-i-do-an-orderby-with-a-dynamic-string-parameter/10413311#10413311
 
-Para criar a coleÁ„o, inspirei-me numa soluÁ„o que foi apresentada nesta discuss„o no StackOverflow: https://stackoverflow.com/questions/6709625/c-sharp-dictionary-with-multiple-values-per-key.
+Para criar a cole√ß√£o, inspirei-me numa solu√ß√£o que foi apresentada nesta discuss√£o no StackOverflow: https://stackoverflow.com/questions/6709625/c-sharp-dictionary-with-multiple-values-per-key.
 
 ```cs
 class MyType
@@ -92,7 +93,7 @@ someDictionary.Add( 0,
 //someDictionary[0].SomeVal2 // bar
 ```
 
-Para ordenar os dados de uma forma mais din‚mica, inspirei-me nesta soluÁ„o no *StackOverflow* proposta pelo professor: https://stackoverflow.com/questions/2728340/how-can-i-do-an-orderby-with-a-dynamic-string-parameter/10413311#10413311.
+Para ordenar os dados de uma forma mais din√¢mica, inspirei-me nesta solu√ß√£o no *StackOverflow* proposta pelo professor: https://stackoverflow.com/questions/2728340/how-can-i-do-an-orderby-with-a-dynamic-string-parameter/10413311#10413311.
 
 ```cs
 Func<Item, Object> orderByFunc = null;
