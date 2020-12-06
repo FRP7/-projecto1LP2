@@ -11,18 +11,42 @@ namespace projeto1LP2
         /// <summary>
         /// Método do menu principal.
         /// </summary>
-        public void MainMenu()
+        public void MainMenu(string file)
         {
             Facade facade = new Facade();
-            facade.ReadFile();
             ConsoleKeyInfo choice;
             int filterIntMin, filterIntMax;
             double filterDoubleMin, filterDoubleMax;
-            string file = "planetList.csv";
             string filterString;
             bool retry;
-            Console.WriteLine("\nWelcome to the Interstelar sorter." +
-                $"\nYou are currently reading {file}." +
+            if (file == null)
+            {
+                do
+                {
+                    Console.WriteLine("\nWelcome to the Interstelar sorter." +
+                    "\nPlease choose a file to read by typing the " +
+                    "name of the file.");
+                    file = Console.ReadLine();
+                    if (!file.EndsWith(".csv"))
+                        file += ".csv";
+                    FileReader fileReader = new FileReader(file);
+                    if (fileReader.CanItRead() == true)
+                    {
+                        facade.ReadFile(file);
+                        retry = false;
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nPlease try again.\n");
+                        retry = true;
+                    }
+                } while (retry == true);
+            }
+            else
+            {
+                facade.ReadFile(file);
+            }
+            Console.WriteLine($"\nYou are currently reading {file}." +
                 "\nWhat would you like to sort?\n\n\t1 = Planets;" +
                 "\n\t2 = Stars;\n\tR = Read another File;\n\tEsc = Exit.");
             do
@@ -66,12 +90,12 @@ namespace projeto1LP2
                             {
                                 // Caso o utilizador escolha a opção número 0.
                                 case ConsoleKey.D0:
-                                    Console.WriteLine("\nYou have chosen no " +
-                                        "filter");
+                                    Console.WriteLine("\nYou have chosen no" +
+                                        " filter");
                                     System.Threading.Thread.Sleep(1000);
                                     // Mostrar planetas
                                     facade.PrintInfo(Facade.planetList);
-                                    MainMenu();
+                                    MainMenu(file);
                                     break;
                                 // Caso o utilizador escolha a opção número 1
                                 case ConsoleKey.D1:
@@ -104,7 +128,7 @@ namespace projeto1LP2
                                             facade.SearchByPlanetName(
                                                 filterString, true, facade.
                                                 OrderByPlanets(choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
@@ -115,7 +139,7 @@ namespace projeto1LP2
                                             facade.SearchByPlanetName(
                                                 filterString, false, facade.
                                                 OrderByPlanets(choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else
                                         {
@@ -159,7 +183,7 @@ namespace projeto1LP2
                                             facade.SearchByPlanetHostName(
                                                 filterString, true, facade.
                                                 OrderByPlanets(choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
@@ -170,7 +194,7 @@ namespace projeto1LP2
                                             facade.SearchByPlanetHostName(
                                                 filterString, false, facade.
                                                 OrderByPlanets(choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else
                                         {
@@ -215,7 +239,7 @@ namespace projeto1LP2
                                                 (filterString, true, 
                                                 facade.OrderByPlanets
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
@@ -228,7 +252,7 @@ namespace projeto1LP2
                                                 (filterString, false, 
                                                 facade.OrderByPlanets
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else
                                         {
@@ -280,7 +304,7 @@ namespace projeto1LP2
                                                 filterIntMin, filterIntMax, 
                                                 true, facade.OrderByPlanets
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
@@ -292,7 +316,7 @@ namespace projeto1LP2
                                                 filterIntMin, filterIntMax,
                                                 false, facade.OrderByPlanets
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else
                                         {
@@ -344,7 +368,7 @@ namespace projeto1LP2
                                                 filterIntMin, filterIntMax, 
                                                 true, facade.OrderByPlanets
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
@@ -356,7 +380,7 @@ namespace projeto1LP2
                                                 filterIntMin, filterIntMax, 
                                                 false, facade.OrderByPlanets
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else
                                         {
@@ -410,7 +434,7 @@ namespace projeto1LP2
                                                 filterDoubleMax, true,
                                                 facade.OrderByPlanets
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
@@ -423,7 +447,7 @@ namespace projeto1LP2
                                                 filterDoubleMax, false, 
                                                 facade.OrderByPlanets
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else
                                         {
@@ -476,7 +500,7 @@ namespace projeto1LP2
                                                 filterDoubleMax, true, 
                                                 facade.OrderByPlanets
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
@@ -489,7 +513,7 @@ namespace projeto1LP2
                                                 filterDoubleMax, false, 
                                                 facade.OrderByPlanets
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else
                                         {
@@ -541,7 +565,7 @@ namespace projeto1LP2
                                                 filterIntMin, filterIntMax, 
                                                 true, facade.OrderByPlanets
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
@@ -553,7 +577,7 @@ namespace projeto1LP2
                                                 filterIntMin, filterIntMax,
                                                 false, facade.OrderByPlanets
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else
                                         {
@@ -605,7 +629,7 @@ namespace projeto1LP2
                                                 filterIntMin, filterIntMax,
                                                 true, facade.OrderByPlanets
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
@@ -617,7 +641,7 @@ namespace projeto1LP2
                                                 filterIntMin, filterIntMax,
                                                 false, facade.OrderByPlanets
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else
                                         {
@@ -670,7 +694,7 @@ namespace projeto1LP2
                                                 filterDoubleMax, true, 
                                                 facade.OrderByPlanets
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
@@ -683,7 +707,7 @@ namespace projeto1LP2
                                                 filterDoubleMax, false, 
                                                 facade.OrderByPlanets
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else
                                         {
@@ -736,7 +760,7 @@ namespace projeto1LP2
                                                 filterDoubleMax, true, 
                                                 facade.OrderByPlanets
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
@@ -749,7 +773,7 @@ namespace projeto1LP2
                                                 filterDoubleMax, false,
                                                 facade.OrderByPlanets
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else
                                         {
@@ -801,7 +825,7 @@ namespace projeto1LP2
                                                 filterIntMin, filterIntMax,
                                                 true, facade.OrderByPlanets
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
@@ -813,7 +837,7 @@ namespace projeto1LP2
                                                 filterIntMin, filterIntMax, 
                                                 false, facade.OrderByPlanets
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else
                                         {
@@ -866,7 +890,7 @@ namespace projeto1LP2
                                                 filterDoubleMax, true, 
                                                 facade.OrderByPlanets(choice, 
                                                 retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
@@ -879,7 +903,7 @@ namespace projeto1LP2
                                                 filterDoubleMax, false, 
                                                 facade.OrderByPlanets
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else
                                         {
@@ -931,7 +955,7 @@ namespace projeto1LP2
                                                 filterIntMin, filterIntMax,
                                                 true, facade.OrderByPlanets
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
@@ -943,7 +967,7 @@ namespace projeto1LP2
                                                 filterIntMin, filterIntMax, 
                                                 false, facade.OrderByPlanets
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else
                                         {
@@ -996,7 +1020,7 @@ namespace projeto1LP2
                                                 filterDoubleMax, true, 
                                                 facade.OrderByPlanets
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
@@ -1009,7 +1033,7 @@ namespace projeto1LP2
                                                 filterDoubleMax, false, 
                                                 facade.OrderByPlanets
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else
                                         {
@@ -1029,7 +1053,7 @@ namespace projeto1LP2
                             }
                         } while (retry == true);
                         // Voltar ao menu.
-                        MainMenu();
+                        MainMenu(file);
                         break;
                     // Caso o utilizador escolha a opção número 2.
                     case ConsoleKey.D2:
@@ -1065,7 +1089,7 @@ namespace projeto1LP2
                                     System.Threading.Thread.Sleep(1000);
                                     // Mostrar estrelas
                                     facade.PrintInfo(Facade.starList);
-                                    MainMenu();
+                                    MainMenu(file);
                                     break;
                                 // Caso o utilizador escolha a opção número 1.
                                 case ConsoleKey.D1:
@@ -1099,7 +1123,7 @@ namespace projeto1LP2
                                                 filterString, true, 
                                                 facade.OrderByStars
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
@@ -1111,7 +1135,7 @@ namespace projeto1LP2
                                                 filterString, false, 
                                                 facade.OrderByStars
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else
                                         {
@@ -1155,7 +1179,7 @@ namespace projeto1LP2
                                                 filterString, true, 
                                                 facade.OrderByStars
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
@@ -1167,7 +1191,7 @@ namespace projeto1LP2
                                                 filterString, false, 
                                                 facade.OrderByStars
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else
                                         {
@@ -1220,7 +1244,7 @@ namespace projeto1LP2
                                                 filterIntMin, filterIntMax, 
                                                 true, facade.OrderByStars
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
@@ -1232,7 +1256,7 @@ namespace projeto1LP2
                                                 filterIntMin, filterIntMax, 
                                                 false, facade.OrderByStars
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else
                                         {
@@ -1285,7 +1309,7 @@ namespace projeto1LP2
                                                 filterDoubleMax, true, 
                                                 facade.OrderByStars
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
@@ -1298,7 +1322,7 @@ namespace projeto1LP2
                                                 filterDoubleMax, false, 
                                                 facade.OrderByStars
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else
                                         {
@@ -1350,7 +1374,7 @@ namespace projeto1LP2
                                                 filterIntMin, filterIntMax, 
                                                 true, facade.OrderByStars
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
@@ -1362,7 +1386,7 @@ namespace projeto1LP2
                                                 filterIntMin, filterIntMax,
                                                 false, facade.OrderByStars
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else
                                         {
@@ -1415,7 +1439,7 @@ namespace projeto1LP2
                                                 filterDoubleMax, true, 
                                                 facade.OrderByStars
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
@@ -1428,7 +1452,7 @@ namespace projeto1LP2
                                                 filterDoubleMax, false, 
                                                 facade.OrderByStars
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else
                                         {
@@ -1480,7 +1504,7 @@ namespace projeto1LP2
                                                 filterIntMin, filterIntMax, 
                                                 true, facade.OrderByStars
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
@@ -1492,7 +1516,7 @@ namespace projeto1LP2
                                                 filterIntMin, filterIntMax, 
                                                 false, facade.OrderByStars
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else
                                         {
@@ -1545,7 +1569,7 @@ namespace projeto1LP2
                                                 filterDoubleMax, true, 
                                                 facade.OrderByStars
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
@@ -1558,7 +1582,7 @@ namespace projeto1LP2
                                                 filterDoubleMax, false, 
                                                 facade.OrderByStars
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else
                                         {
@@ -1611,7 +1635,7 @@ namespace projeto1LP2
                                                 filterDoubleMax, true, 
                                                 facade.OrderByStars
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
@@ -1624,7 +1648,7 @@ namespace projeto1LP2
                                                 filterDoubleMax, false, 
                                                 facade.OrderByStars
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else
                                         {
@@ -1677,7 +1701,7 @@ namespace projeto1LP2
                                                 filterDoubleMax, true, 
                                                 facade.OrderByStars
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
@@ -1690,7 +1714,7 @@ namespace projeto1LP2
                                                 filterDoubleMax, false, 
                                                 facade.OrderByStars
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else
                                         {
@@ -1743,7 +1767,7 @@ namespace projeto1LP2
                                                 filterIntMin, filterIntMax,
                                                 true, facade.OrderByStars
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
@@ -1756,7 +1780,7 @@ namespace projeto1LP2
                                                 false, facade.
                                                 OrderByStars
                                                 (choice, retry));
-                                            MainMenu();
+                                            MainMenu(file);
                                         }
                                         else
                                         {
@@ -1778,25 +1802,34 @@ namespace projeto1LP2
                             }
                         } while (retry == true);
                         // Voltar ao menu.
-                        MainMenu();
+                        MainMenu(file);
                         break;
                     // Caso o utilizador escolha a opção letra R.
                     case ConsoleKey.R:
-                        Console.WriteLine("\nPlease write the File you " +
-                            "want to read\n" + "(exclude extension)\n");
-                        file = $"{Console.ReadLine()}.csv";
-                        facade.ReadFile(file);
-                        retry = true;
-                        Console.WriteLine("\n\nWelcome to the Interstelar" +
-                            " sorter." + 
-                            $"\nYou are currently reading {file}." + 
-                            "\nWhat would you like to sort?\n\n\t1 = Planets;"
-                            + "\n\t2 = Stars;\n\tR = Read another File;" +
-                            "\n\tEsc = Exit.");
+                        do
+                        {
+                            Console.WriteLine("\nPlease write the File you " +
+                                "want to read.\n");
+                            file = Console.ReadLine();
+                            if (!file.EndsWith(".csv"))
+                                file += ".csv";
+                            FileReader fileReader = new FileReader(file);
+                            if (fileReader.CanItRead() == true)
+                            {
+                                facade.ReadFile(file);
+                                retry = false;
+                            }
+                            else
+                            {
+                                Console.WriteLine("\nPlease try again.\n");
+                                retry = true;
+                            }
+                        } while (retry == true);
+                        MainMenu(file);
                         break;
                     // Caso o utilizador escolha a opção Escape.
                     case ConsoleKey.Escape:
-                        Console.Write("\n_Goodbye");
+                        Console.Write("\n_Goodbye...");
                         System.Threading.Thread.Sleep(1000);
                         Environment.Exit(0);
                         break;

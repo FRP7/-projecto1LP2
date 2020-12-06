@@ -35,7 +35,7 @@ namespace projeto1LP2
             }
             // Caso o ficheiro não consiga ser lido.
             catch (Exception) {
-                Console.WriteLine("O ficheiro não pode ser lido");
+                Console.WriteLine("File cant be read.");
             }
         }
 
@@ -44,7 +44,7 @@ namespace projeto1LP2
         /// </summary>
         /// <returns> Retorna true caso tenha as colunas obrigatórias. 
         /// </returns>
-        private bool CanItRead() {
+        public bool CanItRead() {
             // Indicar se existe a coluna do planeta.
             bool planetName = false;
             // Indicar se existe a coluna da estrela.
@@ -93,8 +93,7 @@ namespace projeto1LP2
             }
             // Caso não  tenhas as colunas obrigatórias.
             catch (Exception) {
-                Console.WriteLine("O ficheiro não tem as colunas " +
-                    "obrigatórias.");
+                Console.WriteLine("File doesnt have manditory columns.");
                 return false;
             }
         }
@@ -113,7 +112,7 @@ namespace projeto1LP2
             }
             // Caso não consiga ler os planetas e as estrelas.
             catch (Exception) {
-                Console.WriteLine("Uma das colunas tem valores inválidos.");
+                Console.WriteLine("One column has invalid values.");
             }
         }
 

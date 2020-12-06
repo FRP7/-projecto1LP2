@@ -13,7 +13,8 @@ namespace projeto1LP2
         /// <param name="args"> Argumentos da linha de comandos. </param>
         static void Main(string[] args) {
             Menu menu = new Menu();
-            menu.MainMenu();
+            string file = null;
+            menu.MainMenu(file);
         }
     }
 }
