@@ -347,19 +347,6 @@ namespace projeto1LP2
 
             ConsoleKeyInfo choice;
 
-            Console.WriteLine("  ID |" +
-                "            Star            |" +
-                "         Disc Method          |" +
-                " Disc Year|" +
-                "  Temper  |" +
-                "  Radius  |" +
-                "   Mass   |" +
-                "    Age   |" +
-                "  Rot Vel |" +
-                "  Rot Per |" +
-                " Dist Sun |" +
-                "Num of Planets");
-
             // Imprimir
             while (isDone == false)
             {
@@ -372,6 +359,20 @@ namespace projeto1LP2
                     showInfo = filter.Take(take).Skip(skip).ToDictionary(x =>
                     x.Key, x => x.Value);
                     Console.WriteLine("Results: ");
+
+                    Console.WriteLine("  ID |" +
+                        "            Star            |" +
+                        "         Disc Method          |" +
+                        " Disc Year|" +
+                        "  Temper  |" +
+                        "  Radius  |" +
+                        "   Mass   |" +
+                        "    Age   |" +
+                        "  Rot Vel |" +
+                        "  Rot Per |" +
+                        " Dist Sun |" +
+                        "Num of Planets");
+
                     foreach (KeyValuePair<int, Star> item in showInfo)
                     {
                         Console.WriteLine($"{item.Key,-5}" +
