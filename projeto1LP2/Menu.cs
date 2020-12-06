@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace projeto1LP2
 {
@@ -9,6 +8,9 @@ namespace projeto1LP2
     /// </summary>
     class Menu
     {
+        /// <summary>
+        /// Método do menu principal.
+        /// </summary>
         public void MainMenu()
         {
             Facade facade = new Facade();
@@ -25,16 +27,17 @@ namespace projeto1LP2
                 "\n\t2 = Stars;\n\tR = Read another File;\n\tEsc = Exit.");
             do
             {
-                // Variável para manter a escolha do utilizador
+                // Variável para manter a escolha do utilizador.
                 choice = Console.ReadKey();
-                // Variável para se o utilizador escolhar uma opção inválida
+                // Variável para se o utilizador escolhar uma opção inválida.
                 retry = false;
-                // Switch para as variadas opções
+                // Switch para as variadas opções.
                 switch (choice.Key)
                 {
-                    // Caso o utilizador escolha a opção número 1
+                    // Caso o utilizador escolha a opção número 1.
                     case ConsoleKey.D1:
-                        Console.WriteLine("\nYou have chosen Planets, choose a filter." +
+                        Console.WriteLine("\nYou have chosen Planets, choose" +
+                            " a filter." +
                             "\n\n\t0 - No Filter;" +
                             "\n\t1 - Planet Name;" +
                             "\n\t2 - Planet Host Name;" +
@@ -54,15 +57,17 @@ namespace projeto1LP2
                         System.Threading.Thread.Sleep(1000);
                         do
                         {
-                            // Variável para manter a escolha do utilizador
+                            // Variável para manter a escolha do utilizador.
                             choice = Console.ReadKey();
-                            // Variável para se o utilizador escolhar uma opção inválida
+                            /* Variável para se o utilizador escolhar uma 
+                             * opção inválida. */
                             retry = false;
                             switch (choice.Key)
                             {
-                                // Caso o utilizador escolha a opção número 0
+                                // Caso o utilizador escolha a opção número 0.
                                 case ConsoleKey.D0:
-                                    Console.WriteLine("\nYou have chosen no filter");
+                                    Console.WriteLine("\nYou have chosen no " +
+                                        "filter");
                                     System.Threading.Thread.Sleep(1000);
                                     // Mostrar planetas
                                     facade.PrintInfo(Facade.planetList);
@@ -70,679 +75,966 @@ namespace projeto1LP2
                                     break;
                                 // Caso o utilizador escolha a opção número 1
                                 case ConsoleKey.D1:
-                                    Console.Write("\nYou have chosen Planet Name filter");
+                                    Console.Write("\nYou have chosen Planet " +
+                                        "Name filter");
                                     System.Threading.Thread.Sleep(1000);
                                     do
                                     {
-                                        Console.WriteLine("\nType... (case sensitive)");
+                                        Console.WriteLine("\nType... (case " +
+                                            "sensitive)");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem frase para filtrar
+                                        /* String que contêm frase para
+                                         * filtrar. */
                                         filterString = Console.ReadLine();
-                                        Console.WriteLine("\n\tA - Ascendant;\n\tD - Descendant.");
+                                        Console.WriteLine("\n\tA - Ascendant" +
+                                            ";\n\tD - Descendant.");
                                         System.Threading.Thread.Sleep(1000);
-                                        // Variável para manter a escolha do utilizador
+                                        /* Variável para manter a escolha do
+                                         * utilizador. */
                                         choice = Console.ReadKey();
-                                        // Variável para se o utilizador escolhar uma opção inválida
+                                        /* Variável para se o utilizador 
+                                         * escolhar uma opção inválida. */
                                         retry = false;
                                         if (choice.Key == ConsoleKey.A)
                                         {
-                                            Console.Write("\nChosen Ascendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Ascendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByPlanetName(
-                                                filterString, true, facade.OrderByPlanets(choice, retry));
+                                                filterString, true, facade.
+                                                OrderByPlanets(choice, retry));
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
-                                            Console.Write("\nChosen Descendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Descendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByPlanetName(
-                                                filterString, false, facade.OrderByPlanets(choice, retry));
+                                                filterString, false, facade.
+                                                OrderByPlanets(choice, retry));
                                             MainMenu();
                                         }
                                         else
                                         {
-                                            Console.WriteLine("\nUnknown Command," +
+                                            Console.WriteLine("\nUnknown" +
+                                                " Command," +
                                                 " please try again.");
-                                            System.Threading.Thread.Sleep(1000);
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             retry = true;
                                         }
                                     } while (retry == true);
                                     break;
-                                // Caso o utilizador escolha a opção número 2
+                                // Caso o utilizador escolha a opção número 2.
                                 case ConsoleKey.D2:
-                                    Console.Write("\nYou have chosen Planet Host Name filter");
+                                    Console.Write("\nYou have chosen Planet" +
+                                        " Host Name filter");
                                     System.Threading.Thread.Sleep(1000);
                                     do
                                     {
-                                        Console.WriteLine("\nType... (case sensitive)");
+                                        Console.WriteLine("\nType..." +
+                                            " (case sensitive)");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem frase para filtrar
+                                        /* String que contem frase para
+                                         * filtrar. */
                                         filterString = Console.ReadLine();
-                                        Console.WriteLine("\n\tA - Ascendant;\n\tD - Descendant.");
+                                        Console.WriteLine("\n\tA - " +
+                                            "Ascendant;\n\tD - Descendant.");
                                         System.Threading.Thread.Sleep(1000);
-                                        // Variável para manter a escolha do utilizador
+                                        /* Variável para manter a escolha do
+                                         * utilizador. */
                                         choice = Console.ReadKey();
-                                        // Variável para se o utilizador escolhar uma opção inválida
+                                        /* Variável para se o utilizador 
+                                         * escolhar uma opção inválida */
                                         retry = false;
                                         if (choice.Key == ConsoleKey.A)
                                         {
-                                            Console.Write("\nChosen Ascendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen" +
+                                                " Ascendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByPlanetHostName(
-                                                filterString, true, facade.OrderByPlanets(choice, retry));
+                                                filterString, true, facade.
+                                                OrderByPlanets(choice, retry));
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
-                                            Console.Write("\nChosen Descendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Descendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByPlanetHostName(
-                                                filterString, false, facade.OrderByPlanets(choice, retry));
+                                                filterString, false, facade.
+                                                OrderByPlanets(choice, retry));
                                             MainMenu();
                                         }
                                         else
                                         {
-                                            Console.WriteLine("\nUnknown Command," +
-                                                " please try again.");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.WriteLine("\nUnknown" +
+                                                " Command, please try again.");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             retry = true;
                                         }
                                     } while (retry == true);
                                     break;
-                                // Caso o utilizador escolha a opção número 3
+                                // Caso o utilizador escolha a opção número 3.
                                 case ConsoleKey.D3:
-                                    Console.Write("\nYou have chosen Planet Discovery Method filter");
+                                    Console.Write("\nYou have chosen Planet " +
+                                        "Discovery Method filter");
                                     System.Threading.Thread.Sleep(1000);
                                     do
                                     {
-                                        Console.WriteLine("\nType... (case sensitive)");
+                                        Console.WriteLine("\nType..." +
+                                            " (case sensitive)");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem frase para filtrar
+                                        /* String que contem frase para 
+                                         * filtrar. */
                                         filterString = Console.ReadLine();
-                                        Console.WriteLine("\n\tA - Ascendant;\n\tD - Descendant.");
+                                        Console.WriteLine("\n\tA - " +
+                                            "Ascendant;\n\tD - Descendant.");
                                         System.Threading.Thread.Sleep(1000);
-                                        // Variável para manter a escolha do utilizador
+                                        /* Variável para manter a escolha do
+                                         * utilizador. */
                                         choice = Console.ReadKey();
-                                        // Variável para se o utilizador escolhar uma opção inválida
+                                        /* Variável para se o utilizador
+                                         * escolhar uma opção inválida. */
                                         retry = false;
                                         if (choice.Key == ConsoleKey.A)
                                         {
-                                            Console.Write("\nChosen Ascendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
-                                            facade.SearchByPlanetDiscoveryMethod(
-                                                filterString, true, facade.OrderByPlanets(choice, retry));
+                                            Console.Write("\nChosen" +
+                                                " Ascendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
+                                            facade.
+                                                SearchByPlanetDiscoveryMethod
+                                                (filterString, true, 
+                                                facade.OrderByPlanets
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
-                                            Console.Write("\nChosen Descendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
-                                            facade.SearchByPlanetDiscoveryMethod(
-                                                filterString, false, facade.OrderByPlanets(choice, retry));
+                                            Console.Write("\nChosen " +
+                                                "Descendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
+                                            facade.
+                                                SearchByPlanetDiscoveryMethod
+                                                (filterString, false, 
+                                                facade.OrderByPlanets
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else
                                         {
-                                            Console.WriteLine("\nUnknown Command," +
-                                                " please try again.");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.WriteLine("\nUnknown" +
+                                                " Command, please try again.");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             retry = true;
                                         }
                                     } while (retry == true);
                                     break;
-                                // Caso o utilizador escolha a opção número 4
+                                // Caso o utilizador escolha a opção número 4.
                                 case ConsoleKey.D4:
-                                    Console.Write("\nYou have chosen Planet Discovery Year filter");
+                                    Console.Write("\nYou have chosen Planet" +
+                                        " Discovery Year filter");
                                     System.Threading.Thread.Sleep(1000);
                                     do
                                     {
-                                        Console.WriteLine("\nType a minimum range...");
+                                        Console.WriteLine("\nType a" +
+                                            " minimum range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem minimo para filtrar
-                                        filterIntMin = Convert.ToInt32(Console.ReadLine());
-                                        Console.WriteLine("\nType a maximum range...");
+                                        /* String que contem minimo para 
+                                         * filtrar. */
+                                        filterIntMin = Convert.ToInt32
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\nType a maximum" +
+                                            " range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem máximo para filtrar
-                                        filterIntMax = Convert.ToInt32(Console.ReadLine());
-                                        Console.WriteLine("\n\tA - Ascendant;\n\tD - Descendant.");
+                                        /* String que contem máximo para
+                                         * filtrar. */
+                                        filterIntMax = Convert.ToInt32
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\n\tA -" +
+                                            " Ascendant;\n\tD - Descendant.");
                                         System.Threading.Thread.Sleep(1000);
-                                        // Variável para manter a escolha do utilizador
+                                        /* Variável para manter a escolha 
+                                         * do utilizador */
                                         choice = Console.ReadKey();
-                                        // Variável para se o utilizador escolhar uma opção inválida
+                                        /* Variável para se o utilizador 
+                                         * escolhar uma opção inválida. */
                                         retry = false;
                                         if (choice.Key == ConsoleKey.A)
                                         {
-                                            Console.Write("\nChosen Ascendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen" +
+                                                " Ascendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByPlanetDiscoveryYear(
-                                                filterIntMin, filterIntMax, true, facade.OrderByPlanets(choice, retry));
+                                                filterIntMin, filterIntMax, 
+                                                true, facade.OrderByPlanets
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
-                                            Console.Write("\nChosen Descendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Descendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByPlanetDiscoveryYear(
-                                                filterIntMin, filterIntMax, false, facade.OrderByPlanets(choice, retry));
+                                                filterIntMin, filterIntMax,
+                                                false, facade.OrderByPlanets
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else
                                         {
-                                            Console.WriteLine("\nUnknown Command," +
-                                                " please try again.");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.WriteLine("\nUnknown " +
+                                                "Command, please try again.");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             retry = true;
                                         }
                                     } while (retry == true);
                                     break;
-                                // Caso o utilizador escolha a opção número 5
+                                // Caso o utilizador escolha a opção número 5.
                                 case ConsoleKey.D5:
-                                    Console.Write("\nYou have chosen Planet Orbital Period filter");
+                                    Console.Write("\nYou have chosen Planet" +
+                                        " Orbital Period filter");
                                     System.Threading.Thread.Sleep(1000);
                                     do
                                     {
-                                        Console.WriteLine("\nType a minimum range...");
+                                        Console.WriteLine("\nType a " +
+                                            "minimum range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem minimo para filtrar
-                                        filterIntMin = Convert.ToInt32(Console.ReadLine());
-                                        Console.WriteLine("\nType a maximum range...");
+                                        /* String que contem minimo para
+                                         * filtrar. */
+                                        filterIntMin = Convert.ToInt32
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\nType a maximum" +
+                                            " range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem máximo para filtrar
-                                        filterIntMax = Convert.ToInt32(Console.ReadLine());
-                                        Console.WriteLine("\n\tA - Ascendant;\n\tD - Descendant.");
+                                        /* String que contem máximo para 
+                                         * filtrar. */
+                                        filterIntMax = Convert.ToInt32
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\n\tA - " +
+                                            "Ascendant;\n\tD - Descendant.");
                                         System.Threading.Thread.Sleep(1000);
-                                        // Variável para manter a escolha do utilizador
+                                        /* Variável para manter a escolha do 
+                                         * utilizador. */
                                         choice = Console.ReadKey();
-                                        // Variável para se o utilizador escolhar uma opção inválida
+                                        /* Variável para se o utilizador 
+                                         * escolhar uma opção inválida. */
                                         retry = false;
                                         if (choice.Key == ConsoleKey.A)
                                         {
-                                            Console.Write("\nChosen Ascendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen" +
+                                                " Ascendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByPlanetOrbitalPeriod(
-                                                filterIntMin, filterIntMax, true, facade.OrderByPlanets(choice, retry));
+                                                filterIntMin, filterIntMax, 
+                                                true, facade.OrderByPlanets
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
-                                            Console.Write("\nChosen Descendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Descendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByPlanetOrbitalPeriod(
-                                                filterIntMin, filterIntMax, false, facade.OrderByPlanets(choice, retry));
+                                                filterIntMin, filterIntMax, 
+                                                false, facade.OrderByPlanets
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else
                                         {
-                                            Console.WriteLine("\nUnknown Command," +
+                                            Console.WriteLine("\nUnknown" +
+                                                " Command," +
                                                 " please try again.");
-                                            System.Threading.Thread.Sleep(1000);
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             retry = true;
                                         }
                                     } while (retry == true);
                                     break;
-                                // Caso o utilizador escolha a opção número 6
+                                // Caso o utilizador escolha a opção número 6.
                                 case ConsoleKey.D6:
-                                    Console.Write("\nYou have chosen Planet Radius filter");
+                                    Console.Write("\nYou have chosen" +
+                                        " Planet Radius filter");
                                     System.Threading.Thread.Sleep(1000);
                                     do
                                     {
-                                        Console.WriteLine("\nType a minimum range...");
+                                        Console.WriteLine("\nType a" +
+                                            " minimum range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem minimo para filtrar
-                                        filterDoubleMin = Convert.ToDouble(Console.ReadLine());
-                                        Console.WriteLine("\nType a maximum range...");
+                                        /* String que contem minimo para
+                                         * filtrar. */
+                                        filterDoubleMin = Convert.ToDouble
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\nType a" +
+                                            " maximum range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem máximo para filtrar
-                                        filterDoubleMax = Convert.ToDouble(Console.ReadLine());
-                                        Console.WriteLine("\n\tA - Ascendant;\n\tD - Descendant.");
+                                        /* String que contem máximo para
+                                         * filtrar. */
+                                        filterDoubleMax = Convert.ToDouble
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\n\tA - " +
+                                            "Ascendant;\n\tD - Descendant.");
                                         System.Threading.Thread.Sleep(1000);
-                                        // Variável para manter a escolha do utilizador
+                                        /* Variável para manter a escolha do 
+                                         * utilizador. */
                                         choice = Console.ReadKey();
-                                        // Variável para se o utilizador escolhar uma opção inválida
+                                        /* Variável para se o utilizador 
+                                         * escolhar uma opção inválida. */
                                         retry = false;
                                         if (choice.Key == ConsoleKey.A)
                                         {
-                                            Console.Write("\nChosen Ascendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen" +
+                                                " Ascendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByPlanetRadius(
-                                                filterDoubleMin, filterDoubleMax, true, facade.OrderByPlanets(choice, retry));
+                                                filterDoubleMin,
+                                                filterDoubleMax, true,
+                                                facade.OrderByPlanets
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
-                                            Console.Write("\nChosen Descendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Descendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByPlanetRadius(
-                                                filterDoubleMin, filterDoubleMax, false, facade.OrderByPlanets(choice, retry));
+                                                filterDoubleMin, 
+                                                filterDoubleMax, false, 
+                                                facade.OrderByPlanets
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else
                                         {
-                                            Console.WriteLine("\nUnknown Command," +
-                                                " please try again.");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.WriteLine("\nUnknown " +
+                                                "Command, please try again.");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             retry = true;
                                         }
                                     } while (retry == true);
                                     break;
-                                // Caso o utilizador escolha a opção número 7
+                                // Caso o utilizador escolha a opção número 7.
                                 case ConsoleKey.D7:
-                                    Console.Write("\nYou have chosen Planet Host Radius filter");
+                                    Console.Write("\nYou have chosen Planet" +
+                                        " Host Radius filter");
                                     System.Threading.Thread.Sleep(1000);
                                     do
                                     {
-                                        Console.WriteLine("\nType a minimum range...");
+                                        Console.WriteLine("\nType a" +
+                                            " minimum range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem minimo para filtrar
-                                        filterDoubleMin = Convert.ToDouble(Console.ReadLine());
-                                        Console.WriteLine("\nType a maximum range...");
+                                        /* String que contem minimo para
+                                         * filtrar. */
+                                        filterDoubleMin = Convert.ToDouble
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\nType a" +
+                                            " maximum range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem máximo para filtrar
-                                        filterDoubleMax = Convert.ToDouble(Console.ReadLine());
-                                        Console.WriteLine("\n\tA - Ascendant;\n\tD - Descendant.");
+                                        /* String que contem máximo para
+                                         * filtrar. */
+                                        filterDoubleMax = Convert.ToDouble
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\n\tA - " +
+                                            "Ascendant;\n\tD - Descendant.");
                                         System.Threading.Thread.Sleep(1000);
-                                        // Variável para manter a escolha do utilizador
+                                        /* Variável para manter a escolha do
+                                         * utilizador. */
                                         choice = Console.ReadKey();
-                                        // Variável para se o utilizador escolhar uma opção inválida
+                                        /* Variável para se o utilizador
+                                         * escolhar uma opção inválida. */
                                         retry = false;
                                         if (choice.Key == ConsoleKey.A)
                                         {
-                                            Console.Write("\nChosen Ascendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen" +
+                                                " Ascendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByPlanetHostRad(
-                                                filterDoubleMin, filterDoubleMax, true, facade.OrderByPlanets(choice, retry));
+                                                filterDoubleMin, 
+                                                filterDoubleMax, true, 
+                                                facade.OrderByPlanets
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
-                                            Console.Write("\nChosen Descendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Descendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByPlanetHostRad(
-                                                filterDoubleMin, filterDoubleMax, false, facade.OrderByPlanets(choice, retry));
+                                                filterDoubleMin, 
+                                                filterDoubleMax, false, 
+                                                facade.OrderByPlanets
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else
                                         {
-                                            Console.WriteLine("\nUnknown Command," +
-                                                " please try again.");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.WriteLine("\nUnknown " +
+                                                "Command, please try again.");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             retry = true;
                                         }
                                     } while (retry == true);
                                     break;
-                                // Caso o utilizador escolha a opção número 8
+                                // Caso o utilizador escolha a opção número 8.
                                 case ConsoleKey.D8:
-                                    Console.Write("\nYou have chosen Planet Temperature filter");
+                                    Console.Write("\nYou have chosen" +
+                                        " Planet Temperature filter");
                                     System.Threading.Thread.Sleep(1000);
                                     do
                                     {
-                                        Console.WriteLine("\nType a minimum range...");
+                                        Console.WriteLine("\nType a" +
+                                            " minimum range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem minimo para filtrar
-                                        filterIntMin = Convert.ToInt32(Console.ReadLine());
-                                        Console.WriteLine("\nType a maximum range...");
+                                        /* String que contem minimo para 
+                                         * filtrar. */
+                                        filterIntMin = Convert.ToInt32
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\nType a " +
+                                            "maximum range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem máximo para filtrar
-                                        filterIntMax = Convert.ToInt32(Console.ReadLine());
-                                        Console.WriteLine("\n\tA - Ascendant;\n\tD - Descendant.");
+                                        /* String que contem máximo 
+                                         * para filtrar. */
+                                        filterIntMax = Convert.ToInt32
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\n\tA -" +
+                                            " Ascendant;\n\tD - Descendant.");
                                         System.Threading.Thread.Sleep(1000);
-                                        // Variável para manter a escolha do utilizador
+                                        /* Variável para manter a escolha do 
+                                         * utilizador. */
                                         choice = Console.ReadKey();
-                                        // Variável para se o utilizador escolhar uma opção inválida
+                                        /* Variável para se o utilizador 
+                                         * escolhar uma opção inválida. */
                                         retry = false;
                                         if (choice.Key == ConsoleKey.A)
                                         {
-                                            Console.Write("\nChosen Ascendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen" +
+                                                " Ascendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByPlanetEqt(
-                                                filterIntMin, filterIntMax, true, facade.OrderByPlanets(choice, retry));
+                                                filterIntMin, filterIntMax, 
+                                                true, facade.OrderByPlanets
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
-                                            Console.Write("\nChosen Descendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Descendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByPlanetEqt(
-                                                filterIntMin, filterIntMax, false, facade.OrderByPlanets(choice, retry));
+                                                filterIntMin, filterIntMax,
+                                                false, facade.OrderByPlanets
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else
                                         {
-                                            Console.WriteLine("\nUnknown Command," +
-                                                " please try again.");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.WriteLine("\nUnknown " +
+                                                "Command, please try again.");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             retry = true;
                                         }
                                     } while (retry == true);
                                     break;
-                                // Caso o utilizador escolha a opção número 9
+                                // Caso o utilizador escolha a opção número 9.
                                 case ConsoleKey.D9:
-                                    Console.Write("\nYou have chosen Planet Host Temperature filter");
+                                    Console.Write("\nYou have chosen Planet" +
+                                        " Host Temperature filter");
                                     System.Threading.Thread.Sleep(1000);
                                     do
                                     {
-                                        Console.WriteLine("\nType a minimum range...");
+                                        Console.WriteLine("\nType a minimum" +
+                                            " range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem minimo para filtrar
-                                        filterIntMin = Convert.ToInt32(Console.ReadLine());
-                                        Console.WriteLine("\nType a maximum range...");
+                                        /* String que contem minimo para
+                                         * filtrar. */
+                                        filterIntMin = Convert.ToInt32
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\nType a maximum" +
+                                            " range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem máximo para filtrar
-                                        filterIntMax = Convert.ToInt32(Console.ReadLine());
-                                        Console.WriteLine("\n\tA - Ascendant;\n\tD - Descendant.");
+                                        /* String que contem máximo para
+                                         * filtrar. */
+                                        filterIntMax = Convert.ToInt32
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\n\tA -" +
+                                            " Ascendant;\n\tD - Descendant.");
                                         System.Threading.Thread.Sleep(1000);
-                                        // Variável para manter a escolha do utilizador
+                                        /* Variável para manter a escolha 
+                                         * do utilizador. */
                                         choice = Console.ReadKey();
-                                        // Variável para se o utilizador escolhar uma opção inválida
+                                        /* Variável para se o utilizador
+                                        escolhar uma opção inválida. */
                                         retry = false;
                                         if (choice.Key == ConsoleKey.A)
                                         {
-                                            Console.Write("\nChosen Ascendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen" +
+                                                " Ascendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByPlanetHostTeff(
-                                                filterIntMin, filterIntMax, true, facade.OrderByPlanets(choice, retry));
+                                                filterIntMin, filterIntMax,
+                                                true, facade.OrderByPlanets
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
-                                            Console.Write("\nChosen Descendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Descendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByPlanetHostTeff(
-                                                filterIntMin, filterIntMax, false, facade.OrderByPlanets(choice, retry));
+                                                filterIntMin, filterIntMax,
+                                                false, facade.OrderByPlanets
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else
                                         {
-                                            Console.WriteLine("\nUnknown Command," +
-                                                " please try again.");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.WriteLine("\nUnknown" +
+                                                " Command, please try again.");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             retry = true;
                                         }
                                     } while (retry == true);
                                     break;
-                                // Caso o utilizador escolha a opção letra A
+                                // Caso o utilizador escolha a opção letra A.
                                 case ConsoleKey.A:
-                                    Console.Write("\nYou have chosen Planet Mass filter");
+                                    Console.Write("\nYou have chosen Planet" +
+                                        " Mass filter");
                                     System.Threading.Thread.Sleep(1000);
                                     do
                                     {
-                                        Console.WriteLine("\nType a minimum range...");
+                                        Console.WriteLine("\nType a " +
+                                            "minimum range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem minimo para filtrar
-                                        filterDoubleMin = Convert.ToDouble(Console.ReadLine());
-                                        Console.WriteLine("\nType a maximum range...");
+                                        /* String que contem minimo para
+                                         * filtrar. */
+                                        filterDoubleMin = Convert.ToDouble
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\nType a maximum" +
+                                            " range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem máximo para filtrar
-                                        filterDoubleMax = Convert.ToDouble(Console.ReadLine());
-                                        Console.WriteLine("\n\tA - Ascendant;\n\tD - Descendant.");
+                                        /* String que contem máximo para
+                                         * filtrar. */
+                                        filterDoubleMax = Convert.ToDouble
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\n\tA - " +
+                                            "Ascendant;\n\tD - Descendant.");
                                         System.Threading.Thread.Sleep(1000);
-                                        // Variável para manter a escolha do utilizador
+                                        /* Variável para manter a escolha do
+                                         * utilizador. */
                                         choice = Console.ReadKey();
-                                        // Variável para se o utilizador escolhar uma opção inválida
+                                        /* Variável para se o utilizador
+                                         * escolhar uma opção inválida. */
                                         retry = false;
                                         if (choice.Key == ConsoleKey.A)
                                         {
-                                            Console.Write("\nChosen Ascendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen" +
+                                                " Ascendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByPlanetMass(
-                                                filterDoubleMin, filterDoubleMax, true, facade.OrderByPlanets(choice, retry));
+                                                filterDoubleMin, 
+                                                filterDoubleMax, true, 
+                                                facade.OrderByPlanets
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
-                                            Console.Write("\nChosen Descendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen" +
+                                                " Descendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByPlanetMass(
-                                                filterDoubleMin, filterDoubleMax, false, facade.OrderByPlanets(choice, retry));
+                                                filterDoubleMin, 
+                                                filterDoubleMax, false, 
+                                                facade.OrderByPlanets
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else
                                         {
-                                            Console.WriteLine("\nUnknown Command," +
-                                                " please try again.");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.WriteLine("\nUnknown" +
+                                                " Command, please try again.");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             retry = true;
                                         }
                                     } while (retry == true);
                                     break;
-                                // Caso o utilizador escolha a opção letra B
+                                // Caso o utilizador escolha a opção letra B.
                                 case ConsoleKey.B:
-                                    Console.Write("\nYou have chosen Planet Host Mass filter");
+                                    Console.Write("\nYou have chosen Planet" +
+                                        " Host Mass filter");
                                     System.Threading.Thread.Sleep(1000);
                                     do
                                     {
-                                        Console.WriteLine("\nType a minimum range...");
+                                        Console.WriteLine("\nType a" +
+                                            " minimum range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem minimo para filtrar
-                                        filterDoubleMin = Convert.ToDouble(Console.ReadLine());
-                                        Console.WriteLine("\nType a maximum range...");
+                                        /* String que contem minimo para
+                                         * filtrar. */
+                                        filterDoubleMin = Convert.ToDouble
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\nType a" +
+                                            " maximum range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem máximo para filtrar
-                                        filterDoubleMax = Convert.ToDouble(Console.ReadLine());
-                                        Console.WriteLine("\n\tA - Ascendant;\n\tD - Descendant.");
+                                        /* String que contem máximo para
+                                         * filtrar. */
+                                        filterDoubleMax = Convert.ToDouble
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\n\tA - " +
+                                            "Ascendant;\n\tD - Descendant.");
                                         System.Threading.Thread.Sleep(1000);
-                                        // Variável para manter a escolha do utilizador
+                                        /* Variável para manter a escolha do
+                                         * utilizador. */
                                         choice = Console.ReadKey();
-                                        // Variável para se o utilizador escolhar uma opção inválida
+                                        /* Variável para se o utilizador 
+                                         * escolhar uma opção inválida. */
                                         retry = false;
                                         if (choice.Key == ConsoleKey.A)
                                         {
-                                            Console.Write("\nChosen Ascendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Ascendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByPlanetHostMass(
-                                                filterDoubleMin, filterDoubleMax, true, facade.OrderByPlanets(choice, retry));
+                                                filterDoubleMin, 
+                                                filterDoubleMax, true, 
+                                                facade.OrderByPlanets
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
-                                            Console.Write("\nChosen Descendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen" +
+                                                " Descendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByPlanetHostMass(
-                                                filterDoubleMin, filterDoubleMax, false, facade.OrderByPlanets(choice, retry));
+                                                filterDoubleMin,
+                                                filterDoubleMax, false,
+                                                facade.OrderByPlanets
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else
                                         {
-                                            Console.WriteLine("\nUnknown Command," +
-                                                " please try again.");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.WriteLine("\nUnknown" +
+                                                " Command, please try again.");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             retry = true;
                                         }
                                     } while (retry == true);
                                     break;
-                                // Caso o utilizador escolha a opção letra C
+                                // Caso o utilizador escolha a opção letra C.
                                 case ConsoleKey.C:
-                                    Console.Write("\nYou have chosen Planet Host Age filter");
+                                    Console.Write("\nYou have chosen Planet" +
+                                        " Host Age filter");
                                     System.Threading.Thread.Sleep(1000);
                                     do
                                     {
-                                        Console.WriteLine("\nType a minimum range...");
+                                        Console.WriteLine("\nType a" +
+                                            " minimum range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem minimo para filtrar
-                                        filterIntMin = Convert.ToInt32(Console.ReadLine());
-                                        Console.WriteLine("\nType a maximum range...");
+                                        /* String que contem minimo para 
+                                         * filtrar. */
+                                        filterIntMin = Convert.ToInt32
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\nType a " +
+                                            "maximum range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem máximo para filtrar
-                                        filterIntMax = Convert.ToInt32(Console.ReadLine());
-                                        Console.WriteLine("\n\tA - Ascendant;\n\tD - Descendant.");
+                                        /* String que contem máximo para 
+                                         * filtrar. */
+                                        filterIntMax = Convert.ToInt32
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\n\tA - " +
+                                            "Ascendant;\n\tD - Descendant.");
                                         System.Threading.Thread.Sleep(1000);
-                                        // Variável para manter a escolha do utilizador
+                                        /* Variável para manter a 
+                                         * escolha do utilizador. */
                                         choice = Console.ReadKey();
-                                        // Variável para se o utilizador escolhar uma opção inválida
+                                        /* Variável para se o utilizador 
+                                         * escolhar uma opção inválida. */
                                         retry = false;
                                         if (choice.Key == ConsoleKey.A)
                                         {
-                                            Console.Write("\nChosen Ascendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Ascendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByPlanetHostAge(
-                                                filterIntMin, filterIntMax, true, facade.OrderByPlanets(choice, retry));
+                                                filterIntMin, filterIntMax,
+                                                true, facade.OrderByPlanets
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
-                                            Console.Write("\nChosen Descendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Descendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByPlanetHostAge(
-                                                filterIntMin, filterIntMax, false, facade.OrderByPlanets(choice, retry));
+                                                filterIntMin, filterIntMax, 
+                                                false, facade.OrderByPlanets
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else
                                         {
-                                            Console.WriteLine("\nUnknown Command," +
-                                                " please try again.");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.WriteLine("\nUnknown " +
+                                                "Command, please try again.");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             retry = true;
                                         }
                                     } while (retry == true);
                                     break;
-                                // Caso o utilizador escolha a opção letra D
+                                // Caso o utilizador escolha a opção letra D.
                                 case ConsoleKey.D:
-                                    Console.Write("\nYou have chosen Planet Host Rotation Velocity filter");
+                                    Console.Write("\nYou have chosen Planet" +
+                                        " Host Rotation Velocity filter");
                                     System.Threading.Thread.Sleep(1000);
                                     do
                                     {
-                                        Console.WriteLine("\nType a minimum range...");
+                                        Console.WriteLine("\nType a" +
+                                            " minimum range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem minimo para filtrar
-                                        filterDoubleMin = Convert.ToDouble(Console.ReadLine());
-                                        Console.WriteLine("\nType a maximum range...");
+                                        /*String que contem minimo para 
+                                         * filtrar. */
+                                        filterDoubleMin = Convert.ToDouble
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\nType a maximum" +
+                                            " range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem máximo para filtrar
-                                        filterDoubleMax = Convert.ToDouble(Console.ReadLine());
-                                        Console.WriteLine("\n\tA - Ascendant;\n\tD - Descendant.");
+                                        /* String que contem máximo para 
+                                         * filtrar. */
+                                        filterDoubleMax = Convert.ToDouble
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\n\tA -" +
+                                            " Ascendant;\n\tD - Descendant.");
                                         System.Threading.Thread.Sleep(1000);
-                                        // Variável para manter a escolha do utilizador
+                                        /* Variável para manter a escolha do
+                                         * utilizador. */
                                         choice = Console.ReadKey();
-                                        // Variável para se o utilizador escolhar uma opção inválida
+                                        /* Variável para se o utilizador 
+                                         * escolhar uma opção inválida. */
                                         retry = false;
                                         if (choice.Key == ConsoleKey.A)
                                         {
-                                            Console.Write("\nChosen Ascendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Ascendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByPlanetHostVsin(
-                                                filterDoubleMin, filterDoubleMax, true, facade.OrderByPlanets(choice, retry));
+                                                filterDoubleMin, 
+                                                filterDoubleMax, true, 
+                                                facade.OrderByPlanets(choice, 
+                                                retry));
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
-                                            Console.Write("\nChosen Descendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Descendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByPlanetHostVsin(
-                                                filterDoubleMin, filterDoubleMax, false, facade.OrderByPlanets(choice, retry));
+                                                filterDoubleMin, 
+                                                filterDoubleMax, false, 
+                                                facade.OrderByPlanets
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else
                                         {
-                                            Console.WriteLine("\nUnknown Command," +
-                                                " please try again.");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.WriteLine("\nUnknown" +
+                                                " Command, please try again.");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             retry = true;
                                         }
                                     } while (retry == true);
                                     break;
-                                // Caso o utilizador escolha a opção letra E
+                                // Caso o utilizador escolha a opção letra E.
                                 case ConsoleKey.E:
-                                    Console.Write("\nYou have chosen Planet Host Rotation Period filter");
+                                    Console.Write("\nYou have chosen" +
+                                        " Planet Host Rotation Period filter");
                                     System.Threading.Thread.Sleep(1000);
                                     do
                                     {
-                                        Console.WriteLine("\nType a minimum range...");
+                                        Console.WriteLine("\nType a minimum" +
+                                            " range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem minimo para filtrar
-                                        filterIntMin = Convert.ToInt32(Console.ReadLine());
-                                        Console.WriteLine("\nType a maximum range...");
+                                        /* String que contem minimo para
+                                         * filtrar. */
+                                        filterIntMin = Convert.ToInt32
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\nType a " +
+                                            "maximum range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem máximo para filtrar
-                                        filterIntMax = Convert.ToInt32(Console.ReadLine());
-                                        Console.WriteLine("\n\tA - Ascendant;\n\tD - Descendant.");
+                                        /* String que contem máximo para
+                                         * filtrar. */
+                                        filterIntMax = Convert.ToInt32
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\n\tA - " +
+                                            "Ascendant;\n\tD - Descendant.");
                                         System.Threading.Thread.Sleep(1000);
-                                        // Variável para manter a escolha do utilizador
+                                        /* Variável para manter a escolha
+                                         * do utilizador. */
                                         choice = Console.ReadKey();
-                                        // Variável para se o utilizador escolhar uma opção inválida
+                                        /* Variável para se o utilizador
+                                         * escolhar uma opção inválida. */
                                         retry = false;
                                         if (choice.Key == ConsoleKey.A)
                                         {
-                                            Console.Write("\nChosen Ascendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Ascendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByPlanetHostRotp(
-                                                filterIntMin, filterIntMax, true, facade.OrderByPlanets(choice, retry));
+                                                filterIntMin, filterIntMax,
+                                                true, facade.OrderByPlanets
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
-                                            Console.Write("\nChosen Descendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Descendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByPlanetHostRotp(
-                                                filterIntMin, filterIntMax, false, facade.OrderByPlanets(choice, retry));
+                                                filterIntMin, filterIntMax, 
+                                                false, facade.OrderByPlanets
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else
                                         {
-                                            Console.WriteLine("\nUnknown Command," +
-                                                " please try again.");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.WriteLine("\nUnknown " +
+                                                "Command, please try again.");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             retry = true;
                                         }
                                     } while (retry == true);
                                     break;
-                                // Caso o utilizador escolha a opção letra F
+                                // Caso o utilizador escolha a opção letra F.
                                 case ConsoleKey.F:
-                                    Console.Write("\nYou have chosen Planet Host Distance to the Sun filter");
+                                    Console.Write("\nYou have chosen Planet" +
+                                        " Host Distance to the Sun filter");
                                     System.Threading.Thread.Sleep(1000);
                                     do
                                     {
-                                        Console.WriteLine("\nType a minimum range...");
+                                        Console.WriteLine("\nType a" +
+                                            " minimum range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem minimo para filtrar
-                                        filterDoubleMin = Convert.ToDouble(Console.ReadLine());
-                                        Console.WriteLine("\nType a maximum range...");
+                                        /* String que contem minimo para
+                                         * filtrar. */
+                                        filterDoubleMin = Convert.ToDouble
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\nType a " +
+                                            "maximum range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem máximo para filtrar
-                                        filterDoubleMax = Convert.ToDouble(Console.ReadLine());
-                                        Console.WriteLine("\n\tA - Ascendant;\n\tD - Descendant.");
+                                        /* String que contem máximo para 
+                                         * filtrar. */
+                                        filterDoubleMax = Convert.ToDouble
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\n\tA - " +
+                                            "Ascendant;\n\tD - Descendant.");
                                         System.Threading.Thread.Sleep(1000);
-                                        // Variável para manter a escolha do utilizador
+                                        /* Variável para manter a escolha do
+                                         * utilizador. */
                                         choice = Console.ReadKey();
-                                        // Variável para se o utilizador escolhar uma opção inválida
+                                        /* Variável para se o utilizador 
+                                         * escolhar uma opção inválida. */
                                         retry = false;
                                         if (choice.Key == ConsoleKey.A)
                                         {
-                                            Console.Write("\nChosen Ascendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Ascendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByPlanetHostDist(
-                                                filterDoubleMin, filterDoubleMax, true, facade.OrderByPlanets(choice, retry));
+                                                filterDoubleMin, 
+                                                filterDoubleMax, true, 
+                                                facade.OrderByPlanets
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
-                                            Console.Write("\nChosen Descendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Descendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByPlanetHostDist(
-                                                filterDoubleMin, filterDoubleMax, false, facade.OrderByPlanets(choice, retry));
+                                                filterDoubleMin, 
+                                                filterDoubleMax, false, 
+                                                facade.OrderByPlanets
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else
                                         {
-                                            Console.WriteLine("\nUnknown Command," +
-                                                " please try again.");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.WriteLine("\nUnknown " +
+                                                "Command, please try again.");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             retry = true;
                                         }
                                     } while (retry == true);
                                     break;
                                 default:
-                                    Console.WriteLine("Unknown command, try again.");
+                                    Console.WriteLine("Unknown command," +
+                                        " try again.");
                                     retry = true;
                                     break;
                             }
                         } while (retry == true);
-                        // Voltar ao menu
+                        // Voltar ao menu.
                         MainMenu();
                         break;
-                    // Caso o utilizador escolha a opção número 2
+                    // Caso o utilizador escolha a opção número 2.
                     case ConsoleKey.D2:
-                        Console.WriteLine("\nYou have chosen Planets, choose a filter." +
+                        Console.WriteLine("\nYou have chosen Planets," +
+                            " choose a filter." +
                             "\n\n\t0 - No Filter;" +
                             "\n\t1 - Star Name;" +
                             "\n\t2 - Discovery Method;" +
@@ -758,536 +1050,756 @@ namespace projeto1LP2
                         System.Threading.Thread.Sleep(1000);
                         do
                         {
-                            // Variável para manter a escolha do utilizador
+                            // Variável para manter a escolha do utilizador.
                             choice = Console.ReadKey();
-                            // Variável para se o utilizador escolhar uma opção inválida
+                            /* Variável para se o utilizador escolhar uma
+                             * opção inválida. */
                             retry = false;
                             switch (choice.Key)
                             {
-                                // Caso o utilizador escolha a opção número 0
+                                /* Caso o utilizador escolha a opção
+                                número 0. */
                                 case ConsoleKey.D0:
-                                    Console.WriteLine("\nYou have chosen no filter");
+                                    Console.WriteLine("\nYou have chosen " +
+                                        "no filter");
                                     System.Threading.Thread.Sleep(1000);
                                     // Mostrar estrelas
                                     facade.PrintInfo(Facade.starList);
                                     MainMenu();
                                     break;
-                                // Caso o utilizador escolha a opção número 1
+                                // Caso o utilizador escolha a opção número 1.
                                 case ConsoleKey.D1:
-                                    Console.Write("\nYou have chosen Star Name filter");
+                                    Console.Write("\nYou have chosen Star" +
+                                        " Name filter");
                                     System.Threading.Thread.Sleep(1000);
                                     do
                                     {
-                                        Console.WriteLine("\nType... (case sensitive)");
+                                        Console.WriteLine("\nType... " +
+                                            "(case sensitive)");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem frase para filtrar
+                                        /* String que contem frase para
+                                         * filtrar. */
                                         filterString = Console.ReadLine();
-                                        Console.WriteLine("\n\tA - Ascendant;\n\tD - Descendant.");
+                                        Console.WriteLine("\n\tA -" +
+                                            " Ascendant;\n\tD - Descendant.");
                                         System.Threading.Thread.Sleep(1000);
-                                        // Variável para manter a escolha do utilizador
+                                        /* Variável para manter a 
+                                         * escolha do utilizador. */
                                         choice = Console.ReadKey();
-                                        // Variável para se o utilizador escolhar uma opção inválida
+                                        /* Variável para se o utilizador 
+                                         * escolhar uma opção inválida. */
                                         retry = false;
                                         if (choice.Key == ConsoleKey.A)
                                         {
-                                            Console.Write("\nChosen Ascendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Ascendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByStarName(
-                                                filterString, true, facade.OrderByStars(choice, retry));
+                                                filterString, true, 
+                                                facade.OrderByStars
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
-                                            Console.Write("\nChosen Descendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen" +
+                                                " Descendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByStarName(
-                                                filterString, false, facade.OrderByStars(choice, retry));
+                                                filterString, false, 
+                                                facade.OrderByStars
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else
                                         {
-                                            Console.WriteLine("\nUnknown Command," +
-                                                " please try again.");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.WriteLine("\nUnknown " +
+                                                "Command, please try again.");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             retry = true;
                                         }
                                     } while (retry == true);
                                     break;
-                                // Caso o utilizador escolha a opção número 2
+                                // Caso o utilizador escolha a opção número 2.
                                 case ConsoleKey.D2:
-                                    Console.Write("\nYou have chosen Discovery Method filter");
+                                    Console.Write("\nYou have chosen " +
+                                        "Discovery Method filter");
                                     System.Threading.Thread.Sleep(1000);
                                     do
                                     {
-                                        Console.WriteLine("\nType... (case sensitive)");
+                                        Console.WriteLine("\nType..." +
+                                            " (case sensitive)");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem frase para filtrar
+                                        /* String que contem frase para 
+                                         * filtrar. */
                                         filterString = Console.ReadLine();
-                                        Console.WriteLine("\n\tA - Ascendant;\n\tD - Descendant.");
+                                        Console.WriteLine("\n\tA - " +
+                                            "Ascendant;\n\tD - Descendant.");
                                         System.Threading.Thread.Sleep(1000);
-                                        // Variável para manter a escolha do utilizador
+                                        /* Variável para manter a escolha
+                                         * do utilizador. */
                                         choice = Console.ReadKey();
-                                        // Variável para se o utilizador escolhar uma opção inválida
+                                        /* Variável para se o utilizador 
+                                         * escolhar uma opção inválida. */
                                         retry = false;
                                         if (choice.Key == ConsoleKey.A)
                                         {
-                                            Console.Write("\nChosen Ascendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Ascendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByStarDiscoveryMethod(
-                                                filterString, true, facade.OrderByStars(choice, retry));
+                                                filterString, true, 
+                                                facade.OrderByStars
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
-                                            Console.Write("\nChosen Descendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Descendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByStarDiscoveryMethod(
-                                                filterString, false, facade.OrderByStars(choice, retry));
+                                                filterString, false, 
+                                                facade.OrderByStars
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else
                                         {
-                                            Console.WriteLine("\nUnknown Command," +
-                                                " please try again.");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.WriteLine("\nUnknown" +
+                                                " Command, please try again.");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             retry = true;
                                         }
                                     } while (retry == true);
                                     break;
-                                // Caso o utilizador escolha a opção número 3
+                                // Caso o utilizador escolha a opção número 3.
                                 case ConsoleKey.D3:
-                                    Console.Write("\nYou have chosen Discovery Year filter");
+                                    Console.Write("\nYou have chosen" +
+                                        " Discovery Year filter");
                                     System.Threading.Thread.Sleep(1000);
                                     do
                                     {
-                                        Console.WriteLine("\nType a minimum range...");
+                                        Console.WriteLine("\nType a minimum" +
+                                            " range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem minimo para filtrar
-                                        filterIntMin = Convert.ToInt32(Console.ReadLine());
-                                        Console.WriteLine("\nType a maximum range...");
+                                        /* String que contem minimo para 
+                                         * filtrar. */
+                                        filterIntMin = Convert.ToInt32
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\nType a " +
+                                            "maximum range...");
+                                        System.Threading.Thread.Sleep
+                                            (1000);
+                                        /* String que contem máximo
+                                         * para filtrar. */
+                                        filterIntMax = Convert.ToInt32
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\n\tA - " +
+                                            "Ascendant;\n\tD - Descendant.");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem máximo para filtrar
-                                        filterIntMax = Convert.ToInt32(Console.ReadLine());
-                                        Console.WriteLine("\n\tA - Ascendant;\n\tD - Descendant.");
-                                        System.Threading.Thread.Sleep(1000);
-                                        // Variável para manter a escolha do utilizador
+                                        /* Variável para manter a
+                                         * escolha do utilizador. */
                                         choice = Console.ReadKey();
-                                        // Variável para se o utilizador escolhar uma opção inválida
+                                        /* Variável para se o utilizador
+                                         * escolhar uma opção inválida. */
                                         retry = false;
                                         if (choice.Key == ConsoleKey.A)
                                         {
-                                            Console.Write("\nChosen Ascendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen" +
+                                                " Ascendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByStarDiscoveryYear(
-                                                filterIntMin, filterIntMax, true, facade.OrderByStars(choice, retry));
+                                                filterIntMin, filterIntMax, 
+                                                true, facade.OrderByStars
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
-                                            Console.Write("\nChosen Descendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Descendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByStarDiscoveryYear(
-                                                filterIntMin, filterIntMax, false, facade.OrderByStars(choice, retry));
+                                                filterIntMin, filterIntMax, 
+                                                false, facade.OrderByStars
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else
                                         {
-                                            Console.WriteLine("\nUnknown Command," +
-                                                " please try again.");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.WriteLine("\nUnknown " +
+                                                "Command, please try again.");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             retry = true;
                                         }
                                     } while (retry == true);
                                     break;
-                                // Caso o utilizador escolha a opção número 4
+                                // Caso o utilizador escolha a opção número 4.
                                 case ConsoleKey.D4:
-                                    Console.Write("\nYou have chosen Radius filter");
+                                    Console.Write("\nYou have chosen" +
+                                        " Radius filter");
                                     System.Threading.Thread.Sleep(1000);
                                     do
                                     {
-                                        Console.WriteLine("\nType a minimum range...");
+                                        Console.WriteLine("\nType a " +
+                                            "minimum range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem minimo para filtrar
-                                        filterDoubleMin = Convert.ToDouble(Console.ReadLine());
-                                        Console.WriteLine("\nType a maximum range...");
+                                        /* String que contem minimo para
+                                         * filtrar. */
+                                        filterDoubleMin = Convert.ToDouble
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\nType a maximum" +
+                                            " range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem máximo para filtrar
-                                        filterDoubleMax = Convert.ToDouble(Console.ReadLine());
-                                        Console.WriteLine("\n\tA - Ascendant;\n\tD - Descendant.");
+                                        /* String que contem máximo para
+                                         * filtrar. */
+                                        filterDoubleMax = Convert.ToDouble
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\n\tA -" +
+                                            " Ascendant;\n\tD - Descendant.");
                                         System.Threading.Thread.Sleep(1000);
-                                        // Variável para manter a escolha do utilizador
+                                        /* Variável para manter a escolha
+                                         * do utilizador. */
                                         choice = Console.ReadKey();
-                                        // Variável para se o utilizador escolhar uma opção inválida
+                                        /* Variável para se o utilizador 
+                                         * escolhar uma opção inválida. */
                                         retry = false;
                                         if (choice.Key == ConsoleKey.A)
                                         {
-                                            Console.Write("\nChosen Ascendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen" +
+                                                " Ascendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByStarRad(
-                                                filterDoubleMin, filterDoubleMax, true, facade.OrderByStars(choice, retry));
+                                                filterDoubleMin, 
+                                                filterDoubleMax, true, 
+                                                facade.OrderByStars
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
-                                            Console.Write("\nChosen Descendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Descendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByStarRad(
-                                                filterDoubleMin, filterDoubleMax, false, facade.OrderByStars(choice, retry));
+                                                filterDoubleMin, 
+                                                filterDoubleMax, false, 
+                                                facade.OrderByStars
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else
                                         {
-                                            Console.WriteLine("\nUnknown Command," +
-                                                " please try again.");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.WriteLine("\nUnknown " +
+                                                "Command, please try again.");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             retry = true;
                                         }
                                     } while (retry == true);
                                     break;
-                                // Caso o utilizador escolha a opção número 5
+                                // Caso o utilizador escolha a opção número 5.
                                 case ConsoleKey.D5:
-                                    Console.Write("\nYou have chosen Temperature filter");
+                                    Console.Write("\nYou have chosen " +
+                                        "Temperature filter");
                                     System.Threading.Thread.Sleep(1000);
                                     do
                                     {
-                                        Console.WriteLine("\nType a minimum range...");
+                                        Console.WriteLine("\nType a minimum" +
+                                            " range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem minimo para filtrar
-                                        filterIntMin = Convert.ToInt32(Console.ReadLine());
-                                        Console.WriteLine("\nType a maximum range...");
+                                        /* String que contem minimo para 
+                                         * filtrar. */
+                                        filterIntMin = Convert.ToInt32
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\nType a maximum " +
+                                            "range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem máximo para filtrar
-                                        filterIntMax = Convert.ToInt32(Console.ReadLine());
-                                        Console.WriteLine("\n\tA - Ascendant;\n\tD - Descendant.");
+                                        /* String que contem máximo para
+                                         * filtrar. */
+                                        filterIntMax = Convert.ToInt32
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\n\tA - " +
+                                            "Ascendant;\n\tD - Descendant.");
                                         System.Threading.Thread.Sleep(1000);
-                                        // Variável para manter a escolha do utilizador
+                                        /* Variável para manter a
+                                        escolha do utilizador. */
                                         choice = Console.ReadKey();
-                                        // Variável para se o utilizador escolhar uma opção inválida
+                                        /* Variável para se o utilizador 
+                                         * escolhar uma opção inválida. */
                                         retry = false;
                                         if (choice.Key == ConsoleKey.A)
                                         {
-                                            Console.Write("\nChosen Ascendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Ascendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByStarTeff(
-                                                filterIntMin, filterIntMax, true, facade.OrderByStars(choice, retry));
+                                                filterIntMin, filterIntMax, 
+                                                true, facade.OrderByStars
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
-                                            Console.Write("\nChosen Descendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Descendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByStarTeff(
-                                                filterIntMin, filterIntMax, false, facade.OrderByStars(choice, retry));
+                                                filterIntMin, filterIntMax,
+                                                false, facade.OrderByStars
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else
                                         {
-                                            Console.WriteLine("\nUnknown Command," +
-                                                " please try again.");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.WriteLine("\nUnknown " +
+                                                "Command, please try again.");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             retry = true;
                                         }
                                     } while (retry == true);
                                     break;
-                                // Caso o utilizador escolha a opção número 6
+                                // Caso o utilizador escolha a opção número 6.
                                 case ConsoleKey.D6:
-                                    Console.Write("\nYou have chosen Mass filter");
+                                    Console.Write("\nYou have chosen " +
+                                        "Mass filter");
                                     System.Threading.Thread.Sleep(1000);
                                     do
                                     {
-                                        Console.WriteLine("\nType a minimum range...");
+                                        Console.WriteLine("\nType a " +
+                                            "minimum range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem minimo para filtrar
-                                        filterDoubleMin = Convert.ToDouble(Console.ReadLine());
-                                        Console.WriteLine("\nType a maximum range...");
+                                        /* String que contem minimo para 
+                                         * filtrar. */
+                                        filterDoubleMin = Convert.ToDouble
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\nType a maximum" +
+                                            " range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem máximo para filtrar
-                                        filterDoubleMax = Convert.ToDouble(Console.ReadLine());
-                                        Console.WriteLine("\n\tA - Ascendant;\n\tD - Descendant.");
+                                        /* String que contem máximo para
+                                         * filtrar. */
+                                        filterDoubleMax = Convert.ToDouble
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\n\tA - " +
+                                            "Ascendant;\n\tD - Descendant.");
                                         System.Threading.Thread.Sleep(1000);
-                                        // Variável para manter a escolha do utilizador
+                                        /* Variável para manter a escolha do
+                                         * utilizador. */
                                         choice = Console.ReadKey();
-                                        // Variável para se o utilizador escolhar uma opção inválida
+                                        /* Variável para se o utilizador
+                                         * escolhar uma opção inválida. */
                                         retry = false;
                                         if (choice.Key == ConsoleKey.A)
                                         {
-                                            Console.Write("\nChosen Ascendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Ascendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByStarMass(
-                                                filterDoubleMin, filterDoubleMax, true, facade.OrderByStars(choice, retry));
+                                                filterDoubleMin, 
+                                                filterDoubleMax, true, 
+                                                facade.OrderByStars
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
-                                            Console.Write("\nChosen Descendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Descendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByStarMass(
-                                                filterDoubleMin, filterDoubleMax, false, facade.OrderByStars(choice, retry));
+                                                filterDoubleMin, 
+                                                filterDoubleMax, false, 
+                                                facade.OrderByStars
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else
                                         {
                                             Console.WriteLine("\nUnknown Command," +
                                                 " please try again.");
-                                            System.Threading.Thread.Sleep(1000);
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             retry = true;
                                         }
                                     } while (retry == true);
                                     break;
-                                // Caso o utilizador escolha a opção número 7
+                                // Caso o utilizador escolha a opção número 7.
                                 case ConsoleKey.D7:
-                                    Console.Write("\nYou have chosen Age filter");
+                                    Console.Write("\nYou have chosen Age " +
+                                        "filter");
                                     System.Threading.Thread.Sleep(1000);
                                     do
                                     {
-                                        Console.WriteLine("\nType a minimum range...");
+                                        Console.WriteLine("\nType a minimum " +
+                                            "range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem minimo para filtrar
-                                        filterIntMin = Convert.ToInt32(Console.ReadLine());
-                                        Console.WriteLine("\nType a maximum range...");
+                                        /* String que contem minimo para
+                                         * filtrar. */
+                                        filterIntMin = Convert.ToInt32
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\nType a " +
+                                            "maximum range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem máximo para filtrar
-                                        filterIntMax = Convert.ToInt32(Console.ReadLine());
-                                        Console.WriteLine("\n\tA - Ascendant;\n\tD - Descendant.");
+                                        /* String que contem máximo para 
+                                         * filtrar. */
+                                        filterIntMax = Convert.ToInt32
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\n\tA - " +
+                                            "Ascendant;\n\tD - Descendant.");
                                         System.Threading.Thread.Sleep(1000);
-                                        // Variável para manter a escolha do utilizador
+                                        /* Variável para manter a escolha
+                                         * do utilizador. */
                                         choice = Console.ReadKey();
-                                        // Variável para se o utilizador escolhar uma opção inválida
+                                        /* Variável para se o utilizador
+                                         * escolhar uma opção inválida. */
                                         retry = false;
                                         if (choice.Key == ConsoleKey.A)
                                         {
-                                            Console.Write("\nChosen Ascendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Ascendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByStarAge(
-                                                filterIntMin, filterIntMax, true, facade.OrderByStars(choice, retry));
+                                                filterIntMin, filterIntMax, 
+                                                true, facade.OrderByStars
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
-                                            Console.Write("\nChosen Descendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Descendent filter, stand by");
+                                            System.Threading.Thread.Sleep(
+                                                1000);
                                             facade.SearchByStarAge(
-                                                filterIntMin, filterIntMax, false, facade.OrderByStars(choice, retry));
+                                                filterIntMin, filterIntMax, 
+                                                false, facade.OrderByStars
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else
                                         {
-                                            Console.WriteLine("\nUnknown Command," +
-                                                " please try again.");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.WriteLine("\nUnknown " +
+                                                "Command, please try again.");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             retry = true;
                                         }
                                     } while (retry == true);
                                     break;
-                                // Caso o utilizador escolha a opção número 8
+                                // Caso o utilizador escolha a opção número 8.
                                 case ConsoleKey.D8:
-                                    Console.Write("\nYou have chosen Rotation Velocity filter");
+                                    Console.Write("\nYou have chosen" +
+                                        " Rotation Velocity filter");
                                     System.Threading.Thread.Sleep(1000);
                                     do
                                     {
-                                        Console.WriteLine("\nType a minimum range...");
+                                        Console.WriteLine("\nType a " +
+                                            "minimum range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem minimo para filtrar
-                                        filterDoubleMin = Convert.ToDouble(Console.ReadLine());
-                                        Console.WriteLine("\nType a maximum range...");
+                                        /* String que contem minimo para 
+                                         * filtrar. */
+                                        filterDoubleMin = Convert.ToDouble
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\nType a " +
+                                            "maximum range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem máximo para filtrar
-                                        filterDoubleMax = Convert.ToDouble(Console.ReadLine());
-                                        Console.WriteLine("\n\tA - Ascendant;\n\tD - Descendant.");
+                                        /* String que contem máximo para 
+                                         * filtrar. */
+                                        filterDoubleMax = Convert.ToDouble
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\n\tA - " +
+                                            "Ascendant;\n\tD - Descendant.");
                                         System.Threading.Thread.Sleep(1000);
-                                        // Variável para manter a escolha do utilizador
+                                        /* Variável para manter a escolha do
+                                         * utilizador. */
                                         choice = Console.ReadKey();
-                                        // Variável para se o utilizador escolhar uma opção inválida
+                                        /* Variável para se o utilizador
+                                         * escolhar uma opção inválida. */
                                         retry = false;
                                         if (choice.Key == ConsoleKey.A)
                                         {
-                                            Console.Write("\nChosen Ascendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Ascendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByStarVsin(
-                                                filterDoubleMin, filterDoubleMax, true, facade.OrderByStars(choice, retry));
+                                                filterDoubleMin, 
+                                                filterDoubleMax, true, 
+                                                facade.OrderByStars
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
-                                            Console.Write("\nChosen Descendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Descendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByStarVsin(
-                                                filterDoubleMin, filterDoubleMax, false, facade.OrderByStars(choice, retry));
+                                                filterDoubleMin,
+                                                filterDoubleMax, false, 
+                                                facade.OrderByStars
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else
                                         {
-                                            Console.WriteLine("\nUnknown Command," +
-                                                " please try again.");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.WriteLine("\nUnknown " +
+                                                "Command, please try again.");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             retry = true;
                                         }
                                     } while (retry == true);
                                     break;
-                                // Caso o utilizador escolha a opção número 9
+                                // Caso o utilizador escolha a opção número 9.
                                 case ConsoleKey.D9:
-                                    Console.Write("\nYou have chosen Rotation Period filter");
+                                    Console.Write("\nYou have chosen " +
+                                        "Rotation Period filter");
                                     System.Threading.Thread.Sleep(1000);
                                     do
                                     {
-                                        Console.WriteLine("\nType a minimum range...");
+                                        Console.WriteLine("\nType a minimum" +
+                                            " range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem minimo para filtrar
-                                        filterDoubleMin = Convert.ToDouble(Console.ReadLine());
-                                        Console.WriteLine("\nType a maximum range...");
+                                        /* String que contem minimo para 
+                                         * filtrar. */
+                                        filterDoubleMin = Convert.ToDouble
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\nType a maximum" +
+                                            " range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem máximo para filtrar
-                                        filterDoubleMax = Convert.ToDouble(Console.ReadLine());
-                                        Console.WriteLine("\n\tA - Ascendant;\n\tD - Descendant.");
+                                        /* String que contem máximo para 
+                                         * filtrar. */
+                                        filterDoubleMax = Convert.ToDouble
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\n\tA - " +
+                                            "Ascendant;\n\tD - Descendant.");
                                         System.Threading.Thread.Sleep(1000);
-                                        // Variável para manter a escolha do utilizador
+                                        /* Variável para manter a escolha do
+                                         * utilizador. */
                                         choice = Console.ReadKey();
-                                        // Variável para se o utilizador escolhar uma opção inválida
+                                        /* Variável para se o utilizador
+                                         * escolhar uma opção inválida. */
                                         retry = false;
                                         if (choice.Key == ConsoleKey.A)
                                         {
-                                            Console.Write("\nChosen Ascendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Ascendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByStarRtop(
-                                                filterDoubleMin, filterDoubleMax, true, facade.OrderByStars(choice, retry));
+                                                filterDoubleMin, 
+                                                filterDoubleMax, true, 
+                                                facade.OrderByStars
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
-                                            Console.Write("\nChosen Descendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Descendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByStarRtop(
-                                                filterDoubleMin, filterDoubleMax, false, facade.OrderByStars(choice, retry));
+                                                filterDoubleMin, 
+                                                filterDoubleMax, false, 
+                                                facade.OrderByStars
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else
                                         {
-                                            Console.WriteLine("\nUnknown Command," +
-                                                " please try again.");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.WriteLine("\nUnknown " +
+                                                "Command, please try again.");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             retry = true;
                                         }
                                     } while (retry == true);
                                     break;
-                                // Caso o utilizador escolha a opção letra A
+                                // Caso o utilizador escolha a opção letra A.
                                 case ConsoleKey.A:
-                                    Console.Write("\nYou have chosen Distance to the Sun filter");
+                                    Console.Write("\nYou have chosen" +
+                                        " Distance to the Sun filter");
                                     System.Threading.Thread.Sleep(1000);
                                     do
                                     {
-                                        Console.WriteLine("\nType a minimum range...");
+                                        Console.WriteLine("\nType a minimum" +
+                                            " range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem minimo para filtrar
-                                        filterDoubleMin = Convert.ToDouble(Console.ReadLine());
-                                        Console.WriteLine("\nType a maximum range...");
+                                        /* String que contem minimo para 
+                                         * filtrar. */
+                                        filterDoubleMin = Convert.ToDouble
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\nType a" +
+                                            " maximum range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem máximo para filtrar
-                                        filterDoubleMax = Convert.ToDouble(Console.ReadLine());
-                                        Console.WriteLine("\n\tA - Ascendant;\n\tD - Descendant.");
+                                        /* String que contem máximo para 
+                                         * filtrar. */
+                                        filterDoubleMax = Convert.ToDouble
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\n\tA - " +
+                                            "Ascendant;\n\tD - Descendant.");
                                         System.Threading.Thread.Sleep(1000);
-                                        // Variável para manter a escolha do utilizador
+                                        /* Variável para manter a escolha do
+                                         * utilizador. */
                                         choice = Console.ReadKey();
-                                        // Variável para se o utilizador escolhar uma opção inválida
+                                        /* Variável para se o utilizador 
+                                         * escolhar uma opção inválida. */
                                         retry = false;
                                         if (choice.Key == ConsoleKey.A)
                                         {
-                                            Console.Write("\nChosen Ascendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Ascendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByStarDist(
-                                                filterDoubleMin, filterDoubleMax, true, facade.OrderByStars(choice, retry));
+                                                filterDoubleMin, 
+                                                filterDoubleMax, true, 
+                                                facade.OrderByStars
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
-                                            Console.Write("\nChosen Descendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Descendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByStarDist(
-                                                filterDoubleMin, filterDoubleMax, false, facade.OrderByStars(choice, retry));
+                                                filterDoubleMin, 
+                                                filterDoubleMax, false, 
+                                                facade.OrderByStars
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else
                                         {
-                                            Console.WriteLine("\nUnknown Command," +
-                                                " please try again.");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.WriteLine
+                                                ("\nUnknown Command, please try again.");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             retry = true;
                                         }
                                     } while (retry == true);
                                     break;
-                                // Caso o utilizador escolha a opção letra B
+                                // Caso o utilizador escolha a opção letra B.
                                 case ConsoleKey.B:
-                                    Console.Write("\nYou have chosen Age filter");
+                                    Console.Write("\nYou have chosen" +
+                                        " Age filter");
                                     System.Threading.Thread.Sleep(1000);
                                     do
                                     {
-                                        Console.WriteLine("\nType a minimum range...");
+                                        Console.WriteLine("\nType a minimum " +
+                                            "range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem minimo para filtrar
-                                        filterIntMin = Convert.ToInt32(Console.ReadLine());
-                                        Console.WriteLine("\nType a maximum range...");
+                                        /* String que contem minimo para
+                                         * filtrar. */
+                                        filterIntMin = Convert.ToInt32
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\nType a" +
+                                            " maximum range...");
                                         System.Threading.Thread.Sleep(1000);
-                                        // String que contem máximo para filtrar
-                                        filterIntMax = Convert.ToInt32(Console.ReadLine());
-                                        Console.WriteLine("\n\tA - Ascendant;\n\tD - Descendant.");
+                                        /* String que contem máximo para 
+                                         * filtrar. */
+                                        filterIntMax = Convert.ToInt32
+                                            (Console.ReadLine());
+                                        Console.WriteLine("\n\tA - " +
+                                            "Ascendant;\n\tD - Descendant.");
                                         System.Threading.Thread.Sleep(1000);
-                                        // Variável para manter a escolha do utilizador
+                                        /* Variável para manter a escolha do
+                                         * utilizador. */
                                         choice = Console.ReadKey();
-                                        // Variável para se o utilizador escolhar uma opção inválida
+                                        /* Variável para se o utilizador 
+                                         * escolhar uma opção inválida. */
                                         retry = false;
                                         if (choice.Key == ConsoleKey.A)
                                         {
-                                            Console.Write("\nChosen Ascendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Ascendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByPlCount(
-                                                filterIntMin, filterIntMax, true, facade.OrderByStars(choice, retry));
+                                                filterIntMin, filterIntMax,
+                                                true, facade.OrderByStars
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else if (choice.Key == ConsoleKey.D)
                                         {
-                                            Console.Write("\nChosen Descendent filter, stand by");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.Write("\nChosen " +
+                                                "Descendent filter, stand by");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             facade.SearchByPlCount(
-                                                filterIntMin, filterIntMax, false, facade.OrderByStars(choice, retry));
+                                                filterIntMin, filterIntMax, 
+                                                false, facade.
+                                                OrderByStars
+                                                (choice, retry));
                                             MainMenu();
                                         }
                                         else
                                         {
-                                            Console.WriteLine("\nUnknown Command," +
-                                                " please try again.");
-                                            System.Threading.Thread.Sleep(1000);
+                                            Console.WriteLine("\nUnknown " +
+                                                "Command, please try again.");
+                                            System.Threading.Thread.Sleep
+                                                (1000);
                                             retry = true;
                                         }
                                     } while (retry == true);
                                     break;
-                                // Caso o utilizador escolha um comando desconhecido
+                                /* Caso o utilizador escolha um comando
+                                 * desconhecido. */
                                 default:
-                                    Console.WriteLine("\nUnknown Command, try again.");
+                                    Console.WriteLine("\nUnknown " +
+                                        "Command, try again.");
                                     retry = true;
                                     break;
                             }
                         } while (retry == true);
-                        // Voltar ao menu
+                        // Voltar ao menu.
                         MainMenu();
                         break;
-                    // Caso o utilizador escolha a opção letra R
+                    // Caso o utilizador escolha a opção letra R.
                     case ConsoleKey.R:
-                        Console.WriteLine("\nPlease write the File you want to read\n" +
-                            "(exclude extension)\n");
+                        Console.WriteLine("\nPlease write the File you " +
+                            "want to read\n" + "(exclude extension)\n");
                         file = $"{Console.ReadLine()}.csv";
                         facade.ReadFile(file);
                         retry = true;
-                        Console.WriteLine("\n\nWelcome to the Interstelar sorter." +
-                            $"\nYou are currently reading {file}." +
-                            "\nWhat would you like to sort?\n\n\t1 = Planets;" +
-                            "\n\t2 = Stars;\n\tR = Read another File;\n\tEsc = Exit.");
+                        Console.WriteLine("\n\nWelcome to the Interstelar" +
+                            " sorter." + 
+                            $"\nYou are currently reading {file}." + 
+                            "\nWhat would you like to sort?\n\n\t1 = Planets;"
+                            + "\n\t2 = Stars;\n\tR = Read another File;" +
+                            "\n\tEsc = Exit.");
                         break;
-                    // Caso o utilizador escolha a opção Escape
+                    // Caso o utilizador escolha a opção Escape.
                     case ConsoleKey.Escape:
                         Console.Write("\n_Goodbye");
                         System.Threading.Thread.Sleep(1000);
                         Environment.Exit(0);
                         break;
-                    // Caso o utilizador escolha um comando desconhecido
+                    // Caso o utilizador escolha um comando desconhecido.
                     default:
                         Console.WriteLine("\nUnknown Command, try again.");
                         retry = true;
