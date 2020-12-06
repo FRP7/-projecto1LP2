@@ -29,8 +29,7 @@ namespace projeto1LP2
                     file = Console.ReadLine();
                     if (!file.EndsWith(".csv"))
                         file += ".csv";
-                    FileReader fileReader = new FileReader(file);
-                    if (fileReader.CanItRead() == true)
+                    if (facade.TryRead(file) == true)
                     {
                         facade.ReadFile(file);
                         retry = false;
@@ -1813,8 +1812,7 @@ namespace projeto1LP2
                             file = Console.ReadLine();
                             if (!file.EndsWith(".csv"))
                                 file += ".csv";
-                            FileReader fileReader = new FileReader(file);
-                            if (fileReader.CanItRead() == true)
+                            if (facade.TryRead(file) == true)
                             {
                                 facade.ReadFile(file);
                                 retry = false;

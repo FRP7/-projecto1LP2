@@ -44,7 +44,7 @@ namespace projeto1LP2
         /// </summary>
         /// <returns> Retorna true caso tenha as colunas obrigatórias. 
         /// </returns>
-        public bool CanItRead() {
+        private bool CanItRead() {
             // Indicar se existe a coluna do planeta.
             bool planetName = false;
             // Indicar se existe a coluna da estrela.
