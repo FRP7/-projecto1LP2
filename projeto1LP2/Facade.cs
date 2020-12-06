@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace projeto1LP2
 {
@@ -38,59 +39,623 @@ namespace projeto1LP2
             newFile.ReadFile();
         }
 
+        // Método para ordenar parametros para planetas
+        public PlanetField OrderByPlanets(ConsoleKeyInfo choice, bool retry)
+        {
+            do
+            {
+                Console.WriteLine("\nChoose an order." +
+                    "\n\t1 - Planet Name;" +
+                    "\n\t2 - Planet Host Name;" +
+                    "\n\t3 - Planet Discovery Method;" +
+                    "\n\t4 - Planet Discovery Year" +
+                    "\n\t5 - Planet Orbital Period;" +
+                    "\n\t6 - Planet Radius;" +
+                    "\n\t7 - Planet Host Radius;" +
+                    "\n\t8 - Planet Temperature;" +
+                    "\n\t9 - Planet Host Temperature;" +
+                    "\n\tA - Planet Mass;" +
+                    "\n\tB - Planet Host Mass;" +
+                    "\n\tC - Planet Host Age;" +
+                    "\n\tD - Planet Host Rotation Velocity;" +
+                    "\n\tE - Planet Host Rotation Period;" +
+                    "\n\tF - Planet Host Distance to the Sun;");
+                System.Threading.Thread.Sleep(1000);
+                // Variável para manter a escolha do utilizador
+                choice = Console.ReadKey();
+                // Variável para se o utilizador escolhar uma opção inválida
+                retry = false;
+                switch (choice.Key)
+                {
+                    // Caso o utilizador escolha a opção número 1
+                    case ConsoleKey.D1:
+                        return PlanetField.Pl_Name;
+                    // Caso o utilizador escolha a opção número 2
+                    case ConsoleKey.D2:
+                        return PlanetField.HostName;
+                    // Caso o utilizador escolha a opção número 3
+                    case ConsoleKey.D3:
+                        return PlanetField.DiscoveryMethod;
+                    // Caso o utilizador escolha a opção número 4
+                    case ConsoleKey.D4:
+                        return PlanetField.Disc_Year;
+                    // Caso o utilizador escolha a opção número 5
+                    case ConsoleKey.D5:
+                        return PlanetField.Pl_Orbper;
+                    // Caso o utilizador escolha a opção número 6
+                    case ConsoleKey.D6:
+                        return PlanetField.Pl_Rade;
+                    // Caso o utilizador escolha a opção número 7
+                    case ConsoleKey.D7:
+                        return PlanetField.St_Rad;
+                    // Caso o utilizador escolha a opção número 8
+                    case ConsoleKey.D8:
+                        return PlanetField.Pl_Eqt;
+                    // Caso o utilizador escolha a opção número 9
+                    case ConsoleKey.D9:
+                        return PlanetField.St_Teff;
+                    // Caso o utilizador escolha a opção letra A
+                    case ConsoleKey.A:
+                        return PlanetField.Pl_Masse;
+                    // Caso o utilizador escolha a opção letra B
+                    case ConsoleKey.B:
+                        return PlanetField.St_Mass;
+                    // Caso o utilizador escolha a opção letra C
+                    case ConsoleKey.C:
+                        return PlanetField.St_Age;
+                    // Caso o utilizador escolha a opção letra D
+                    case ConsoleKey.D:
+                        return PlanetField.St_Vsin;
+                    // Caso o utilizador escolha a opção letra E
+                    case ConsoleKey.E:
+                        return PlanetField.St_Rotp;
+                    // Caso o utilizador escolha a opção letra F
+                    case ConsoleKey.F:
+                        return PlanetField.Sy_Dist;
+                    default:
+                        Console.WriteLine("Unknown command, try again.");
+                        retry = true;
+                        break;
+                }
+            } while (retry == true);
+            return PlanetField.Pl_Name;
+        }
+
+        // Método para ordenar parametros para estrelas
+        public StarFields OrderByStars(ConsoleKeyInfo choice, bool retry)
+        {
+            do
+            {
+                Console.WriteLine("\nChoose an order." +
+                    "\n\t1 - Star Name;" +
+                    "\n\t2 - Discovery Method;" +
+                    "\n\t3 - Discovery Year" +
+                    "\n\t4 - Radius;" +
+                    "\n\t5 - Temperature;" +
+                    "\n\t6 - Mass;" +
+                    "\n\t7 - Age;" +
+                    "\n\t8 - Rotation Velocity;" +
+                    "\n\t9 - Rotation Period;" +
+                    "\n\tA - Host Distance to the Sun;" +
+                    "\n\tB - Number of Planets;");
+                System.Threading.Thread.Sleep(1000);
+                // Variável para manter a escolha do utilizador
+                choice = Console.ReadKey();
+                // Variável para se o utilizador escolhar uma opção inválida
+                retry = false;
+                switch (choice.Key)
+                {
+                    // Caso o utilizador escolha a opção número 1
+                    case ConsoleKey.D1:
+                        return StarFields.HostName;
+                    // Caso o utilizador escolha a opção número 2
+                    case ConsoleKey.D2:
+                        return StarFields.DiscoveryMethod;
+                    // Caso o utilizador escolha a opção número 3
+                    case ConsoleKey.D3:
+                        return StarFields.Disc_Year;
+                    // Caso o utilizador escolha a opção número 4
+                    case ConsoleKey.D4:
+                        return StarFields.St_Rad;
+                    // Caso o utilizador escolha a opção número 5
+                    case ConsoleKey.D5:
+                        return StarFields.St_Teff;
+                    // Caso o utilizador escolha a opção número 6
+                    case ConsoleKey.D6:
+                        return StarFields.St_Mass;
+                    // Caso o utilizador escolha a opção número 7
+                    case ConsoleKey.D7:
+                        return StarFields.St_Age;
+                    // Caso o utilizador escolha a opção número 8
+                    case ConsoleKey.D8:
+                        return StarFields.St_Vsin;
+                    // Caso o utilizador escolha a opção número 9
+                    case ConsoleKey.D9:
+                        return StarFields.St_Rotp;
+                    // Caso o utilizador escolha a opção letra A
+                    case ConsoleKey.A:
+                        return StarFields.Sy_Dist;
+                    // Caso o utilizador escolha a opção letra B
+                    case ConsoleKey.B:
+                        return StarFields.St_PlCount;
+                    default:
+                        Console.WriteLine("Unknown command, try again.");
+                        retry = true;
+                        break;
+                }
+            } while (retry == true);
+            return StarFields.HostName;
+        }
+
+        // Método para imprimir informação na consola Planetas
+        public void PrintInfo(Dictionary<int, Planet> filter)
+        {
+            Console.WriteLine("  ID |" +
+                "           Planet           |" +
+                "            Star            |" +
+                "         Disc Method          |" +
+                " Disc Year|" +
+                "   Orb Per  |" +
+                "Pl Radius |" +
+                " St Radius|" +
+                " Pl Temp  |" +
+                " St Temp  |" +
+                " Pl Mass  |" +
+                " St Mass  |" +
+                "  St Age  |" +
+                "St Rot Vel|" +
+                "St Rot Per|" +
+                "St Dist Sun");
+            // Imprimir
+            foreach (KeyValuePair<int, Planet> item in filter)
+            {
+                Console.WriteLine($"{ item.Key,-5}|{item.Value.HostName}|" +
+                    $"{item.Value.HostName}|{item.Value.DiscoveryMethod}|" +
+                    $"{item.Value.Disc_Year,-10}|{item.Value.Pl_Orbper,-12}|" +
+                    $"{item.Value.Pl_Rade,-10}|{item.Value.St_Rad,-10}|" +
+                    $"{item.Value.Pl_Eqt,-10}|{item.Value.St_Teff,-10}|" +
+                    $"{item.Value.Pl_Masse,-10}|{item.Value.St_Mass,-10}|" +
+                    $"{item.Value.St_Age,-10}|{item.Value.St_Vsin,-10}|" +
+                    $"{item.Value.St_Rotp,-10}|{item.Value.Sy_Dist,-10}");
+            }
+        }
+
+        // Método para imprimir informação na consola Estrelas
+        public void PrintInfo(Dictionary<int, Star> filter)
+        {
+            Console.WriteLine("  ID |" +
+                "            Star            |" +
+                "         Disc Method          |" +
+                " Disc Year|" +
+                "  Temper  |" +
+                "  Radius  |" +
+                "   Mass   |" +
+                "    Age   |" +
+                "  Rot Vel |" +
+                "  Rot Per |" +
+                " Dist Sun |" +
+                "Num of Planets");
+            // Imprimir
+            foreach (KeyValuePair<int, Star> item in filter)
+            {
+                Console.WriteLine($"{item.Key,-5}|{item.Value.HostName}|" +
+                    $"{item.Value.DiscoveryMethod}|{item.Value.Disc_Year,-10}|" +
+                    $"{item.Value.St_Teff,-10}|{item.Value.St_Rad,-10}|" +
+                    $"{item.Value.St_Mass,-10}|{item.Value.St_Age,-10}|" +
+                    $"{item.Value.St_Vsin,-10}|{item.Value.St_Rotp,-10}|" +
+                    $"{item.Value.Sy_Dist,-10}|{item.Value.St_PlCount,-10}");
+            }
+        }
+        // Método para odernar informação com inputs string para planetas
+        public void SortInfo(string input, bool isAscending,
+        Dictionary<int, Planet> filter, Func<KeyValuePair<int, Planet>, Object> order)
+        {
+            if (input != null)
+            {
+                if (isAscending)
+                {
+                    filter =
+                        (from item in filter
+                         where item.Value.Pl_Name.StartsWith(input)
+                         select item).OrderBy(x => order(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                else
+                {
+                    filter =
+                        (from item in filter
+                         where item.Value.Pl_Name.StartsWith(input)
+                         select item).OrderByDescending(x => order(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            }
+            else
+            {
+                PrintInfo(filter);
+            }
+            Console.WriteLine("Dicionary filter: " + filter.Count);
+        }
+
+        // Método para odernar informação com inputs string para estrelas
+        public void SortInfo(string input, bool isAscending,
+            Dictionary<int, Star> filter, Func<KeyValuePair<int, Star>, Object> order)
+        {
+            if (input != null)
+            {
+                if (isAscending)
+                {
+                    filter =
+                        (from item in filter
+                         where item.Value.HostName.StartsWith(input)
+                         select item).OrderBy(x => order(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                else
+                {
+                    filter =
+                        (from item in filter
+                         where item.Value.HostName.StartsWith(input)
+                         select item).OrderByDescending(x => order(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            }
+            else
+            {
+                PrintInfo(filter);
+            }
+            Console.WriteLine("Dicionary filter: " + filter.Count);
+        }
+
+        // Método para ordenar informação com inputs int para planetas
+        public void SortInfo(int? min, int? max, bool isAscending,
+            Dictionary<int, Planet> filter, Func<KeyValuePair<int, Planet>, Object> order)
+        {
+            if (min == null && max != null)
+            {
+                if (isAscending)
+                {
+                    filter =
+                        (from item in filter
+                         where item.Value.Disc_Year < max
+                         select item).OrderBy(x => order(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                else
+                {
+                    filter =
+                        (from item in filter
+                         where item.Value.Disc_Year < max
+                         select item).OrderByDescending(x => order(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            }
+            else if (min != null && max == null)
+            {
+                if (isAscending)
+                {
+                    filter =
+                        (from item in filter
+                         where item.Value.Disc_Year > min
+                         select item).OrderBy(x => order(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                else
+                {
+                    filter =
+                        (from item in filter
+                         where item.Value.Disc_Year > min
+                         select item).OrderByDescending(x => order(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            }
+            else if (min != null && max != null)
+            {
+                if (isAscending)
+                {
+                    filter =
+                        (from item in filter
+                         where item.Value.Disc_Year > min && item.Value.Disc_Year < max
+                         select item).OrderBy(x => order(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                else
+                {
+                    filter =
+                        (from item in filter
+                         where item.Value.Disc_Year > min && item.Value.Disc_Year < max
+                         select item).OrderByDescending(x => order(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            }
+            else
+            {
+                PrintInfo(filter);
+            }
+            Console.WriteLine("Dicionary filter: " + filter.Count);
+        }
+
+        // Método para ordenar informação com inputs int para estrelas
+        public void SortInfo(int? min, int? max, bool isAscending,
+            Dictionary<int, Star> filter, Func<KeyValuePair<int, Star>, Object> order)
+        {
+            if (min == null && max != null)
+            {
+                if (isAscending)
+                {
+                    filter =
+                        (from item in filter
+                         where item.Value.Disc_Year < max
+                         select item).OrderBy(x => order(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                else
+                {
+                    filter =
+                        (from item in filter
+                         where item.Value.Disc_Year < max
+                         select item).OrderByDescending(x => order(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            }
+            else if (min != null && max == null)
+            {
+                if (isAscending)
+                {
+                    filter =
+                        (from item in filter
+                         where item.Value.Disc_Year > min
+                         select item).OrderBy(x => order(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                else
+                {
+                    filter =
+                        (from item in filter
+                         where item.Value.Disc_Year > min
+                         select item).OrderByDescending(x => order(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            }
+            else if (min != null && max != null)
+            {
+                if (isAscending)
+                {
+                    filter =
+                        (from item in filter
+                         where item.Value.Disc_Year > min && item.Value.Disc_Year < max
+                         select item).OrderBy(x => order(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                else
+                {
+                    filter =
+                        (from item in filter
+                         where item.Value.Disc_Year > min && item.Value.Disc_Year < max
+                         select item).OrderByDescending(x => order(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            }
+            else
+            {
+                PrintInfo(filter);
+            }
+            Console.WriteLine("Dicionary filter: " + filter.Count);
+        }
+
+        // Método para ordenar informação com inputs double para planetas
+        public void SortInfo(double? min, double? max, bool isAscending,
+            Dictionary<int, Planet> filter, Func<KeyValuePair<int, Planet>, Object> order)
+        {
+            if (min == null && max != null)
+            {
+                if (isAscending)
+                {
+                    filter =
+                        (from item in filter
+                         where item.Value.Pl_Rade < max
+                         select item).OrderBy(x => order(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                else
+                {
+                    filter =
+                        (from item in filter
+                         where item.Value.Pl_Rade < max
+                         select item).OrderByDescending(x => order(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            }
+            else if (min != null && max == null)
+            {
+                if (isAscending)
+                {
+                    filter =
+                        (from item in filter
+                         where item.Value.Pl_Rade > min
+                         select item).OrderBy(x => order(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                else
+                {
+                    filter =
+                        (from item in filter
+                         where item.Value.Pl_Rade > min
+                         select item).OrderByDescending(x => order(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            }
+            else if (min != null && max != null)
+            {
+                if (isAscending)
+                {
+                    filter =
+                        (from item in filter
+                         where item.Value.Pl_Rade > min && item.Value.Pl_Rade < max
+                         select item).OrderBy(x => order(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                else
+                {
+                    filter =
+                        (from item in filter
+                         where item.Value.Pl_Rade > min && item.Value.Pl_Rade < max
+                         select item).OrderByDescending(x => order(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            }
+            else
+            {
+                PrintInfo(filter);
+            }
+            Console.WriteLine("Dicionary filter: " + filter.Count);
+        }
+
+        // Método para ordenar informação com inputs double para estrelas
+        public void SortInfo(double? min, double? max, bool isAscending,
+            Dictionary<int, Star> filter, Func<KeyValuePair<int, Star>, Object> order)
+        {
+            if (min == null && max != null)
+            {
+                if (isAscending)
+                {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Rad < max
+                         select item).OrderBy(x => order(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                else
+                {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Rad < max
+                         select item).OrderByDescending(x => order(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            }
+            else if (min != null && max == null)
+            {
+                if (isAscending)
+                {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Rad > min
+                         select item).OrderBy(x => order(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                else
+                {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Rad > min
+                         select item).OrderByDescending(x => order(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            }
+            else if (min != null && max != null)
+            {
+                if (isAscending)
+                {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Rad > min && item.Value.St_Rad < max
+                         select item).OrderBy(x => order(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                else
+                {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Rad > min && item.Value.St_Rad < max
+                         select item).OrderByDescending(x => order(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            }
+            else
+            {
+                PrintInfo(filter);
+            }
+            Console.WriteLine("Dicionary filter: " + filter.Count);
+        }
+
         // Método que chama método de pesquisa de estrelas pelo nome
-        public void SearchByStarName(string input, bool ?isAscending, StarFields fields) {
+        public void SearchByStarName(string input, bool isAscending, StarFields fields)
+        {
             StarSearcher starSearcher = new StarSearcher();
-            starSearcher.SearchByName(input, isAscending, StarFields.St_Teff);
+            starSearcher.SearchByName(input, isAscending, fields);
         }
 
         // Método que chama método de pesquisa de estrelas pelo método de descoberta
-        public void SearchByStarDiscoveryMethod(string input, bool ?isAscending, StarFields fields) {
+        public void SearchByStarDiscoveryMethod(string input, bool isAscending, StarFields fields)
+        {
             StarSearcher starSearcher = new StarSearcher();
             starSearcher.SearchByDiscoveryMethod(input, isAscending, fields);
         }
 
-        public void SearchByStarDiscoveryYear(int ?min, int ?max, bool ?isAscending, StarFields fields) {
+        public void SearchByStarDiscoveryYear(int? min, int? max, bool isAscending, StarFields fields)
+        {
             StarSearcher starSearcher = new StarSearcher();
             starSearcher.SearchByDiscoveryYear(min, max, isAscending, fields);
         }
 
-        public void SearchByStarTeff(double ?min, double ?max, bool ?isAscending, StarFields fields) {
+        public void SearchByStarTeff(double? min, double? max, bool isAscending, StarFields fields)
+        {
             StarSearcher starSearcher = new StarSearcher();
             starSearcher.SearchByTeff(min, max, isAscending, fields);
         }
 
-        public void SearchByStarRad(double ?min, double ?max, bool ?isAscending, StarFields fields) {
+        public void SearchByStarRad(double? min, double? max, bool isAscending, StarFields fields)
+        {
             StarSearcher starSearcher = new StarSearcher();
             starSearcher.SearchByRad(min, max, isAscending, fields);
         }
 
-        public void SearchByStarMass(double ?min, double ?max, bool ?isAscending, StarFields fields) {
+        public void SearchByStarMass(double? min, double? max, bool isAscending, StarFields fields)
+        {
             StarSearcher starSearcher = new StarSearcher();
             starSearcher.SearchByMass(min, max, isAscending, fields);
         }
 
-        public void SearchByStarAge(double ?min, double ?max, bool ?isAscending, StarFields fields) {
+        public void SearchByStarAge(double? min, double? max, bool isAscending, StarFields fields)
+        {
             StarSearcher starSearcher = new StarSearcher();
             starSearcher.SearchByAge(min, max, isAscending, fields);
         }
 
-        public void SearchByStarVsin(double ?min, double ?max, bool ?isAscending, StarFields fields) {
+        public void SearchByStarVsin(double? min, double? max, bool isAscending, StarFields fields)
+        {
             StarSearcher starSearcher = new StarSearcher();
             starSearcher.SearchByVsin(min, max, isAscending, fields);
         }
 
-        public void SearchByStarRtop(double ?min, double ?max, bool ?isAscending, StarFields fields) {
+        public void SearchByStarRtop(double? min, double? max, bool isAscending, StarFields fields)
+        {
             StarSearcher starSearcher = new StarSearcher();
             starSearcher.SearchByRotp(min, max, isAscending, fields);
         }
 
-        public void SearchByStarDist(double ?min, double ?max, bool ?isAscending, StarFields fields) {
+        public void SearchByStarDist(double? min, double? max, bool isAscending, StarFields fields)
+        {
             StarSearcher starSearcher = new StarSearcher();
             starSearcher.SearchByDist(min, max, isAscending, fields);
         }
 
-        public void SearchByPlCount(double ?min, double ?max, bool ?isAscending, StarFields fields) {
+        public void SearchByPlCount(double? min, double? max, bool isAscending, StarFields fields)
+        {
             StarSearcher starSearcher = new StarSearcher();
             starSearcher.SearchByPlCount(min, max, isAscending, fields);
         }
