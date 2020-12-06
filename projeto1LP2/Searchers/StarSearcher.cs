@@ -35,14 +35,15 @@ namespace projeto1LP2
         private Dictionary<int, Star> filterByPlCount =
             new Dictionary<int, Star>(Facade.starList);
 
-        private Func<KeyValuePair<int, Star>, Object> orderByFunc; 
+        private Func<KeyValuePair<int, Star>, Object> orderByFunc;
+        private Func<KeyValuePair<int, Star>, Object> secondOrderByFunc;
 
         private void CheckField(StarFields fields) {
             if(fields == StarFields.HostName) {
-                orderByFunc = item => item.Value.HostName;
+                orderByFunc = item => item.Value.HostName.Length;
             }
             if (fields == StarFields.DiscoveryMethod) {
-                orderByFunc = item => item.Value.DiscoveryMethod;
+                orderByFunc = item => item.Value.DiscoveryMethod.Length;
             }
             if (fields == StarFields.Disc_Year) {
                 orderByFunc = item => item.Value.Disc_Year;
@@ -73,11 +74,49 @@ namespace projeto1LP2
             }
         }
 
+        private void SecondField(StarFields fields) {
+            if (fields == StarFields.HostName) {
+                secondOrderByFunc = item => item.Value.DiscoveryMethod.Length;
+            }
+            if (fields == StarFields.DiscoveryMethod) {
+                secondOrderByFunc = item => item.Value.Disc_Year;
+            }
+            if (fields == StarFields.Disc_Year) {
+                secondOrderByFunc = item => item.Value.St_Teff;
+            }
+            if (fields == StarFields.St_Teff) {
+                secondOrderByFunc = item => item.Value.St_Rad;
+            }
+            if (fields == StarFields.St_Rad) {
+                secondOrderByFunc = item => item.Value.St_Mass;
+            }
+            if (fields == StarFields.St_Mass) {
+                secondOrderByFunc = item => item.Value.St_Age;
+            }
+            if (fields == StarFields.St_Age) {
+                secondOrderByFunc = item => item.Value.St_Vsin;
+            }
+            if (fields == StarFields.St_Vsin) {
+                secondOrderByFunc = item => item.Value.St_Rotp;
+            }
+            if (fields == StarFields.St_Rotp) {
+                secondOrderByFunc = item => item.Value.Sy_Dist;
+            }
+            if (fields == StarFields.Sy_Dist) {
+                secondOrderByFunc = item => item.Value.St_PlCount;
+            }
+            if (fields == StarFields.St_PlCount) {
+                secondOrderByFunc = item => item.Value.Sy_Dist;
+            }
+        }
+
         // Método de pesquisa de estrelas pelo nome.
         public void SearchByName(string input, bool? isAscending, StarFields fields) {
             Facade.starList = filterByName; // obrigatório!!!!
 
             CheckField(fields);
+
+            SecondField(fields);
 
             Console.WriteLine("Filtrar pelo nome");
 
@@ -89,14 +128,14 @@ namespace projeto1LP2
                     filterByName =
                         (from item in filterByName
                          where item.Value.HostName.StartsWith(input.ToUpper())
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                          .ToDictionary(p => p.Key, p => p.Value);
 
                 } else if (isAscending == false) {
                     filterByName =
                         (from item in filterByName
                          where item.Value.HostName.StartsWith(input.ToUpper())
-                         select item).OrderByDescending(x => orderByFunc(x))
+                         select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                          .ToDictionary(p => p.Key, p => p.Value);
                 } 
 
@@ -104,7 +143,7 @@ namespace projeto1LP2
                 foreach (KeyValuePair<int, Star> item in filterByName) {
                     Console.WriteLine(string.Format($"ID: " +
                         $"{item.Key,-5} | Star: {item.Value.HostName,-30}" +
-                     $" | Planets: {item.Value.St_PlCount,-2}  | Teff: {item.Value.St_Teff} "));
+                     $" | Planets: {item.Value.St_PlCount,-2}  | Teff: {item.Value.St_Teff}  | Year: {item.Value.Disc_Year}"));
                 }
 
             } else {
@@ -112,7 +151,7 @@ namespace projeto1LP2
                 foreach (KeyValuePair<int, Star> item in filterByName) {
                     Console.WriteLine(string.Format($"ID: " +
                         $"{item.Key,-5} | Star: {item.Value.HostName,-30}" +
-                     $" | Planets: {item.Value.St_PlCount,-2} | Teff: { item.Value.St_Teff}"));
+                     $" | Planets: {item.Value.St_PlCount,-2} | Teff: { item.Value.St_Teff}  | Year: {item.Value.Disc_Year}"));
                 }
             }
             Console.WriteLine("Dicionário filtro: " + filterByName.Count);
@@ -124,6 +163,8 @@ namespace projeto1LP2
 
             CheckField(fields);
 
+            SecondField(fields);
+
             Console.WriteLine("Filtrar pelo método de descoberta");
 
             if (input != null) {
@@ -132,14 +173,14 @@ namespace projeto1LP2
                         (from item in filterByDiscoveryMethod
                          where item.Value.DiscoveryMethod
                          .StartsWith(input.ToUpper())
-                         select item).OrderBy(x => orderByFunc(x))
+                         select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                          .ToDictionary(p => p.Key, p => p.Value);
                 } else if (isAscending == false) {
                     filterByDiscoveryMethod =
                        (from item in filterByDiscoveryMethod
                         where item.Value.DiscoveryMethod
                         .StartsWith(input.ToUpper())
-                        select item).OrderByDescending(x => orderByFunc(x))
+                        select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 } 
 
@@ -166,6 +207,8 @@ namespace projeto1LP2
 
             CheckField(fields);
 
+            SecondField(fields);
+
             Console.WriteLine("Filtrar pelo ano de descoberta");
 
             if (min == null && max != null) {
@@ -173,13 +216,13 @@ namespace projeto1LP2
                     filterByDiscoveryYear =
                    (from item in filterByDiscoveryYear
                     where item.Value.Disc_Year < max
-                    select item).OrderBy(x => orderByFunc(x))
+                    select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                     .ToDictionary(p => p.Key, p => p.Value);
                 } else if (isAscending == false) {
                     filterByDiscoveryYear =
                   (from item in filterByDiscoveryYear
                    where item.Value.Disc_Year < max
-                   select item).OrderByDescending(x => orderByFunc(x))
+                   select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                    .ToDictionary(p => p.Key, p => p.Value);
                 } 
                 // Imprimir
@@ -193,13 +236,13 @@ namespace projeto1LP2
                     filterByDiscoveryYear =
                    (from item in filterByDiscoveryYear
                     where item.Value.Disc_Year > min
-                    select item).OrderBy(x => orderByFunc(x))
+                    select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                     .ToDictionary(p => p.Key, p => p.Value);
                 } else if (isAscending == false) {
                     filterByDiscoveryYear =
                (from item in filterByDiscoveryYear
                 where item.Value.Disc_Year > min
-                select item).OrderByDescending(x => orderByFunc(x))
+                select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                 .ToDictionary(p => p.Key, p => p.Value);
                 } 
                 // Imprimir
@@ -213,13 +256,13 @@ namespace projeto1LP2
                     filterByDiscoveryYear =
                   (from item in filterByDiscoveryYear
                    where item.Value.Disc_Year > min && item.Value.Disc_Year < max
-                   select item).OrderBy(x => orderByFunc(x))
+                   select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                    .ToDictionary(p => p.Key, p => p.Value);
                 } else if (isAscending == false) {
                     filterByDiscoveryYear =
                  (from item in filterByDiscoveryYear
                   where item.Value.Disc_Year > min && item.Value.Disc_Year < max
-                  select item).OrderByDescending(x => orderByFunc(x))
+                  select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                   .ToDictionary(p => p.Key, p => p.Value);
                 } 
                 // Imprimir
@@ -246,6 +289,8 @@ namespace projeto1LP2
 
             CheckField(fields);
 
+            SecondField(fields);
+
             Console.WriteLine("Filtrar pela temperatura");
 
             if (min == null && max != null) {
@@ -253,13 +298,13 @@ namespace projeto1LP2
                     filterByTaff =
                    (from item in filterByTaff
                     where item.Value.St_Teff < max
-                    select item).OrderBy(x => orderByFunc(x))
+                    select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                     .ToDictionary(p => p.Key, p => p.Value);
                 } else if (isAscending == false) {
                     filterByTaff =
                  (from item in filterByTaff
                   where item.Value.St_Teff < max
-                  select item).OrderByDescending(x => orderByFunc(x))
+                  select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                   .ToDictionary(p => p.Key, p => p.Value);
                 } 
                 // Imprimir
@@ -273,13 +318,13 @@ namespace projeto1LP2
                     filterByTaff =
                    (from item in filterByTaff
                     where item.Value.St_Teff > min
-                    select item).OrderBy(x => orderByFunc(x))
+                    select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                     .ToDictionary(p => p.Key, p => p.Value);
                 } else if (isAscending == false) {
                     filterByTaff =
                (from item in filterByTaff
                 where item.Value.St_Teff > min
-                select item).OrderByDescending(x => orderByFunc(x))
+                select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                 .ToDictionary(p => p.Key, p => p.Value);
                 } 
                 // Imprimir
@@ -293,13 +338,13 @@ namespace projeto1LP2
                     filterByTaff =
                    (from item in filterByTaff
                     where item.Value.St_Teff > min && item.Value.St_Teff < max
-                    select item).OrderBy(x => orderByFunc(x))
+                    select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                     .ToDictionary(p => p.Key, p => p.Value);
                 } else if (isAscending == false) {
                     filterByTaff =
                  (from item in filterByTaff
                   where item.Value.St_Teff > min && item.Value.St_Teff < max
-                  select item).OrderByDescending(x => orderByFunc(x))
+                  select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                   .ToDictionary(p => p.Key, p => p.Value);
                 }
                 // Imprimir
@@ -325,6 +370,8 @@ namespace projeto1LP2
 
             CheckField(fields);
 
+            SecondField(fields);
+
             Console.WriteLine("Filtrar pelo raio");
 
             if (min != null && max == null) {
@@ -332,12 +379,12 @@ namespace projeto1LP2
                     filterByRad =
                                    (from item in filterByRad
                                     where item.Value.St_Rad > min
-                                    select item).OrderBy(x => orderByFunc(x)).
-                                    ToDictionary(p => p.Key, p => p.Value);
+                                    select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
+                                    .ToDictionary(p => p.Key, p => p.Value);
                 } else if (isAscending == false) {
                     (from item in filterByRad
                      where item.Value.St_Rad > min
-                     select item).OrderByDescending(x => orderByFunc(x)).
+                     select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x)).
                                     ToDictionary(p => p.Key, p => p.Value);
                 } 
                 // Imprimir
@@ -351,13 +398,13 @@ namespace projeto1LP2
                     filterByRad =
                                   (from item in filterByRad
                                    where item.Value.St_Rad < max
-                                   select item).OrderBy(x => orderByFunc(x))
+                                   select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                                    .ToDictionary(p => p.Key, p => p.Value);
                 } else if (isAscending == false) {
                     filterByRad =
                                  (from item in filterByRad
                                   where item.Value.St_Rad < max
-                                  select item).OrderByDescending(x => orderByFunc(x))
+                                  select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                                   .ToDictionary(p => p.Key, p => p.Value);
                 } 
                 // Imprimir
@@ -371,13 +418,13 @@ namespace projeto1LP2
                     filterByRad =
                    (from item in filterByRad
                     where item.Value.St_Rad > min && item.Value.St_Rad < max
-                    select item).OrderBy(x => orderByFunc(x))
+                    select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                     .ToDictionary(p => p.Key, p => p.Value);
                 } else if (isAscending == false) {
                     filterByRad =
                   (from item in filterByRad
                    where item.Value.St_Rad > min && item.Value.St_Rad < max
-                   select item).OrderByDescending(x => orderByFunc(x))
+                   select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                    .ToDictionary(p => p.Key, p => p.Value);
                 } 
 
@@ -405,6 +452,8 @@ namespace projeto1LP2
 
             CheckField(fields);
 
+            SecondField(fields);
+
             Console.WriteLine("Filtrar pela massa");
 
             if (min != null && max == null) {
@@ -412,13 +461,13 @@ namespace projeto1LP2
                     filterByMass =
                   (from item in filterByMass
                    where item.Value.St_Mass > min
-                   select item).OrderBy(x => orderByFunc(x))
+                   select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                    .ToDictionary(p => p.Key, p => p.Value);
                 } else if (isAscending == false) {
                     filterByMass =
                (from item in filterByMass
                 where item.Value.St_Mass > min
-                select item).OrderByDescending(x => orderByFunc(x))
+                select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                 .ToDictionary(p => p.Key, p => p.Value);
                 } 
 
@@ -433,13 +482,13 @@ namespace projeto1LP2
                     filterByMass =
                   (from item in filterByMass
                    where item.Value.St_Mass < max
-                   select item).OrderBy(x => orderByFunc(x))
+                   select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                    .ToDictionary(p => p.Key, p => p.Value);
                 } else if (isAscending == false) {
                     filterByMass =
                  (from item in filterByMass
                   where item.Value.St_Mass < max
-                  select item).OrderByDescending(x => orderByFunc(x))
+                  select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                   .ToDictionary(p => p.Key, p => p.Value);
                 } 
 
@@ -454,13 +503,13 @@ namespace projeto1LP2
                     filterByMass =
                   (from item in filterByMass
                    where item.Value.St_Mass > min && item.Value.St_Mass < max
-                   select item).OrderBy(x => orderByFunc(x))
+                   select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                    .ToDictionary(p => p.Key, p => p.Value);
                 } else if (isAscending == false) {
                     filterByMass =
                   (from item in filterByMass
                    where item.Value.St_Mass > min && item.Value.St_Mass < max
-                   select item).OrderByDescending(x => orderByFunc(x))
+                   select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                    .ToDictionary(p => p.Key, p => p.Value);
                 } 
 
@@ -487,6 +536,8 @@ namespace projeto1LP2
 
             CheckField(fields);
 
+            SecondField(fields);
+
             Console.WriteLine("Filtrar pela idade");
 
             if (min != null && max == null) {
@@ -494,13 +545,13 @@ namespace projeto1LP2
                     filterByAge =
                    (from item in filterByAge
                     where item.Value.St_Age > min
-                    select item).OrderBy(x => orderByFunc(x))
+                    select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                     .ToDictionary(p => p.Key, p => p.Value);
                 } else if (isAscending == false) {
                     filterByAge =
                    (from item in filterByAge
                     where item.Value.St_Age > min
-                    select item).OrderByDescending(x => orderByFunc(x))
+                    select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                     .ToDictionary(p => p.Key, p => p.Value);
                 } 
 
@@ -515,13 +566,13 @@ namespace projeto1LP2
                     filterByAge =
                    (from item in filterByAge
                     where item.Value.St_Age < max
-                    select item).OrderBy(x => orderByFunc(x))
+                    select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                     .ToDictionary(p => p.Key, p => p.Value);
                 } else if (isAscending == true) {
                     filterByAge =
                    (from item in filterByAge
                     where item.Value.St_Age < max
-                    select item).OrderByDescending(x => orderByFunc(x))
+                    select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                     .ToDictionary(p => p.Key, p => p.Value);
                 } 
 
@@ -536,13 +587,13 @@ namespace projeto1LP2
                     filterByAge =
                    (from item in filterByAge
                     where item.Value.St_Age > min && item.Value.St_Age < max
-                    select item).OrderBy(x => orderByFunc(x))
+                    select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                     .ToDictionary(p => p.Key, p => p.Value);
                 } else if (isAscending == true) {
                     filterByAge =
                    (from item in filterByAge
                     where item.Value.St_Age > min && item.Value.St_Age < max
-                    select item).OrderByDescending(x => orderByFunc(x))
+                    select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                     .ToDictionary(p => p.Key, p => p.Value);
                 } 
 
@@ -569,6 +620,8 @@ namespace projeto1LP2
 
             CheckField(fields);
 
+            SecondField(fields);
+
             Console.WriteLine("Filtrar pela velocidade de rotação");
 
             if (min != null && max == null) {
@@ -576,13 +629,13 @@ namespace projeto1LP2
                     filterByVsin =
                                     (from item in filterByVsin
                                      where item.Value.St_Vsin > min
-                                     select item).OrderBy(x => orderByFunc(x))
+                                     select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                                      .ToDictionary(p => p.Key, p => p.Value);
                 } else if (isAscending == true) {
                     filterByVsin =
                                     (from item in filterByVsin
                                      where item.Value.St_Vsin > min
-                                     select item).OrderByDescending(x => orderByFunc(x))
+                                     select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                                      .ToDictionary(p => p.Key, p => p.Value);
                 }
 
@@ -597,13 +650,13 @@ namespace projeto1LP2
                     filterByVsin =
                     (from item in filterByVsin
                      where item.Value.St_Vsin < max
-                     select item).OrderBy(x => orderByFunc(x))
+                     select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                      .ToDictionary(p => p.Key, p => p.Value);
                 } else if (isAscending == false) {
                     filterByVsin =
                     (from item in filterByVsin
                      where item.Value.St_Vsin < max
-                     select item).OrderByDescending(x => orderByFunc(x))
+                     select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                      .ToDictionary(p => p.Key, p => p.Value);
                 } 
 
@@ -618,13 +671,13 @@ namespace projeto1LP2
                     filterByVsin =
                     (from item in filterByVsin
                      where item.Value.St_Vsin > min && item.Value.St_Vsin < max
-                     select item).OrderBy(x => orderByFunc(x))
+                     select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                      .ToDictionary(p => p.Key, p => p.Value);
                 } else if (isAscending == false) {
                     filterByVsin =
                     (from item in filterByVsin
                      where item.Value.St_Vsin > min && item.Value.St_Vsin < max
-                     select item).OrderByDescending(x => orderByFunc(x))
+                     select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                      .ToDictionary(p => p.Key, p => p.Value);
                 } 
 
@@ -651,6 +704,8 @@ namespace projeto1LP2
 
             CheckField(fields);
 
+            SecondField(fields);
+
             Console.WriteLine("Filtrar pelo período de rotação");
 
             if (min != null && max == null) {
@@ -658,13 +713,13 @@ namespace projeto1LP2
                     filterByRotp =
                    (from item in filterByRotp
                     where item.Value.St_Rotp > min
-                    select item).OrderBy(x => orderByFunc(x))
+                    select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                     .ToDictionary(p => p.Key, p => p.Value);
                 } else if (isAscending == false) {
                     filterByRotp =
                    (from item in filterByRotp
                     where item.Value.St_Rotp > min
-                    select item).OrderByDescending(x => orderByFunc(x))
+                    select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                     .ToDictionary(p => p.Key, p => p.Value);
                 } 
                 // Imprimir
@@ -678,13 +733,13 @@ namespace projeto1LP2
                     filterByRotp =
                    (from item in filterByRotp
                     where item.Value.St_Rotp < max
-                    select item).OrderBy(x => orderByFunc(x))
+                    select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                     .ToDictionary(p => p.Key, p => p.Value);
                 } else if (isAscending == false) {
                     filterByRotp =
                    (from item in filterByRotp
                     where item.Value.St_Rotp < max
-                    select item).OrderByDescending(x => orderByFunc(x))
+                    select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                     .ToDictionary(p => p.Key, p => p.Value);
                 }
 
@@ -699,13 +754,13 @@ namespace projeto1LP2
                     filterByRotp =
                    (from item in filterByRotp
                     where item.Value.St_Rotp > min && item.Value.St_Rotp < max
-                    select item).OrderBy(x => orderByFunc(x))
+                    select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                     .ToDictionary(p => p.Key, p => p.Value);
                 } else if (isAscending == false) {
                     filterByRotp =
                    (from item in filterByRotp
                     where item.Value.St_Rotp > min && item.Value.St_Rotp < max
-                    select item).OrderByDescending(x => orderByFunc(x))
+                    select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                     .ToDictionary(p => p.Key, p => p.Value);
                 } 
 
@@ -732,6 +787,8 @@ namespace projeto1LP2
 
             CheckField(fields);
 
+            SecondField(fields);
+
             Console.WriteLine("Filtrar pela distância");
 
             if (min != null && max == null) {
@@ -739,13 +796,13 @@ namespace projeto1LP2
                     filterByDyst =
                     (from item in filterByDyst
                      where item.Value.Sy_Dist > min
-                     select item).OrderBy(x => orderByFunc(x))
+                     select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                      .ToDictionary(p => p.Key, p => p.Value);
                 } else if (isAscending == false) {
                     filterByDyst =
                     (from item in filterByDyst
                      where item.Value.Sy_Dist > min
-                     select item).OrderByDescending(x => orderByFunc(x))
+                     select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                      .ToDictionary(p => p.Key, p => p.Value);
                 } 
 
@@ -760,13 +817,13 @@ namespace projeto1LP2
                     filterByDyst =
                     (from item in filterByDyst
                      where item.Value.Sy_Dist < max
-                     select item).OrderBy(x => orderByFunc(x))
+                     select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                      .ToDictionary(p => p.Key, p => p.Value);
                 } else if (isAscending == false) {
                     filterByDyst =
                     (from item in filterByDyst
                      where item.Value.Sy_Dist < max
-                     select item).OrderByDescending(x => orderByFunc(x))
+                     select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                      .ToDictionary(p => p.Key, p => p.Value);
                 }
 
@@ -781,13 +838,13 @@ namespace projeto1LP2
                     filterByDyst =
                     (from item in filterByDyst
                      where item.Value.Sy_Dist > min && item.Value.Sy_Dist < max
-                     select item).OrderBy(x => orderByFunc(x))
+                     select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                      .ToDictionary(p => p.Key, p => p.Value);
                 } else if (isAscending == false) {
                     filterByDyst =
                     (from item in filterByDyst
                      where item.Value.Sy_Dist > min && item.Value.Sy_Dist < max
-                     select item).OrderByDescending(x => orderByFunc(x))
+                     select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                      .ToDictionary(p => p.Key, p => p.Value);
                 } 
 
@@ -814,6 +871,8 @@ namespace projeto1LP2
 
             CheckField(fields);
 
+            SecondField(fields);
+
             Console.WriteLine("Filtrar pelo número de planetas");
 
             if (min != null && max == null) {
@@ -821,13 +880,13 @@ namespace projeto1LP2
                     filterByPlCount =
                  (from item in filterByPlCount
                   where item.Value.St_PlCount > min
-                  select item).OrderBy(x => orderByFunc(x))
+                  select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                   .ToDictionary(p => p.Key, p => p.Value);
                 } else if (isAscending == false) {
                     filterByPlCount =
                  (from item in filterByPlCount
                   where item.Value.St_PlCount > min
-                  select item).OrderBy(x => orderByFunc(x))
+                  select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                   .ToDictionary(p => p.Key, p => p.Value);
                 } 
 
@@ -842,13 +901,13 @@ namespace projeto1LP2
                     filterByPlCount =
                  (from item in filterByPlCount
                   where item.Value.St_PlCount < max
-                  select item).OrderBy(x => orderByFunc(x))
+                  select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                   .ToDictionary(p => p.Key, p => p.Value);
                 } else if (isAscending == false) {
                     filterByPlCount =
                  (from item in filterByPlCount
                   where item.Value.St_PlCount < max
-                  select item).OrderBy(x => orderByFunc(x))
+                  select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                   .ToDictionary(p => p.Key, p => p.Value);
                 } 
 
@@ -863,13 +922,13 @@ namespace projeto1LP2
                     filterByPlCount =
                  (from item in filterByPlCount
                   where item.Value.St_PlCount > min && item.Value.St_PlCount < max
-                  select item).OrderBy(x => orderByFunc(x))
+                  select item).OrderBy(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                   .ToDictionary(p => p.Key, p => p.Value);
                 } else if (isAscending == false) {
                     filterByPlCount =
                  (from item in filterByPlCount
                   where item.Value.St_PlCount > min && item.Value.St_PlCount < max
-                  select item).OrderByDescending(x => orderByFunc(x))
+                  select item).OrderByDescending(x => orderByFunc(x)).ThenBy(x => secondOrderByFunc(x))
                   .ToDictionary(p => p.Key, p => p.Value);
                 } 
 
