@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
 
 namespace projeto1LP2
@@ -9,9 +8,10 @@ namespace projeto1LP2
     /// </summary>
     class StarSearcher
     {
-        // Aceder à Facade.
+        // Inicializar a Facade.
         private Facade facade;
-        // Estas variáveis têem obrigatoriamente de serem inicializadas aqui!
+
+        // Coleções de estrelas de acordo com os filtros escolhidos.
         private Dictionary<int, Star> filterByName =
             new Dictionary<int, Star>(Facade.starList);
         private Dictionary<int, Star> filterByDiscoveryMethod =
@@ -35,9 +35,16 @@ namespace projeto1LP2
         private Dictionary<int, Star> filterByPlCount =
             new Dictionary<int, Star>(Facade.starList);
 
+        // Critério de ordenação.
         private Func<KeyValuePair<int, Star>, Object> orderByFunc;
+
+        // Critério de ordenação secundário.
         private Func<KeyValuePair<int, Star>, Object> secondOrderByFunc;
 
+        /// <summary>
+        /// Verificar qual é o método de ordenação primário.
+        /// </summary>
+        /// <param name="fields"> Enum do critério de ordenação. </param>
         private void CheckField(StarFields fields)
         {
             if (fields == StarFields.HostName)
@@ -86,6 +93,11 @@ namespace projeto1LP2
             }
         }
 
+        /// <summary>
+        /// Verificar qual é o método de ordenação secundário.
+        /// </summary>
+        /// <param name="fields"> Enum do critério de ordenação secundário. 
+        /// </param>
         private void SecondField(StarFields fields) {
             if (fields == StarFields.HostName) {
                 secondOrderByFunc = item => item.Value.DiscoveryMethod.Length;
@@ -122,10 +134,16 @@ namespace projeto1LP2
             }
         }
 
-        // Método de pesquisa de estrelas pelo nome.
-        public void SearchByName(string input, bool isAscending, StarFields fields)
+        /// <summary>
+        /// Método de pesquisa de estrelas pelo nome.
+        /// </summary>
+        /// <param name="input"> Input do user. </param>
+        /// <param name="isAscending"> Ordem de ordenação. </param>
+        /// <param name="fields"> Campo da estrela. </param>
+        public void SearchByName(string input, bool isAscending, 
+            StarFields fields)
         {
-            Facade.starList = filterByName; // obrigatório!!!!
+            Facade.starList = filterByName; 
 
             CheckField(fields);
 
@@ -133,13 +151,20 @@ namespace projeto1LP2
 
             Console.WriteLine("Filtrar pelo nome");
 
-            facade.StarSortName(input, isAscending, filterByName, orderByFunc, secondOrderByFunc);
+            facade.StarSortName(input, isAscending, filterByName, orderByFunc,
+                secondOrderByFunc);
         }
 
-        // Método de pesquisa de estrelas pelo método de descoberta.
-        public void SearchByDiscoveryMethod(string input, bool isAscending, StarFields fields)
+        /// <summary>
+        /// Método de pesquisa de estrelas pelo método de descoberta.
+        /// </summary>
+        /// <param name="input"> Input do user. </param>
+        /// <param name="isAscending"> Ordem de ordenação. </param>
+        /// <param name="fields"> Campo da estrela. </param>
+        public void SearchByDiscoveryMethod(string input, bool isAscending,
+            StarFields fields)
         {
-            Facade.starList = filterByDiscoveryMethod; // obrigatório!!!!
+            Facade.starList = filterByDiscoveryMethod; 
 
             CheckField(fields);
 
@@ -147,11 +172,19 @@ namespace projeto1LP2
 
             Console.WriteLine("Filtrar pelo método de descoberta");
 
-            facade.StarSortDiscMethod(input, isAscending, filterByDiscoveryMethod, orderByFunc, secondOrderByFunc);
+            facade.StarSortDiscMethod(input, isAscending, 
+                filterByDiscoveryMethod, orderByFunc, secondOrderByFunc);
         }
 
-        // Método de pesquisa de estrelas pelo ano de descoberta.
-        public void SearchByDiscoveryYear(int? min, int? max, bool isAscending, StarFields fields)
+        /// <summary>
+        /// Método de pesquisa de estrelas pelo ano de descoberta.
+        /// </summary>
+        /// <param name="min"> Ano mínimo. </param>
+        /// <param name="max"> Ano máximo. </param>
+        /// <param name="isAscending"> Ordem de ordenação. </param>
+        /// <param name="fields"> Campo da estrela. </param>
+        public void SearchByDiscoveryYear(int? min, int? max, bool isAscending,
+            StarFields fields)
         {
             Facade.starList = filterByDiscoveryYear; // obrigatório!!!!
 
@@ -161,13 +194,21 @@ namespace projeto1LP2
 
             Console.WriteLine("Filtrar pelo ano de descoberta");
 
-            facade.StarSortDiscYear(min, max, isAscending, filterByDiscoveryYear, orderByFunc, secondOrderByFunc);
+            facade.StarSortDiscYear(min, max, isAscending, 
+                filterByDiscoveryYear, orderByFunc, secondOrderByFunc);
         }
 
-        // Método de pesquisa de estrelas pela temperatura.
-        public void SearchByTeff(double? min, double? max, bool isAscending, StarFields fields)
+        /// <summary>
+        /// Método de pesquisa de estrelas pela temperatura.
+        /// </summary>
+        /// <param name="min"> Temperatura mínima. </param>
+        /// <param name="max"> Temperatura máxima. </param>
+        /// <param name="isAscending"> Ordem de ordenação. </param>
+        /// <param name="fields"> Campo da estrela. </param>
+        public void SearchByTeff(double? min, double? max, bool isAscending, 
+            StarFields fields)
         {
-            Facade.starList = filterByTaff; // obrigatório!!!!
+            Facade.starList = filterByTaff; 
 
             CheckField(fields);
 
@@ -175,13 +216,21 @@ namespace projeto1LP2
 
             Console.WriteLine("Filtrar pela temperatura");
 
-            facade.StarSortTeff(min, max, isAscending, filterByTaff, orderByFunc, secondOrderByFunc);
+            facade.StarSortTeff(min, max, isAscending, filterByTaff,
+                orderByFunc, secondOrderByFunc);
         }
 
-        // Método de pesquisa de estrelas pelo raio.
-        public void SearchByRad(double? min, double? max, bool isAscending, StarFields fields)
+        /// <summary>
+        /// Método de pesquisa de estrelas pelo raio.
+        /// </summary>
+        /// <param name="min"> Temperatura mínima. </param>
+        /// <param name="max"> Temperatura máxima. </param>
+        /// <param name="isAscending"> Ordem de ordenação. </param>
+        /// <param name="fields"> Campo da estrela. </param>
+        public void SearchByRad(double? min, double? max, bool isAscending,
+            StarFields fields)
         {
-            Facade.starList = filterByRad; // obrigatório!!!!
+            Facade.starList = filterByRad; 
 
             CheckField(fields);
 
@@ -189,13 +238,21 @@ namespace projeto1LP2
 
             Console.WriteLine("Filtrar pelo raio");
 
-            facade.StarSortRad(min, max, isAscending, filterByRad, orderByFunc, secondOrderByFunc);
+            facade.StarSortRad(min, max, isAscending, filterByRad, orderByFunc,
+                secondOrderByFunc);
         }
 
-        // Método de pesquisa de estrelas pela massa.
-        public void SearchByMass(double? min, double? max, bool isAscending, StarFields fields)
+        /// <summary>
+        /// Método de pesquisa de estrelas pela massa.
+        /// </summary>
+        /// <param name="min"> Massa mínima. </param>
+        /// <param name="max"> Massa máxima. </param>
+        /// <param name="isAscending"> Ordem de ordenação. </param>
+        /// <param name="fields"> Campo da estrela. </param>
+        public void SearchByMass(double? min, double? max, bool isAscending,
+            StarFields fields)
         {
-            Facade.starList = filterByMass; // obrigatório!!!!
+            Facade.starList = filterByMass; 
 
             CheckField(fields);
 
@@ -203,13 +260,21 @@ namespace projeto1LP2
 
             Console.WriteLine("Filtrar pela massa");
 
-            facade.StarSortMass(min, max, isAscending, filterByMass, orderByFunc, secondOrderByFunc);
+            facade.StarSortMass(min, max, isAscending, filterByMass,
+                orderByFunc, secondOrderByFunc);
         }
 
-        // Método de pesquisa de estrelas pela idade.
-        public void SearchByAge(double? min, double? max, bool isAscending, StarFields fields)
+        /// <summary>
+        /// Método de pesquisa de estrelas pela idade.
+        /// </summary>
+        /// <param name="min"> Idade mínima. </param>
+        /// <param name="max"> Idade máxima. </param>
+        /// <param name="isAscending"> Ordem de ordenação. </param>
+        /// <param name="fields"> Campo da estrela. </param>
+        public void SearchByAge(double? min, double? max, bool isAscending,
+            StarFields fields)
         {
-            Facade.starList = filterByAge; // obrigatório!!!!
+            Facade.starList = filterByAge; 
 
             CheckField(fields);
 
@@ -217,13 +282,21 @@ namespace projeto1LP2
 
             Console.WriteLine("Filtrar pela idade");
 
-            facade.StarSortAge(min, max, isAscending, filterByAge, orderByFunc, secondOrderByFunc);
+            facade.StarSortAge(min, max, isAscending, filterByAge, orderByFunc,
+                secondOrderByFunc);
         }
 
-        // Método de pesquisa de estrelas pela velocidade de rotação.
-        public void SearchByVsin(double? min, double? max, bool isAscending, StarFields fields)
+        /// <summary>
+        /// Método de pesquisa de estrelas pela velocidade de rotação.
+        /// </summary>
+        /// <param name="min"> Velocidade mínima. </param>
+        /// <param name="max"> Velocidade máxima. </param>
+        /// <param name="isAscending"> Ordem de ordenação. </param>
+        /// <param name="fields"> Campo da estrela. </param>
+        public void SearchByVsin(double? min, double? max, bool isAscending, 
+            StarFields fields)
         {
-            Facade.starList = filterByVsin; // obrigatório!!!!
+            Facade.starList = filterByVsin; 
 
             CheckField(fields);
 
@@ -231,13 +304,21 @@ namespace projeto1LP2
 
             Console.WriteLine("Filtrar pela velocidade de rotação");
 
-            facade.StarSortVsin(min, max, isAscending, filterByVsin, orderByFunc, secondOrderByFunc);
+            facade.StarSortVsin(min, max, isAscending, filterByVsin, 
+                orderByFunc, secondOrderByFunc);
         }
 
-        // Método de pesquisa de estrelas pelo período de rotação.
-        public void SearchByRotp(double? min, double? max, bool isAscending, StarFields fields)
+        /// <summary>
+        /// Método de pesquisa de estrelas pelo período de rotação.
+        /// </summary>
+        /// <param name="min"> Período de rotação mínimo. </param>
+        /// <param name="max"> Período do rotação máximo. </param>
+        /// <param name="isAscending"> Ordem de ordenação. </param>
+        /// <param name="fields"> Campo da estrela. </param>
+        public void SearchByRotp(double? min, double? max, bool isAscending,
+            StarFields fields)
         {
-            Facade.starList = filterByRotp; // obrigatório!!!!
+            Facade.starList = filterByRotp; 
 
             CheckField(fields);
 
@@ -245,13 +326,21 @@ namespace projeto1LP2
 
             Console.WriteLine("Filtrar pelo período de rotação");
 
-            facade.StarSortRtop(min, max, isAscending, filterByRotp, orderByFunc, secondOrderByFunc);
+            facade.StarSortRtop(min, max, isAscending, filterByRotp,
+                orderByFunc, secondOrderByFunc);
         }
 
-        // Método de pesquisa de estrelas pela distância.
-        public void SearchByDist(double? min, double? max, bool isAscending, StarFields fields)
+        /// <summary>
+        /// Método de pesquisa de estrelas pela distância.
+        /// </summary>
+        /// <param name="min"> Distância mínima. </param>
+        /// <param name="max"> Distância máxima. </param>
+        /// <param name="isAscending"> Ordem de ordenação. </param>
+        /// <param name="fields"> Campo da estrela. </param>
+        public void SearchByDist(double? min, double? max, bool isAscending,
+            StarFields fields)
         {
-            Facade.starList = filterByDyst; // obrigatório!!!!
+            Facade.starList = filterByDyst; 
 
             CheckField(fields);
 
@@ -259,13 +348,21 @@ namespace projeto1LP2
 
             Console.WriteLine("Filtrar pela distância");
 
-            facade.StarSortDyst(min, max, isAscending, filterByDyst, orderByFunc, secondOrderByFunc);
+            facade.StarSortDyst(min, max, isAscending, filterByDyst, 
+                orderByFunc, secondOrderByFunc);
         }
 
-        // Método de pesquisa de estrelas pela quantidade de planetas.
-        public void SearchByPlCount(int? min, int? max, bool isAscending, StarFields fields)
+        /// <summary>
+        /// Método de pesquisa de estrelas pela quantidade de planetas.
+        /// </summary>
+        /// <param name="min"> Número mínimo de planetas. </param>
+        /// <param name="max"> Número máximo de planetas. </param>
+        /// <param name="isAscending"> Ordem de ordenação. </param>
+        /// <param name="fields"> Campo da estrela. </param>
+        public void SearchByPlCount(int? min, int? max, bool isAscending, 
+            StarFields fields)
         {
-            Facade.starList = filterByPlCount; // obrigatório!!!!
+            Facade.starList = filterByPlCount; 
 
             CheckField(fields);
 
@@ -273,7 +370,8 @@ namespace projeto1LP2
 
             Console.WriteLine("Filtrar pelo número de planetas");
 
-            facade.StarSortPlCount(min, max, isAscending, filterByPlCount, orderByFunc, secondOrderByFunc);
+            facade.StarSortPlCount(min, max, isAscending, filterByPlCount,
+                orderByFunc, secondOrderByFunc);
         }
 
         // Inicializar as variáveis.
