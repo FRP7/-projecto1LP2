@@ -190,6 +190,15 @@ namespace projeto1LP2
         // Método para imprimir informação na consola Planetas
         public void PrintInfo(Dictionary<int, Planet> filter)
         {
+            Dictionary<int, Planet> showInfo = filter;
+
+            bool isDone = false;
+
+            int skip = 0;
+            int take = 0;
+
+            ConsoleKeyInfo choice;
+
             Console.WriteLine("  ID |" +
                 "           Planet           |" +
                 "            Star            |" +
@@ -206,23 +215,45 @@ namespace projeto1LP2
                 "St Rot Vel|" +
                 "St Rot Per|" +
                 "St Dist Sun");
+
             // Imprimir
-            foreach (KeyValuePair<int, Planet> item in filter)
-            {
-                Console.WriteLine($"{ item.Key,-5}|{item.Value.HostName}|" +
-                    $"{item.Value.HostName}|{item.Value.DiscoveryMethod}|" +
-                    $"{item.Value.Disc_Year,-10}|{item.Value.Pl_Orbper,-12}|" +
-                    $"{item.Value.Pl_Rade,-10}|{item.Value.St_Rad,-10}|" +
-                    $"{item.Value.Pl_Eqt,-10}|{item.Value.St_Teff,-10}|" +
-                    $"{item.Value.Pl_Masse,-10}|{item.Value.St_Mass,-10}|" +
-                    $"{item.Value.St_Age,-10}|{item.Value.St_Vsin,-10}|" +
-                    $"{item.Value.St_Rotp,-10}|{item.Value.Sy_Dist,-10}");
+            while (isDone == false) {
+                Console.WriteLine("Right arrow key: See more results.");
+                Console.WriteLine("Up arrow key: Return to Menu.");
+                choice = Console.ReadKey();
+                if (choice.Key == ConsoleKey.RightArrow) {
+                    take += 10;
+                    showInfo = filter.Take(take).Skip(skip).ToDictionary(x => x.Key, x => x.Value);
+                    Console.WriteLine("Results: ");
+                    foreach (KeyValuePair<int, Planet> item in showInfo) {
+                        Console.WriteLine($"{ item.Key,-5}|{item.Value.HostName}|" +
+                            $"{item.Value.HostName}|{item.Value.DiscoveryMethod}|" +
+                            $"{item.Value.Disc_Year,-10}|{item.Value.Pl_Orbper,-12}|" +
+                            $"{item.Value.Pl_Rade,-10}|{item.Value.St_Rad,-10}|" +
+                            $"{item.Value.Pl_Eqt,-10}|{item.Value.St_Teff,-10}|" +
+                            $"{item.Value.Pl_Masse,-10}|{item.Value.St_Mass,-10}|" +
+                            $"{item.Value.St_Age,-10}|{item.Value.St_Vsin,-10}|" +
+                            $"{item.Value.St_Rotp,-10}|{item.Value.Sy_Dist,-10}");
+                    }
+                    skip += 10;
+                } else if (choice.Key == ConsoleKey.UpArrow) {
+                    isDone = true;
+                }
             }
         }
 
         // Método para imprimir informação na consola Estrelas
         public void PrintInfo(Dictionary<int, Star> filter)
         {
+            Dictionary<int, Star> showInfo = filter;
+
+            bool isDone = false;
+
+            int skip = 0;
+            int take = 0;
+
+            ConsoleKeyInfo choice;
+
             Console.WriteLine("  ID |" +
                 "            Star            |" +
                 "         Disc Method          |" +
@@ -235,15 +266,28 @@ namespace projeto1LP2
                 "  Rot Per |" +
                 " Dist Sun |" +
                 "Num of Planets");
+
             // Imprimir
-            foreach (KeyValuePair<int, Star> item in filter)
-            {
-                Console.WriteLine($"{item.Key,-5}|{item.Value.HostName}|" +
-                    $"{item.Value.DiscoveryMethod}|{item.Value.Disc_Year,-10}|" +
-                    $"{item.Value.St_Teff,-10}|{item.Value.St_Rad,-10}|" +
-                    $"{item.Value.St_Mass,-10}|{item.Value.St_Age,-10}|" +
-                    $"{item.Value.St_Vsin,-10}|{item.Value.St_Rotp,-10}|" +
-                    $"{item.Value.Sy_Dist,-10}|{item.Value.St_PlCount,-10}");
+            while (isDone == false) {
+                Console.WriteLine("Right arrow key: See more results.");
+                Console.WriteLine("Up arrow key: Return to Menu.");
+                choice = Console.ReadKey();
+                if (choice.Key == ConsoleKey.RightArrow) {
+                    take += 10;
+                    showInfo = filter.Take(take).Skip(skip).ToDictionary(x => x.Key, x => x.Value);
+                    Console.WriteLine("Results: ");
+                    foreach (KeyValuePair<int, Star> item in showInfo) {
+                        Console.WriteLine($"{item.Key,-5}|{item.Value.HostName}|" +
+                  $"{item.Value.DiscoveryMethod}|{item.Value.Disc_Year,-10}|" +
+                  $"{item.Value.St_Teff,-10}|{item.Value.St_Rad,-10}|" +
+                  $"{item.Value.St_Mass,-10}|{item.Value.St_Age,-10}|" +
+                  $"{item.Value.St_Vsin,-10}|{item.Value.St_Rotp,-10}|" +
+                  $"{item.Value.Sy_Dist,-10}|{item.Value.St_PlCount,-10}");
+                    }
+                    skip += 10;
+                } else if (choice.Key == ConsoleKey.UpArrow) {
+                    isDone = true;
+                }
             }
         }
         // Método para odernar informação com inputs string para planetas
