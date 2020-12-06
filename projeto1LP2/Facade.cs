@@ -300,7 +300,7 @@ namespace projeto1LP2
                 {
                     filter =
                         (from item in filter
-                         where item.Value.Pl_Name.StartsWith(input)
+                         where item.Value.Pl_Name.StartsWith(input, StringComparison.InvariantCultureIgnoreCase)
                          select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -308,7 +308,7 @@ namespace projeto1LP2
                 {
                     filter =
                         (from item in filter
-                         where item.Value.Pl_Name.StartsWith(input)
+                         where item.Value.Pl_Name.StartsWith(input, StringComparison.InvariantCultureIgnoreCase)
                          select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -331,7 +331,7 @@ namespace projeto1LP2
                 {
                     filter =
                         (from item in filter
-                         where item.Value.HostName.StartsWith(input)
+                         where item.Value.HostName.StartsWith(input, StringComparison.InvariantCultureIgnoreCase)
                          select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -339,7 +339,7 @@ namespace projeto1LP2
                 {
                     filter =
                         (from item in filter
-                         where item.Value.HostName.StartsWith(input)
+                         where item.Value.HostName.StartsWith(input, StringComparison.InvariantCultureIgnoreCase)
                          select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
