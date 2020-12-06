@@ -9,9 +9,10 @@ namespace projeto1LP2
     /// </summary>
     class PlanetSearcher
     {
-        // Aceder à Facade.
+        // Inicializar a Facade.
         private Facade facade;
-        // Estas variáveis têem obrigatoriamente de serem inicializadas aqui!
+
+        // Coleções de planetas de acordo com os filtros escolhidos.
         private Dictionary<int, Planet> filterByName =
             new Dictionary<int, Planet>(Facade.planetList);
         private Dictionary<int, Planet> filterByHostName =
@@ -43,9 +44,16 @@ namespace projeto1LP2
         private Dictionary<int, Planet> filterByHostDist =
             new Dictionary<int, Planet>(Facade.planetList);
 
+        // Critério de ordenação.
         private Func<KeyValuePair<int, Planet>, Object> orderByFunc;
+
+        // Critério de ordenação secundário.
         private Func<KeyValuePair<int, Planet>, Object> secondOrderByFunc;
 
+        /// <summary>
+        /// Verificar qual é o método de ordenação primário.
+        /// </summary>
+        /// <param name="fields"> Enum do critério de ordenação. </param>
         private void CheckField(PlanetField fields)
         {
             if (fields == PlanetField.Pl_Name)
@@ -110,6 +118,11 @@ namespace projeto1LP2
             }
         }
 
+        /// <summary>
+        /// Verificar qual é o método de ordenação secundário.
+        /// </summary>
+        /// <param name="fields"> Enum do critério de ordenação secundário. 
+        /// </param>
         private void SecondField(PlanetField fields) {
             if (fields == PlanetField.Pl_Name) {
                 secondOrderByFunc = item => item.Value.HostName.Length;
@@ -158,8 +171,14 @@ namespace projeto1LP2
             }
         }
 
-        // Método de pesquisa de planetas pelo nome.
-        public void SearchByPlanetName(string input, bool isAscending, PlanetField fields)
+        /// <summary>
+        /// Método de pesquisa de planetas pelo nome.
+        /// </summary>
+        /// <param name="input"> Input do user. </param>
+        /// <param name="isAscending"> Ordem de ordenação. </param>
+        /// <param name="fields"> Campo do planeta.</param>
+        public void SearchByPlanetName(string input, bool isAscending, 
+            PlanetField fields)
         {
             Facade.planetList = filterByName;
 
@@ -169,11 +188,18 @@ namespace projeto1LP2
 
             Console.WriteLine("Filter by planet name");
 
-            facade.PlanetSortName(input, isAscending, filterByName, orderByFunc, secondOrderByFunc);
+            facade.PlanetSortName(input, isAscending, filterByName, orderByFunc
+                , secondOrderByFunc);
         }
 
-        // Método de pesquisa de planetas pelo nome das suas estrelas.
-        public void SearchByPlanetHostName(string input, bool isAscending, PlanetField fields)
+        /// <summary>
+        /// Método de pesquisa de planetas pelo nome das suas estrelas.
+        /// </summary>
+        /// <param name="input"> Input do user. </param>
+        /// <param name="isAscending"> Ordem de ordenação. </param>
+        /// <param name="fields"> Campo do planeta. </param>
+        public void SearchByPlanetHostName(string input, bool isAscending,
+            PlanetField fields)
         {
             Facade.planetList = filterByHostName;
 
@@ -183,11 +209,18 @@ namespace projeto1LP2
 
             Console.WriteLine("Filter by host star");
 
-            facade.PlanetSortHost(input, isAscending, filterByHostName, orderByFunc, secondOrderByFunc);
+            facade.PlanetSortHost(input, isAscending, filterByHostName, 
+                orderByFunc, secondOrderByFunc);
         }
 
-        // Método de pesquisa de planetas pelo método de descoberta.
-        public void SearchByPlanetDiscoveryMethod(string input, bool isAscending, PlanetField fields)
+        /// <summary>
+        /// Método de pesquisa de planetas pelo método de descoberta.
+        /// </summary>
+        /// <param name="input"> Input do user. </param>
+        /// <param name="isAscending"> Ordem de ordenação. </param>
+        /// <param name="fields"> Campo do planeta. </param>
+        public void SearchByPlanetDiscoveryMethod(string input, 
+            bool isAscending, PlanetField fields)
         {
             Facade.planetList = filterByDiscoveryMethod;
 
@@ -197,11 +230,19 @@ namespace projeto1LP2
 
             Console.WriteLine("Filter by discovery method");
 
-            facade.PlanetSortDiscMethod(input, isAscending, filterByDiscoveryMethod, orderByFunc, secondOrderByFunc);
+            facade.PlanetSortDiscMethod(input, isAscending, 
+                filterByDiscoveryMethod, orderByFunc, secondOrderByFunc);
         }
 
-        // Método de pesquisa de planetas pelo ano de descoberta.
-        public void SearchByPlanetDiscoveryYear(int? min, int? max, bool isAscending, PlanetField fields)
+        /// <summary>
+        /// Método de pesquisa de planetas pelo ano de descoberta.
+        /// </summary>
+        /// <param name="min"> Ano mínimo. </param>
+        /// <param name="max"> Ano máximo. </param>
+        /// <param name="isAscending"> Ordem de ordenação. </param>
+        /// <param name="fields"> Campo do planeta. </param>
+        public void SearchByPlanetDiscoveryYear(int? min, int? max, 
+            bool isAscending, PlanetField fields)
         {
             Facade.planetList = filterByDiscoveryYear;
 
@@ -211,11 +252,19 @@ namespace projeto1LP2
 
             Console.WriteLine("Filter by discovery year");
 
-            facade.PlanetSortDiscYear(min, max, isAscending, filterByDiscoveryYear, orderByFunc, secondOrderByFunc);
+            facade.PlanetSortDiscYear(min, max, isAscending, 
+                filterByDiscoveryYear, orderByFunc, secondOrderByFunc);
         }
 
-        // Método de pesquisa de planetas pelo periodo de orbita.
-        public void SearchByPlanetOrbitalPeriod(int? min, int? max, bool isAscending, PlanetField fields)
+        /// <summary>
+        /// Método de pesquisa de planetas pelo periodo de orbita.
+        /// </summary>
+        /// <param name="min"> Período mínimo. </param>
+        /// <param name="max"> Período máximo. </param>
+        /// <param name="isAscending"> Ordem de ordenação. </param>
+        /// <param name="fields"> Campo do planeta. </param>
+        public void SearchByPlanetOrbitalPeriod(int? min, int? max,
+            bool isAscending, PlanetField fields)
         {
             Facade.planetList = filterByOrbitalPeriod;
 
@@ -225,11 +274,19 @@ namespace projeto1LP2
 
             Console.WriteLine("Filter by orbital period");
 
-            facade.PlanetSortOrbp(min, max, isAscending, filterByOrbitalPeriod, orderByFunc, secondOrderByFunc);
+            facade.PlanetSortOrbp(min, max, isAscending, filterByOrbitalPeriod,
+                orderByFunc, secondOrderByFunc);
         }
 
-        // Método de pesquisa de planetas pelo raio.
-        public void SearchByPlanetRadius(double? min, double? max, bool isAscending, PlanetField fields)
+        /// <summary>
+        /// Método de pesquisa de planetas pelo raio.
+        /// </summary>
+        /// <param name="min"> Raio mínimo. </param>
+        /// <param name="max"> Raio máximo. </param>
+        /// <param name="isAscending"> Ordem de ordenação. </param>
+        /// <param name="fields"> Campo do planeta. </param>
+        public void SearchByPlanetRadius(double? min, double? max, 
+            bool isAscending, PlanetField fields)
         {
             Facade.planetList = filterByRadius;
 
@@ -239,11 +296,19 @@ namespace projeto1LP2
 
             Console.WriteLine("Filter by radius");
 
-            facade.PlanetSortRade(min, max, isAscending, filterByRadius, orderByFunc, secondOrderByFunc);
+            facade.PlanetSortRade(min, max, isAscending, filterByRadius,
+                orderByFunc, secondOrderByFunc);
         }
 
-        // Método de pesquisa de planetas pelo raio da sua estrela.
-        public void SearchByPlanetHostRad(double? min, double? max, bool isAscending, PlanetField fields)
+        /// <summary>
+        /// Método de pesquisa de planetas pelo raio da sua estrela.
+        /// </summary>
+        /// <param name="min"> Raio mínimo. </param>
+        /// <param name="max">´Raio máximo. </param>
+        /// <param name="isAscending"> Ordem de ordenação. </param>
+        /// <param name="fields"> Campo do planeta. </param>
+        public void SearchByPlanetHostRad(double? min, double? max,
+            bool isAscending, PlanetField fields)
         {
             Facade.planetList = filterByHostRad;
 
@@ -253,11 +318,19 @@ namespace projeto1LP2
 
             Console.WriteLine("Filter by planet hosting star radius");
 
-            facade.PlanetSortHostRad(min, max, isAscending, filterByRadius, orderByFunc, secondOrderByFunc);
+            facade.PlanetSortHostRad(min, max, isAscending, filterByRadius,
+                orderByFunc, secondOrderByFunc);
         }
 
-        // Método de pesquisa de planetas pela temperatura de equilibrio.
-        public void SearchByPlanetEqt(int? min, int? max, bool isAscending, PlanetField fields)
+        /// <summary>
+        /// Método de pesquisa de planetas pela temperatura de equilibrio.
+        /// </summary>
+        /// <param name="min"> Temperatura mínima. </param>
+        /// <param name="max"> Temperatura máxima. </param>
+        /// <param name="isAscending"> Ordem de ordenação. </param>
+        /// <param name="fields"> Campo do planeta. </param>
+        public void SearchByPlanetEqt(int? min, int? max, bool isAscending,
+            PlanetField fields)
         {
             Facade.planetList = filterByEqt;
 
@@ -267,11 +340,19 @@ namespace projeto1LP2
 
             Console.WriteLine("Filter by equilibrium temperature");
 
-            facade.PlanetSortEqt(min, max, isAscending, filterByEqt, orderByFunc, secondOrderByFunc);
+            facade.PlanetSortEqt(min, max, isAscending, filterByEqt,
+                orderByFunc, secondOrderByFunc);
         }
 
-        // Método de pesquisa de planetas pela temperatura efetiva da sua estrela.
-        public void SearchByPlanetHostTeff(int? min, int? max, bool isAscending, PlanetField fields)
+        /// <summary>
+        /// Método de pesquisa de planetas pela temperatura efetiva da sua estrela.
+        /// </summary>
+        /// <param name="min"> Temperatura mínima. </param>
+        /// <param name="max"> Temperatura máxima. </param>
+        /// <param name="isAscending"> Ordem de ordenação. </param>
+        /// <param name="fields"> Campo do planeta. </param>
+        public void SearchByPlanetHostTeff(int? min, int? max, bool isAscending
+            , PlanetField fields)
         {
             Facade.planetList = filterByHostTeff;
 
@@ -281,11 +362,19 @@ namespace projeto1LP2
 
             Console.WriteLine("Filter by the planet hosting star temperature");
 
-            facade.PlanetSortHostTeff(min, max, isAscending, filterByHostTeff, orderByFunc, secondOrderByFunc);
+            facade.PlanetSortHostTeff(min, max, isAscending, filterByHostTeff,
+                orderByFunc, secondOrderByFunc);
         }
 
-        // Método de pesquisa de planetas pela massa.
-        public void SearchByPlanetMass(double? min, double? max, bool isAscending, PlanetField fields)
+        /// <summary>
+        /// Método de pesquisa de planetas pela massa.
+        /// </summary>
+        /// <param name="min"> Massa mínima. </param>
+        /// <param name="max"> Massa máxima. </param>
+        /// <param name="isAscending"> Ordem de ordenação. </param>
+        /// <param name="fields"> Campo do planeta. </param>
+        public void SearchByPlanetMass(double? min, double? max, 
+            bool isAscending, PlanetField fields)
         {
             Facade.planetList = filterByMass;
 
@@ -295,11 +384,19 @@ namespace projeto1LP2
 
             Console.WriteLine("Filter by mass");
 
-            facade.PlanetSortPlMass(min, max, isAscending, filterByRadius, orderByFunc, secondOrderByFunc);
+            facade.PlanetSortPlMass(min, max, isAscending, filterByRadius, 
+                orderByFunc, secondOrderByFunc);
         }
 
-        // Método de pesquisa de planetas pela massa da sua estrela.
-        public void SearchByPlanetHostMass(double? min, double? max, bool isAscending, PlanetField fields)
+        /// <summary>
+        /// Método de pesquisa de planetas pela massa da sua estrela.
+        /// </summary>
+        /// <param name="min"> Massa mínima. </param>
+        /// <param name="max"> Massa máxima. </param>
+        /// <param name="isAscending"> Ordem de ordenação. </param>
+        /// <param name="fields"> Campo do planeta. </param>
+        public void SearchByPlanetHostMass(double? min, double? max,
+            bool isAscending, PlanetField fields)
         {
             Facade.planetList = filterByHostMass;
 
@@ -309,11 +406,19 @@ namespace projeto1LP2
 
             Console.WriteLine("Filter by planet host star mass");
 
-            facade.PlanetSortStMass(min, max, isAscending, filterByRadius, orderByFunc, secondOrderByFunc);
+            facade.PlanetSortStMass(min, max, isAscending, filterByRadius, 
+                orderByFunc, secondOrderByFunc);
         }
 
-        // Método de pesquisa de planetas pela idade da sua estrela.
-        public void SearchByPlanetHostAge(int? min, int? max, bool isAscending, PlanetField fields)
+        /// <summary>
+        /// Método de pesquisa de planetas pela idade da sua estrela.
+        /// </summary>
+        /// <param name="min"> Idade mínima. </param>
+        /// <param name="max"> Idade máxima. </param>
+        /// <param name="isAscending"> Ordem de ordenação. </param>
+        /// <param name="fields"> Campo do planeta. </param>
+        public void SearchByPlanetHostAge(int? min, int? max, bool isAscending,
+            PlanetField fields)
         {
             Facade.planetList = filterByHostAge;
 
@@ -323,11 +428,20 @@ namespace projeto1LP2
 
             Console.WriteLine("Filter by planet host star age");
 
-            facade.PlanetSortStAge(min, max, isAscending, filterByHostAge, orderByFunc, secondOrderByFunc);
+            facade.PlanetSortStAge(min, max, isAscending, filterByHostAge,
+                orderByFunc, secondOrderByFunc);
         }
 
-        // Método de pesquisa de planetas pela velocidade de rotação da sua estrela.
-        public void SearchByPlanetHostVsin(double? min, double? max, bool isAscending, PlanetField fields)
+        /// <summary>
+        /// Método de pesquisa de planetas pela velocidade de rotação da sua 
+        ///estrela.
+        /// </summary>
+        /// <param name="min"> Velocidade mínima. </param>
+        /// <param name="max"> Velocidade máxima. </param>
+        /// <param name="isAscending"> Ordem de ordenação. </param>
+        /// <param name="fields"> Campo do planeta. </param>
+        public void SearchByPlanetHostVsin(double? min, double? max, 
+            bool isAscending, PlanetField fields)
         {
             Facade.planetList = filterByHostVsin;
 
@@ -337,11 +451,20 @@ namespace projeto1LP2
 
             Console.WriteLine("Filter by planet host star rotation speed");
 
-            facade.PlanetSortStVsin(min, max, isAscending, filterByRadius, orderByFunc, secondOrderByFunc);
+            facade.PlanetSortStVsin(min, max, isAscending, filterByRadius, 
+                orderByFunc, secondOrderByFunc);
         }
 
-        // Método de pesquisa de planetas pelo período de rotação da sua estrela.
-        public void SearchByPlanetHostRotp(int? min, int? max, bool isAscending, PlanetField fields)
+        /// <summary>
+        /// Método de pesquisa de planetas pelo período de rotação da sua 
+        /// estrela.
+        /// </summary>
+        /// <param name="min"> Período mínimo. </param>
+        /// <param name="max"> Período máximo. </param>
+        /// <param name="isAscending"> Ordem de ordenação. </param>
+        /// <param name="fields"> Campo do planeta. </param>
+        public void SearchByPlanetHostRotp(int? min, int? max, 
+            bool isAscending, PlanetField fields)
         {
             Facade.planetList = filterByHostRotp;
 
@@ -351,11 +474,20 @@ namespace projeto1LP2
 
             Console.WriteLine("Filter by planet host star rotation period");
 
-            facade.PlanetSortStRotp(min, max, isAscending, filterByHostRotp, orderByFunc, secondOrderByFunc);
+            facade.PlanetSortStRotp(min, max, isAscending, filterByHostRotp, 
+                orderByFunc, secondOrderByFunc);
         }
 
-        // Método de pesquisa de planetas pela distância do sol até a sua estrela.
-        public void SearchByPlanetHostDist(double? min, double? max, bool isAscending, PlanetField fields)
+        /// <summary>
+        /// Método de pesquisa de planetas pela distância do sol até a sua
+        /// estrela.
+        /// </summary>
+        /// <param name="min"> Distância mínima. </param>
+        /// <param name="max"> Distância máxima. </param>
+        /// <param name="isAscending"> Ordem de ordenação. </param>
+        /// <param name="fields"> Campo do planeta. </param>
+        public void SearchByPlanetHostDist(double? min, double? max,
+            bool isAscending, PlanetField fields)
         {
             Facade.planetList = filterByHostDist;
 
@@ -363,9 +495,11 @@ namespace projeto1LP2
 
             SecondField(fields);
 
-            Console.WriteLine("Filter by distance from the sun to the host star");
+            Console.WriteLine("Filter by distance from the sun to the " +
+                "host star");
 
-            facade.PlanetSortStDyst(min, max, isAscending, filterByRadius, orderByFunc, secondOrderByFunc);
+            facade.PlanetSortStDyst(min, max, isAscending, filterByRadius,
+                orderByFunc, secondOrderByFunc);
         }
 
         // Inicializar as variáveis.
