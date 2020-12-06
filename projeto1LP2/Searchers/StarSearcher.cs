@@ -149,7 +149,7 @@ namespace projeto1LP2
 
             SecondField(fields);
 
-            Console.WriteLine("Filtrar pelo nome");
+            Console.WriteLine("Filter by name");
 
             facade.StarSortName(input, isAscending, filterByName, orderByFunc,
                 secondOrderByFunc);
@@ -170,7 +170,7 @@ namespace projeto1LP2
 
             SecondField(fields);
 
-            Console.WriteLine("Filtrar pelo método de descoberta");
+            Console.WriteLine("Filter by discovery method.");
 
             facade.StarSortDiscMethod(input, isAscending, 
                 filterByDiscoveryMethod, orderByFunc, secondOrderByFunc);
@@ -192,7 +192,7 @@ namespace projeto1LP2
 
             SecondField(fields);
 
-            Console.WriteLine("Filtrar pelo ano de descoberta");
+            Console.WriteLine("Filter by discovery year.");
 
             facade.StarSortDiscYear(min, max, isAscending, 
                 filterByDiscoveryYear, orderByFunc, secondOrderByFunc);
@@ -214,7 +214,7 @@ namespace projeto1LP2
 
             SecondField(fields);
 
-            Console.WriteLine("Filtrar pela temperatura");
+            Console.WriteLine("Filter by temperature.");
 
             facade.StarSortTeff(min, max, isAscending, filterByTaff,
                 orderByFunc, secondOrderByFunc);
@@ -236,7 +236,7 @@ namespace projeto1LP2
 
             SecondField(fields);
 
-            Console.WriteLine("Filtrar pelo raio");
+            Console.WriteLine("Filter by radius.");
 
             facade.StarSortRad(min, max, isAscending, filterByRad, orderByFunc,
                 secondOrderByFunc);
@@ -258,7 +258,7 @@ namespace projeto1LP2
 
             SecondField(fields);
 
-            Console.WriteLine("Filtrar pela massa");
+            Console.WriteLine("Filter by mass");
 
             facade.StarSortMass(min, max, isAscending, filterByMass,
                 orderByFunc, secondOrderByFunc);
@@ -280,7 +280,7 @@ namespace projeto1LP2
 
             SecondField(fields);
 
-            Console.WriteLine("Filtrar pela idade");
+            Console.WriteLine("Filter by age.");
 
             facade.StarSortAge(min, max, isAscending, filterByAge, orderByFunc,
                 secondOrderByFunc);
@@ -302,7 +302,7 @@ namespace projeto1LP2
 
             SecondField(fields);
 
-            Console.WriteLine("Filtrar pela velocidade de rotação");
+            Console.WriteLine("Filter by rotation velocity.");
 
             facade.StarSortVsin(min, max, isAscending, filterByVsin, 
                 orderByFunc, secondOrderByFunc);
@@ -324,7 +324,7 @@ namespace projeto1LP2
 
             SecondField(fields);
 
-            Console.WriteLine("Filtrar pelo período de rotação");
+            Console.WriteLine("Filter by rotation period.");
 
             facade.StarSortRtop(min, max, isAscending, filterByRotp,
                 orderByFunc, secondOrderByFunc);
@@ -346,7 +346,7 @@ namespace projeto1LP2
 
             SecondField(fields);
 
-            Console.WriteLine("Filtrar pela distância");
+            Console.WriteLine("Filter by distance.");
 
             facade.StarSortDyst(min, max, isAscending, filterByDyst, 
                 orderByFunc, secondOrderByFunc);
@@ -368,7 +368,7 @@ namespace projeto1LP2
 
             SecondField(fields);
 
-            Console.WriteLine("Filtrar pelo número de planetas");
+            Console.WriteLine("Filter by planet count.");
 
             facade.StarSortPlCount(min, max, isAscending, filterByPlCount,
                 orderByFunc, secondOrderByFunc);
