@@ -248,7 +248,7 @@ namespace projeto1LP2
         }
         // Método para odernar informação com inputs string para planetas
         public void SortInfo(string input, bool isAscending,
-        Dictionary<int, Planet> filter, Func<KeyValuePair<int, Planet>, Object> order)
+        Dictionary<int, Planet> filter, Func<KeyValuePair<int, Planet>, Object> order, Func<KeyValuePair<int, Planet>, Object> secondOrder)
         {
             if (input != null)
             {
@@ -257,7 +257,7 @@ namespace projeto1LP2
                     filter =
                         (from item in filter
                          where item.Value.Pl_Name.StartsWith(input)
-                         select item).OrderBy(x => order(x))
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -265,7 +265,7 @@ namespace projeto1LP2
                     filter =
                         (from item in filter
                          where item.Value.Pl_Name.StartsWith(input)
-                         select item).OrderByDescending(x => order(x))
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 PrintInfo(filter);
@@ -279,7 +279,7 @@ namespace projeto1LP2
 
         // Método para odernar informação com inputs string para estrelas
         public void SortInfo(string input, bool isAscending,
-            Dictionary<int, Star> filter, Func<KeyValuePair<int, Star>, Object> order)
+            Dictionary<int, Star> filter, Func<KeyValuePair<int, Star>, Object> order, Func<KeyValuePair<int, Star>, Object> secondOrder)
         {
             if (input != null)
             {
@@ -288,7 +288,7 @@ namespace projeto1LP2
                     filter =
                         (from item in filter
                          where item.Value.HostName.StartsWith(input)
-                         select item).OrderBy(x => order(x))
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -296,7 +296,7 @@ namespace projeto1LP2
                     filter =
                         (from item in filter
                          where item.Value.HostName.StartsWith(input)
-                         select item).OrderByDescending(x => order(x))
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 PrintInfo(filter);
@@ -310,7 +310,7 @@ namespace projeto1LP2
 
         // Método para ordenar informação com inputs int para planetas
         public void SortInfo(int? min, int? max, bool isAscending,
-            Dictionary<int, Planet> filter, Func<KeyValuePair<int, Planet>, Object> order)
+            Dictionary<int, Planet> filter, Func<KeyValuePair<int, Planet>, Object> order, Func<KeyValuePair<int, Planet>, Object> secondOrder)
         {
             if (min == null && max != null)
             {
@@ -319,7 +319,7 @@ namespace projeto1LP2
                     filter =
                         (from item in filter
                          where item.Value.Disc_Year < max
-                         select item).OrderBy(x => order(x))
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -327,7 +327,7 @@ namespace projeto1LP2
                     filter =
                         (from item in filter
                          where item.Value.Disc_Year < max
-                         select item).OrderByDescending(x => order(x))
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 PrintInfo(filter);
@@ -339,7 +339,7 @@ namespace projeto1LP2
                     filter =
                         (from item in filter
                          where item.Value.Disc_Year > min
-                         select item).OrderBy(x => order(x))
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -347,7 +347,7 @@ namespace projeto1LP2
                     filter =
                         (from item in filter
                          where item.Value.Disc_Year > min
-                         select item).OrderByDescending(x => order(x))
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 PrintInfo(filter);
@@ -359,7 +359,7 @@ namespace projeto1LP2
                     filter =
                         (from item in filter
                          where item.Value.Disc_Year > min && item.Value.Disc_Year < max
-                         select item).OrderBy(x => order(x))
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -367,7 +367,7 @@ namespace projeto1LP2
                     filter =
                         (from item in filter
                          where item.Value.Disc_Year > min && item.Value.Disc_Year < max
-                         select item).OrderByDescending(x => order(x))
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 PrintInfo(filter);
@@ -381,7 +381,7 @@ namespace projeto1LP2
 
         // Método para ordenar informação com inputs int para estrelas
         public void SortInfo(int? min, int? max, bool isAscending,
-            Dictionary<int, Star> filter, Func<KeyValuePair<int, Star>, Object> order)
+            Dictionary<int, Star> filter, Func<KeyValuePair<int, Star>, Object> order, Func<KeyValuePair<int, Star>, Object> secondOrder)
         {
             if (min == null && max != null)
             {
@@ -390,7 +390,7 @@ namespace projeto1LP2
                     filter =
                         (from item in filter
                          where item.Value.Disc_Year < max
-                         select item).OrderBy(x => order(x))
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -398,7 +398,7 @@ namespace projeto1LP2
                     filter =
                         (from item in filter
                          where item.Value.Disc_Year < max
-                         select item).OrderByDescending(x => order(x))
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 PrintInfo(filter);
@@ -410,7 +410,7 @@ namespace projeto1LP2
                     filter =
                         (from item in filter
                          where item.Value.Disc_Year > min
-                         select item).OrderBy(x => order(x))
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -418,7 +418,7 @@ namespace projeto1LP2
                     filter =
                         (from item in filter
                          where item.Value.Disc_Year > min
-                         select item).OrderByDescending(x => order(x))
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 PrintInfo(filter);
@@ -430,7 +430,7 @@ namespace projeto1LP2
                     filter =
                         (from item in filter
                          where item.Value.Disc_Year > min && item.Value.Disc_Year < max
-                         select item).OrderBy(x => order(x))
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -438,7 +438,7 @@ namespace projeto1LP2
                     filter =
                         (from item in filter
                          where item.Value.Disc_Year > min && item.Value.Disc_Year < max
-                         select item).OrderByDescending(x => order(x))
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 PrintInfo(filter);
@@ -452,7 +452,7 @@ namespace projeto1LP2
 
         // Método para ordenar informação com inputs double para planetas
         public void SortInfo(double? min, double? max, bool isAscending,
-            Dictionary<int, Planet> filter, Func<KeyValuePair<int, Planet>, Object> order)
+            Dictionary<int, Planet> filter, Func<KeyValuePair<int, Planet>, Object> order, Func<KeyValuePair<int, Planet>, Object> secondOrder)
         {
             if (min == null && max != null)
             {
@@ -461,7 +461,7 @@ namespace projeto1LP2
                     filter =
                         (from item in filter
                          where item.Value.Pl_Rade < max
-                         select item).OrderBy(x => order(x))
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -469,7 +469,7 @@ namespace projeto1LP2
                     filter =
                         (from item in filter
                          where item.Value.Pl_Rade < max
-                         select item).OrderByDescending(x => order(x))
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 PrintInfo(filter);
@@ -481,7 +481,7 @@ namespace projeto1LP2
                     filter =
                         (from item in filter
                          where item.Value.Pl_Rade > min
-                         select item).OrderBy(x => order(x))
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -489,7 +489,7 @@ namespace projeto1LP2
                     filter =
                         (from item in filter
                          where item.Value.Pl_Rade > min
-                         select item).OrderByDescending(x => order(x))
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 PrintInfo(filter);
@@ -501,7 +501,7 @@ namespace projeto1LP2
                     filter =
                         (from item in filter
                          where item.Value.Pl_Rade > min && item.Value.Pl_Rade < max
-                         select item).OrderBy(x => order(x))
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -509,7 +509,7 @@ namespace projeto1LP2
                     filter =
                         (from item in filter
                          where item.Value.Pl_Rade > min && item.Value.Pl_Rade < max
-                         select item).OrderByDescending(x => order(x))
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 PrintInfo(filter);
@@ -523,7 +523,7 @@ namespace projeto1LP2
 
         // Método para ordenar informação com inputs double para estrelas
         public void SortInfo(double? min, double? max, bool isAscending,
-            Dictionary<int, Star> filter, Func<KeyValuePair<int, Star>, Object> order)
+            Dictionary<int, Star> filter, Func<KeyValuePair<int, Star>, Object> order, Func<KeyValuePair<int, Star>, Object> secondOrder)
         {
             if (min == null && max != null)
             {
@@ -532,7 +532,7 @@ namespace projeto1LP2
                     filter =
                         (from item in filter
                          where item.Value.St_Rad < max
-                         select item).OrderBy(x => order(x))
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -540,7 +540,7 @@ namespace projeto1LP2
                     filter =
                         (from item in filter
                          where item.Value.St_Rad < max
-                         select item).OrderByDescending(x => order(x))
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 PrintInfo(filter);
@@ -552,7 +552,7 @@ namespace projeto1LP2
                     filter =
                         (from item in filter
                          where item.Value.St_Rad > min
-                         select item).OrderBy(x => order(x))
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -560,7 +560,7 @@ namespace projeto1LP2
                     filter =
                         (from item in filter
                          where item.Value.St_Rad > min
-                         select item).OrderByDescending(x => order(x))
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 PrintInfo(filter);
@@ -572,7 +572,7 @@ namespace projeto1LP2
                     filter =
                         (from item in filter
                          where item.Value.St_Rad > min && item.Value.St_Rad < max
-                         select item).OrderBy(x => order(x))
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 else
@@ -580,7 +580,7 @@ namespace projeto1LP2
                     filter =
                         (from item in filter
                          where item.Value.St_Rad > min && item.Value.St_Rad < max
-                         select item).OrderByDescending(x => order(x))
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
                 PrintInfo(filter);

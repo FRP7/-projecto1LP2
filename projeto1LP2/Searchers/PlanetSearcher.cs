@@ -50,15 +50,15 @@ namespace projeto1LP2
         {
             if (fields == PlanetField.Pl_Name)
             {
-                orderByFunc = item => item.Value.Pl_Name;
+                orderByFunc = item => item.Value.Pl_Name.Length;
             }
             if (fields == PlanetField.HostName)
             {
-                orderByFunc = item => item.Value.HostName;
+                orderByFunc = item => item.Value.HostName.Length;
             }
             if (fields == PlanetField.DiscoveryMethod)
             {
-                orderByFunc = item => item.Value.DiscoveryMethod;
+                orderByFunc = item => item.Value.DiscoveryMethod.Length;
             }
             if (fields == PlanetField.Disc_Year)
             {
@@ -165,9 +165,11 @@ namespace projeto1LP2
 
             CheckField(fields);
 
+            SecondField(fields);
+
             Console.WriteLine("Filter by planet name");
 
-            facade.SortInfo(input, isAscending, filterByName, orderByFunc);
+            facade.SortInfo(input, isAscending, filterByName, orderByFunc, secondOrderByFunc);
         }
 
         // Método de pesquisa de planetas pelo nome das suas estrelas.
@@ -181,7 +183,7 @@ namespace projeto1LP2
 
             Console.WriteLine("Filter by host star");
 
-            facade.SortInfo(input, isAscending, filterByHostName, orderByFunc);
+            facade.SortInfo(input, isAscending, filterByHostName, orderByFunc, secondOrderByFunc);
         }
 
         // Método de pesquisa de planetas pelo método de descoberta.
@@ -195,7 +197,7 @@ namespace projeto1LP2
 
             Console.WriteLine("Filter by discovery method");
 
-            facade.SortInfo(input, isAscending, filterByDiscoveryMethod, orderByFunc);
+            facade.SortInfo(input, isAscending, filterByDiscoveryMethod, orderByFunc, secondOrderByFunc);
         }
 
         // Método de pesquisa de planetas pelo ano de descoberta.
@@ -209,7 +211,7 @@ namespace projeto1LP2
 
             Console.WriteLine("Filter by discovery year");
 
-            facade.SortInfo(min, max, isAscending, filterByDiscoveryYear, orderByFunc);
+            facade.SortInfo(min, max, isAscending, filterByDiscoveryYear, orderByFunc, secondOrderByFunc);
         }
 
         // Método de pesquisa de planetas pelo periodo de orbita.
@@ -223,7 +225,7 @@ namespace projeto1LP2
 
             Console.WriteLine("Filter by orbital period");
 
-            facade.SortInfo(min, max, isAscending, filterByOrbitalPeriod, orderByFunc);
+            facade.SortInfo(min, max, isAscending, filterByOrbitalPeriod, orderByFunc, secondOrderByFunc);
         }
 
         // Método de pesquisa de planetas pelo raio.
@@ -237,7 +239,7 @@ namespace projeto1LP2
 
             Console.WriteLine("Filter by radius");
 
-            facade.SortInfo(min, max, isAscending, filterByRadius, orderByFunc);
+            facade.SortInfo(min, max, isAscending, filterByRadius, orderByFunc, secondOrderByFunc);
         }
 
         // Método de pesquisa de planetas pelo raio da sua estrela.
@@ -251,7 +253,7 @@ namespace projeto1LP2
 
             Console.WriteLine("Filter by planet hosting star radius");
 
-            facade.SortInfo(min, max, isAscending, filterByRadius, orderByFunc);
+            facade.SortInfo(min, max, isAscending, filterByRadius, orderByFunc, secondOrderByFunc);
         }
 
         // Método de pesquisa de planetas pela temperatura de equilibrio.
@@ -265,7 +267,7 @@ namespace projeto1LP2
 
             Console.WriteLine("Filter by equilibrium temperature");
 
-            facade.SortInfo(min, max, isAscending, filterByEqt, orderByFunc);
+            facade.SortInfo(min, max, isAscending, filterByEqt, orderByFunc, secondOrderByFunc);
         }
 
         // Método de pesquisa de planetas pela temperatura efetiva da sua estrela.
@@ -279,7 +281,7 @@ namespace projeto1LP2
 
             Console.WriteLine("Filter by the planet hosting star temperature");
 
-            facade.SortInfo(min, max, isAscending, filterByHostTeff, orderByFunc);
+            facade.SortInfo(min, max, isAscending, filterByHostTeff, orderByFunc, secondOrderByFunc);
         }
 
         // Método de pesquisa de planetas pela massa.
@@ -293,7 +295,7 @@ namespace projeto1LP2
 
             Console.WriteLine("Filter by mass");
 
-            facade.SortInfo(min, max, isAscending, filterByRadius, orderByFunc);
+            facade.SortInfo(min, max, isAscending, filterByRadius, orderByFunc, secondOrderByFunc);
         }
 
         // Método de pesquisa de planetas pela massa da sua estrela.
@@ -307,7 +309,7 @@ namespace projeto1LP2
 
             Console.WriteLine("Filter by planet host star mass");
 
-            facade.SortInfo(min, max, isAscending, filterByRadius, orderByFunc);
+            facade.SortInfo(min, max, isAscending, filterByRadius, orderByFunc, secondOrderByFunc);
         }
 
         // Método de pesquisa de planetas pela idade da sua estrela.
@@ -321,7 +323,7 @@ namespace projeto1LP2
 
             Console.WriteLine("Filter by planet host star age");
 
-            facade.SortInfo(min, max, isAscending, filterByHostAge, orderByFunc);
+            facade.SortInfo(min, max, isAscending, filterByHostAge, orderByFunc, secondOrderByFunc);
         }
 
         // Método de pesquisa de planetas pela velocidade de rotação da sua estrela.
@@ -335,7 +337,7 @@ namespace projeto1LP2
 
             Console.WriteLine("Filter by planet host star rotation speed");
 
-            facade.SortInfo(min, max, isAscending, filterByRadius, orderByFunc);
+            facade.SortInfo(min, max, isAscending, filterByRadius, orderByFunc, secondOrderByFunc);
         }
 
         // Método de pesquisa de planetas pelo período de rotação da sua estrela.
@@ -349,7 +351,7 @@ namespace projeto1LP2
 
             Console.WriteLine("Filter by planet host star rotation period");
 
-            facade.SortInfo(min, max, isAscending, filterByHostRotp, orderByFunc);
+            facade.SortInfo(min, max, isAscending, filterByHostRotp, orderByFunc, secondOrderByFunc);
         }
 
         // Método de pesquisa de planetas pela distância do sol até a sua estrela.
@@ -363,7 +365,7 @@ namespace projeto1LP2
 
             Console.WriteLine("Filter by distance from the sun to the host star");
 
-            facade.SortInfo(min, max, isAscending, filterByRadius, orderByFunc);
+            facade.SortInfo(min, max, isAscending, filterByRadius, orderByFunc, secondOrderByFunc);
         }
 
         // Inicializar as variáveis.
