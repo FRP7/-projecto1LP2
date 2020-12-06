@@ -234,7 +234,7 @@ namespace projeto1LP2
                     Console.WriteLine("Results: ");
                     foreach (KeyValuePair<int, Planet> item in showInfo) {
                         Console.WriteLine($"{ item.Key,-5}" +
-                            $"|{item.Value.HostName}|" +
+                            $"|{item.Value.Pl_Name}|" +
                             $"{item.Value.HostName}" +
                             $"|{item.Value.DiscoveryMethod}|" +
                             $"{item.Value.Disc_Year,-10}" +
@@ -297,16 +297,16 @@ namespace projeto1LP2
                     foreach (KeyValuePair<int, Star> item in showInfo) {
                         Console.WriteLine($"{item.Key,-5}" +
                             $"|{item.Value.HostName}|" +
-                  $"{item.Value.DiscoveryMethod}" +
-                  $"|{item.Value.Disc_Year,-10}|" +
-                  $"{item.Value.St_Teff,-10}" +
-                  $"|{item.Value.St_Rad,-10}|" +
-                  $"{item.Value.St_Mass,-10}" +
-                  $"|{item.Value.St_Age,-10}|" +
-                  $"{item.Value.St_Vsin,-10}" +
-                  $"|{item.Value.St_Rotp,-10}|" +
-                  $"{item.Value.Sy_Dist,-10}" +
-                  $"|{item.Value.St_PlCount,-10}");
+                            $"{item.Value.DiscoveryMethod}" +
+                            $"|{item.Value.Disc_Year,-10}|" +
+                            $"{item.Value.St_Teff,-10}" +
+                            $"|{item.Value.St_Rad,-10}|" +
+                            $"{item.Value.St_Mass,-10}" +
+                            $"|{item.Value.St_Age,-10}|" +
+                            $"{item.Value.St_Vsin,-10}" +
+                            $"|{item.Value.St_Rotp,-10}|" +
+                            $"{item.Value.Sy_Dist,-10}" +
+                            $"|{item.Value.St_PlCount,-10}");
                     }
                     skip += 10;
                 } else if (choice.Key == ConsoleKey.UpArrow) {
