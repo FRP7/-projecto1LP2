@@ -133,7 +133,7 @@ namespace projeto1LP2
 
             Console.WriteLine("Filtrar pelo nome");
 
-            facade.SortInfo(input, isAscending, filterByName, orderByFunc, secondOrderByFunc);
+            facade.StarSortName(input, isAscending, filterByName, orderByFunc, secondOrderByFunc);
         }
 
         // Método de pesquisa de estrelas pelo método de descoberta.
@@ -147,7 +147,7 @@ namespace projeto1LP2
 
             Console.WriteLine("Filtrar pelo método de descoberta");
 
-            facade.SortInfo(input, isAscending, filterByDiscoveryMethod, orderByFunc, secondOrderByFunc);
+            facade.StarSortDiscMethod(input, isAscending, filterByDiscoveryMethod, orderByFunc, secondOrderByFunc);
         }
 
         // Método de pesquisa de estrelas pelo ano de descoberta.
@@ -161,7 +161,7 @@ namespace projeto1LP2
 
             Console.WriteLine("Filtrar pelo ano de descoberta");
 
-            facade.SortInfo(min, max, isAscending, filterByDiscoveryYear, orderByFunc, secondOrderByFunc);
+            facade.StarSortDiscYear(min, max, isAscending, filterByDiscoveryYear, orderByFunc, secondOrderByFunc);
         }
 
         // Método de pesquisa de estrelas pela temperatura.
@@ -175,7 +175,7 @@ namespace projeto1LP2
 
             Console.WriteLine("Filtrar pela temperatura");
 
-            facade.SortInfo(min, max, isAscending, filterByTaff, orderByFunc, secondOrderByFunc);
+            facade.StarSortTeff(min, max, isAscending, filterByTaff, orderByFunc, secondOrderByFunc);
         }
 
         // Método de pesquisa de estrelas pelo raio.
@@ -189,7 +189,7 @@ namespace projeto1LP2
 
             Console.WriteLine("Filtrar pelo raio");
 
-            facade.SortInfo(min, max, isAscending, filterByRad, orderByFunc, secondOrderByFunc);
+            facade.StarSortRad(min, max, isAscending, filterByRad, orderByFunc, secondOrderByFunc);
         }
 
         // Método de pesquisa de estrelas pela massa.
@@ -203,7 +203,7 @@ namespace projeto1LP2
 
             Console.WriteLine("Filtrar pela massa");
 
-            facade.SortInfo(min, max, isAscending, filterByMass, orderByFunc, secondOrderByFunc);
+            facade.StarSortMass(min, max, isAscending, filterByMass, orderByFunc, secondOrderByFunc);
         }
 
         // Método de pesquisa de estrelas pela idade.
@@ -217,7 +217,7 @@ namespace projeto1LP2
 
             Console.WriteLine("Filtrar pela idade");
 
-            facade.SortInfo(min, max, isAscending, filterByAge, orderByFunc, secondOrderByFunc);
+            facade.StarSortAge(min, max, isAscending, filterByAge, orderByFunc, secondOrderByFunc);
         }
 
         // Método de pesquisa de estrelas pela velocidade de rotação.
@@ -231,7 +231,7 @@ namespace projeto1LP2
 
             Console.WriteLine("Filtrar pela velocidade de rotação");
 
-            facade.SortInfo(min, max, isAscending, filterByVsin, orderByFunc, secondOrderByFunc);
+            facade.StarSortVsin(min, max, isAscending, filterByVsin, orderByFunc, secondOrderByFunc);
         }
 
         // Método de pesquisa de estrelas pelo período de rotação.
@@ -245,7 +245,7 @@ namespace projeto1LP2
 
             Console.WriteLine("Filtrar pelo período de rotação");
 
-            facade.SortInfo(min, max, isAscending, filterByRotp, orderByFunc, secondOrderByFunc);
+            facade.StarSortRtop(min, max, isAscending, filterByRotp, orderByFunc, secondOrderByFunc);
         }
 
         // Método de pesquisa de estrelas pela distância.
@@ -259,11 +259,11 @@ namespace projeto1LP2
 
             Console.WriteLine("Filtrar pela distância");
 
-            facade.SortInfo(min, max, isAscending, filterByDyst, orderByFunc, secondOrderByFunc);
+            facade.StarSortDyst(min, max, isAscending, filterByDyst, orderByFunc, secondOrderByFunc);
         }
 
         // Método de pesquisa de estrelas pela quantidade de planetas.
-        public void SearchByPlCount(double? min, double? max, bool isAscending, StarFields fields)
+        public void SearchByPlCount(int? min, int? max, bool isAscending, StarFields fields)
         {
             Facade.starList = filterByPlCount; // obrigatório!!!!
 
@@ -273,7 +273,7 @@ namespace projeto1LP2
 
             Console.WriteLine("Filtrar pelo número de planetas");
 
-            facade.SortInfo(min, max, isAscending, filterByPlCount, orderByFunc, secondOrderByFunc);
+            facade.StarSortPlCount(min, max, isAscending, filterByPlCount, orderByFunc, secondOrderByFunc);
         }
 
         // Inicializar as variáveis.

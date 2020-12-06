@@ -290,6 +290,7 @@ namespace projeto1LP2
                 }
             }
         }
+
         // Método para odernar informação com inputs string para planetas
         public void PlanetSortName(string input, bool isAscending,
         Dictionary<int, Planet> filter, Func<KeyValuePair<int, Planet>, Object> order, Func<KeyValuePair<int, Planet>, Object> secondOrder)
@@ -368,7 +369,7 @@ namespace projeto1LP2
         }
 
         // Método para odernar informação com inputs string para estrelas
-        public void SortInfo(string input, bool isAscending,
+        public void StarSortName(string input, bool isAscending,
             Dictionary<int, Star> filter, Func<KeyValuePair<int, Star>, Object> order, Func<KeyValuePair<int, Star>, Object> secondOrder)
         {
             if (input != null)
@@ -393,6 +394,30 @@ namespace projeto1LP2
             }
             else
             {
+                PrintInfo(filter);
+            }
+            Console.WriteLine("Dicionary filter: " + filter.Count);
+        }
+
+        // Método para odernar informação com inputs string para estrelas
+        public void StarSortDiscMethod(string input, bool isAscending,
+            Dictionary<int, Star> filter, Func<KeyValuePair<int, Star>, Object> order, Func<KeyValuePair<int, Star>, Object> secondOrder) {
+            if (input != null) {
+                if (isAscending) {
+                    filter =
+                        (from item in filter
+                         where item.Value.DiscoveryMethod.StartsWith(input, StringComparison.InvariantCultureIgnoreCase)
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                } else {
+                    filter =
+                        (from item in filter
+                         where item.Value.DiscoveryMethod.StartsWith(input, StringComparison.InvariantCultureIgnoreCase)
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            } else {
                 PrintInfo(filter);
             }
             Console.WriteLine("Dicionary filter: " + filter.Count);
@@ -470,7 +495,7 @@ namespace projeto1LP2
         }
 
         // Método para ordenar informação com inputs int para estrelas
-        public void SortInfo(int? min, int? max, bool isAscending,
+        public void StarSortDiscYear(int? min, int? max, bool isAscending,
             Dictionary<int, Star> filter, Func<KeyValuePair<int, Star>, Object> order, Func<KeyValuePair<int, Star>, Object> secondOrder)
         {
             if (min == null && max != null)
@@ -1153,7 +1178,7 @@ namespace projeto1LP2
         }
 
         // Método para ordenar informação com inputs double para estrelas
-        public void SortInfo(double? min, double? max, bool isAscending,
+        public void StarSortTeff(double? min, double? max, bool isAscending,
             Dictionary<int, Star> filter, Func<KeyValuePair<int, Star>, Object> order, Func<KeyValuePair<int, Star>, Object> secondOrder)
         {
             if (min == null && max != null)
@@ -1162,7 +1187,7 @@ namespace projeto1LP2
                 {
                     filter =
                         (from item in filter
-                         where item.Value.St_Rad < max
+                         where item.Value.St_Teff < max
                          select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -1170,7 +1195,7 @@ namespace projeto1LP2
                 {
                     filter =
                         (from item in filter
-                         where item.Value.St_Rad < max
+                         where item.Value.St_Teff < max
                          select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -1182,7 +1207,7 @@ namespace projeto1LP2
                 {
                     filter =
                         (from item in filter
-                         where item.Value.St_Rad > min
+                         where item.Value.St_Teff > min
                          select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -1190,7 +1215,7 @@ namespace projeto1LP2
                 {
                     filter =
                         (from item in filter
-                         where item.Value.St_Rad > min
+                         where item.Value.St_Teff > min
                          select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -1202,7 +1227,7 @@ namespace projeto1LP2
                 {
                     filter =
                         (from item in filter
-                         where item.Value.St_Rad > min && item.Value.St_Rad < max
+                         where item.Value.St_Teff > min && item.Value.St_Teff < max
                          select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -1210,7 +1235,7 @@ namespace projeto1LP2
                 {
                     filter =
                         (from item in filter
-                         where item.Value.St_Rad > min && item.Value.St_Rad < max
+                         where item.Value.St_Teff > min && item.Value.St_Teff < max
                          select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
                         .ToDictionary(p => p.Key, p => p.Value);
                 }
@@ -1218,6 +1243,384 @@ namespace projeto1LP2
             }
             else
             {
+                PrintInfo(filter);
+            }
+            Console.WriteLine("Dicionary filter: " + filter.Count);
+        }
+
+        // Método para ordenar informação com inputs double para estrelas
+        public void StarSortRad(double? min, double? max, bool isAscending,
+            Dictionary<int, Star> filter, Func<KeyValuePair<int, Star>, Object> order, Func<KeyValuePair<int, Star>, Object> secondOrder) {
+            if (min == null && max != null) {
+                if (isAscending) {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Rad < max
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                } else {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Rad < max
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            } else if (min != null && max == null) {
+                if (isAscending) {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Rad > min
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                } else {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Rad > min
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            } else if (min != null && max != null) {
+                if (isAscending) {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Rad > min && item.Value.St_Rad < max
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                } else {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Rad > min && item.Value.St_Rad < max
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            } else {
+                PrintInfo(filter);
+            }
+            Console.WriteLine("Dicionary filter: " + filter.Count);
+        }
+
+        // Método para ordenar informação com inputs double para estrelas
+        public void StarSortAge(double? min, double? max, bool isAscending,
+            Dictionary<int, Star> filter, Func<KeyValuePair<int, Star>, Object> order, Func<KeyValuePair<int, Star>, Object> secondOrder) {
+            if (min == null && max != null) {
+                if (isAscending) {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Age < max
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                } else {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Age < max
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            } else if (min != null && max == null) {
+                if (isAscending) {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Age > min
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                } else {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Age > min
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            } else if (min != null && max != null) {
+                if (isAscending) {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Age > min && item.Value.St_Age < max
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                } else {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Age > min && item.Value.St_Age < max
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            } else {
+                PrintInfo(filter);
+            }
+            Console.WriteLine("Dicionary filter: " + filter.Count);
+        }
+
+        // Método para ordenar informação com inputs double para estrelas
+        public void StarSortVsin(double? min, double? max, bool isAscending,
+            Dictionary<int, Star> filter, Func<KeyValuePair<int, Star>, Object> order, Func<KeyValuePair<int, Star>, Object> secondOrder) {
+            if (min == null && max != null) {
+                if (isAscending) {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Vsin < max
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                } else {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Vsin < max
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            } else if (min != null && max == null) {
+                if (isAscending) {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Vsin > min
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                } else {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Vsin > min
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            } else if (min != null && max != null) {
+                if (isAscending) {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Vsin > min && item.Value.St_Vsin < max
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                } else {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Vsin > min && item.Value.St_Vsin < max
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            } else {
+                PrintInfo(filter);
+            }
+            Console.WriteLine("Dicionary filter: " + filter.Count);
+        }
+
+        // Método para ordenar informação com inputs double para estrelas
+        public void StarSortRtop(double? min, double? max, bool isAscending,
+            Dictionary<int, Star> filter, Func<KeyValuePair<int, Star>, Object> order, Func<KeyValuePair<int, Star>, Object> secondOrder) {
+            if (min == null && max != null) {
+                if (isAscending) {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Rotp < max
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                } else {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Rotp < max
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            } else if (min != null && max == null) {
+                if (isAscending) {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Rotp > min
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                } else {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Rotp > min
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            } else if (min != null && max != null) {
+                if (isAscending) {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Rotp > min && item.Value.St_Rotp < max
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                } else {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Rotp > min && item.Value.St_Rotp < max
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            } else {
+                PrintInfo(filter);
+            }
+            Console.WriteLine("Dicionary filter: " + filter.Count);
+        }
+
+        // Método para ordenar informação com inputs double para estrelas
+        public void StarSortDyst(double? min, double? max, bool isAscending,
+            Dictionary<int, Star> filter, Func<KeyValuePair<int, Star>, Object> order, Func<KeyValuePair<int, Star>, Object> secondOrder) {
+            if (min == null && max != null) {
+                if (isAscending) {
+                    filter =
+                        (from item in filter
+                         where item.Value.Sy_Dist < max
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                } else {
+                    filter =
+                        (from item in filter
+                         where item.Value.Sy_Dist < max
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            } else if (min != null && max == null) {
+                if (isAscending) {
+                    filter =
+                        (from item in filter
+                         where item.Value.Sy_Dist > min
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                } else {
+                    filter =
+                        (from item in filter
+                         where item.Value.Sy_Dist > min
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            } else if (min != null && max != null) {
+                if (isAscending) {
+                    filter =
+                        (from item in filter
+                         where item.Value.Sy_Dist > min && item.Value.Sy_Dist < max
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                } else {
+                    filter =
+                        (from item in filter
+                         where item.Value.Sy_Dist > min && item.Value.Sy_Dist < max
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            } else {
+                PrintInfo(filter);
+            }
+            Console.WriteLine("Dicionary filter: " + filter.Count);
+        }
+
+        // Método para ordenar informação com inputs double para estrelas
+        public void StarSortPlCount(int? min, int? max, bool isAscending,
+            Dictionary<int, Star> filter, Func<KeyValuePair<int, Star>, Object> order, Func<KeyValuePair<int, Star>, Object> secondOrder) {
+            if (min == null && max != null) {
+                if (isAscending) {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_PlCount < max
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                } else {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_PlCount < max
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            } else if (min != null && max == null) {
+                if (isAscending) {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_PlCount > min
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                } else {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_PlCount > min
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            } else if (min != null && max != null) {
+                if (isAscending) {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_PlCount > min && item.Value.St_PlCount < max
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                } else {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_PlCount > min && item.Value.St_PlCount < max
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            } else {
+                PrintInfo(filter);
+            }
+            Console.WriteLine("Dicionary filter: " + filter.Count);
+        }
+
+        // Método para ordenar informação com inputs double para estrelas
+        public void StarSortMass(double? min, double? max, bool isAscending,
+            Dictionary<int, Star> filter, Func<KeyValuePair<int, Star>, Object> order, Func<KeyValuePair<int, Star>, Object> secondOrder) {
+            if (min == null && max != null) {
+                if (isAscending) {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Mass < max
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                } else {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Mass < max
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            } else if (min != null && max == null) {
+                if (isAscending) {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Mass > min
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                } else {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Mass > min
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            } else if (min != null && max != null) {
+                if (isAscending) {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Mass > min && item.Value.St_Mass < max
+                         select item).OrderBy(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                } else {
+                    filter =
+                        (from item in filter
+                         where item.Value.St_Mass > min && item.Value.St_Mass < max
+                         select item).OrderByDescending(x => order(x)).ThenBy(x => secondOrder(x))
+                        .ToDictionary(p => p.Key, p => p.Value);
+                }
+                PrintInfo(filter);
+            } else {
                 PrintInfo(filter);
             }
             Console.WriteLine("Dicionary filter: " + filter.Count);
@@ -1285,7 +1688,7 @@ namespace projeto1LP2
             starSearcher.SearchByDist(min, max, isAscending, fields);
         }
 
-        public void SearchByPlCount(double? min, double? max, bool isAscending, StarFields fields)
+        public void SearchByPlCount(int? min, int? max, bool isAscending, StarFields fields)
         {
             StarSearcher starSearcher = new StarSearcher();
             starSearcher.SearchByPlCount(min, max, isAscending, fields);
