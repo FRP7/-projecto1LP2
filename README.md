@@ -88,7 +88,6 @@ secundária para o caso de haver empate na ordenação primária.
 **UML:**
 
 
-https://imgur.com/a/ztaVQuU
 
 [![](https://i.imgur.com/i99H0I2.jpg)](https://i.imgur.com/i99H0I2.jpg)
 
