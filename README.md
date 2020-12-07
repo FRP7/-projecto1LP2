@@ -89,7 +89,7 @@ secundária para o caso de haver empate na ordenação primária.
 
 
 
-[![](https://i.imgur.com/i99H0I2.jpg)](https://i.imgur.com/i99H0I2.jpg)
+![image](P1_LP2_UML.jpg)
 
 
 
